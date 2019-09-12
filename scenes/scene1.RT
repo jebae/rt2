@@ -1,0 +1,7 @@
+AMB:{diffusion (102, 803, 904); reflection (300, 200, 400); specvalue (200); specpower (600)}
+CAM:{position (100, 200, 300); direction (400, 600, 700)}
+CONE:{direction (120, 190, 110); center (140, 105, 107); angle (10); amb (30)}
+CYLINDER:{direction (180, 310, 210); axis (300); radius (12); amb (30)}
+LIGHT:{position (300, 4500, 40); intensity (200, 300, 900)}
+PLANE:{normal (22, 33, 44); d (90); mat (910)}
+SPHERE:{center (40, 90, 130); radius (20); amb (110)}
