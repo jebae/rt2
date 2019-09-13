@@ -184,10 +184,9 @@ typedef struct		s_mlx
 
 typedef struct		s_creecam
 {
-	int				x[4];
-	int				y[4];
-	int				z[4];
-	int				t[4];
+	t_vec4			v1;
+	t_vec4			v2;
+	t_vec4			v3;
 }					t_creecam;
 
 typedef struct		s_vec4
@@ -212,10 +211,6 @@ typedef struct		s_env
 	t_ll			*ll_lit; // linked list
 	t_ol			*ll_obj; // linked list
 
-	//testing camera
-	// t_foward		fo;
-	// t_up			up;
-	// t_right			ri;
 	t_creecam		cc;
 }					t_env;
 

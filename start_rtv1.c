@@ -113,29 +113,21 @@ t_creecam	setup_camera(t_env *e)
 	t_vec4		forward;
 	t_vec4		up; // camera up
 	t_vec4		fo; // camera forward
-	t_vec4		ri; // camera right
+	t_vec4		le; // camera right
 
 	tmp.x = 0;
 	tmp.y = 1;
 	tmp.z = 0;
 
 	forward = normalize_vector(vector_diff(e->cam.campos, e->cam.camdir));
-	ri = crossproduct(normalize_vector(tmp), forward);
-	up = crossproduct(forward, ri);
+	le = normalize_vector(crossproduct(tmp, forward));
+	up = normalize_vector(crossproduct(forward, le));
 	fo = forward;
 
-	thecam.x[0] = ri.x;
-	thecam.y[0] = ri.y;
-	thecam.z[0] = ri.z;
-	thecam.x[1] = up.x;
-	thecam.y[1] = up.y;
-	thecam.z[1] = up.z;
-	thecam.x[2] = fo.x;
-	thecam.y[2] = fo.y;
-	thecam.z[2] = fo.z;
-	thecam.x[3] = e->cam.camdir.x;
-	thecam.y[3] = e->cam.camdir.y;
-	thecam.z[3] = e->cam.camdir.z;
+	thecam.v1 = le;
+	thecam.v2 = up;
+	thecam.v3 = fo;
+
 	return (thecam);
 }
 
