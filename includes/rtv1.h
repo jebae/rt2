@@ -34,6 +34,28 @@
 # define PLANE		2
 # define SPHERE		3
 
+// typedef struct		s_forward
+// {
+// 	int				x;
+// 	int				y;
+// 	int				z;
+// 	int				w;
+// }					t_foward; // forward
+// typedef struct		s_right
+// {
+// 	int				x;
+// 	int				y;
+// 	int				z;
+// 	int				w;
+// }					t_right; // right
+// typedef struct		s_up
+// {
+// 	int				x;
+// 	int				y;
+// 	int				z;
+// 	int				w;
+// }					t_up; // up
+
 typedef struct		s_pos
 {
 	int				x;
@@ -160,23 +182,41 @@ typedef struct		s_mlx
 	int				sl;
 }					t_mlx;
 
+typedef struct		s_creecam
+{
+	int				x[4];
+	int				y[4];
+	int				z[4];
+	int				t[4];
+}					t_creecam;
+
+typedef struct		s_vec4
+{
+	int				x;
+	int				y;
+	int				z;
+	int				w;
+}					t_vec4;
+
 typedef struct		s_env
 {
 	char			*data;
 	int				str_count;
 	int				k[300];
 	int				s_count;
+	int				cs;
 	t_parser		p; // THE PARSER STRUCTURE !
 	t_mlx			w; // mlx images, window, etc.
-
 	t_amb			amb; // store amb
 	t_camera		cam; // store cam
-
-	int				cs;
-
 	t_ll			*ll_lit; // linked list
 	t_ol			*ll_obj; // linked list
-	t_ll			*save_light;
+
+	//testing camera
+	// t_foward		fo;
+	// t_up			up;
+	// t_right			ri;
+	t_creecam		cc;
 }					t_env;
 
 void				setup_rtv1(t_env *e);

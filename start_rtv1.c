@@ -71,31 +71,78 @@ void	temp_function_print_data(t_env *e)
 	}
 }
 
-int		normalize_vector(t_env *e, int x, int y) // i think ?
+t_vec4	normalize_vector(t_vec4 vector)
 {
-	(void)e;
-	int	magnitude;
-	int	normalize;
+	int		magnitude;
+	t_vec4	tmp;
 
-	magnitude = sqrt(x * x + y * y);
-	normalize = sqrt(pow((double)x/magnitude, 2) + pow((double)y/magnitude, 2)); // need to cast as doubles here !
-	printf("magnitude : [%d] == normalize : [%d]\n", magnitude, normalize);
-	return (normalize);
+	magnitude = sqrt(vector.x * vector.x + vector.y * vector.y);
+	// normalize = sqrt(pow((double)vector.x/magnitude, 2) + pow((double)vector.y/magnitude, 2)); // need to cast as doubles here !
+	printf("magnitude : [%d]\n", magnitude);
+	tmp.x = vector.x / magnitude;
+	tmp.y = vector.y / magnitude;
+	tmp.z = vector.z / magnitude;
+	return (vector);
 }
 
-void	camera(t_env *e)
+t_vec4	vector_diff(t_pos pos, t_dir dir) // switch pos and dir !
+{
+	t_vec4	tmp;
+
+	tmp.x = pos.x - dir.x;
+	tmp.y = pos.y - dir.y;
+	tmp.z = pos.z - dir.z;
+	return (tmp);
+}
+
+t_vec4	crossproduct(t_vec4 one, t_vec4 two)
+{
+	t_vec4	tmp;
+
+	tmp.x = one.y * two.z - one.z * two.y;
+	tmp.y = one.z * two.x - one.x * two.z;
+	tmp.z = one.x * two.y - one.y * two.x;
+	return (tmp);
+}
+
+t_creecam	setup_camera(t_env *e)
 {
 	(void)e;
-	// int	nor_forward;
-	// int	
+	t_creecam	thecam;
+	t_vec4		tmp;
+	t_vec4		forward;
+	t_vec4		up; // camera up
+	t_vec4		fo; // camera forward
+	t_vec4		ri; // camera right
 
-	// nor_forward = normalize_vector(e, e->cam.campos.x, e->cam.campos.y);
+	tmp.x = 0;
+	tmp.y = 1;
+	tmp.z = 0;
 
+	forward = normalize_vector(vector_diff(e->cam.campos, e->cam.camdir));
+	ri = crossproduct(normalize_vector(tmp), forward);
+	up = crossproduct(forward, ri);
+	fo = forward;
 
+	thecam.x[0] = ri.x;
+	thecam.y[0] = ri.y;
+	thecam.z[0] = ri.z;
+	thecam.x[1] = up.x;
+	thecam.y[1] = up.y;
+	thecam.z[1] = up.z;
+	thecam.x[2] = fo.x;
+	thecam.y[2] = fo.y;
+	thecam.z[2] = fo.z;
+	thecam.x[3] = e->cam.camdir.x;
+	thecam.y[3] = e->cam.camdir.y;
+	thecam.z[3] = e->cam.camdir.z;
+	return (thecam);
 }
 
 void    start_rtv1(t_env *e)
 {
+	t_creecam	mycam;
+
 	mlx_put_image_to_window(e->w.mp, e->w.wp, e->w.ip, 0, 0);
 	mlx_hook(e->w.wp, 2, 1L << 2, key_press, e);
 	mlx_hook(e->w.wp, 3, 1L << 3, key_release, e);
@@ -104,6 +151,6 @@ void    start_rtv1(t_env *e)
 	// mlx_hook(e->w.wp, 5, 1L << 5, mouse_no_click, e);
 	mlx_hook(e->w.wp, 17, 1L << 17, quit, e);
 	mlx_loop_hook(e->w.mp, touch, e);
-	temp_function_print_data(e);
-	// camera(e);
+	// temp_function_print_data(e);   
+	mycam = setup_camera(e);
 }
