@@ -1,0 +1,28 @@
+<scene>
+	<specs>
+		<cam>
+			<position>0, 100, 0</position>
+			<direction>0, 1, 0</direction>
+		</cam>
+		<amb>
+			<specpower>80</specpower>
+			<color>0, 0, 2550</color>
+		</amb>
+		<light status = "basic">
+			<position>16, 12, 15</position>
+			<intensity>70, 75, 80</intensity>
+		</light>
+	</specs>
+	<objects>
+		<cone status = "basic">
+			<angle>10</angle>
+			<radius>10</radius>
+			<direction>1, 2, 3</direction>
+			<center>10, 10, 0</center>
+			<diffusion>0, 200, 0</diffusion>
+			<reflection>10</reflection>
+			<specpower>10</specpower>
+			<specvalue>10</specvalue>
+		</cone>
+	</objects>
+</scene>

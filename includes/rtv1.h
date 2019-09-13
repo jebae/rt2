@@ -182,13 +182,6 @@ typedef struct		s_mlx
 	int				sl;
 }					t_mlx;
 
-typedef struct		s_creecam
-{
-	t_vec4			v1;
-	t_vec4			v2;
-	t_vec4			v3;
-}					t_creecam;
-
 typedef struct		s_vec4
 {
 	int				x;
@@ -196,6 +189,13 @@ typedef struct		s_vec4
 	int				z;
 	int				w;
 }					t_vec4;
+
+typedef struct		s_creecam
+{
+	t_vec4			v1;
+	t_vec4			v2;
+	t_vec4			v3;
+}					t_creecam;
 
 typedef struct		s_env
 {

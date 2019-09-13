@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:55:08 by mhernand          #+#    #+#             */
-/*   Updated: 2019/09/10 14:28:32 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/09/13 16:03:27 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ t_vec4	normalize_vector(t_vec4 vector)
 	magnitude = sqrt(vector.x * vector.x + vector.y * vector.y);
 	// normalize = sqrt(pow((double)vector.x/magnitude, 2) + pow((double)vector.y/magnitude, 2)); // need to cast as doubles here !
 	printf("magnitude : [%d]\n", magnitude);
-	tmp.x = vector.x / magnitude;
-	tmp.y = vector.y / magnitude;
-	tmp.z = vector.z / magnitude;
+	tmp.x = (double)vector.x / magnitude;
+	tmp.y = (double)vector.y / magnitude;
+	tmp.z = (double)vector.z / magnitude;
 	return (vector);
 }
 

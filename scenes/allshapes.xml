@@ -1,0 +1,54 @@
+<scene>
+	<specs>
+		<cam>
+			<position>0, 1, 50</position>
+			<direction>0, 1, 0</direction>
+		</cam>
+		<amb>
+			<specpower>80</specpower>
+			<color>0, 0, 90</color>
+		</amb>
+		<light status = "basic">
+			<position>6, 1, 1</position>
+			<intensity>0, 5, 80</intensity>
+		</light>
+	</specs>
+	<objects>
+		<sphere status = "basic">
+			<radius>10</radius>
+			<center>10, 10, 10</center>
+			<diffusion>0, 255, 0</diffusion>
+			<reflection>10</reflection>
+			<specpower>10</specpower>
+			<specvalue>10</specvalue>
+		</sphere>
+		<cone status = "basic">
+			<angle>10</angle>
+			<radius>10</radius>
+			<direction>0, 2, 0</direction>
+			<center>10, 0, 0</center>
+			<diffusion>255, 0, 0</diffusion>
+			<reflection>10</reflection>
+			<specpower>10</specpower>
+			<specvalue>10</specvalue>
+		</cone>
+		<cylinder status = "basic">
+			<angle>10</angle>
+			<radius>10</radius>
+			<direction>0, 0, 3</direction>
+			<center>0, 0, 10</center>
+			<diffusion>0, 0, 255</diffusion>
+			<reflection>10</reflection>
+			<specpower>10</specpower>
+			<specvalue>10</specvalue>
+		</cylinder>
+		<plane status = "basic">
+			<normal>10, 20, 30</normal>
+			<d>9</d>
+			<diffusion>0, 100, 100</diffusion>
+			<reflection>10</reflection>
+			<specpower>10</specpower>
+			<specvalue>10</specvalue>
+		</plane>
+	</objects>
+</scene>
