@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/09/11 15:26:28 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/13 19:00:38 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,13 +182,6 @@ typedef struct		s_mlx
 	int				sl;
 }					t_mlx;
 
-typedef struct		s_creecam
-{
-	t_vec4			v1;
-	t_vec4			v2;
-	t_vec4			v3;
-}					t_creecam;
-
 typedef struct		s_vec4
 {
 	int				x;
@@ -196,6 +189,13 @@ typedef struct		s_vec4
 	int				z;
 	int				w;
 }					t_vec4;
+
+typedef struct		s_creecam
+{
+	t_vec4			v1;
+	t_vec4			v2;
+	t_vec4			v3;
+}					t_creecam;
 
 typedef struct		s_env
 {
