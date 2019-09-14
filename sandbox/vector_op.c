@@ -6,13 +6,13 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 11:13:30 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/12 18:00:54 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/14 16:35:01 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sandbox.h"
 
-t_point		point(double x, double y, double z)
+t_point		create_pt(double x, double y, double z)
 {
 	t_point	p;
 
@@ -22,13 +22,13 @@ t_point		point(double x, double y, double z)
 	return (p);
 }
 
-t_vector	vector(t_point o, t_point p)
+t_vector	create_v(t_point ori, t_point dest)
 {
 	t_vector	u;
 
-	u.x = o.x - p.x;
-	u.y = o.y - p.y;
-	u.z = o.z - p.z;
+	u.x = dest.x - ori.x;
+	u.y = dest.y - ori.y;
+	u.z = dest.z - ori.z;
 	return (u);
 }
 
@@ -69,11 +69,6 @@ double			v_norm(t_vector u)
 }
 
 t_vector		v_normalise(t_vector u)
-{
-	return (v_mult(u, 1 / v_norm(u)));
-}
-
-t_vector		v_unit(t_vector u)
 {
 	return (v_mult(u, 1 / v_norm(u)));
 }

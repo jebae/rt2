@@ -6,15 +6,15 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:30:47 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/11 18:40:08 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/13 18:31:19 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sandbox.h"
 
-t_env	*init(t_env *p)
+t_mlx	init(t_mlx *p)
 {
-	p->mlx = mlx_init();
-	p->win = mlx_new_window (p->mlx, WIDTH, WIDTH, "Sandbox");
-	return (p);
+	p->mp = mlx_init();
+	p->wp = mlx_new_window (p->mp, WIDTH, WIDTH, "Sandbox");
+	return (*p);
 }
