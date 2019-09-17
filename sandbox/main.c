@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:31:06 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/14 16:06:47 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/17 11:17:25 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int ac, char **av)
 
 	//////////////////////////////////////////////////////
 	t_ol obj; obj.cur_shape = 0; obj.cen.x = 0; obj.cen.y = 0;
-	obj.cen.z = 20;obj.next = NULL; obj.radius = 20;
+	obj.cen.z = 20;obj.next = NULL; obj.radius = 50;
 	t_ll *ll = NULL;
 	t_ol	*ol;
 	ol = &obj;

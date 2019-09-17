@@ -6,35 +6,12 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 17:15:40 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/14 16:45:17 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/14 18:41:53 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sandbox.h"
-/*
-int	sand(t_env *e)
-{
-	int x = -1;
-	int y = -1;
-	t_vector  ray;
-	t_point cam; cam.x = 0; cam.y = 0; cam.z = -50;
 
-	while (++ x + X0 < -X0) //For each pixel
-	{
-		y = -1;
-		while(++y + Y0 < -Y0)
-		{
-			ray = create_v(create_pt(cx,cy,cz),create_pt(x+X0, y+Y0, 0));
-			ray = v_normalise(ray);
-//			ray = raycast(x+X0, y+Y0, cam); //cast a unit ray
-			if (v_intersect_sp(ray)) //for object, see if ray intersect object
-					mlx_pixel_put(e->mlx, e->win, x, y, 0xFFFFFF);//color pixel
-			mlx_pixel_put(e->mlx, e->win, WIDTH / 2, WIDTH / 2, 0xFF0000);
-		}
-	}
-	return (0);
-}
-*/
 double	intersection(t_vector ray, t_ol *ol, t_env *e)
 {
 	if (ol->cur_shape == 0)
