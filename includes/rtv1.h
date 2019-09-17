@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/09/11 15:26:28 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/13 19:00:38 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,28 @@
 # define CYLINDER	1
 # define PLANE		2
 # define SPHERE		3
+
+// typedef struct		s_forward
+// {
+// 	int				x;
+// 	int				y;
+// 	int				z;
+// 	int				w;
+// }					t_foward; // forward
+// typedef struct		s_right
+// {
+// 	int				x;
+// 	int				y;
+// 	int				z;
+// 	int				w;
+// }					t_right; // right
+// typedef struct		s_up
+// {
+// 	int				x;
+// 	int				y;
+// 	int				z;
+// 	int				w;
+// }					t_up; // up
 
 typedef struct		s_pos
 {
@@ -160,23 +182,36 @@ typedef struct		s_mlx
 	int				sl;
 }					t_mlx;
 
+typedef struct		s_vec4
+{
+	int				x;
+	int				y;
+	int				z;
+	int				w;
+}					t_vec4;
+
+typedef struct		s_creecam
+{
+	t_vec4			v1;
+	t_vec4			v2;
+	t_vec4			v3;
+}					t_creecam;
+
 typedef struct		s_env
 {
 	char			*data;
 	int				str_count;
 	int				k[300];
 	int				s_count;
+	int				cs;
 	t_parser		p; // THE PARSER STRUCTURE !
 	t_mlx			w; // mlx images, window, etc.
-
 	t_amb			amb; // store amb
 	t_camera		cam; // store cam
-
-	int				cs;
-
 	t_ll			*ll_lit; // linked list
 	t_ol			*ll_obj; // linked list
-	t_ll			*save_light;
+
+	t_creecam		cc;
 }					t_env;
 
 void				setup_rtv1(t_env *e);
