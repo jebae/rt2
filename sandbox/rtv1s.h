@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/09/13 19:00:38 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/17 11:17:53 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 # define WIDTH		800
 # define HEIGHT 	800
+# define FAR		2000000.0
 
 # define ESC		53
 
@@ -55,6 +56,13 @@
 // 	int				z;
 // 	int				w;
 // }					t_up; // up
+
+typedef struct  s_point
+{
+	double      x;
+	double      y;
+	double      z;
+}               t_point;
 
 typedef struct		s_pos
 {
@@ -128,7 +136,7 @@ typedef struct		s_col
 
 typedef struct		s_camera // struct for camera data
 {
-	t_pos			campos;
+	t_point			campos;
 	t_dir			camdir;
 	t_tra			*tra;
 	t_rot			*rot;
@@ -165,7 +173,7 @@ typedef struct		s_ol  // linked list for storing OBJECT data
 	int				ref;
 	t_dif			dif;
 	t_dir			dir;
-	t_cen			cen;
+	t_point			cen;
 	t_normal		nor;
 	t_rot			rot;
 	t_tra			tra;
