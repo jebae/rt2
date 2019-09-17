@@ -52,7 +52,7 @@ typedef struct	s_point
 //t_point	cam; cam.x = 0; cam.y = 0; cam.z = -50;
 t_mlx   init(t_mlx *p);
 int		sand(t_env *e);
-int sand2(t_env *e, t_ol *ol, t_ll *ll);
+int 	sand2(t_env *e, t_ol *ol, t_ll *ll);
 /*
 ** Vector operations
 */
@@ -61,10 +61,10 @@ t_point     create_pt(double x, double y, double z);
 t_vector    create_v(t_point ori, t_point dest);
 t_vector    v_add(t_vector u, t_vector v, char c);
 t_vector    v_mult(t_vector u, double k);
-double          v_scal(t_vector u, t_vector v);
-double          v_norm(t_vector u);
+double      v_scal(t_vector u, t_vector v);
+double      v_norm(t_vector u);
 t_vector    v_cross(t_vector u, t_vector v);
-t_vector        v_normalise(t_vector u);
+t_vector    v_normalise(t_vector u);
 
 /*
 ** Intersection functions

@@ -14,7 +14,7 @@
 
 double	intersection(t_vector ray, t_ol *ol, t_env *e)
 {
-	if (ol->cur_shape == 0)
+	if (ol->cur_shape == 1)
 		return (v_intersect_sp(ray, ol, e));
 	return (0);
 }
