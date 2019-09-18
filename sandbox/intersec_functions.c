@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 14:08:14 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/14 16:38:33 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/18 17:38:22 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,29 +100,31 @@ double	v_intersect_co(t_vector ray, t_ol *ol, t_env *e)
 	double		det = 0;
 	t_vector	tmp_dir = {ol->dir.x, ol->dir.y, ol->dir.z};
 	t_vector	co;
-	t_point		tmp_ray = {ray.x, ray.y, ray.z};
+	t_vector		tmp_ray;
 	t_point		tmp_po_cen = {ol->cen.x, ol->cen.y, ol->cen.z};
-	t_vector	nor_dir = (tmp_dir);
-	t_vector	nor_ray = (ray);
+	t_vector	nor_dir; nor_dir.y = ol->dir.y; nor_dir.z = ol->dir.z; nor_dir.x = ol->dir.x;
+	nor_dir = v_normalise(nor_dir);
+	t_vector	nor_ray = v_normalise(ray);
+
 
 	// the D is the ray and V is the direction vector
 	co = create_v(e->cam.campos, tmp_po_cen);
 	
-	a = (v_scal(nor_ray, nor_dir) * v_scal(nor_ray, nor_dir)) - (cos(ol->angle) * cos(ol->angle));
+	a = (v_scal(ray, nor_dir) * v_scal(ray, nor_dir)) - (cos(ol->angle) * cos(ol->angle));
 
-	b = 2 * ((v_scal(nor_ray, nor_dir) * v_scal(co, nor_dir)) - v_scal(nor_ray, co) * (cos(ol->angle) * cos(ol->angle)));
+	b = 2 * ((v_scal(ray, nor_dir) * v_scal(co, nor_dir)) - v_scal(ray, co) * (cos(ol->angle) * cos(ol->angle)));
 
 	c = (v_scal(co, nor_dir) * v_scal(co, nor_dir)) - (v_scal(co, co) * (cos(ol->angle) * cos(ol->angle)));
 	
 	det = b * b - 4 * a * c;
-	// if (det < 0)
-		// return (1);
+	if (det < 0)
+		return (0);
 	if (det == 0)
-		t = -b / 2 * a;
+		t = b / (2 * a);
 	else if (det > 0)
 	{
-		t = (-b + sqrt(det) )/ 2 * a;
-		t_2 = (-b - sqrt(det)) / 2 * a;
+		t = -(-b + sqrt(det) )/ (2 * a);
+		t_2 = -(-b - sqrt(det)) / (2 * a);
 		if (t <= 0 && t_2 <= 0)
 			return (0);
 		else
@@ -134,6 +136,12 @@ double	v_intersect_co(t_vector ray, t_ol *ol, t_env *e)
 	if (t < 0)
 		return (0); //return val to be modified to send the closest valid solution
 	else
-		return (1);
-	return (0);
+	{
+		tmp_ray.x = ol->cen.x - t * ray.x; tmp_ray.y = ol->cen.y - t * ray.y; tmp_ray.z = ol->cen.z - t * ray.z; //vector from the point of intersection toward center
+		if (ol->angle < M_PI / 2 && v_scal(tmp_ray, nor_dir) > 0)
+			return (1);
+		else 
+			return (0);
+	}
+	
 }

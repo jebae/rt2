@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/09/17 11:17:53 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/18 15:28:01 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ typedef struct		s_ol  // linked list for storing OBJECT data
 	size_t			content_size;
 	int				status; // 0 == basic , 1 == extra
 	int				d;
-	int				angle;
+	double				angle;
 	int				radius;
 	int				s_pow;
 	int				s_val;
