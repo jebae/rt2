@@ -158,6 +158,13 @@ typedef struct		s_ll  // linked list for storing LIGHT data
 	struct s_ll		*next;
 }					t_ll;
 
+typedef struct		s_vec3
+{
+	double			x;
+	double			y;
+	double			z;
+}					t_vec3;
+
 typedef struct		s_ol  // linked list for storing OBJECT data
 {
 	size_t			content_size;
@@ -177,6 +184,7 @@ typedef struct		s_ol  // linked list for storing OBJECT data
 	t_normal		nor;
 	t_rot			rot;
 	t_tra			tra;
+	t_vec3			pla_po;
 	struct s_ol		*next;
 }					t_ol;
 

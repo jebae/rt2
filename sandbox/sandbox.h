@@ -24,7 +24,7 @@
 #define cx 0 // camera coordinates
 #define cy 0
 #define cz -50
-#define sx 0// sphere coordinates
+#define sx 0 // sphere coordinates
 #define sy 0
 #define sz 21
  /*
@@ -70,4 +70,7 @@ t_vector    v_normalise(t_vector u);
 ** Intersection functions
 */
 
-double v_intersect_sp(t_vector ray, t_ol *ol, t_env *e);
+double	v_intersect_sp(t_vector ray, t_ol *ol, t_env *e);
+double	v_intersect_pl(t_vector ray, t_ol *ol, t_env *e);
+double	v_intersect_cy(t_vector ray, t_ol *ol, t_env *e);
+double	v_intersect_co(t_vector ray, t_ol *ol, t_env *e);

@@ -30,3 +30,110 @@ double	v_intersect_sp(t_vector ray, t_ol *ol, t_env *e)
 	else
 		return (1);	
 }
+
+double	v_intersect_pl(t_vector ray, t_ol *ol, t_env *e)
+{
+	// D is the dir of the ray --> ray 
+	// don't know what 't' is
+	// o is ray origin --> cam pos;
+	// t = -X | V / D | V
+	double		t = 0; 
+	t_vector	tmp;
+	t_point		plane_point;
+	t_vector	diff;
+
+	// hello = create new vector that is the difference betweent camera position and point in the plane 
+	plane_point.x = (double)ol->d / ol->nor.x;
+	plane_point.y = 0;
+	plane_point.z = 0;
+
+	diff = create_v((t_point)e->cam.campos, plane_point);
+	tmp.x = ol->nor.x;
+	tmp.y = ol->nor.y;
+	tmp.z = ol->nor.z;
+	t = v_scal(diff, tmp) / v_scal(ray, tmp);
+	
+	if (t < 0)
+		return (0); //return val to be modified to send the closest valid solution
+	else
+		return (1);
+	return (0);
+}
+
+double	v_intersect_cy(t_vector ray, t_ol *ol, t_env *e)
+{
+	(void)e;
+	(void)ol;
+	(void)ray;
+	double		t = 0; 
+	// V is a unit length vector that determines cylinder's axis
+
+	// m = D | V * t + X | V // m is the closest point on the axis to the hit point
+	// m = v_scal(ray, (t_point)ol.cen) * t + v_scal(point on cyn, (t_point)ol.cen);
+
+	// len() ? implement nous-memes
+
+	// a = v_scal(ray, ray) - (v_scal(ray, (t_point)ol.cen)) * 2
+	// c = v_scal(point on cy, point on sy) - (v_scal(point on cy, (t_point)ol.cen)) * 2 - ol.radius * 2
+	// b = 2 * (v_scal(ray, point on cy) - (v_scal(ray, (t_point)ol.cen) * (v_scal(point on cy, (t_point)ol.cen))))
+
+	// m = v_scal(ray, (t_point)ol.cen) * t + v_scal(point on cy, (t_point)ol.cen)
+	// N = normalize(P - C - V * m)
+
+	if (t < 0)
+		return (0); //return val to be modified to send the closest valid solution
+	else
+		return (1);
+	return (0);
+}
+
+double	v_intersect_co(t_vector ray, t_ol *ol, t_env *e)
+{
+	(void)e;
+	(void)ol;
+	(void)ray;
+	double		t = 0; 
+	double		t_2 = 0; 
+	double		a = 0;
+	double		b = 0;
+	double		c = 0;
+	double		det = 0;
+	t_vector	tmp_dir = {ol->dir.x, ol->dir.y, ol->dir.z};
+	t_vector	co;
+	t_point		tmp_ray = {ray.x, ray.y, ray.z};
+	t_point		tmp_po_cen = {ol->cen.x, ol->cen.y, ol->cen.z};
+	t_vector	nor_dir = (tmp_dir);
+	t_vector	nor_ray = (ray);
+
+	// the D is the ray and V is the direction vector
+	co = create_v(e->cam.campos, tmp_po_cen);
+	
+	a = (v_scal(nor_ray, nor_dir) * v_scal(nor_ray, nor_dir)) - (cos(ol->angle) * cos(ol->angle));
+
+	b = 2 * ((v_scal(nor_ray, nor_dir) * v_scal(co, nor_dir)) - v_scal(nor_ray, co) * (cos(ol->angle) * cos(ol->angle)));
+
+	c = (v_scal(co, nor_dir) * v_scal(co, nor_dir)) - (v_scal(co, co) * (cos(ol->angle) * cos(ol->angle)));
+	
+	det = b * b - 4 * a * c;
+	// if (det < 0)
+		// return (1);
+	if (det == 0)
+		t = -b / 2 * a;
+	else if (det > 0)
+	{
+		t = (-b + sqrt(det) )/ 2 * a;
+		t_2 = (-b - sqrt(det)) / 2 * a;
+		if (t <= 0 && t_2 <= 0)
+			return (0);
+		else
+		{
+			t = t < 0 ? t_2 : t;
+			t = t < t_2 ? t : t_2;
+		}
+	}
+	if (t < 0)
+		return (0); //return val to be modified to send the closest valid solution
+	else
+		return (1);
+	return (0);
+}

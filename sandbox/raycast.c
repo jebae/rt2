@@ -16,6 +16,12 @@ double	intersection(t_vector ray, t_ol *ol, t_env *e)
 {
 	if (ol->cur_shape == 1)
 		return (v_intersect_sp(ray, ol, e));
+	if (ol->cur_shape == 2)
+		return (v_intersect_co(ray, ol, e));
+	if (ol->cur_shape == 3)
+		return (v_intersect_cy(ray, ol, e));
+	if (ol->cur_shape == 4)
+		return (v_intersect_pl(ray, ol, e));
 	return (0);
 }
 
@@ -30,7 +36,7 @@ int	sand2(t_env *e, t_ol *ol, t_ll *ll)
 	t_point cam_pos; cam_pos.x = 0; cam_pos.y = 0; cam_pos.z = -50;
 
 	templ = ol;
-	while (++ x < -X0) //For each pixel
+	while (++x < -X0) //For each pixel
 	{
 		y = -1 + Y0;
 		while(++y < -Y0)
@@ -38,8 +44,7 @@ int	sand2(t_env *e, t_ol *ol, t_ll *ll)
 			t = FAR;
 			r = 0;
 			ray = create_v(e->cam.campos, create_pt(x, y, 0));
-			ray = v_normalise(ray);
-								//cast a ray from camera to point xy
+			ray = v_normalise(ray); //cast a ray from camera to point xy
 			templ = ol;
 			while (templ != NULL) //for each object
 			{
@@ -48,7 +53,14 @@ int	sand2(t_env *e, t_ol *ol, t_ll *ll)
 				templ = templ->next;
 			}
 			if (t > 0 && t < FAR)
-				mlx_pixel_put(e->w.mp, e->w.wp, x-X0, y-Y0, 0xFFFFFF);//color pixel	
+			{
+				if (ol->cur_shape == 1)
+					mlx_pixel_put(e->w.mp, e->w.wp, x-X0, y-Y0, 0xFFFFFF);//color pixel
+				else if (ol->cur_shape == 2)
+					mlx_pixel_put(e->w.mp, e->w.wp, x-X0, y-Y0, 0x00FF00);//color pixel
+				else if (ol->cur_shape == 4)
+					mlx_pixel_put(e->w.mp, e->w.wp, x-X0, y-Y0, 0xFF0000);//color pixel	
+			}
 		}
 	}
 	return (0);
