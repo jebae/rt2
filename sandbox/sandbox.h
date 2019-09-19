@@ -15,7 +15,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <math.h>
-#include "rtv1s.h"
+#include "rtv1.h"
 
 #define X0 -WIDTH / 2
 #define Y0 -WIDTH / 2
@@ -27,13 +27,8 @@
 #define sx 0 // sphere coordinates
 #define sy 0
 #define sz 21
- /*
-typedef struct	s_env
-{
-	void		*mlx;
-	void		*win;
-}				t_env;
-*/
+
+#define FAR	2000000.0
 
 typedef struct	s_vector
 {

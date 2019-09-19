@@ -58,6 +58,8 @@ int	sand2(t_env *e, t_ol *ol, t_ll *ll)
 					mlx_pixel_put(e->w.mp, e->w.wp, x-X0, y-Y0, 0xFFFFFF);//color pixel
 				else if (ol->cur_shape == 2)
 					mlx_pixel_put(e->w.mp, e->w.wp, x-X0, y-Y0, 0x00FF00);//color pixel
+				else if (ol->cur_shape == 3)
+					mlx_pixel_put(e->w.mp, e->w.wp, x-X0, y-Y0, 0x0FF0FF);//color pixel
 				else if (ol->cur_shape == 4)
 					mlx_pixel_put(e->w.mp, e->w.wp, x-X0, y-Y0, 0xFF0000);//color pixel	
 			}
