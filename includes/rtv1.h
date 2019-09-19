@@ -34,90 +34,19 @@
 # define PLANE		2
 # define SPHERE		3
 
-// typedef struct		s_forward
-// {
-// 	int				x;
-// 	int				y;
-// 	int				z;
-// 	int				w;
-// }					t_foward; // forward
-// typedef struct		s_right
-// {
-// 	int				x;
-// 	int				y;
-// 	int				z;
-// 	int				w;
-// }					t_right; // right
-// typedef struct		s_up
-// {
-// 	int				x;
-// 	int				y;
-// 	int				z;
-// 	int				w;
-// }					t_up; // up
-
-typedef struct		s_pos
+typedef struct  	s_point
 {
-	int				x;
-	int				y;
-	int				z;
-}					t_pos; // position
+	double      	x;
+	double    	  	y;
+	double      	z;
+}              		t_point;
 
-typedef struct		s_int
+typedef struct		s_vec3
 {
-	int				x;
-	int				y;
-	int				z;
-}					t_int; // intesity
-
-typedef struct		s_dir
-{
-	int				x;
-	int				y;
-	int				z;
-}					t_dir; // direction
-
-typedef struct		s_cen
-{
-	int				x;
-	int				y;
-	int				z;
-}					t_cen; // center
-
-typedef struct		s_dif
-{
-	int				x;
-	int				y;
-	int				z;
-}					t_dif; // diffusion
-
-typedef struct		s_ref
-{
-	int				x;
-	int				y;
-	int				z;
-}					t_ref; // refraction
-
-typedef struct		s_normal
-{
-	int				x;
-	int				y;
-	int				z;
-}					t_normal; // normal
-
-typedef struct		s_rot
-{
-	int				x;
-	int				y;
-	int				z;
-}					t_rot; // rotate
-
-typedef struct		s_tra
-{
-	int				x;
-	int				y;
-	int				z;
-}					t_tra; // translate
+	double			x;
+	double			y;
+	double			z;
+}					t_vec3;
 
 typedef struct		s_col
 {
@@ -128,10 +57,10 @@ typedef struct		s_col
 
 typedef struct		s_camera // struct for camera data
 {
-	t_pos			campos;
-	t_dir			camdir;
-	t_tra			*tra;
-	t_rot			*rot;
+	t_point			campos;
+	t_vec3			camdir;
+	t_vec3			*tra;
+	t_vec3			*rot;
 }					t_camera;
 
 typedef struct		s_amb // struct for amb data
@@ -143,10 +72,10 @@ typedef struct		s_amb // struct for amb data
 typedef struct		s_ll  // linked list for storing LIGHT data
 {
 	size_t			content_size;
-	t_pos			pos;
-	t_int			its;
-	t_tra			tra;
-	t_rot			rot;
+	t_point			pos;
+	t_point			its;
+	t_vec3			tra;
+	t_vec3			rot;
 	struct s_ll		*next;
 }					t_ll;
 
@@ -155,7 +84,7 @@ typedef struct		s_ol  // linked list for storing OBJECT data
 	size_t			content_size;
 	int				status; // 0 == basic , 1 == extra
 	int				d;
-	int				angle;
+	double			angle;
 	int				radius;
 	int				s_pow;
 	int				s_val;
@@ -163,12 +92,13 @@ typedef struct		s_ol  // linked list for storing OBJECT data
 	int				specpower;
 	int				specvalue;
 	int				ref;
-	t_dif			dif;
-	t_dir			dir;
-	t_cen			cen;
-	t_normal		nor;
-	t_rot			rot;
-	t_tra			tra;
+	t_point			dif;
+	t_vec3			dir;
+	t_point			cen;
+	t_vec3			nor;
+	t_vec3			rot;
+	t_vec3			tra;
+	t_vec3			pla_po;
 	struct s_ol		*next;
 }					t_ol;
 
@@ -256,7 +186,6 @@ void				reset_shape_atb_two(t_env *e);
 int					checkforopenobjecttags(t_env *e);
 int					add_link_light(t_env *e, t_ll **head);
 int					add_link_obj(t_env *e, t_ol **head);
-
 
 int					main(int argc, char **argv);
 

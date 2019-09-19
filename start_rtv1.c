@@ -23,8 +23,8 @@ void	temp_function_print_data(t_env *e)
 	omp = NULL;
 	omp = e->ll_obj;
 	printf("\nCAMERA :\n");
-	printf("position -> x : [%d] - y : [%d] - z : [%d] === ", e->cam.campos.x, e->cam.campos.y, e->cam.campos.z );
-	printf("direction -> x : [%d] - y : [%d] - z : [%d] \n\n", e->cam.camdir.x, e->cam.camdir.y, e->cam.camdir.z );
+	printf("position -> x : [%f] - y : [%f] - z : [%f] === ", e->cam.campos.x, e->cam.campos.y, e->cam.campos.z );
+	printf("direction -> x : [%f] - y : [%f] - z : [%f] \n\n", e->cam.camdir.x, e->cam.camdir.y, e->cam.camdir.z );
 
 	printf("AMBIANCE :\n");
 	printf("specpower -> value [%d]] === ", e->amb.specpower);
@@ -33,10 +33,10 @@ void	temp_function_print_data(t_env *e)
 	printf("LIGHT: \n");
 	while (tmp)
 	{
-		printf("i : [%d] -- pos -> x : [%d] - y : [%d] - z : [%d] === ", i, tmp->pos.x, tmp->pos.y, tmp->pos.z);
-		printf("ints -> x : [%d] - y : [%d] - z : [%d] === ", tmp->its.x, tmp->its.y, tmp->its.z);
-		printf("rot -> x : [%d] - y : [%d] - z : [%d] === ", tmp->rot.x, tmp->rot.y, tmp->rot.z);
-		printf("tra -> x : [%d] - y : [%d] - z : [%d] \n", tmp->tra.x, tmp->tra.y, tmp->tra.z);
+		printf("i : [%d] -- pos -> x : [%f] - y : [%f] - z : [%f] === ", i, tmp->pos.x, tmp->pos.y, tmp->pos.z);
+		printf("ints -> x : [%f] - y : [%f] - z : [%f] === ", tmp->its.x, tmp->its.y, tmp->its.z);
+		printf("rot -> x : [%f] - y : [%f] - z : [%f] === ", tmp->rot.x, tmp->rot.y, tmp->rot.z);
+		printf("tra -> x : [%f] - y : [%f] - z : [%f] \n", tmp->tra.x, tmp->tra.y, tmp->tra.z);
 		tmp = tmp->next;
 		i++;
 	}
@@ -53,14 +53,14 @@ void	temp_function_print_data(t_env *e)
 			printf("CYLINDER !\n");
 		if (omp->cur_shape == 4)
 			printf("PLANE !\n");
-		printf("CENTER    ---> x : [%d] - y : [%d] - z : [%d]\n", omp->cen.x, omp->cen.y, omp->cen.z);
-		printf("DIRECTION ---> x : [%d] - y : [%d] - z : [%d]\n", omp->dir.x, omp->dir.y, omp->dir.z);
-		printf("DIFFUSION ---> x : [%d] - y : [%d] - z : [%d]\n", omp->dif.x, omp->dif.y, omp->dif.z);
-		printf("ROTATION  ---> x : [%d] - y : [%d] - z : [%d]\n", omp->rot.x, omp->rot.y, omp->rot.z);
-		printf("NORMAL 	  ---> x : [%d] - y : [%d] - z : [%d]\n", omp->nor.x, omp->nor.y, omp->nor.z);
-		printf("TRANSLATE ---> x : [%d] - y : [%d] - z : [%d]\n", omp->tra.x, omp->tra.y, omp->tra.z);
+		printf("CENTER    ---> x : [%f] - y : [%f] - z : [%f]\n", omp->cen.x, omp->cen.y, omp->cen.z);
+		printf("DIRECTION ---> x : [%f] - y : [%f] - z : [%f]\n", omp->dir.x, omp->dir.y, omp->dir.z);
+		printf("DIFFUSION ---> x : [%f] - y : [%f] - z : [%f]\n", omp->dif.x, omp->dif.y, omp->dif.z);
+		printf("ROTATION  ---> x : [%f] - y : [%f] - z : [%f]\n", omp->rot.x, omp->rot.y, omp->rot.z);
+		printf("NORMAL 	  ---> x : [%f] - y : [%f] - z : [%f]\n", omp->nor.x, omp->nor.y, omp->nor.z);
+		printf("TRANSLATE ---> x : [%f] - y : [%f] - z : [%f]\n", omp->tra.x, omp->tra.y, omp->tra.z);
 		printf("RADIUS    ---> [%d]\n", omp->radius);
-		printf("ANGLE     ---> [%d]\n", omp->angle);
+		printf("ANGLE     ---> [%f]\n", omp->angle);
 		printf("SPECVALUE ---> [%d]\n", omp->specvalue);
 		printf("REFLECT   ---> [%d]\n", omp->ref);
 		printf("SPECPOWER ---> [%d]\n", omp->specpower);
@@ -85,7 +85,7 @@ t_vec4	normalize_vector(t_vec4 vector)
 	return (vector);
 }
 
-t_vec4	vector_diff(t_pos pos, t_dir dir) // switch pos and dir !
+t_vec4	vector_diff(t_point pos, t_vec3 dir) // switch pos and dir !
 {
 	t_vec4	tmp;
 
