@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/rtv1.h"
+#include "rtv1.h"
 
 int		shapevocab_checker_shpere(t_env *e)
 {

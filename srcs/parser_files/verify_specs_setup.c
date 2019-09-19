@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/rtv1.h"
+#include "rtv1.h"
 
 int		verify_light(t_env *e, t_ll **l_head)
 {

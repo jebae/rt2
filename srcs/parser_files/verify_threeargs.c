@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/rtv1.h"
+#include "rtv1.h"
 
 int		verifyvocab_three(t_env *e) // /! string needs to be freed before returning error message /!
 {

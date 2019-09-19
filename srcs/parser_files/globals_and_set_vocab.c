@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/rtv1.h"
+#include "rtv1.h"
 
 int		globals_two(t_env *e, char *tabless, int ret_tabs)
 {

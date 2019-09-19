@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/rtv1.h"
+#include "rtv1.h"
 
 void	reset_spec_atb(t_env *e)
 {
