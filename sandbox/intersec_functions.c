@@ -60,32 +60,32 @@ double	v_intersect_pl(t_vector ray, t_ol *ol, t_env *e)
 	return (0);
 }
 
-double	v_intersect_cy(t_vector ray, t_ol *ol, t_env *e)
-{
-	(void)e;
-	(void)ol;
-	(void)ray;
-	double		t = 0; 
-	// V is a unit length vector that determines cylinder's axis
+// double	v_intersect_cy(t_vector ray, t_ol *ol, t_env *e)
+// {
+// 	(void)e;
+// 	(void)ol;
+// 	(void)ray;
+// 	double		t = 0; 
+// 	// V is a unit length vector that determines cylinder's axis
 
-	// m = D | V * t + X | V // m is the closest point on the axis to the hit point
-	// m = v_scal(ray, (t_point)ol.cen) * t + v_scal(point on cyn, (t_point)ol.cen);
+// 	// m = D | V * t + X | V // m is the closest point on the axis to the hit point
+// 	// m = v_scal(ray, (t_point)ol.cen) * t + v_scal(point on cyn, (t_point)ol.cen);
 
-	// len() ? implement nous-memes
+// 	// len() ? implement nous-memes
 
-	// a = v_scal(ray, ray) - (v_scal(ray, (t_point)ol.cen)) * 2
-	// c = v_scal(point on cy, point on sy) - (v_scal(point on cy, (t_point)ol.cen)) * 2 - ol.radius * 2
-	// b = 2 * (v_scal(ray, point on cy) - (v_scal(ray, (t_point)ol.cen) * (v_scal(point on cy, (t_point)ol.cen))))
+// 	// a = v_scal(ray, ray) - (v_scal(ray, (t_point)ol.cen)) * 2
+// 	// c = v_scal(point on cy, point on sy) - (v_scal(point on cy, (t_point)ol.cen)) * 2 - ol.radius * 2
+// 	// b = 2 * (v_scal(ray, point on cy) - (v_scal(ray, (t_point)ol.cen) * (v_scal(point on cy, (t_point)ol.cen))))
 
-	// m = v_scal(ray, (t_point)ol.cen) * t + v_scal(point on cy, (t_point)ol.cen)
-	// N = normalize(P - C - V * m)
+// 	// m = v_scal(ray, (t_point)ol.cen) * t + v_scal(point on cy, (t_point)ol.cen)
+// 	// N = normalize(P - C - V * m)
 
-	if (t < 0)
-		return (0); //return val to be modified to send the closest valid solution
-	else
-		return (1);
-	return (0);
-}
+// 	if (t < 0)
+// 		return (0); //return val to be modified to send the closest valid solution
+// 	else
+// 		return (1);
+// 	return (0);
+// }
 
 double	v_intersect_co(t_vector ray, t_ol *ol, t_env *e)
 {
