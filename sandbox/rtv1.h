@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/09/19 16:35:59 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/19 18:58:11 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,9 +229,9 @@ t_vec3    v_normalise(t_vec3 u);
 
 double  v_intersect_sp(t_vec3 ray, t_ol *ol, t_env *e);
 double  v_intersect_pl(t_vec3 ray, t_ol *ol, t_env *e);
-double  v_intersect_cy(t_vec3 ray, t_ol *ol, t_env *e);
-double  v_intersect_co(t_vec3 ray, t_ol *ol, t_env *e);
 
+double  v_intersect_cy(t_vec3 ray, t_ol *ol, t_env *e);
+double  v_intersect_co(t_ray ray, t_ol *ol, t_env *e);
 double  v_intersect_sp2(t_ray ray, t_ol *ol, t_env *e);
 
 #endif

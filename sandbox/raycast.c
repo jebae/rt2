@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 17:15:40 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/19 16:49:22 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/19 18:59:20 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ double	intersection(t_vec3 ray, t_ol *ol, t_env *e)
 {
 	if (ol->cur_shape == 1)
 		return (v_intersect_sp(ray, ol, e));
-	if (ol->cur_shape == 2)
-		return (v_intersect_co(ray, ol, e));
+//	if (ol->cur_shape == 2)
+//		return (v_intersect_co(ray, ol, e));
 	if (ol->cur_shape == 3)
 		return (v_intersect_cy(ray, ol, e));
 	if (ol->cur_shape == 4)
@@ -29,6 +29,10 @@ double  intersection2(t_ray ray, t_ol *ol, t_env *e)
 {
 	if (ol->cur_shape == 1)
 		return (v_intersect_sp2(ray, ol, e));
+	if (ol->cur_shape == 2)
+		return (v_intersect_co(ray, ol, e));
+//	if (ol->cur_shape == 3)
+//		return (v_intersect_cy(ray, ol, e));
 	return (0);
 }
 
@@ -129,7 +133,7 @@ int raycast(t_env *e, t_ol *ol, t_ll *ll)
 					p.z = ray.dir.z * ray.t;
 					c += color (p, ol, ll);
 					c = c << 24;
-					mlx_pixel_put(e->w.mp, e->w.wp, x, y, 0xFFFFFF+c);
+					mlx_pixel_put(e->w.mp, e->w.wp, x, y, 0xFFFFFF);
 					//color pixel
 					/*  tp_l = *ll;
 						while (tp_l != NULL)

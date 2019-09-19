@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 17:19:01 by mhernand          #+#    #+#             */
-/*   Updated: 2019/09/19 16:17:39 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/19 18:58:42 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,8 @@ double  v_intersect_cy(t_vec3 ray, t_ol *ol, t_env *e)
 	double      b = 0;
 	double      c = 0;
 	double      det = 0;
-	t_vec3    tmp_dir = {ol->dir.x, ol->dir.y, ol->dir.z};
 	t_vec3    co;
-	t_point     tmp_ray = {ray.x, ray.y, ray.z};
-	t_point     tmp_po_cen = {ol->cen.x, ol->cen.y, ol->cen.z};
-	t_vec3    nor_dir; nor_dir.y = ol->dir.y; nor_dir.z = ol->dir.z; nor_dir.x = ol->dir.x;
-	nor_dir = v_normalise(nor_dir);
-	t_vec3    nor_ray = v_normalise(ray);
+	t_vec3    nor_dir = v_normalise(ol->dir);
 
 	// V is a unit length vector that determines cylinder's axis
 
@@ -35,7 +30,7 @@ double  v_intersect_cy(t_vec3 ray, t_ol *ol, t_env *e)
 	//    b/2 = D|X - (D|V)*(X|V)
 	//    c   = X|X - (X|V)^2 - r*r
 
-	co = create_v(e->cam.campos, tmp_po_cen);
+	co = create_v(e->cam.campos, ol->cen);
 
 	a = v_scal(ray, ray) - (v_scal(ray, nor_dir) * v_scal(ray, nor_dir));
 
@@ -54,14 +49,19 @@ double  v_intersect_cy(t_vec3 ray, t_ol *ol, t_env *e)
 		return (1);
 
 	// nearest intersection
-	t = (-b - sqrt (det))/a;
+	t = (-b + sqrt (det))/ (2 *a);
+	t_2 = (-b - sqrt (det))/ (2 *a);
 
 	// t<0 means the intersection is behind the ray origin
 	// which we don't want
-	if (t <= epsilon)
+	if (t <= epsilon && t_2 <= epsilon)
 		return (0);
 	else
-		return (1);
+	{
+		t = t < epsilon ? t_2 : t;
+		t = t < t_2 ? t : t_2;
+		return (t);
+	}
 	// if (t < 0)
 	// return (0); //return val to be modified to send the closest valid solution
 	return (0);
