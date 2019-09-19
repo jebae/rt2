@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 11:13:30 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/14 16:35:01 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/19 16:16:32 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ t_point		create_pt(double x, double y, double z)
 	return (p);
 }
 
-t_vector	create_v(t_point ori, t_point dest)
+t_vec3	create_v(t_point ori, t_point dest)
 {
-	t_vector	u;
+	t_vec3	u;
 
 	u.x = dest.x - ori.x;
 	u.y = dest.y - ori.y;
@@ -32,9 +32,9 @@ t_vector	create_v(t_point ori, t_point dest)
 	return (u);
 }
 
-t_vector	v_add(t_vector u, t_vector v, char c)
+t_vec3	v_add(t_vec3 u, t_vec3 v, char c)
 {
-	t_vector	w;
+	t_vec3	w;
 	int			s;
 
 	s = 0;
@@ -48,9 +48,9 @@ t_vector	v_add(t_vector u, t_vector v, char c)
 	return (w);
 }
 
-t_vector	v_mult(t_vector u, double k)
+t_vec3	v_mult(t_vec3 u, double k)
 {
-	t_vector	w;
+	t_vec3	w;
 
 	w.x = k * u.x;
 	w.y = k * u.y;
@@ -58,24 +58,24 @@ t_vector	v_mult(t_vector u, double k)
 	return (w);
 }
 
-double			v_scal(t_vector u, t_vector v)
+double			v_scal(t_vec3 u, t_vec3 v)
 {
 	return (u.x * v.x + u.y * v.y + u.z * v.z);
 }
 
-double			v_norm(t_vector u)
+double			v_norm(t_vec3 u)
 {
 	return (sqrt(v_scal(u, u)));
 }
 
-t_vector		v_normalise(t_vector u)
+t_vec3		v_normalise(t_vec3 u)
 {
 	return (v_mult(u, 1 / v_norm(u)));
 }
 
-t_vector	v_cross(t_vector u, t_vector v)
+t_vec3	v_cross(t_vec3 u, t_vec3 v)
 {
-	t_vector	w;
+	t_vec3	w;
 
 	w.x = u.y * v.z - u.z * v.y;
 	w.y = u.z * v.x - u.x * v.z;

@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/09/13 19:00:38 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/19 16:35:59 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 # define WIDTH		800
 # define HEIGHT 	800
+# define FAR		2000000.0
 
 # define ESC		53
 
@@ -48,6 +49,13 @@ typedef struct		s_vec3
 	double			z;
 }					t_vec3;
 
+typedef struct	s_ray
+{
+	t_point     ori;
+	t_vec3    dir;
+	double      t;
+}				t_ray;
+
 typedef struct		s_col
 {
 	int				x;
@@ -61,6 +69,12 @@ typedef struct		s_camera // struct for camera data
 	t_vec3			camdir;
 	t_vec3			*tra;
 	t_vec3			*rot;
+	t_vec3			left;
+	t_vec3			up;
+	t_vec3			forw;
+	double			focal_length;
+	double			f_wdth;
+	double			f_hght;
 }					t_camera;
 
 typedef struct		s_amb // struct for amb data
@@ -188,5 +202,36 @@ int					add_link_light(t_env *e, t_ll **head);
 int					add_link_obj(t_env *e, t_ol **head);
 
 int					main(int argc, char **argv);
+
+/////////////////////////SANDBOX TO BE BETTER INCLUDED //////////////////////////
+
+t_mlx   init(t_mlx *p);
+int     sand(t_env *e);
+int     sand2(t_env *e, t_ol *ol, t_ll *ll);
+int		raycast(t_env *e, t_ol *ol, t_ll *ll);
+int     color(t_point p, t_ol *ol, t_ll *ll);
+/*
+ * ** Vector operations
+ */
+
+t_point     create_pt(double x, double y, double z);
+t_vec3    create_v(t_point ori, t_point dest);
+t_vec3    v_add(t_vec3 u, t_vec3 v, char c);
+t_vec3    v_mult(t_vec3 u, double k);
+double      v_scal(t_vec3 u, t_vec3 v);
+double      v_norm(t_vec3 u);
+t_vec3    v_cross(t_vec3 u, t_vec3 v);
+t_vec3    v_normalise(t_vec3 u);
+
+/*
+ * ** Intersection functions
+ */
+
+double  v_intersect_sp(t_vec3 ray, t_ol *ol, t_env *e);
+double  v_intersect_pl(t_vec3 ray, t_ol *ol, t_env *e);
+double  v_intersect_cy(t_vec3 ray, t_ol *ol, t_env *e);
+double  v_intersect_co(t_vec3 ray, t_ol *ol, t_env *e);
+
+double  v_intersect_sp2(t_ray ray, t_ol *ol, t_env *e);
 
 #endif

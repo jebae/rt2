@@ -6,15 +6,15 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 14:08:14 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/18 17:38:22 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/19 16:34:44 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sandbox.h"
 
-double	v_intersect_sp(t_vector ray, t_ol *ol, t_env *e)
+double	v_intersect_sp(t_vec3 ray, t_ol *ol, t_env *e)
 {
-	t_vector c_s; //vector camera->sphere center
+	t_vec3 c_s; //vector camera->sphere center
 
 	c_s = create_v(e->cam.campos, ol->cen );
 	double a;
@@ -31,16 +31,45 @@ double	v_intersect_sp(t_vector ray, t_ol *ol, t_env *e)
 		return (1);	
 }
 
-double	v_intersect_pl(t_vector ray, t_ol *ol, t_env *e)
+double  v_intersect_sp2(t_ray ray, t_ol *ol, t_env *e)
+{
+	t_vec3 c_s; //vector camera->sphere center
+
+	c_s = create_v(ray.ori, ol->cen );
+	double a;
+	double b;
+	double c;
+	double delta;
+	double t = 0;
+	double t2;
+	a = v_scal(ray.dir, ray.dir);
+	b = 2 * (v_scal(ray.dir, c_s));
+	c = v_scal(c_s, c_s) - ol->radius * ol->radius;
+	delta = b * b - 4 * a * c;
+	if (delta < 0)
+		return (0); //return val to be modified to send the closest valid solution
+	else
+	{
+		t = -(-b + sqrt(delta)) / (2 * a);
+		t2 = -(-b - sqrt(delta)) / (2 * a);
+		if (t <= 0 && t2 <= 0)
+			//          return (0);
+			t = t > 0 ? t : t2;
+		t = t2 < t && t2 > 0 ? t2 : t;
+	}
+	return (t);
+}
+
+double	v_intersect_pl(t_vec3 ray, t_ol *ol, t_env *e)
 {
 	// D is the dir of the ray --> ray 
 	// don't know what 't' is
 	// o is ray origin --> cam pos;
 	// t = -X | V / D | V
 	double		t = 0; 
-	t_vector	tmp;
+	t_vec3	tmp;
 	t_point		plane_point;
-	t_vector	diff;
+	t_vec3	diff;
 
 	// hello = create new vector that is the difference betweent camera position and point in the plane 
 	plane_point.x = (double)ol->d / ol->nor.x;
@@ -52,7 +81,7 @@ double	v_intersect_pl(t_vector ray, t_ol *ol, t_env *e)
 	tmp.y = ol->nor.y;
 	tmp.z = ol->nor.z;
 	t = v_scal(diff, tmp) / v_scal(ray, tmp);
-	
+
 	if (t < 0)
 		return (0); //return val to be modified to send the closest valid solution
 	else
@@ -87,7 +116,7 @@ double	v_intersect_pl(t_vector ray, t_ol *ol, t_env *e)
 // 	return (0);
 // }
 
-double	v_intersect_co(t_vector ray, t_ol *ol, t_env *e)
+double	v_intersect_co(t_vec3 ray, t_ol *ol, t_env *e)
 {
 	(void)e;
 	(void)ol;
@@ -98,24 +127,24 @@ double	v_intersect_co(t_vector ray, t_ol *ol, t_env *e)
 	double		b = 0;
 	double		c = 0;
 	double		det = 0;
-	t_vector	tmp_dir = {ol->dir.x, ol->dir.y, ol->dir.z};
-	t_vector	co;
-	t_vector		tmp_ray;
+	t_vec3	tmp_dir = {ol->dir.x, ol->dir.y, ol->dir.z};
+	t_vec3	co;
+	t_vec3		tmp_ray;
 	t_point		tmp_po_cen = {ol->cen.x, ol->cen.y, ol->cen.z};
-	t_vector	nor_dir; nor_dir.y = ol->dir.y; nor_dir.z = ol->dir.z; nor_dir.x = ol->dir.x;
+	t_vec3	nor_dir; nor_dir.y = ol->dir.y; nor_dir.z = ol->dir.z; nor_dir.x = ol->dir.x;
 	nor_dir = v_normalise(nor_dir);
-	t_vector	nor_ray = v_normalise(ray);
+	t_vec3	nor_ray = v_normalise(ray);
 
 
 	// the D is the ray and V is the direction vector
 	co = create_v(e->cam.campos, tmp_po_cen);
-	
+
 	a = (v_scal(ray, nor_dir) * v_scal(ray, nor_dir)) - (cos(ol->angle) * cos(ol->angle));
 
 	b = 2 * ((v_scal(ray, nor_dir) * v_scal(co, nor_dir)) - v_scal(ray, co) * (cos(ol->angle) * cos(ol->angle)));
 
 	c = (v_scal(co, nor_dir) * v_scal(co, nor_dir)) - (v_scal(co, co) * (cos(ol->angle) * cos(ol->angle)));
-	
+
 	det = b * b - 4 * a * c;
 	if (det < 0)
 		return (0);
@@ -143,5 +172,5 @@ double	v_intersect_co(t_vector ray, t_ol *ol, t_env *e)
 		else 
 			return (0);
 	}
-	
+
 }
