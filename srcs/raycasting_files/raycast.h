@@ -6,9 +6,15 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/19 19:27:10 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/20 10:35:15 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
+// /!/ This header still have the rtv1.h that is inside the directory
+//     Need to modify the one that is in /includes to have everything in it and then change path 
+
+
 
 //#include "libft.h"
 #include <mlx.h>

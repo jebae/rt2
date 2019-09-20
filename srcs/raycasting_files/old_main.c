@@ -6,9 +6,15 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:31:06 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/19 19:28:16 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/20 10:36:35 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
+/*
+** Old main to be deleted when the pasing integretion is done
+*/
+
 
 #include "raycast.h"
 
