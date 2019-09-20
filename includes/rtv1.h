@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/09/13 19:00:38 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/20 11:00:05 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 # define WIDTH		800
 # define HEIGHT 	800
+# define FAR		2000000.0
 
 # define ESC		53
 
@@ -48,6 +49,13 @@ typedef struct		s_vec3
 	double			z;
 }					t_vec3;
 
+typedef struct  s_ray
+{
+	t_point     ori;
+	t_vec3    dir;
+	double      t;
+}               t_ray;
+
 typedef struct		s_col
 {
 	int				x;
@@ -55,13 +63,19 @@ typedef struct		s_col
 	int				z;
 }					t_col; // color amb
 
-typedef struct		s_camera // struct for camera data
+typedef struct      s_camera // struct for camera data
 {
-	t_point			campos;
-	t_vec3			camdir;
-	t_vec3			*tra;
-	t_vec3			*rot;
-}					t_camera;
+	t_point         campos;
+	t_vec3          camdir;
+	t_vec3          *tra;
+	t_vec3          *rot;
+	t_vec3          left;
+	t_vec3          up;
+	t_vec3          forw;
+	double          focal_length;
+	double          f_wdth;
+	double          f_hght;
+}                   t_camera;
 
 typedef struct		s_amb // struct for amb data
 {
