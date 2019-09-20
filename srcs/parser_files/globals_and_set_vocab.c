@@ -6,13 +6,13 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 12:46:12 by mhernand          #+#    #+#             */
-/*   Updated: 2019/09/10 12:46:15 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/09/20 10:58:39 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-int		globals_two(t_env *e, char *tabless, int ret_tabs)
+int			globals_two(t_env *e, char *tabless, int ret_tabs)
 {
 	if (ft_strcmp("<objects>", tabless) == 0 && ret_tabs == 1)
 	{
@@ -30,13 +30,13 @@ int		globals_two(t_env *e, char *tabless, int ret_tabs)
 	return (0);
 }
 
-int		globals(t_env *e, char *gnl_line)
+int			globals(t_env *e, char *gnl_line)
 {
-	int		ret_tabs = 0;
+	int		ret_tabs;
 	char	*tabless;
 
+	ret_tabs = 0;
 	e->p.skip = 0;
-	e->p.ret_p = 0; // need this ?
 	ret_tabs = ft_charfreq(gnl_line, '\t');
 	tabless = ft_strtrim(gnl_line);
 	if ((ft_strcmp("<scene>", tabless) == 0) && ret_tabs == 0)
@@ -55,7 +55,7 @@ int		globals(t_env *e, char *gnl_line)
 			return (e->p.ret_p);
 		}
 	if ((e->p.ret_p = globals_two(e, tabless, ret_tabs)) != 0)
-		return(e->p.ret_p);
+		return (e->p.ret_p);
 	return (0);
 }
 
@@ -69,9 +69,9 @@ void		set_vocab(t_env *e)
 	e->p.vocab_two[1] = "direction";
 	e->p.vocab_two[2] = "diffusion";
 	e->p.vocab_two[3] = "reflection";
-	e->p.vocab_two[4] = "specvalue"; 
+	e->p.vocab_two[4] = "specvalue";
 	e->p.vocab_two[5] = "specpower";
-	e->p.vocab_two[6] = "intensity"; 
+	e->p.vocab_two[6] = "intensity";
 	e->p.vocab_two[7] = "translate";
 	e->p.vocab_two[8] = "rotate";
 	e->p.vocab_two[9] = "angle";
@@ -79,11 +79,11 @@ void		set_vocab(t_env *e)
 	e->p.vocab_two[11] = "center";
 	e->p.vocab_two[12] = "d";
 	e->p.vocab_two[13] = "radius";
-	e->p.vocab_two[14] = "ambient"; // -- correct name ? // need this ?????
+	e->p.vocab_two[14] = "ambient";
 	e->p.vocab_two[15] = "normal";
 }
 
-void	reset_shape_atb_two(t_env *e)
+void		reset_shape_atb_two(t_env *e)
 {
 	e->p.y_atb.radius = 0;
 	e->p.y_atb.center = 0;
@@ -105,7 +105,7 @@ void	reset_shape_atb_two(t_env *e)
 	e->p.p_atb.translate = 0;
 }
 
-void	reset_shape_atb(t_env *e)
+void		reset_shape_atb(t_env *e)
 {
 	e->p.s_atb.radius = 0;
 	e->p.s_atb.center = 0;

@@ -150,6 +150,7 @@ int			error(t_env *e, int i)
 	}
 	if (i > 25)
 		lineless_errors(e, i);
+	ft_strfree(e->p.gnl_line);
 	ft_strdel(e->p.split);
 	quit(e);
 	return (0);
