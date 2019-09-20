@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 15:35:27 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/19 19:28:03 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/20 11:52:41 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int     color(t_point p, t_ol *ol, t_ll *ll)
 		return (255);
 	res = ( res) * 255; //max light: alpha = 0
 	int c = res;
-	return (res);
+	return (c);
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 14:08:14 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/19 18:17:02 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/20 12:27:14 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ double  v_intersect_sp2(t_ray ray, t_ol *ol, t_env *e)
 	c = v_scal(c_s, c_s) - ol->radius * ol->radius;
 	delta = b * b - 4 * a * c;
 	if (delta < 0)
-		return (0); //return val to be modified to send the closest valid solution
+		return (FAR); //return val to be modified to send the closest valid solution
 	else
 	{
 		t = -(-b + sqrt(delta)) / (2 * a);
@@ -142,7 +142,7 @@ double	v_intersect_co(t_ray ray, t_ol *ol, t_env *e)
 
 	det = b * b - 4 * a * c;
 	if (det < 0)
-		return (0);
+		return (FAR);
 	if (det == 0)
 		t = b / (2 * a);
 	else if (det > 0)
@@ -150,7 +150,7 @@ double	v_intersect_co(t_ray ray, t_ol *ol, t_env *e)
 		t = -(-b + sqrt(det) )/ (2 * a);
 		t_2 = -(-b - sqrt(det)) / (2 * a);
 		if (t <= 0 && t_2 <= 0)
-			return (0);
+			return (FAR);
 		else
 		{
 			t = t < 0 ? t_2 : t;
@@ -158,14 +158,14 @@ double	v_intersect_co(t_ray ray, t_ol *ol, t_env *e)
 		}
 	}
 	if (t < 0)
-		return (0); //return val to be modified to send the closest valid solution
+		return (FAR); //return val to be modified to send the closest valid solution
 	else
 	{
 		tmp_ray.x = ol->cen.x - t * ray.dir.x; tmp_ray.y = ol->cen.y - t * ray.dir.y; tmp_ray.z = ol->cen.z - t * ray.dir.z; //vector from the point of intersection toward center
 		if (ol->angle < M_PI / 2 && v_scal(tmp_ray, nor_dir) > 0)
 			return (t);
 		else 
-			return (0);
+			return (FAR);
 	}
 
 }

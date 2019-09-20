@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 17:15:40 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/20 10:32:00 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/20 11:51:56 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ double  intersection2(t_ray ray, t_ol *ol, t_env *e)
 
 int	sand2(t_env *e, t_ol *ol, t_ll *ll)
 {
+	(void)ll;
 	int x = -1 + X0;
 	int y = -1 + Y0;
 	t_vec3  ray;
@@ -107,7 +108,7 @@ int raycast(t_env *e, t_ol *ol, t_ll *ll)
 	int x = 0;
 	int y = 0;
 	t_ray   ray;
-	t_ll    *tp_l;
+//	t_ll    *tp_l;
 	t_ol    *tp_o;
 
 	double r;

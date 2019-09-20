@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:31:06 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/19 19:00:21 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/20 12:31:55 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int ac, char **av)
 
 	/////////////////// S P H E R E /////////////////////
 	t_ol obj; obj.cur_shape = 1; obj.cen.x = 0; obj.cen.y = 0;
-	obj.cen.z = 20; obj.next = NULL; obj.radius = 30;
+	obj.cen.z = 60; obj.next = NULL; obj.radius = 30;
 	t_ol	*ol;
 	ol = &obj;
 	/////////////////////////////////////////////////////
@@ -65,8 +65,8 @@ int	main(int ac, char **av)
 	///////////////////// C O N E  ///////////////////////
 	t_ol co; co.cur_shape = 2;
 	co.dir.x = 10; co.dir.y = -10; co.dir.z = 0; 
-	co.cen.x = 0; co.cen.y = 0; co.cen.z = 10; 	
-	co.next = NULL; co.radius = 5; co.angle = M_PI / 6;
+	co.cen.x = 0; co.cen.y = -2; co.cen.z = 10; 	
+	co.next = ol; co.radius = 5; co.angle = M_PI / 6;
 	t_ol	*ol_co;
 	ol_co = &co;
 	/////////////////////////////////////////////////////
@@ -76,8 +76,8 @@ int	main(int ac, char **av)
 	// sand2(e, ol_pla, ll);
 	// sand2(e, ol, ll);
 	// sand2(e, ol_co, ll);
-	sand2(e, ol_cl, ll);
-//	raycast(e, ol_cl, ll);
+//	sand2(e, ol_cl, ll);
+	raycast(e, ol_co, ll);
 	mlx_key_hook(e->w.wp, key_hook, e);
 	mlx_loop(e->w.mp);
 	return (0);

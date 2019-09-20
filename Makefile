@@ -6,7 +6,7 @@
 #    By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 07:58:15 by mhernand          #+#    #+#              #
-#    Updated: 2019/07/25 15:34:11 by mhernand         ###   ########.fr        #
+#    Updated: 2019/09/20 11:41:22 by sabonifa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,9 +50,14 @@ SRCS = main.c start_rtv1.c\
 	parser_files/verify_threeargs_partwo.c\
 	parser_files/globals_and_set_vocab.c\
 	parser_files/verify_shapes_two.c\
-	parser_files/create_links.c
+	parser_files/create_links.c\
+	raycasting_files/color.c\
+	raycasting_files/intersec_functions.c\
+	raycasting_files/raycast.c\
+	raycasting_files/syn.c\
+	raycasting_files/vector_op.c
 
-SUB_FOLD = parser_files handle
+SUB_FOLD = parser_files handle raycasting_files
 
 BUILD_DIR = $(addprefix $(OBJ_DIR)/, $(SUB_FOLD))
 

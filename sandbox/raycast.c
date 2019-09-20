@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 17:15:40 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/19 18:59:20 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/20 12:42:59 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ int raycast(t_env *e, t_ol *ol, t_ll *ll)
 			while (tp_o != NULL)
 			{
 				// intersect
-				r = intersection2(ray, ol, e);
+				r = intersection2(ray, tp_o, e);
 				ray.t = r < ray.t ? r : ray.t;//check if there is an intersection
 				int c  = 0;
 				if (ray.t > 0 && ray.t < FAR)
@@ -131,9 +131,9 @@ int raycast(t_env *e, t_ol *ol, t_ll *ll)
 					p.x = ray.dir.x * ray.t;
 					p.y = ray.dir.y * ray.t;
 					p.z = ray.dir.z * ray.t;
-					c += color (p, ol, ll);
+					c += color (p, tp_o, ll);
 					c = c << 24;
-					mlx_pixel_put(e->w.mp, e->w.wp, x, y, 0xFFFFFF);
+					mlx_pixel_put(e->w.mp, e->w.wp, x, y, 0xFF0000+c);
 					//color pixel
 					/*  tp_l = *ll;
 						while (tp_l != NULL)
