@@ -12,118 +12,118 @@
 
 #include "rtv1.h"
 
-int			globals_two(t_env *e, char *tabless, int ret_tabs)
+int			globals_two(t_parser *p, char *tabless, int ret_tabs)
 {
 	if (ft_strcmp("<objects>", tabless) == 0 && ret_tabs == 1)
 	{
-		e->p.objects += 1;
-		e->p.skip = 1;
+		p->objects += 1;
+		p->skip = 1;
 	}
 	if (ft_strcmp("</objects>", tabless) == 0 && ret_tabs == 1)
 	{
-		if ((e->p.ret_p = open_close(&e->p.objects)) != 0)
+		if ((p->ret_p = open_close(&p->objects)) != 0)
 		{
 			ft_strfree(tabless);
-			return (e->p.ret_p);
+			return (p->ret_p);
 		}
 	}
 	return (0);
 }
 
-int			globals(t_env *e, char *gnl_line)
+int			globals(t_parser *p, char *gnl_line)
 {
 	int		ret_tabs;
 	char	*tabless;
 
 	ret_tabs = 0;
-	e->p.skip = 0;
+	p->skip = 0;
 	ret_tabs = ft_charfreq(gnl_line, '\t');
 	tabless = ft_strtrim(gnl_line);
 	if ((ft_strcmp("<scene>", tabless) == 0) && ret_tabs == 0)
-		e->p.scene += 1;
+		p->scene += 1;
 	if (ft_strcmp("</scene>", tabless) == 0 && ret_tabs == 0)
-		e->p.scene += 1;
+		p->scene += 1;
 	if (ft_strcmp("<specs>", tabless) == 0 && ret_tabs == 1)
 	{
-		e->p.specs += 1;
-		e->p.skip = 1;
+		p->specs += 1;
+		p->skip = 1;
 	}
 	if (ft_strcmp("</specs>", tabless) == 0 && ret_tabs == 1)
-		if ((e->p.ret_p = open_close(&e->p.specs)) != 0)
+		if ((p->ret_p = open_close(&p->specs)) != 0)
 		{
 			ft_strfree(tabless);
-			return (e->p.ret_p);
+			return (p->ret_p);
 		}
-	if ((e->p.ret_p = globals_two(e, tabless, ret_tabs)) != 0)
-		return (e->p.ret_p);
+	if ((p->ret_p = globals_two(p, tabless, ret_tabs)) != 0)
+		return (p->ret_p);
 	return (0);
 }
 
-void		set_vocab(t_env *e)
+void		set_vocab(t_parser *p)
 {
-	e->p.vocab_one[0] = "sphere";
-	e->p.vocab_one[1] = "cylinder";
-	e->p.vocab_one[2] = "cone";
-	e->p.vocab_one[3] = "plane";
-	e->p.vocab_two[0] = "position";
-	e->p.vocab_two[1] = "direction";
-	e->p.vocab_two[2] = "diffusion";
-	e->p.vocab_two[3] = "reflection";
-	e->p.vocab_two[4] = "specvalue";
-	e->p.vocab_two[5] = "specpower";
-	e->p.vocab_two[6] = "intensity";
-	e->p.vocab_two[7] = "translate";
-	e->p.vocab_two[8] = "rotate";
-	e->p.vocab_two[9] = "angle";
-	e->p.vocab_two[10] = "color";
-	e->p.vocab_two[11] = "center";
-	e->p.vocab_two[12] = "d";
-	e->p.vocab_two[13] = "radius";
-	e->p.vocab_two[14] = "ambient";
-	e->p.vocab_two[15] = "normal";
+	p->vocab_one[0] = "sphere";
+	p->vocab_one[1] = "cylinder";
+	p->vocab_one[2] = "cone";
+	p->vocab_one[3] = "plane";
+	p->vocab_two[0] = "position";
+	p->vocab_two[1] = "direction";
+	p->vocab_two[2] = "diffusion";
+	p->vocab_two[3] = "reflection";
+	p->vocab_two[4] = "specvalue";
+	p->vocab_two[5] = "specpower";
+	p->vocab_two[6] = "intensity";
+	p->vocab_two[7] = "translate";
+	p->vocab_two[8] = "rotate";
+	p->vocab_two[9] = "angle";
+	p->vocab_two[10] = "color";
+	p->vocab_two[11] = "center";
+	p->vocab_two[12] = "d";
+	p->vocab_two[13] = "radius";
+	p->vocab_two[14] = "ambient";
+	p->vocab_two[15] = "normal";
 }
 
-void		reset_shape_atb_two(t_env *e)
+void		reset_shape_atb_two(t_parser *p)
 {
-	e->p.y_atb.radius = 0;
-	e->p.y_atb.center = 0;
-	e->p.y_atb.diffusion = 0;
-	e->p.y_atb.reflection = 0;
-	e->p.y_atb.specpower = 0;
-	e->p.y_atb.specvalue = 0;
-	e->p.y_atb.angle = 0;
-	e->p.y_atb.rotate = 0;
-	e->p.y_atb.translate = 0;
-	e->p.y_atb.direction = 0;
-	e->p.p_atb.normal = 0;
-	e->p.p_atb.d = 0;
-	e->p.p_atb.diffusion = 0;
-	e->p.p_atb.reflection = 0;
-	e->p.p_atb.specpower = 0;
-	e->p.p_atb.specvalue = 0;
-	e->p.p_atb.rotate = 0;
-	e->p.p_atb.translate = 0;
+	p->y_atb.radius = 0;
+	p->y_atb.center = 0;
+	p->y_atb.diffusion = 0;
+	p->y_atb.reflection = 0;
+	p->y_atb.specpower = 0;
+	p->y_atb.specvalue = 0;
+	p->y_atb.angle = 0;
+	p->y_atb.rotate = 0;
+	p->y_atb.translate = 0;
+	p->y_atb.direction = 0;
+	p->p_atb.normal = 0;
+	p->p_atb.d = 0;
+	p->p_atb.diffusion = 0;
+	p->p_atb.reflection = 0;
+	p->p_atb.specpower = 0;
+	p->p_atb.specvalue = 0;
+	p->p_atb.rotate = 0;
+	p->p_atb.translate = 0;
 }
 
-void		reset_shape_atb(t_env *e)
+void		reset_shape_atb(t_parser *p)
 {
-	e->p.s_atb.radius = 0;
-	e->p.s_atb.center = 0;
-	e->p.s_atb.diffusion = 0;
-	e->p.s_atb.reflection = 0;
-	e->p.s_atb.specpower = 0;
-	e->p.s_atb.specvalue = 0;
-	e->p.s_atb.rotate = 0;
-	e->p.s_atb.translate = 0;
-	e->p.c_atb.radius = 0;
-	e->p.c_atb.center = 0;
-	e->p.c_atb.diffusion = 0;
-	e->p.c_atb.reflection = 0;
-	e->p.c_atb.specpower = 0;
-	e->p.c_atb.specvalue = 0;
-	e->p.c_atb.angle = 0;
-	e->p.c_atb.rotate = 0;
-	e->p.c_atb.translate = 0;
-	e->p.c_atb.direction = 0;
-	reset_shape_atb_two(e);
+	p->s_atb.radius = 0;
+	p->s_atb.center = 0;
+	p->s_atb.diffusion = 0;
+	p->s_atb.reflection = 0;
+	p->s_atb.specpower = 0;
+	p->s_atb.specvalue = 0;
+	p->s_atb.rotate = 0;
+	p->s_atb.translate = 0;
+	p->c_atb.radius = 0;
+	p->c_atb.center = 0;
+	p->c_atb.diffusion = 0;
+	p->c_atb.reflection = 0;
+	p->c_atb.specpower = 0;
+	p->c_atb.specvalue = 0;
+	p->c_atb.angle = 0;
+	p->c_atb.rotate = 0;
+	p->c_atb.translate = 0;
+	p->c_atb.direction = 0;
+	reset_shape_atb_two(p);
 }

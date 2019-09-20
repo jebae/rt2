@@ -12,7 +12,7 @@
 
 #include "rtv1.h"
 
-void		lineless_errors_seven(t_env *e, int i)
+void		lineless_errors_seven(t_env *e, t_parser *p, int i)
 {
 	if (i == 61)
 	{
@@ -37,11 +37,11 @@ void		lineless_errors_seven(t_env *e, int i)
 		ft_putendl("given an incorrect attribute.");
 	}
 	if (i > 65)
-		lineless_errors_eight(e, i);
+		lineless_errors_eight(e, p, i);
 }
 
 
-void		lineless_errors_six(t_env *e, int i)
+void		lineless_errors_six(t_env *e, t_parser *p, int i)
 {
 	if (i == 56)
 	{
@@ -63,10 +63,10 @@ void		lineless_errors_six(t_env *e, int i)
 	if (i == 60)
 		ft_putendl("Oops ! It appears the 'cam' spec is missng an attribute.");
 	if (i > 60)
-		lineless_errors_seven(e, i);
+		lineless_errors_seven(e, p, i);
 }
 
-void		lineless_errors_five(t_env *e, int i)
+void		lineless_errors_five(t_env *e, t_parser *p, int i)
 {
 	if (i == 52)
 	{
@@ -89,10 +89,10 @@ void		lineless_errors_five(t_env *e, int i)
 		ft_putendl("given a wrong attribute.");
 	}
 	if (i > 55)
-		lineless_errors_six(e, i);
+		lineless_errors_six(e, p, i);
 }
 
-void		lineless_errors_four(t_env *e, int i)
+void		lineless_errors_four(t_env *e, t_parser *p, int i)
 {
 	if (i == 48)
 	{
@@ -115,11 +115,11 @@ void		lineless_errors_four(t_env *e, int i)
 		ft_putendl("missing an attribute.");
 	}
 	if (i > 51)
-		lineless_errors_five(e, i);
+		lineless_errors_five(e, p, i);
 }
 
 
-void		lineless_errors_three(t_env *e, int i)
+void		lineless_errors_three(t_env *e, t_parser *p, int i)
 {
 	if (i == 43)
 		ft_putstr("Oops ! It appears a 'cone' object is missing an attribute.");
@@ -144,5 +144,5 @@ void		lineless_errors_three(t_env *e, int i)
 		ft_putendl("missing an attribute.");
 	}
 	if (i > 47)
-		lineless_errors_four(e, i);
+		lineless_errors_four(e, p, i);
 }

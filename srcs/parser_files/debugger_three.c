@@ -12,62 +12,63 @@
 
 #include "rtv1.h"
 
-void		line_errors(t_env *e, int i)
+void		line_errors(t_env *e, t_parser *p, int i)
 {
+	(void)e;
 	if (i == 81)
 	{
 		ft_putstr("Oops ! It looks like [");
-		ft_putstr(e->p.tmp);
+		ft_putstr(p->tmp);
 		ft_putstr("] was given the incorrect number of arguments. ");
 		ft_putendl("This attribute takes three parameters.");
-		ft_strfree(e->p.tmp);		
+		ft_strfree(p->tmp);		
 	}
 	if (i == 82)
 	{
 		ft_putstr("Oops ! It looks like [");
-		ft_putstr(e->p.tmp);
+		ft_putstr(p->tmp);
 		ft_putstr("] was given the incorrect number of arguments. ");
 		ft_putendl("This attribute takes one parameter.");
-		ft_strfree(e->p.tmp);		
+		ft_strfree(p->tmp);		
 	}
 	if (i == 83)
 	{
 		ft_putstr("Oops ! It looks like [");
-		ft_putstr(e->p.strtwo);
+		ft_putstr(p->strtwo);
 		ft_putendl("] was given a zero/negative value. ");
-		ft_strfree(e->p.strone);
-		ft_strfree(e->p.strtwo);
+		ft_strfree(p->strone);
+		ft_strfree(p->strtwo);
 	}
 	if (i == 84)
 	{
 		ft_putstr("Oops ! It looks like [");
-		ft_putstr(e->p.strtwo);
+		ft_putstr(p->strtwo);
 		ft_putendl("] was given a value greater than 360 or less than 0. ");
-		ft_strfree(e->p.strone);
-		ft_strfree(e->p.strtwo);
+		ft_strfree(p->strone);
+		ft_strfree(p->strtwo);
 	}
 	if (i == 85)
 	{
 		ft_putstr("Oops ! It looks like [");
-		ft_putstr(e->p.strtwo);
+		ft_putstr(p->strtwo);
 		ft_putendl("] was given all zero value, at least one value must be greater/less than zero. ");
-		ft_strfree(e->p.strone);
-		ft_strfree(e->p.strtwo);
+		ft_strfree(p->strone);
+		ft_strfree(p->strtwo);
 	}
 	if (i == 86)
 	{
 		ft_putstr("Oops ! This object tag [");
-		ft_putstr(e->p.strtwo);
+		ft_putstr(p->strtwo);
 		ft_putendl("] has a range between 0 and 255. ");
-		ft_strfree(e->p.strone);
-		ft_strfree(e->p.strtwo);
+		ft_strfree(p->strone);
+		ft_strfree(p->strtwo);
 	}
 	ft_putstr("The problem lies in line : ");
-	ft_putnbr(e->p.gnl_i);
+	ft_putnbr(p->gnl_i);
 	ft_putchar('\n'); //add free strings here if there is an error return value !
 }
 
-void		lineless_errors_eight(t_env *e, int i)
+void		lineless_errors_eight(t_env *e, t_parser *p, int i)
 {
 	if (i == 66)
 		ft_putendl("Oops ! It appears a 'light' spec is missng an attribute.");
@@ -94,5 +95,5 @@ void		lineless_errors_eight(t_env *e, int i)
 	if (i == 71)
 		ft_putstr("Oops ! Bad malloc.");
     if (i > 80)
-        line_errors(e, i);
+        line_errors(e, p, i);
 }
