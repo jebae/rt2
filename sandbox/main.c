@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:31:06 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/20 12:31:55 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/21 18:30:03 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int ac, char **av)
 	t_env	*e;
 
 	/////////////////// L I G H T //////////////////////
-	t_ll	light; light.pos.x = 300; light.pos.y = 300; light.pos.z = -20;	
+	t_ll	light; light.pos.x = 200; light.pos.y = 500; light.pos.z = -50;	
 	t_ll	*ll = &light;
 	///////////////////////////////////////////////////
 
@@ -40,7 +40,7 @@ int	main(int ac, char **av)
 
 	/////////////////// S P H E R E /////////////////////
 	t_ol obj; obj.cur_shape = 1; obj.cen.x = 0; obj.cen.y = 0;
-	obj.cen.z = 60; obj.next = NULL; obj.radius = 30;
+	obj.cen.z = 10; obj.next = NULL; obj.radius = 30;
 	t_ol	*ol;
 	ol = &obj;
 	/////////////////////////////////////////////////////
@@ -77,7 +77,7 @@ int	main(int ac, char **av)
 	// sand2(e, ol, ll);
 	// sand2(e, ol_co, ll);
 //	sand2(e, ol_cl, ll);
-	raycast(e, ol_co, ll);
+	raycast(e, ol, ll);
 	mlx_key_hook(e->w.wp, key_hook, e);
 	mlx_loop(e->w.mp);
 	return (0);
