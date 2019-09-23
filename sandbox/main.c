@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:31:06 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/21 18:30:03 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/23 19:07:19 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int ac, char **av)
 	t_env	*e;
 
 	/////////////////// L I G H T //////////////////////
-	t_ll	light; light.pos.x = 200; light.pos.y = 500; light.pos.z = -50;	
+	t_ll	light; light.pos.x = 30; light.pos.y = 30; light.pos.z = 0;	
 	t_ll	*ll = &light;
 	///////////////////////////////////////////////////
 
@@ -36,6 +36,8 @@ int	main(int ac, char **av)
 	e->cam.up.x = 0; e->cam.up.y = 0.33; e->cam.up.z = 0;
 	e->cam.forw.x = 0; e->cam.forw.y = 0; e->cam.forw.z = 1;
 	e->cam.f_wdth = WIDTH; e->cam.f_hght = WIDTH; e->cam.focal_length = 100;
+
+	e->amb.col.r = 0xFF * 0.1; e->amb.col.g = 0xFF * 0.1; e->amb.col.b = 0xFF * 0.1;
 	///////////////////////////////////////////////////
 
 	/////////////////// S P H E R E /////////////////////

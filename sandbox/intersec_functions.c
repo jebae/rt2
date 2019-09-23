@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 14:08:14 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/20 12:27:14 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/23 12:45:01 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ double	v_intersect_sp(t_vec3 ray, t_ol *ol, t_env *e)
 
 double  v_intersect_sp2(t_ray ray, t_ol *ol, t_env *e)
 {
-	t_vec3 c_s; //vector camera->sphere center
+	t_vec3 c_s; //vector ray_origin->sphere center
 
 	c_s = create_v(ray.ori, ol->cen );
 	double a;

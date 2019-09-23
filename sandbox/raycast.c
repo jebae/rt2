@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 17:15:40 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/21 18:30:48 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/23 15:40:20 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,18 +128,24 @@ int raycast(t_env *e, t_ol *ol, t_ll *ll)
 				unsigned int s = 0;
 				if (ray.t > 0 && ray.t < FAR)
 				{
+					color_pixel(x, y, compute_color(ray, ol, ll), e);
+					/*
 					t_point p;
 					p.x = ray.dir.x * ray.t;
 					p.y = ray.dir.y * ray.t;
 					p.z = ray.dir.z * ray.t;
 					c += color (p, tp_o, ll);
 					s += specular(ray, p, tp_o, ll);
-					//c += 0xDD;   //ambiant light
+			printf("%X\n", c);
+					c += 0xDD;   //ambiant light
+					c = c & 0xFF;
 					c = c << 24;
 					s = s << 24;
 					mlx_pixel_put(e->w.mp, e->w.wp, x, y, 0xFFFF00+c);
+					*/
+
 	//			if (s < 0xDD<<24)
-					mlx_pixel_put(e->w.mp, e->w.wp, x, y, 0xFFFFFF+s);
+				//	mlx_pixel_put(e->w.mp, e->w.wp, x, y, 0xFFFFFF+s);
 					//color pixel
 					/*  tp_l = *ll;
 						while (tp_l != NULL)

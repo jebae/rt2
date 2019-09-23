@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 15:35:27 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/21 18:44:54 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/23 11:01:09 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,12 @@ int     color(t_point p, t_ol *ol, t_ll *ll)
 	n = v_normalise(n);
 	double res = -v_scal(p_l, n); //how much light hit the point
 //	printf("%f\n", res);
-	if (res < -0.0)
-		return (0xFF);
+//	if (res < -0.0)
+//		return (0xFF);
 	res = (1 - res) * (0xFF); //max light: alpha = 0
 	int c = res;
+	c = c < 0 ? 0 : c;
+	c = c > 255 ? 255 : c;
 	return (c);
 }
 
