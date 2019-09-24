@@ -130,7 +130,6 @@ typedef struct		s_creecam
 typedef struct		s_env
 {
 	char			*data;
-	int				str_count;
 	int				k[300];
 	int				s_count;
 	int				cs;
@@ -145,7 +144,7 @@ typedef struct		s_env
 }					t_env;
 
 void				setup_rtv1(t_env *e);
-int					parser(t_env *e, int fd);
+int					parser(t_env *e, t_parser *p, int fd);
 void				start_rtv1(t_env *e);
 int					touch(t_env *e);
 int					key_press(int key, t_env *e);
@@ -154,38 +153,39 @@ int					quit(t_env *e);
 void				draw_sphere(t_env *e);
 
 //functions for parser
-void				set_vocab(t_env *e);
-int					two_tabs_specs(t_env *e, t_ll **l_head);
+void				set_vocab(t_parser *p);
+int					two_tabs_specs(t_env *e, t_parser *p, t_ll **l_head);
 int					open_close(int *check_me);
-int					extract_status(t_env *e);
-int					two_angle_brackets(t_env *e);
-int					twotab_verifications(t_env *e, t_ol **o_head);
-void				count_shapes(t_env *e, char *split);
-int					verifyobjecttags_closings(t_env *e, char *split);
-int					globals(t_env *e, char *gnl_line);
-int					verifyargs_one(t_env *e, t_ll **l_head, t_ol **o_head);
-int					verifyanglebrackets_one(t_env *e);
-int					verifyvocab_one(t_env *e);
-int					verifyargs_three(t_env *e, t_ll **l_head, t_ol **o_head);
-int					verifyanglebrackets_three(t_env *e);
-int					verifyvocab_three(t_env *e);
-int					shapevocab_checker(t_env *e);
-int					shapevocab_checker_partwo(t_env *e);
-int					verify_spec_atb(t_env *e);
-int					verify_spec_atb_partwo(t_env *e);
-int					verify_tag_to_argument(t_env *e, char *string, int args);
-int					error(t_env *e, int i);
-void				reset_spec_atb(t_env *e);
-void				lineless_errors_three(t_env *e, int i);
-void				lineless_errors_eight(t_env *e, int i);
-int					verify_numbers_one(t_env *e, t_ll *l_head, t_ol *o_head);
-int					verify_values(t_env *e);
-int					verify_numbers_three(t_env *e, t_ll *l_head, t_ol *o_head);
-void				reset_shape_atb(t_env *e);
-void				reset_shape_atb_two(t_env *e);
-int					checkforopenobjecttags(t_env *e);
+int					extract_status(t_parser *p);
+int					two_angle_brackets(t_parser *p);
+int					twotab_verifications(t_env *e, t_parser *p, t_ol **o_head);
+void				count_shapes(t_parser *p, char *split);
+int					verifyobjecttags_closings(t_env *e, t_parser *p, char *split);
+int					globals(t_parser *p, char *gnl_line);
+int					verifyargs_one(t_env *e, t_parser *p, t_ll **l_head, t_ol **o_head);
+int					verifyanglebrackets_one(t_parser *p);
+int					verifyvocab_one(t_parser *p);
+int					verifyargs_three(t_env *e, t_parser *p, t_ll **l_head, t_ol **o_head);
+int					verifyanglebrackets_three(t_parser *p);
+int					verifyvocab_three(t_parser *p);
+int					shapevocab_checker(t_env *e, t_parser *p) ;
+int					shapevocab_checker_partwo(t_env *e, t_parser *p);
+int					verify_spec_atb(t_parser *p);
+int					verify_spec_atb_partwo(t_parser *p);
+int					verify_tag_to_argument(t_parser *p, char *string, int args);
+int					error(t_env *e, t_parser *p, int i);
+void				reset_spec_atb(t_parser *p);
+void				lineless_errors_three(t_env *e, t_parser *p, int i);
+void				lineless_errors_eight(t_env *e, t_parser *p, int i);
+int					verify_numbers_one(t_env *e, t_parser *p, t_ll *l_head, t_ol *o_head);
+int					verify_values(t_parser *p);
+int					verify_numbers_three(t_env *e, t_parser *p, t_ll *l_head, t_ol *o_head);
+void				reset_shape_atb(t_parser *p);
+void				reset_shape_atb_two(t_parser *p);
+int					checkforopenobjecttags(t_parser *p);
 int					add_link_light(t_env *e, t_ll **head);
 int					add_link_obj(t_env *e, t_ol **head);
+int					last_checks(t_parser *p);
 
 int					main(int argc, char **argv);
 

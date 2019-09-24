@@ -154,6 +154,7 @@ typedef struct		s_parser
 	int				i;
 	int				j;
 	int				k;
+	int				str_count;
 	int				close_obj_i;
 	int				good_obj_brack;
 	int				bad_obj_brack;
@@ -165,7 +166,7 @@ typedef struct		s_parser
 	int				v2;
 	int				v3;
 	int				comma;
-	int				ret_p; // main ret
+	int				ret_p;
 	t_parseobj		p_obj;
 	t_spec			p_spec;
 	t_ret 			ret;

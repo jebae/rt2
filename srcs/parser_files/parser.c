@@ -20,7 +20,7 @@ int		threetab_verifications(t_env *e, t_parser *p, t_ll **l_head, t_ol **o_head)
 			return (17);
 		if ((p->ret_p = verifyvocab_three(p)) != 0)
 			return (p->ret_p);
-		if ((p->ret_p = verifyargs_three(e, p, l_head, o_head)) != 0) // e
+		if ((p->ret_p = verifyargs_three(e, p, l_head, o_head)) != 0)
 			return (p->ret_p);
 	}
 	else if (p->str_count == 1)
@@ -29,7 +29,7 @@ int		threetab_verifications(t_env *e, t_parser *p, t_ll **l_head, t_ol **o_head)
 			return (17);
 		if ((p->ret_p = verifyvocab_one(p)) != 0)
 			return (p->ret_p);
-		if ((p->ret_p = verifyargs_one(e, p, l_head, o_head)) != 0) // e
+		if ((p->ret_p = verifyargs_one(e, p, l_head, o_head)) != 0)
 			return (p->ret_p);
 	}
 	else
@@ -37,7 +37,7 @@ int		threetab_verifications(t_env *e, t_parser *p, t_ll **l_head, t_ol **o_head)
 	return (0);
 }
 
-int		verify_line_seg_one(t_env *e, t_parser *p, t_ll **l_head, t_ol **o_head) //come back here ~
+int		verify_line_seg1(t_env *e, t_parser *p, t_ll **l_head, t_ol **o_head) //come back here ~
 {
 	if (ft_charfreq(p->gnl_line, '\t') < 2
 			|| ft_charfreq(p->gnl_line, '\t') > 3)
@@ -49,13 +49,13 @@ int		verify_line_seg_one(t_env *e, t_parser *p, t_ll **l_head, t_ol **o_head) //
 	{
 		if ((p->ret_p = verify_spec_atb(p)) != 0)
 			return (p->ret_p);
-		if ((p->ret_p = threetab_verifications(e, p, l_head, o_head)) != 0)  // e need p
+		if ((p->ret_p = threetab_verifications(e, p, l_head, o_head)) != 0)
 			return (p->ret_p);
 	}
 	return (0);
 }
 
-int		verify_line_seg_two(t_env *e, t_parser *p, t_ll **l_head, t_ol **o_head)
+int		verify_line_seg2(t_env *e, t_parser *p, t_ll **l_head, t_ol **o_head)
 {
 	if (ft_charfreq(p->gnl_line, '\t') < 2
 			|| ft_charfreq(p->gnl_line, '\t') > 3)
@@ -67,9 +67,9 @@ int		verify_line_seg_two(t_env *e, t_parser *p, t_ll **l_head, t_ol **o_head)
 	}
 	if (ft_charfreq(p->gnl_line, '\t') == 3)
 	{
-		if ((p->ret_p = shapevocab_checker(e)) != 0)
+		if ((p->ret_p = shapevocab_checker(e, p)) != 0)
 			return (p->ret_p);
-		if ((p->ret_p = threetab_verifications(e, p, l_head, o_head)) != 0) // e
+		if ((p->ret_p = threetab_verifications(e, p, l_head, o_head)) != 0)
 			return (p->ret_p);
 	}
 	return (0);
@@ -81,14 +81,14 @@ int		verify_line(t_env *e, t_parser *p, t_ll **l_head, t_ol **o_head)
 	p->str_count = ft_countstrings(p->split);
 	if (p->specs == 1 && p->scene == 1 && p->objects == 0)
 	{
-		if ((p->ret_p = verify_line_seg_one(e, p, l_head, o_head)) != 0)
+		if ((p->ret_p = verify_line_seg1(e, p, l_head, o_head)) != 0)
 			return (p->ret_p);
 	}
 	else if (p->specs == 1 && (p->scene != 1 || p->objects != 0))
 		return (4);
 	if (p->objects == 1 && p->specs == 2 && p->scene == 1)
 	{
-		if ((p->ret_p = verify_line_seg_two(e, p, l_head, o_head)) != 0)
+		if ((p->ret_p = verify_line_seg2(e, p, l_head, o_head)) != 0)
 			return (p->ret_p);
 	}
 	else if (p->objects == 1 && (p->scene != 1 || p->specs != 2))
