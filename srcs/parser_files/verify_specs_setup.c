@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verify_specs_test.c                                :+:      :+:    :+:   */
+/*   verify_specs_setup.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:04:48 by mhernand          #+#    #+#             */
-/*   Updated: 2019/09/05 15:10:17 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/09/24 14:22:05 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-int		verify_light(t_env *e, t_ll **l_head, t_parser *p)
+int			verify_light(t_env *e, t_ll **l_head, t_parser *p)
 {
 	int		ret;
 
@@ -27,7 +27,7 @@ int		verify_light(t_env *e, t_ll **l_head, t_parser *p)
 	return (ret);
 }
 
-int		verifyspectags_openings(t_env *e, t_ll **l_head, t_parser *p)
+int			verifyspectags_openings(t_env *e, t_ll **l_head, t_parser *p)
 {
 	p->tmp = ft_strsub(p->split[0], 2, (ft_strlen(p->split[0]) - 2));
 	if (ft_strcmp("<cam>", p->tmp) == 0)
@@ -53,7 +53,7 @@ int		verifyspectags_openings(t_env *e, t_ll **l_head, t_parser *p)
 	return (0);
 }
 
-int		verifyspectags_closing_light(t_env *e, t_parser *p)
+int			verifyspectags_closing_light(t_env *e, t_parser *p)
 {
 	(void)e;
 	if ((p->ret_p = ft_strcmp("\t\t</light>", p->split[0])) != 0)
@@ -67,7 +67,7 @@ int		verifyspectags_closing_light(t_env *e, t_parser *p)
 	return (0);
 }
 
-int		verifyspectags_closing(t_env *e, t_parser *p)
+int			verifyspectags_closing(t_env *e, t_parser *p)
 {
 	if (p->p_spec.cam == 1)
 	{
@@ -95,7 +95,7 @@ int		verifyspectags_closing(t_env *e, t_parser *p)
 	return (0);
 }
 
-int		two_tabs_specs(t_env *e, t_parser *p, t_ll **l_head)
+int			two_tabs_specs(t_env *e, t_parser *p, t_ll **l_head)
 {
 	p->ret_p = 0;
 	if ((p->ret_p = two_angle_brackets(p)) != 2)

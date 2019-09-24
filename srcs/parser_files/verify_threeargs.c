@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verify_four.c                                      :+:      :+:    :+:   */
+/*   verify_threeargs.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 16:13:32 by mhernand          #+#    #+#             */
-/*   Updated: 2019/08/29 16:13:34 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/09/24 14:24:16 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-int		verifyvocab_three(t_parser *p) // /! string needs to be freed before returning error message /!
+int		verifyvocab_three(t_parser *p)
 {
 	int		end1;
 	int		end2;
@@ -109,17 +109,17 @@ int		verifyargs_three(t_env *e, t_parser *p, t_ll **l_head, t_ol **o_head)
 	if (p->comma != 2)
 		return (19);
 	p->strone = ft_strsub(p->split[0], ft_strclen(p->split[0], '>') + 1, \
-		(ft_strclen(p->split[0], ',') - ft_strclen(p->split[0], '>')));
-	p->strtwo = ft_strsub(p->gnl_line, 4, ft_strclen(p->gnl_line, '>') - 4);	
+			(ft_strclen(p->split[0], ',') - ft_strclen(p->split[0], '>')));
+	p->strtwo = ft_strsub(p->gnl_line, 4, ft_strclen(p->gnl_line, '>') - 4);
 	if ((verifyargs_three_numbers(p->strone, ',') != 0))
 		return (18);
-	if ((verifyargs_three_numbers(p->split[1], ',') != 0)) 
+	if ((verifyargs_three_numbers(p->split[1], ',') != 0))
 		return (18);
 	if ((verifyargs_three_numbers(p->split[2], '<') != 0))
 		return (18);
 	p->v1 = ft_atoi(p->strone);
-	p->v2 = ft_atoi(p->split[1]); 
-	p->v3 = ft_atoi(p->split[2]); 
+	p->v2 = ft_atoi(p->split[1]);
+	p->v3 = ft_atoi(p->split[2]);
 	if ((p->ret_p = verify_numbers_three(e, p, *l_head, *o_head)) != 0)
 		return (p->ret_p);
 	ft_strfree(p->strone);

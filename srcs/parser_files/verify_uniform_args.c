@@ -6,10 +6,9 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 16:21:07 by mhernand          #+#    #+#             */
-/*   Updated: 2019/08/29 16:21:09 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/09/24 14:26:04 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "rtv1.h"
 
@@ -42,7 +41,7 @@ int		two_angle_brackets(t_parser *p)
 		if (p->gnl_line[j] == '>' && p->gnl_line[j + 1] == '\0')
 			brackets++;
 		if (j != i && p->gnl_line[j + 1] != '\0' && (p->gnl_line[j] == '<'
-			|| p->gnl_line[j] == '>'))
+					|| p->gnl_line[j] == '>'))
 			bad_brackets++;
 		j++;
 	}
@@ -86,8 +85,8 @@ int		verify_tag_to_argument_three(char *string)
 	else if (ft_strcmp("color", string) == 0)
 		return (0);
 	else if (ft_strcmp("intensity", string) == 0)
-		return (0);	
-	else	
+		return (0);
+	else
 		return (82);
 	return (0);
 }
@@ -113,7 +112,9 @@ int		verify_tag_to_argument(t_parser *p, char *string, int args)
 			return (81);
 	}
 	else
+	{
 		if ((p->ret_p = verify_tag_to_argument_three(string)) != 0)
 			return (p->ret_p);
+	}
 	return (0);
 }

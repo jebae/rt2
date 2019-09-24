@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verify_eight.c                                     :+:      :+:    :+:   */
+/*   verify_spec_voc.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 16:29:56 by mhernand          #+#    #+#             */
-/*   Updated: 2019/09/05 15:16:15 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/09/24 14:20:49 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		verify_spec_atb_light(t_parser *p)
 	return (0);
 }
 
-int		verify_spec_atb(t_parser *p) // /! string needs to be freed before returning error message /!
+int		verify_spec_atb(t_parser *p)
 {
 	p->s_tmp = ft_strsub(p->split[0], 4, (ft_strclen(p->split[0], '>') - 4));
 	if (p->p_spec.cam == 1)
@@ -94,7 +94,7 @@ int		verify_spec_atb_partwo(t_parser *p)
 			return (61);
 	}
 	else if (p->p_spec.cam_cl == 1 && p->p_spec.amb_cl == 1
-		&& p->p_spec.light == 0)
+			&& p->p_spec.light == 0)
 	{
 		if (p->a_atb.power < 1 || p->a_atb.color < 1)
 			return (63);

@@ -48,6 +48,8 @@ SRCS = main.c start_rtv1.c\
 	parser_files/debugger_three.c\
 	parser_files/verify_oneargs_partwo.c\
 	parser_files/verify_threeargs_partwo.c\
+	parser_files/verify_threeargs_parthree.c\
+	parser_files/verify_threeargs_partfour.c\
 	parser_files/globals_and_set_vocab.c\
 	parser_files/verify_shapes_two.c\
 	parser_files/create_links.c\

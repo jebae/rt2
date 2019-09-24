@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verify_two.c                                       :+:      :+:    :+:   */
+/*   verify_shapes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:45:36 by mhernand          #+#    #+#             */
-/*   Updated: 2019/09/10 17:41:24 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/09/24 14:14:34 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		verifyobjecttags_openings_two(t_env *e, t_parser *p)
 	return (0);
 }
 
-int		verifyobjecttags_openings(t_env *e, t_parser *p, char **split, t_ol **o_head)
+int		verifyobjtags_opens(t_env *e, t_parser *p, char **split, t_ol **o_head)
 {
 	if (add_link_obj(e, o_head) != 0)
 		return (71);
@@ -120,7 +120,7 @@ int		twotab_verifications(t_env *e, t_parser *p, t_ol **o_head)
 {
 	if (p->str_count == 4)
 	{
-		if ((p->ret_p = verifyobjecttags_openings(e, p, p->split, o_head)) != 0)
+		if ((p->ret_p = verifyobjtags_opens(e, p, p->split, o_head)) != 0)
 			return (p->ret_p);
 		if ((p->ret_p = two_angle_brackets(p)) != 2)
 			return (9);

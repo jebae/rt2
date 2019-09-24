@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 17:31:35 by mhernand          #+#    #+#             */
-/*   Updated: 2019/09/10 17:49:13 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/09/24 14:15:00 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int		verifyobjecttags_closings(t_env *e, t_parser *p, char *split)
 			return (34);
 		if ((checkforopenobjecttags(p)) != 0)
 			return (38);
-		if ((p->ret_p = shapevocab_checker_partwo(e ,p)) != 0)
+		if ((p->ret_p = shapevocab_checker_partwo(e, p)) != 0)
 			return (p->ret_p);
 		reset_shape_atb(p);
 	}

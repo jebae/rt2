@@ -6,13 +6,13 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 12:01:20 by mhernand          #+#    #+#             */
-/*   Updated: 2019/09/20 10:54:46 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/09/24 14:00:54 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-int		threetab_verifications(t_env *e, t_parser *p, t_ll **l_head, t_ol **o_head)
+int		threetab_verify(t_env *e, t_parser *p, t_ll **l_head, t_ol **o_head)
 {
 	if (p->str_count == 3)
 	{
@@ -37,7 +37,7 @@ int		threetab_verifications(t_env *e, t_parser *p, t_ll **l_head, t_ol **o_head)
 	return (0);
 }
 
-int		verify_line_seg1(t_env *e, t_parser *p, t_ll **l_head, t_ol **o_head) //come back here ~
+int		verify_line_seg1(t_env *e, t_parser *p, t_ll **l_head, t_ol **o_head)
 {
 	if (ft_charfreq(p->gnl_line, '\t') < 2
 			|| ft_charfreq(p->gnl_line, '\t') > 3)
@@ -49,7 +49,7 @@ int		verify_line_seg1(t_env *e, t_parser *p, t_ll **l_head, t_ol **o_head) //com
 	{
 		if ((p->ret_p = verify_spec_atb(p)) != 0)
 			return (p->ret_p);
-		if ((p->ret_p = threetab_verifications(e, p, l_head, o_head)) != 0)
+		if ((p->ret_p = threetab_verify(e, p, l_head, o_head)) != 0)
 			return (p->ret_p);
 	}
 	return (0);
@@ -69,7 +69,7 @@ int		verify_line_seg2(t_env *e, t_parser *p, t_ll **l_head, t_ol **o_head)
 	{
 		if ((p->ret_p = shapevocab_checker(e, p)) != 0)
 			return (p->ret_p);
-		if ((p->ret_p = threetab_verifications(e, p, l_head, o_head)) != 0)
+		if ((p->ret_p = threetab_verify(e, p, l_head, o_head)) != 0)
 			return (p->ret_p);
 	}
 	return (0);
@@ -110,7 +110,7 @@ int		parser(t_env *e, t_parser *p, int fd)
 		p->gnl_i++;
 		if ((p->ret.glo = globals(p, p->gnl_line)) != 0)
 			return (p->ret.glo);
-		if ((p->objects == 1 || p->specs == 1) && !p->skip 
+		if ((p->objects == 1 || p->specs == 1) && !p->skip
 				&& ((p->ret.tag = verify_line(e, p, &l_head, &o_head)) != 0))
 			return (p->ret.tag);
 		if (p->gnl_line)

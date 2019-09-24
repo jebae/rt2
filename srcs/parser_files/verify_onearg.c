@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verify_three.c                                     :+:      :+:    :+:   */
+/*   verify_onearg.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:59:46 by mhernand          #+#    #+#             */
-/*   Updated: 2019/08/29 15:59:47 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/09/24 14:10:43 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		verifyanglebrackets_one(t_parser *p)
 {
 	p->l = -1;
 	p->e1 = 0;
-	p->e2  = 0;
+	p->e2 = 0;
 	p->t = ft_strtrim(p->gnl_line);
 	if (p->t[0] != '<' || p->t[ft_strlen(p->t) - 1] != '>')
 	{
@@ -26,13 +26,13 @@ int		verifyanglebrackets_one(t_parser *p)
 	while (p->t[++p->l])
 	{
 		if (p->t[p->l] == '<' && p->l == 0)
-			p->e1 ++;
+			p->e1++;
 		if (p->t[p->l] == '>' && p->t[p->l + 1] != '\0' && p->e1 == 1)
-			p->e1 ++;
+			p->e1++;
 		if (p->t[p->l] == '<' && p->t[p->l + 1] == '/')
-			p->e2 ++;
+			p->e2++;
 		if (p->t[p->l] == '>' && p->t[p->l + 1] == '\0' && p->e2 == 1)
-			p->e2 ++;
+			p->e2++;
 	}
 	if (p->e1 != 2 || p->e2 != 2)
 		return (-1);
@@ -40,7 +40,7 @@ int		verifyanglebrackets_one(t_parser *p)
 	return (0);
 }
 
-int		verifyvocab_one(t_parser *p) // /! string needs to be freed before returning error message /!
+int		verifyvocab_one(t_parser *p)
 {
 	p->voc_i = -1;
 	p->voc_check = -1;
@@ -58,7 +58,7 @@ int		verifyvocab_one(t_parser *p) // /! string needs to be freed before returnin
 		while (++p->voc_i < 16)
 			if (ft_strcmp(p->strone, p->vocab_two[p->voc_i]) == 0)
 				p->voc_check++;
-	if ((p->ret_p = verify_tag_to_argument(p, p->strone, 1)) != 0) // come back here
+	if ((p->ret_p = verify_tag_to_argument(p, p->strone, 1)) != 0)
 		return (p->ret_p);
 	ft_strfree(p->strone);
 	ft_strfree(p->strtwo);
@@ -67,26 +67,25 @@ int		verifyvocab_one(t_parser *p) // /! string needs to be freed before returnin
 
 int		verifyargs_one(t_env *e, t_parser *p, t_ll **l_head, t_ol **o_head)
 {
-	int		i;
 	int		num_check;
 	int		fake_check;
 
-	i = 0;
+	p->i = 0;
 	num_check = 0;
 	fake_check = 0;
 	p->strone = ft_strsub(p->gnl_line, p->j + 1, ((p->k - 3) - p->j));
 	p->strtwo = ft_strsub(p->gnl_line, 4, ft_strclen(p->gnl_line, '>') - 4);
-	if (p->strone[i] == '-')
-		i++;
-	while (p->strone[i])
+	if (p->strone[p->i] == '-')
+		p->i++;
+	while (p->strone[p->i])
 	{
-		if (ft_isdigit(p->strone[i]) == 1)
+		if (ft_isdigit(p->strone[p->i]) == 1)
 			num_check++;
-		if (ft_isdigit(p->strone[i]) == 0)
+		if (ft_isdigit(p->strone[p->i]) == 0)
 			fake_check++;
-		i++;
+		p->i++;
 	}
-	if ((p->ret_p = verify_numbers_one(e, p, *l_head, *o_head)) != 0) // here too !
+	if ((p->ret_p = verify_numbers_one(e, p, *l_head, *o_head)) != 0)
 		return (p->ret_p);
 	if (fake_check > 0 || num_check == 0)
 		return (18);

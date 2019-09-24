@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verify_six.c                                       :+:      :+:    :+:   */
+/*   verify_obj_voc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 12:23:02 by mhernand          #+#    #+#             */
-/*   Updated: 2019/09/03 12:52:23 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/09/24 14:02:24 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,12 +112,12 @@ int		shapevocab_checker_plane(t_parser *p)
 	return (0);
 }
 
-int		shapevocab_checker(t_env *e, t_parser *p) // /! string needs to be freed before returning error message /!
+int		shapevocab_checker(t_env *e, t_parser *p)
 {
 	int	ret;
 
 	ret = 0;
-	p->s_tmp = ft_strsub(p->split[0], 4, (ft_strclen(p->split[0], '>') - 4)); // seg fault here 
+	p->s_tmp = ft_strsub(p->split[0], 4, (ft_strclen(p->split[0], '>') - 4));
 	if (e->cs == 1)
 		if ((ret = shapevocab_checker_shpere(p)) != 0)
 			return (ret);
