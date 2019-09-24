@@ -6,13 +6,13 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 17:19:01 by mhernand          #+#    #+#             */
-/*   Updated: 2019/09/19 18:58:42 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/24 18:38:18 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sandbox.h"
 
-double  v_intersect_cy(t_vec3 ray, t_ol *ol, t_env *e)
+double  v_intersect_cy(t_ray ray, t_ol *ol, t_env *e)
 {
 	(void)e;
 	double      t = 0;
@@ -32,9 +32,9 @@ double  v_intersect_cy(t_vec3 ray, t_ol *ol, t_env *e)
 
 	co = create_v(e->cam.campos, ol->cen);
 
-	a = v_scal(ray, ray) - (v_scal(ray, nor_dir) * v_scal(ray, nor_dir));
+	a = v_scal(ray.dir, ray.dir) - (v_scal(ray.dir, nor_dir) * v_scal(ray.dir, nor_dir));
 
-	b = v_scal(ray, co) - v_scal(ray, nor_dir) * v_scal(co, nor_dir);
+	b = v_scal(ray.dir, co) - v_scal(ray.dir, nor_dir) * v_scal(co, nor_dir);
 	b *= 2;
 
 	c = v_scal(co, co) - (v_scal(co, nor_dir) * v_scal(co, nor_dir)) - ol->radius * ol->radius;
@@ -44,18 +44,16 @@ double  v_intersect_cy(t_vec3 ray, t_ol *ol, t_env *e)
 
 	// delta < 0 means no intersections
 	if (det < epsilon)
-		return (0);
-	else
-		return (1);
+		return (FAR);
 
 	// nearest intersection
-	t = (-b + sqrt (det))/ (2 *a);
-	t_2 = (-b - sqrt (det))/ (2 *a);
+	t = -(-b + sqrt (det))/ (2 *a);
+	t_2 = -(-b - sqrt (det))/ (2 *a);
 
 	// t<0 means the intersection is behind the ray origin
 	// which we don't want
 	if (t <= epsilon && t_2 <= epsilon)
-		return (0);
+		return (FAR);
 	else
 	{
 		t = t < epsilon ? t_2 : t;
@@ -64,5 +62,5 @@ double  v_intersect_cy(t_vec3 ray, t_ol *ol, t_env *e)
 	}
 	// if (t < 0)
 	// return (0); //return val to be modified to send the closest valid solution
-	return (0);
+	return (FAR);
 }

@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/09/23 14:41:17 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/24 16:26:46 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,7 +230,7 @@ t_vec3    v_normalise(t_vec3 u);
 double  v_intersect_sp(t_vec3 ray, t_ol *ol, t_env *e);
 double  v_intersect_pl(t_vec3 ray, t_ol *ol, t_env *e);
 
-double  v_intersect_cy(t_vec3 ray, t_ol *ol, t_env *e);
+double  v_intersect_cy(t_ray ray, t_ol *ol, t_env *e);
 double  v_intersect_co(t_ray ray, t_ol *ol, t_env *e);
 double  v_intersect_sp2(t_ray ray, t_ol *ol, t_env *e);
 int     specular(t_ray ray, t_point p, t_ol *ol, t_ll *ll);

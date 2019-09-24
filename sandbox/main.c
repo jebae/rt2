@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:31:06 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/23 19:07:19 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/24 19:20:17 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,12 @@ int	main(int ac, char **av)
 	t_env	*e;
 
 	/////////////////// L I G H T //////////////////////
-	t_ll	light; light.pos.x = 30; light.pos.y = 30; light.pos.z = 0;	
+	t_ll	light; light.pos.x = 0; light.pos.y = 0; light.pos.z = 0;	
 	t_ll	*ll = &light;
+	t_ll	light2; light2.pos.x = 0; light2.pos.y = 0; light.pos.z = -20;
+	light2.next = NULL;	
+	light.next = NULL;	
+	ll = &light;
 	///////////////////////////////////////////////////
 
 	/////////////////// C A M E R A //////////////////////
@@ -35,14 +39,14 @@ int	main(int ac, char **av)
 	e->cam.left.x = 0.33; e->cam.left.y = 0; e->cam.left.z = 0;
 	e->cam.up.x = 0; e->cam.up.y = 0.33; e->cam.up.z = 0;
 	e->cam.forw.x = 0; e->cam.forw.y = 0; e->cam.forw.z = 1;
-	e->cam.f_wdth = WIDTH; e->cam.f_hght = WIDTH; e->cam.focal_length = 100;
+	e->cam.f_wdth = WIDTH / 128; e->cam.f_hght = WIDTH / 128; e->cam.focal_length = 3;
 
 	e->amb.col.r = 0xFF * 0.1; e->amb.col.g = 0xFF * 0.1; e->amb.col.b = 0xFF * 0.1;
 	///////////////////////////////////////////////////
 
 	/////////////////// S P H E R E /////////////////////
 	t_ol obj; obj.cur_shape = 1; obj.cen.x = 0; obj.cen.y = 0;
-	obj.cen.z = 10; obj.next = NULL; obj.radius = 30;
+	obj.cen.z = 0; obj.next = NULL; obj.radius = 10;
 	t_ol	*ol;
 	ol = &obj;
 	/////////////////////////////////////////////////////
@@ -57,9 +61,9 @@ int	main(int ac, char **av)
 
 	///////////////// C Y L I N D E R ///////////////////
 	t_ol cl; cl.cur_shape = 3;
-	cl.dir.x = 2; cl.dir.y = 2; cl.dir.z = 0; 
-	cl.cen.x = 0; cl.cen.y = 0; cl.cen.z = 50;
-	cl.next = NULL; cl.radius = 60;
+	cl.dir.x = 2; cl.dir.y = 0; cl.dir.z = 0; 
+	cl.cen.x = 10; cl.cen.y = 20; cl.cen.z = 50;
+	cl.next = NULL; cl.radius = 30;
 	t_ol	*ol_cl;
 	ol_cl = &cl;
 	/////////////////////////////////////////////////////
@@ -68,7 +72,7 @@ int	main(int ac, char **av)
 	t_ol co; co.cur_shape = 2;
 	co.dir.x = 10; co.dir.y = -10; co.dir.z = 0; 
 	co.cen.x = 0; co.cen.y = -2; co.cen.z = 10; 	
-	co.next = ol; co.radius = 5; co.angle = M_PI / 6;
+	co.next = NULL; co.radius = 5; co.angle = M_PI / 6;
 	t_ol	*ol_co;
 	ol_co = &co;
 	/////////////////////////////////////////////////////

@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 14:08:14 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/23 12:45:01 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/24 18:17:09 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,9 +162,9 @@ double	v_intersect_co(t_ray ray, t_ol *ol, t_env *e)
 	else
 	{
 		tmp_ray.x = ol->cen.x - t * ray.dir.x; tmp_ray.y = ol->cen.y - t * ray.dir.y; tmp_ray.z = ol->cen.z - t * ray.dir.z; //vector from the point of intersection toward center
-		if (ol->angle < M_PI / 2 && v_scal(tmp_ray, nor_dir) > 0)
+//		if (ol->angle < M_PI / 2 && v_scal(tmp_ray, nor_dir) > 0)
 			return (t);
-		else 
+//		else 
 			return (FAR);
 	}
 

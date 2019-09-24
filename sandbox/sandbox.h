@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/23 15:42:03 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/24 16:26:24 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ t_vec3    v_normalise(t_vec3 u);
 double  v_intersect_sp(t_vec3 ray, t_ol *ol, t_env *e);
 double  v_intersect_pl(t_vec3 ray, t_ol *ol, t_env *e);
 
-double  v_intersect_cy(t_vec3 ray, t_ol *ol, t_env *e);
+double  v_intersect_cy(t_ray ray, t_ol *ol, t_env *e);
 double  v_intersect_co(t_ray ray, t_ol *ol, t_env *e);
 double  v_intersect_sp2(t_ray ray, t_ol *ol, t_env *e);
 int     specular(t_ray ray, t_point p, t_ol *ol, t_ll *ll);
@@ -108,3 +108,5 @@ typedef struct  s_shader
 
 void    color_pixel(int x, int y, t_shader sh, t_env *e);
 t_shader        compute_color(t_ray ray,t_ol *ol, t_ll *ll);
+t_shader        shader_add(t_shader sh1, t_shader sh2);
+t_shader        init_shader(void);

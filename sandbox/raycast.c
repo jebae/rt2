@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 17:15:40 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/23 15:40:20 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/24 16:27:18 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ double	intersection(t_vec3 ray, t_ol *ol, t_env *e)
 		return (v_intersect_sp(ray, ol, e));
 //	if (ol->cur_shape == 2)
 //		return (v_intersect_co(ray, ol, e));
-	if (ol->cur_shape == 3)
-		return (v_intersect_cy(ray, ol, e));
+//	if (ol->cur_shape == 3)
+//		return (v_intersect_cy(ray, ol, e));
 	if (ol->cur_shape == 4)
 		return (v_intersect_pl(ray, ol, e));
 	return (0);
@@ -31,8 +31,8 @@ double  intersection2(t_ray ray, t_ol *ol, t_env *e)
 		return (v_intersect_sp2(ray, ol, e));
 	if (ol->cur_shape == 2)
 		return (v_intersect_co(ray, ol, e));
-//	if (ol->cur_shape == 3)
-//		return (v_intersect_cy(ray, ol, e));
+	if (ol->cur_shape == 3)
+		return (v_intersect_cy(ray, ol, e));
 	return (0);
 }
 
@@ -109,6 +109,7 @@ int raycast(t_env *e, t_ol *ol, t_ll *ll)
 	t_ray   ray;
 	t_ll    *tp_l;
 	t_ol    *tp_o;
+	t_shader	sh;
 
 	double r;
 	while (x < WIDTH)
@@ -128,7 +129,14 @@ int raycast(t_env *e, t_ol *ol, t_ll *ll)
 				unsigned int s = 0;
 				if (ray.t > 0 && ray.t < FAR)
 				{
-					color_pixel(x, y, compute_color(ray, ol, ll), e);
+					tp_l = ll;
+					sh = init_shader();
+					while (tp_l != NULL)
+					{
+						sh = shader_add(sh, compute_color(ray, tp_o, tp_l));
+						tp_l = tp_l->next;
+					}
+					color_pixel(x, y, sh, e);
 					/*
 					t_point p;
 					p.x = ray.dir.x * ray.t;
