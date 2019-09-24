@@ -12,9 +12,9 @@
 
 NAME = RTv1
 
-INC1 = rtv1_parser.h
+# INC1 = rtv1_parser.h
 
-INC2 =  rtv1.h
+# INC2 =  rtv1.h
 
 CFLAGS = -Wall -Werror -Wextra -g3 # remove g3 flag
 
@@ -22,7 +22,7 @@ CFLAGS = -Wall -Werror -Wextra -g3 # remove g3 flag
 
 # MLX_A = minilibx_macos/mlx.a
 
-CPPFLAGS = -I includes/
+INC = -I includes/
 
 #  -fsanitize=address
 
@@ -81,13 +81,15 @@ objects :
 	@mkdir -p $(BUILD_DIR)
 
 $(NAME):$(OBJ) | $(L_TARG)
-	@$(CC) $(CFLAGS) $(CPPFLAGS) libft/libft.a $(LIBMLX) -fsanitize=address $(OBJ) -o $(NAME)
+	@$(CC) $(CFLAGS) $(INC) libft/libft.a $(LIBMLX) -fsanitize=address $(OBJ) -o $(NAME)
 	@touch .gitignore
+	@printf "\033[32m[ ✔ ] $(NAME)\n\033[0m"
 	@echo $(OBJ) > .gitignore
 	@echo $(NAME) >> .gitignore
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c 
-	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+	@printf "\033[32m[ ✔ ] %s\n\033[0m" "$<"
 
 $(L_TARG):
 	@make -C $(L_FOLD) all
@@ -97,12 +99,13 @@ clean:
 	@make -C $(L_TARG) clean
 	@make -C $(M_FOLD) clean
 	@rm -rf $(OBJ)
-	@echo "RTv1 is clean !"
+	@rm -rf $(OBJ_DIR) 2> /dev/null || true
+	@printf '\033[31m[ ✔ ] %s\n\033[0m' "RTv1 is clean !"
 
 fclean: clean
+	@printf '\033[31m[ ✔ ] %s\n\033[0m' "... and fclean too !"
 	@make -C $(L_TARG) fclean
 	@rm -rf $(NAME)
-	@echo "... and fclean too !"
 
 re: fclean all
 
