@@ -6,19 +6,18 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 18:36:14 by mhernand          #+#    #+#             */
-/*   Updated: 2019/09/11 15:26:55 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/24 13:58:07 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-int		add_link_light(t_env *e, t_ll **head)
+int			add_link_light(t_env *e, t_ll **head)
 {
-	// printf("printing pos X --> [%d]\n", &(*head)->pos.x);
-	(void)e;
 	t_ll	*new;
 	t_ll	*last;
 
+	(void)e;
 	last = *head;
 	new = NULL;
 	if (!(new = (t_ll*)malloc(sizeof(t_ll))))
@@ -33,15 +32,13 @@ int		add_link_light(t_env *e, t_ll **head)
 	else
 	{
 		while (last->next != NULL)
-		{
 			last = last->next;
-		}
 		last->next = new;
 	}
 	return (0);
 }
 
-void	clean_link(t_ol *new)
+void		clean_link(t_ol *new)
 {
 	new->d = 0;
 	new->angle = 0;
@@ -54,18 +51,18 @@ void	clean_link(t_ol *new)
 	new->ref = 0;
 	ft_bzero(&new->dif, sizeof(new->dif));
 	ft_bzero(&new->dir, sizeof(new->dir));
-	ft_bzero(&new->cen, sizeof(new->cen)); // axis
+	ft_bzero(&new->cen, sizeof(new->cen));
 	ft_bzero(&new->nor, sizeof(new->nor));
 	ft_bzero(&new->rot, sizeof(new->rot));
 	ft_bzero(&new->tra, sizeof(new->tra));
 }
 
-int		add_link_obj(t_env *e, t_ol **head)
+int			add_link_obj(t_env *e, t_ol **head)
 {
-	(void)e;
 	t_ol	*new;
 	t_ol	*last;
 
+	(void)e;
 	last = *head;
 	new = NULL;
 	if (!(new = (t_ol*)malloc(sizeof(t_ol))))

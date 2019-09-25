@@ -1,109 +1,108 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verify_eight.c                                     :+:      :+:    :+:   */
+/*   verify_spec_voc.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 16:29:56 by mhernand          #+#    #+#             */
-/*   Updated: 2019/09/05 15:16:15 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/09/24 14:20:49 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void	reset_spec_atb(t_env *e)
+void	reset_spec_atb(t_parser *p)
 {
-	e->p.ca_atb.position = 0;
-	e->p.ca_atb.direction = 0;
-	e->p.ca_atb.rotation = 0;
-	e->p.ca_atb.translation = 0;
-	e->p.a_atb.power = 0;
-	e->p.a_atb.color = 0;
-	e->p.l_atb.position = 0;
-	e->p.l_atb.intensity = 0;
-	e->p.l_atb.rotate = 0;
-	e->p.l_atb.translate = 0;
+	p->ca_atb.position = 0;
+	p->ca_atb.direction = 0;
+	p->ca_atb.rotation = 0;
+	p->ca_atb.translation = 0;
+	p->a_atb.power = 0;
+	p->a_atb.color = 0;
+	p->l_atb.position = 0;
+	p->l_atb.intensity = 0;
+	p->l_atb.rotate = 0;
+	p->l_atb.translate = 0;
 }
 
-int		verify_spec_atb_light(t_env *e)
+int		verify_spec_atb_light(t_parser *p)
 {
-	if (ft_strcmp("position", e->p.s_tmp) == 0)
-		e->p.l_atb.position++;
-	else if (ft_strcmp("intensity", e->p.s_tmp) == 0)
-		e->p.l_atb.intensity++;
-	else if (ft_strcmp("rotate", e->p.s_tmp) == 0)
-		e->p.l_atb.rotate++;
-	else if (ft_strcmp("translate", e->p.s_tmp) == 0)
-		e->p.l_atb.translate++;
+	if (ft_strcmp("position", p->s_tmp) == 0)
+		p->l_atb.position++;
+	else if (ft_strcmp("intensity", p->s_tmp) == 0)
+		p->l_atb.intensity++;
+	else if (ft_strcmp("rotate", p->s_tmp) == 0)
+		p->l_atb.rotate++;
+	else if (ft_strcmp("translate", p->s_tmp) == 0)
+		p->l_atb.translate++;
 	else
 		return (68);
 	return (0);
 }
 
-int		verify_spec_atb(t_env *e) // /! string needs to be freed before returning error message /!
+int		verify_spec_atb(t_parser *p)
 {
-	e->p.s_tmp = ft_strsub(e->p.split[0], 4, (ft_strclen(e->p.split[0], '>') - 4));
-	if (e->p.p_spec.cam == 1)
+	p->s_tmp = ft_strsub(p->split[0], 4, (ft_strclen(p->split[0], '>') - 4));
+	if (p->p_spec.cam == 1)
 	{
-		if (ft_strcmp("position", e->p.s_tmp) == 0)
-			e->p.ca_atb.position++;
-		else if (ft_strcmp("direction", e->p.s_tmp) == 0)
-			e->p.ca_atb.direction++;
+		if (ft_strcmp("position", p->s_tmp) == 0)
+			p->ca_atb.position++;
+		else if (ft_strcmp("direction", p->s_tmp) == 0)
+			p->ca_atb.direction++;
 		else
 			return (62);
 	}
-	if (e->p.p_spec.amb == 1)
+	if (p->p_spec.amb == 1)
 	{
-		if (ft_strcmp("specpower", e->p.s_tmp) == 0)
-			e->p.a_atb.power++;
-		else if (ft_strcmp("color", e->p.s_tmp) == 0)
-			e->p.a_atb.color++;
+		if (ft_strcmp("specpower", p->s_tmp) == 0)
+			p->a_atb.power++;
+		else if (ft_strcmp("color", p->s_tmp) == 0)
+			p->a_atb.color++;
 		else
 			return (65);
 	}
-	if (e->p.p_spec.light >= 1)
-		if ((e->p.ret_p = verify_spec_atb_light(e)) != 0)
-			return (e->p.ret_p);
-	free(e->p.s_tmp);
-	e->p.s_tmp = NULL;
+	if (p->p_spec.light >= 1)
+		if ((p->ret_p = verify_spec_atb_light(p)) != 0)
+			return (p->ret_p);
+	ft_strfree(p->s_tmp);
 	return (0);
 }
 
-int		verify_spec_atb_partwo_light(t_env *e)
+int		verify_spec_atb_partwo_light(t_parser *p)
 {
-	if (e->p.l_atb.position < 1 || e->p.l_atb.intensity < 1)
+	if (p->l_atb.position < 1 || p->l_atb.intensity < 1)
 		return (66);
-	if (e->p.l_atb.position > 1 || e->p.l_atb.intensity > 1)
+	if (p->l_atb.position > 1 || p->l_atb.intensity > 1)
 		return (67);
-	if (e->p.status == 1)
-		if (e->p.l_atb.rotate != 0 || e->p.l_atb.translate != 0)
+	if (p->status == 1)
+		if (p->l_atb.rotate != 0 || p->l_atb.translate != 0)
 			return (69);
-	if (e->p.status == 2)
-		if (e->p.l_atb.rotate != 1 || e->p.l_atb.translate != 1)
+	if (p->status == 2)
+		if (p->l_atb.rotate != 1 || p->l_atb.translate != 1)
 			return (70);
 	return (0);
 }
 
-int		verify_spec_atb_partwo(t_env *e)
+int		verify_spec_atb_partwo(t_parser *p)
 {
-	if (e->p.p_spec.cam_cl == 1 && e->p.p_spec.amb_cl == 0 && e->p.p_spec.light == 0)
+	if (p->p_spec.cam_cl == 1 && p->p_spec.amb_cl == 0 && p->p_spec.light == 0)
 	{
-		if (e->p.ca_atb.position < 1 || e->p.ca_atb.direction < 1)
+		if (p->ca_atb.position < 1 || p->ca_atb.direction < 1)
 			return (60);
-		if (e->p.ca_atb.position > 1 || e->p.ca_atb.direction > 1)
+		if (p->ca_atb.position > 1 || p->ca_atb.direction > 1)
 			return (61);
 	}
-	else if (e->p.p_spec.cam_cl == 1 && e->p.p_spec.amb_cl == 1
-		&& e->p.p_spec.light == 0)
+	else if (p->p_spec.cam_cl == 1 && p->p_spec.amb_cl == 1
+			&& p->p_spec.light == 0)
 	{
-		if (e->p.a_atb.power < 1 || e->p.a_atb.color < 1)
+		if (p->a_atb.power < 1 || p->a_atb.color < 1)
 			return (63);
-		if (e->p.a_atb.power > 1 || e->p.a_atb.color > 1)
+		if (p->a_atb.power > 1 || p->a_atb.color > 1)
 			return (64);
 	}
-	if (e->p.p_spec.cam_cl == 1 && e->p.p_spec.amb_cl == 1 && e->p.p_spec.light >= 1)
-		if ((e->p.ret_p = verify_spec_atb_partwo_light(e)) != 0)
-			return (e->p.ret_p);
+	if (p->p_spec.cam_cl == 1 && p->p_spec.amb_cl == 1 && p->p_spec.light >= 1)
+		if ((p->ret_p = verify_spec_atb_partwo_light(p)) != 0)
+			return (p->ret_p);
 	return (0);
 }

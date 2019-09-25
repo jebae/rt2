@@ -6,23 +6,23 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 11:59:32 by mhernand          #+#    #+#             */
-/*   Updated: 2019/09/06 13:29:22 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/09/24 16:50:35 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void		lineless_errors_two(t_env *e, int i)
+void		lineless_errors_two(t_parser *p, int i)
 {
 	if (i == 38)
 	{
 		ft_putendl("Oops ! There are conflicting object tags.");
-		ft_strfree(e->p.tmp);
+		ft_strfree(p->tmp);
 	}
 	if (i == 39)
 	{
 		ft_putstr("Oops ! It looks like a 'sphere' object is ");
-		ft_putendl("missing an attribute.");			
+		ft_putendl("missing an attribute.");
 	}
 	if (i == 40)
 	{
@@ -34,16 +34,11 @@ void		lineless_errors_two(t_env *e, int i)
 		ft_putstr("Oops ! It looks like a 'sphere' object's status is set ");
 		ft_putendl("to 'basic' but extra parameters were passed.");
 	}
-	if (i == 42)
-	{
-		ft_putstr("Oops ! It looks like a 'sphere' object's status is set ");
-		ft_putendl("to 'extra' but some parameters are missing.");
-	}
 	if (i > 42)
-		lineless_errors_three(e, i);
+		lineless_errors_three(p, i);
 }
 
-void		lineless_errors(t_env *e, int i)
+void		lineless_errors(t_parser *p, int i)
 {
 	if (i == 26)
 		ft_putendl("Oops ! Looks like <cam>/<amb>/<light> is missing.");
@@ -56,27 +51,23 @@ void		lineless_errors(t_env *e, int i)
 	}
 	if (i == 29)
 		ft_putendl("Oops ! Looks like there are conflicting <light> tags.");
-	if (i > 29 && i < 34)
-	{
-		if (i == 30)
-			ft_putendl("Oops ! Looks like there are conflicting <sphere> tags.");
-		if (i == 31)
-			ft_putendl("Oops ! Looks like there are conflicting <cone> tags.");
-		if (i == 32)
-			ft_putendl("Oops ! Looks like there are conflicting <cylinder> tags.");
-		if (i == 33)
-			ft_putendl("Oops ! Looks like there are conflicting <plane> tags.");
-		ft_strfree(e->p.tmp);
-	}
+	if (i == 30)
+		ft_putendl("Oops ! Looks like there are conflicting <sphere> tags.");
+	if (i == 31)
+		ft_putendl("Oops ! Looks like there are conflicting <cone> tags.");
+	if (i == 32)
+		ft_putendl("Oops ! Looks like there are conflicting <cylinder> tags.");
+	if (i == 33)
+		ft_putendl("Oops ! Looks like there are conflicting <plane> tags.");
 	if (i == 34)
 		ft_putendl("Oops ! There are conflicting object closing tags.");
 	if (i == 37)
 		ft_putendl("Oops ! There is a problem with the camera/amb tags.");
 	if (i > 37)
-		lineless_errors_two(e, i);
+		lineless_errors_two(p, i);
 }
 
-void		errors_three(int i, t_env *e)
+void		errors_three(int i)
 {
 	if (i == 14)
 		ft_putendl("Oops ! Looks like something is missing/mispelled.");
@@ -87,10 +78,7 @@ void		errors_three(int i, t_env *e)
 	if (i == 17)
 		ft_putendl("Oops ! Looks like this line has poor formatting.");
 	if (i == 18)
-	{
 		ft_putendl("Oops ! Looks like this line was given poor arguments.");
-		ft_strfree(e->p.strone);
-	}
 	if (i == 19)
 		ft_putendl("Oops ! Looks like there is too many/little commas.");
 	if (i == 20)
@@ -102,7 +90,7 @@ void		errors_three(int i, t_env *e)
 	}
 }
 
-void		errors_two(int i, t_env *e)
+void		errors_two(int i)
 {
 	if (i == 4)
 	{
@@ -128,29 +116,26 @@ void		errors_two(int i, t_env *e)
 	if (i == 13)
 		ft_putendl("Oops ! Looks like this tag is not properly formatted.");
 	if (i > 13)
-		errors_three(i, e);
+		errors_three(i);
 }
 
-int			error(t_env *e, int i)
+int			error(t_env *e, t_parser *p, int i)
 {
-	if (i == 0)
-		ft_putendl("usage:\t./rtv1 scene");
-	if (i == 1)
-		ft_putendl("error: not a valid file descriptor.");
-	if (i == 2)
-		ft_putendl("error: mlx init error.");
-	if (i == 3)
-		ft_putendl("error: not a valid parameter.");
-	if (i > 3 && i < 26)
+	(void)e;
+	if (i < 26)
 	{
-		errors_two(i, e);
+		errors_two(i);
 		ft_putstr("The problem lies in line : ");
-		ft_putnbr(e->p.gnl_i);
+		ft_putnbr(p->gnl_i);
 		ft_putchar('\n');
 	}
 	if (i > 25)
-		lineless_errors(e, i);
-	ft_strdel(e->p.split);
+		lineless_errors(p, i);
+	ft_strfree(p->gnl_line);
+	ft_strfree(p->strone);
+	ft_strfree(p->strtwo);
+	ft_strfree(p->tmp);
+	ft_strdel(p->split);
 	quit(e);
 	return (0);
 }

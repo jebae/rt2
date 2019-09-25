@@ -6,10 +6,9 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 16:21:07 by mhernand          #+#    #+#             */
-/*   Updated: 2019/08/29 16:21:09 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/09/24 14:26:04 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "rtv1.h"
 
@@ -21,7 +20,7 @@ int		open_close(int *check_me)
 	return (0);
 }
 
-int		two_angle_brackets(t_env *e)
+int		two_angle_brackets(t_parser *p)
 {
 	int	brackets;
 	int	bad_brackets;
@@ -32,36 +31,36 @@ int		two_angle_brackets(t_env *e)
 	bad_brackets = 0;
 	i = 0;
 	j = -1;
-	while (e->p.gnl_line[i] == '\t')
+	while (p->gnl_line[i] == '\t')
 		i++;
 	j = i;
-	while (e->p.gnl_line[j])
+	while (p->gnl_line[j])
 	{
-		if (j == i && e->p.gnl_line[j] == '<')
+		if (j == i && p->gnl_line[j] == '<')
 			brackets++;
-		if (e->p.gnl_line[j] == '>' && e->p.gnl_line[j + 1] == '\0')
+		if (p->gnl_line[j] == '>' && p->gnl_line[j + 1] == '\0')
 			brackets++;
-		if (j != i && e->p.gnl_line[j + 1] != '\0' && (e->p.gnl_line[j] == '<'
-			|| e->p.gnl_line[j] == '>'))
+		if (j != i && p->gnl_line[j + 1] != '\0' && (p->gnl_line[j] == '<'
+					|| p->gnl_line[j] == '>'))
 			bad_brackets++;
 		j++;
 	}
 	return (brackets + bad_brackets);
 }
 
-int		extract_status(t_env *e)
+int		extract_status(t_parser *p)
 {
 	int	i;
 
 	i = 0;
-	if (ft_strcmp("status", e->p.split[1]) != 0)
+	if (ft_strcmp("status", p->split[1]) != 0)
 		return (14);
-	if (ft_strcmp("=", e->p.split[2]) != 0)
+	if (ft_strcmp("=", p->split[2]) != 0)
 		return (15);
-	if (ft_strcmp("\"basic\">", e->p.split[3]) == 0)
-		e->p.status = 1;
-	else if (ft_strcmp("\"extra\">", e->p.split[3]) == 0)
-		e->p.status = 2;
+	if (ft_strcmp("\"basic\">", p->split[3]) == 0)
+		p->status = 1;
+	else if (ft_strcmp("\"extra\">", p->split[3]) == 0)
+		p->status = 2;
 	else
 		return (16);
 	return (0);
@@ -86,15 +85,15 @@ int		verify_tag_to_argument_three(char *string)
 	else if (ft_strcmp("color", string) == 0)
 		return (0);
 	else if (ft_strcmp("intensity", string) == 0)
-		return (0);	
-	else	
+		return (0);
+	else
 		return (82);
 	return (0);
 }
 
-int		verify_tag_to_argument(t_env *e, char *string, int args)
+int		verify_tag_to_argument(t_parser *p, char *string, int args)
 {
-	e->p.tmp = ft_strdup(string);
+	p->tmp = ft_strdup(string);
 	if (args == 1)
 	{
 		if (ft_strcmp("radius", string) == 0)
@@ -113,7 +112,9 @@ int		verify_tag_to_argument(t_env *e, char *string, int args)
 			return (81);
 	}
 	else
-		if ((e->p.ret_p = verify_tag_to_argument_three(string)) != 0)
-			return (e->p.ret_p);
+	{
+		if ((p->ret_p = verify_tag_to_argument_three(string)) != 0)
+			return (p->ret_p);
+	}
 	return (0);
 }

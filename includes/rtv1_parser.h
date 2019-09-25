@@ -154,6 +154,7 @@ typedef struct		s_parser
 	int				i;
 	int				j;
 	int				k;
+	int				str_count;
 	int				close_obj_i;
 	int				good_obj_brack;
 	int				bad_obj_brack;
@@ -165,7 +166,7 @@ typedef struct		s_parser
 	int				v2;
 	int				v3;
 	int				comma;
-	int				ret_p; // main ret
+	int				ret_p;
 	t_parseobj		p_obj;
 	t_spec			p_spec;
 	t_ret 			ret;
@@ -179,29 +180,29 @@ typedef struct		s_parser
 	t_cam_atb		ca_atb;
 }					t_parser;
 
-// int					two_tabs_specs(t_env *e, char **split_test);
-// int					open_close(int *check_me);
-// int					extract_status(t_env *e, char **strings);
-// int					two_angle_brackets(t_env *e);
-// int					twotab_verifications(t_env *e, char **split_test);
-// int					globals(t_env *e, char *gnl_line);
-// int					verifyargs_one(t_env *e);
-// int					verifyanglebrackets_one(t_env *e);
-// int					verifyvocab_one(t_env *e);
-// int					verifyargs_three(t_env *e, char **split_test);
-// int					verifyanglebrackets_three(t_env *e, char **split_test);
-// int					verifyvocab_three(t_env *e, char **split);
-// int					shapevocab_checker(t_env *e, char **split_test);
-// int					shapevocab_checker_partwo(t_env *e);
-// int					verify_spec_atb(t_env *e, char **split_test);
-// int					verify_spec_atb_partwo(t_env *e);
-// int					verify_tag_to_argument(t_env *e, char *string, int args); // verify_five ~*
-// int					error(t_env *e, int i);
-// void				reset_spec_atb(t_env *e);
-// void				lineless_errors_three(t_env *e, int i);
-// void				lineless_errors_eight(t_env *e, int i);
-// int					verify_numbers_one(t_env *e, char *string, char *num);
-// int					verify_values(t_env *e);
-// int					verify_numbers_three(t_env *e, char *string);
+//functions for parser
+void				set_vocab(t_parser *p);
+int					open_close(int *check_me);
+int					extract_status(t_parser *p);
+int					two_angle_brackets(t_parser *p);
+void				count_shapes(t_parser *p, char *split);
+int					globals(t_parser *p, char *gnl_line);
+int					verifyanglebrackets_one(t_parser *p);
+int					verifyvocab_one(t_parser *p);
+int					verifyanglebrackets_three(t_parser *p);
+int					verifyvocab_three(t_parser *p);
+int					verify_spec_atb(t_parser *p);
+int					verify_spec_atb_partwo(t_parser *p);
+int					verify_tag_to_argument(t_parser *p, char *string, int args);
+void				reset_spec_atb(t_parser *p);
+void				lineless_errors_three(t_parser *p, int i);
+void				lineless_errors_eight(t_parser *p, int i);
+int					verify_values(t_parser *p);
+void				reset_shape_atb(t_parser *p);
+void				reset_shape_atb_two(t_parser *p);
+int					checkforopenobjecttags(t_parser *p);
+int					last_checks(t_parser *p);
+int					verify_values(t_parser *p);
+int					verify_values_diff(t_parser *p);
 
 #endif
