@@ -53,7 +53,7 @@ SRCS = main.c start_rtv1.c\
 	parser_files/globals_and_set_vocab.c\
 	parser_files/verify_shapes_two.c\
 	parser_files/create_links.c\
-	parser_files/last_checks.c
+	parser_files/last_checks.c\
 	raycasting_files/color.c\
 	raycasting_files/intersec_functions.c\
 	raycasting_files/raycast.c\
