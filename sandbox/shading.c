@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 10:52:58 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/24 19:16:23 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/25 20:37:38 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ t_vec3		normal_sphere(t_ray ray, t_ol * ol)
 	point.x = ray.dir.x * ray.t;
 	point.y = ray.dir.y * ray.t;
 	point.z = ray.dir.z * ray.t;
-	normal = create_v(ol->cen, point);
+	//normal = create_v(ol->cen, point);
+	normal = create_v(point, ol->cen);
 	normal = v_normalise(normal);
 	return (normal);
 }
@@ -116,13 +117,24 @@ t_col		diffuse_color(t_vec3 normal, t_vec3 light, t_ol *ol)
 {
 	t_col	col;
 	double	It;
-	double kd = 0.9; //ol->kd
+	double kd = 5000; //ol->kd
+	t_vec3 n_light;
+	t_vec3 li;
+	double	norm;
 
-	It = kd * -v_scal(light, normal);
-//	It = It < 0 ? 0 : It;
-	col.r = It * 0; //ol->col.r;
+	/////
+	li.x = 100.0;
+	//////
+	norm = v_norm(light);
+	n_light = v_normalise(light);
+	It = kd * -v_scal(n_light, normal);
+	It = It < 0 ? 0 : It;
+	It /= M_PI * pow(norm, 2);
+	//It *= li.x;
+	It = It > 1.0 ? 1.0 : It;
+	col.r = It * 0xFF; //ol->col.r;
 	col.g = It * 0; //ol->col.g;
-	col.b = It * 0xFF; //ol->col.b;
+	col.b = It * 0; //ol->col.b;
 	return (col);	
 }
 
@@ -144,11 +156,11 @@ t_col		specular_color(t_ray ray, t_vec3 normal, t_ol *ol, t_ll *ll)
 	R = v_add(R, L, '-');
 	tmp = v_scal(R, v_mult(ray.dir, -1));
 	tmp = tmp < 0 ? 0 : tmp;
-		int sp = 500;
+		int sp = 10;
 	tmp = pow(tmp, sp);	//ol->sp;
-	c.r = 0xFF * tmp; //ll->col.r
-	c.g = 0xFF * tmp; //ll->col.g
-	c.b = 0xFF * tmp; //ll->col.b
+	c.r = 0.5 *0xFF * tmp; //ll->col.r
+	c.g = 0.5 * 0xFF * tmp; //ll->col.g
+	c.b = 0.5 * 0xFF * tmp; //ll->col.b
 	return (c);
 }
 
@@ -183,8 +195,15 @@ t_shader		compute_color(t_ray ray,t_ol *ol, t_ll *ll)
 
 	point.x = ray.dir.x * ray.t; point.y = ray.dir.y * ray.t; point.z = ray.dir.z * ray.t;
 	normal = get_normal(ray, ol);
+	//light = create_v(point, ll->pos);
 	light = create_v(point, ll->pos);
-	light = v_normalise(light);
+ /*
+  	light.x = -1;
+	light.y = -1;
+	light.z = 1;
+	*/
+
+//	light = v_normalise(light);
 	//send shadow ray
 	shader = init_shader();
 	/*
@@ -202,9 +221,9 @@ t_shader		compute_color(t_ray ray,t_ol *ol, t_ll *ll)
 void	color_pixel(int x, int y, t_shader sh, t_env *e)
 {
 	t_col	c;
-
-	c = color_add(sh.diff, sh.spec);
-	c = color_add(c, e->amb.col);
+	c = sh.diff;
+//	c = color_add(sh.diff, sh.spec);
+//	c = color_add(c, e->amb.col);
 	mlx_pixel_put(e->w.mp, e->w.wp, x, y, (c.r << 16) + (c.g << 8) + c.b);
 }
 

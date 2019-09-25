@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:31:06 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/24 19:20:17 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/25 19:05:38 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int ac, char **av)
 	t_env	*e;
 
 	/////////////////// L I G H T //////////////////////
-	t_ll	light; light.pos.x = 0; light.pos.y = 0; light.pos.z = 0;	
+	t_ll	light; light.pos.x = -10; light.pos.y = 10; light.pos.z = -10000;	
 	t_ll	*ll = &light;
 	t_ll	light2; light2.pos.x = 0; light2.pos.y = 0; light.pos.z = -20;
 	light2.next = NULL;	
@@ -35,18 +35,18 @@ int	main(int ac, char **av)
 
 	/////////////////// C A M E R A //////////////////////
 	e = &env;
-	e->cam.campos.x = 0; e->cam.campos.y = 0; e->cam.campos.z = -50;
+	e->cam.campos.x = 0; e->cam.campos.y = 0; e->cam.campos.z = 0;
 	e->cam.left.x = 0.33; e->cam.left.y = 0; e->cam.left.z = 0;
 	e->cam.up.x = 0; e->cam.up.y = 0.33; e->cam.up.z = 0;
 	e->cam.forw.x = 0; e->cam.forw.y = 0; e->cam.forw.z = 1;
 	e->cam.f_wdth = WIDTH / 128; e->cam.f_hght = WIDTH / 128; e->cam.focal_length = 3;
 
-	e->amb.col.r = 0xFF * 0.1; e->amb.col.g = 0xFF * 0.1; e->amb.col.b = 0xFF * 0.1;
+	e->amb.col.r = 0xFF * 0.1; e->amb.col.g = 0xFF * 0.1; e->amb.col.b = 0xFF * 0.2;
 	///////////////////////////////////////////////////
 
 	/////////////////// S P H E R E /////////////////////
 	t_ol obj; obj.cur_shape = 1; obj.cen.x = 0; obj.cen.y = 0;
-	obj.cen.z = 0; obj.next = NULL; obj.radius = 10;
+	obj.cen.z = 20; obj.next = NULL; obj.radius = 3;
 	t_ol	*ol;
 	ol = &obj;
 	/////////////////////////////////////////////////////
@@ -72,7 +72,7 @@ int	main(int ac, char **av)
 	t_ol co; co.cur_shape = 2;
 	co.dir.x = 10; co.dir.y = -10; co.dir.z = 0; 
 	co.cen.x = 0; co.cen.y = -2; co.cen.z = 10; 	
-	co.next = NULL; co.radius = 5; co.angle = M_PI / 6;
+	co.next = &obj; co.radius = 5; co.angle = M_PI / 6;
 	t_ol	*ol_co;
 	ol_co = &co;
 	/////////////////////////////////////////////////////
