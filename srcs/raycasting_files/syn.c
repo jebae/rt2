@@ -6,13 +6,13 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 17:19:01 by mhernand          #+#    #+#             */
-/*   Updated: 2019/09/19 19:28:53 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/26 13:24:30 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycast.h"
 
-double  v_intersect_cy(t_vec3 ray, t_ol *ol, t_env *e)
+double  v_intersect_cy(t_ray ray, t_ol *ol, t_env *e)
 {
 	(void)e;
 	double      t = 0;
@@ -32,9 +32,9 @@ double  v_intersect_cy(t_vec3 ray, t_ol *ol, t_env *e)
 
 	co = create_v(e->cam.campos, ol->cen);
 
-	a = v_scal(ray, ray) - (v_scal(ray, nor_dir) * v_scal(ray, nor_dir));
+	a = v_scal(ray.dir, ray.dir) - (v_scal(ray.dir, nor_dir) * v_scal(ray.dir, nor_dir));
 
-	b = v_scal(ray, co) - v_scal(ray, nor_dir) * v_scal(co, nor_dir);
+	b = v_scal(ray.dir, co) - v_scal(ray.dir, nor_dir) * v_scal(co, nor_dir);
 	b *= 2;
 
 	c = v_scal(co, co) - (v_scal(co, nor_dir) * v_scal(co, nor_dir)) - ol->radius * ol->radius;

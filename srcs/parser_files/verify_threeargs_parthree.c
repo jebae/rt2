@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 15:12:30 by mhernand          #+#    #+#             */
-/*   Updated: 2019/09/24 16:08:16 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/09/26 13:23:25 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ int		storing_three(t_env *e, t_parser *p, t_ll *l_tmp, t_ol *o_tmp)
 	{
 		if (p->p_spec.cam_cl == 1 && p->p_spec.light == 0 && p->objects == 0)
 		{
-			e->amb.col.x = p->v1;
-			e->amb.col.y = p->v2;
-			e->amb.col.z = p->v3;
+			e->amb.col.r = p->v1;
+			e->amb.col.g = p->v2;
+			e->amb.col.b = p->v3;
 		}
 	}
 	else if ((p->ret_p = storing_three_2(e, p, l_tmp, o_tmp)) != 0)

@@ -6,7 +6,7 @@
 #    By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 07:58:15 by mhernand          #+#    #+#              #
-#    Updated: 2019/09/25 11:05:40 by sabonifa         ###   ########.fr        #
+#    Updated: 2019/09/26 14:37:35 by sabonifa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,9 +54,11 @@ SRCS = main.c start_rtv1.c\
 	parser_files/verify_shapes_two.c\
 	parser_files/create_links.c\
 	parser_files/last_checks.c\
-	raycasting_files/color.c\
+	raycasting_files/color_op.c\
+	raycasting_files/get_normal.c\
 	raycasting_files/intersec_functions.c\
 	raycasting_files/raycast.c\
+	raycasting_files/shading.c\
 	raycasting_files/syn.c\
 	raycasting_files/vector_op.c
 

@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/09/20 11:00:05 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/26 13:20:07 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,16 @@ typedef struct  s_ray
 
 typedef struct		s_col
 {
-	int				x;
-	int				y;
-	int				z;
+	int				r;
+	int				g;
+	int				b;
 }					t_col; // color amb
+
+typedef struct  s_shader
+{
+	t_col       diff;
+	t_col       spec;
+}               t_shader;
 
 typedef struct      s_camera // struct for camera data
 {

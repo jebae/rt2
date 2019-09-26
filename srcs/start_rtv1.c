@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:55:08 by mhernand          #+#    #+#             */
-/*   Updated: 2019/09/20 10:12:37 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/09/26 13:22:10 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	temp_function_print_data(t_env *e)
 
 	printf("AMBIANCE :\n");
 	printf("specpower -> value [%d]] === ", e->amb.specpower);
-	printf("color -> x : [%d] - y : [%d] - z : [%d] \n\n", e->amb.col.x, e->amb.col.y, e->amb.col.z );
+	printf("color -> x : [%d] - y : [%d] - z : [%d] \n\n", e->amb.col.r, e->amb.col.g, e->amb.col.b );
 
 	printf("LIGHT: \n");
 	while (tmp)
