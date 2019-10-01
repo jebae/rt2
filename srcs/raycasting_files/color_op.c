@@ -50,8 +50,15 @@ t_shader        shader_add(t_shader sh1, t_shader sh2)
 void    color_pixel(int x, int y, t_shader sh, t_env *e)
 {
 	t_col   c;
+	
 	c = sh.diff;
 	c = color_add(sh.diff, sh.spec);
 	c = color_add(c, e->amb.col);
-	mlx_pixel_put(e->w.mp, e->w.wp, x, y, (c.r << 16) + (c.g << 8) + c.b);
+	// mlx_pixel_put(e->w.mp, e->w.wp, x, y, (c.r << 16) + (c.g << 8) + c.b);
+	// images
+	e->data[0 + x * (e->w.bpp / 8) + y * e->w.sl] = c.r;
+	e->data[1 + x * (e->w.bpp / 8) + y * e->w.sl] = c.g;
+	e->data[2 + x * (e->w.bpp / 8) + y * e->w.sl] = c.b;
+	e->data[3 + x * (e->w.bpp / 8) + y * e->w.sl] = 0;
+
 }

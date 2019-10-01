@@ -59,16 +59,18 @@ t_ray   cast_ray(int x, int y, t_camera cam)
 	return (ray);
 }
 
-int raycast(t_env *e, t_ol *ol, t_ll *ll)
+int 			raycast(t_env *e, t_ol *ol, t_ll *ll)
 {
-	int x = 0;
-	int y = 0;
-	t_ray   ray;
-	t_ll    *tp_l;
-	t_ol    *tp_o;
+	int 		x;
+	int 		y;
+	t_ray   	ray;
+	t_ll    	*tp_l;
+	t_ol    	*tp_o;
 	t_shader	sh;
+	double		r;
 
-	double r;
+	x = 0;
+	y = 0;
 	while (x < WIDTH)
 	{
 		y = 0;

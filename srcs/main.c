@@ -62,6 +62,6 @@ int			main(int argc, char **argv)
 	if (!(e.data = mlx_get_data_addr(e.w.ip, &e.w.bpp, &e.w.sl, &e.w.end)))
 		errors(&e, 2);
 	start_rtv1(&e);
-	// mlx_loop(e.w.mp);
+	mlx_loop(e.w.mp);
 	return (0);
 }
