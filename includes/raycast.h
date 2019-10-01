@@ -14,18 +14,19 @@
 // /!/ This header still have the rtv1.h that is inside the directory
 //     Need to modify the one that is in /includes to have everything in it and then change path 
 
-
-
 //#include "libft.h"
-#include <mlx.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <math.h>
-#include "../includes/rtv1.h"
+#ifndef RAYCAST_H
+# define RAYCAST_H
+# include <mlx.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <math.h>
+# include "rtv1.h"
+# include "rtv1_parser.h"
 
-#define X0 -WIDTH / 2
-#define Y0 -WIDTH / 2
-#define	RAYON 70
+# define X0 -WIDTH / 2
+# define Y0 -WIDTH / 2
+# define	RAYON 70
 
 t_mlx   init(t_mlx *p);
 int     sand(t_env *e);
@@ -77,3 +78,5 @@ t_vec3      normal_sphere(t_ray ray, t_ol * ol);
 t_vec3      normal_cylinder(t_ray ray, t_ol *ol);
 t_vec3      normal_cone(t_ray ray, t_ol *ol);
 t_vec3      get_normal(t_ray ray, t_ol *ol);
+
+#endif

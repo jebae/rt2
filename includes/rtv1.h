@@ -49,12 +49,12 @@ typedef struct		s_vec3
 	double			z;
 }					t_vec3;
 
-typedef struct  s_ray
+typedef struct 		s_ray
 {
-	t_point     ori;
-	t_vec3    dir;
-	double      t;
-}               t_ray;
+	t_point   		ori;
+	t_vec3    		dir;
+	double      	t;
+}             		t_ray;
 
 typedef struct		s_col
 {
@@ -63,11 +63,11 @@ typedef struct		s_col
 	int				b;
 }					t_col; // color amb
 
-typedef struct  s_shader
+typedef struct  	s_shader
 {
-	t_col       diff;
-	t_col       spec;
-}               t_shader;
+	t_col      	 	diff;
+	t_col       	spec;
+}               	t_shader;
 
 typedef struct      s_camera // struct for camera data
 {
@@ -172,7 +172,6 @@ int					key_release(int key, t_env *e);
 int					quit(t_env *e);
 void				draw_sphere(t_env *e);
 
-
 // functions for parser for storing
 int					two_tabs_specs(t_env *e, t_parser *p, t_ll **l_head);
 int					twotab_verifications(t_env *e, t_parser *p, t_ol **o_head);
@@ -189,6 +188,8 @@ int					add_link_obj(t_env *e, t_ol **head);
 int				    storing_three(t_env *e, t_parser *p, t_ll *l_tmp, t_ol *o_tmp);
 void   				storing_three_3(t_env *e, t_parser *p, t_ll *l_tmp, t_ol *o_tmp);
 
+
+int					raycast(t_env *e, t_ol *ol, t_ll *ll);
 int					main(int argc, char **argv);
 
 #endif
