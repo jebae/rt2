@@ -6,54 +6,46 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 14:08:14 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/24 18:17:09 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/10/01 14:47:12 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sandbox.h"
 
-double	v_intersect_sp(t_vec3 ray, t_ol *ol, t_env *e)
+double	v_intersect_sp2(t_ray ray, t_ol *ol, t_env *e)
 {
-	t_vec3 c_s; //vector camera->sphere center
+	t_point	C = ol->cen;
+	t_point	O = ray.ori;
+	t_vec3	D = ray.dir;
+	t_vec3	X = create_v(C, O);
 
-	c_s = create_v(e->cam.campos, ol->cen );
-	double a;
-	double b;
-	double c;
+	double 	a;
+	double	b;
+	double	c;
+	double	r = ol->radius;
 	double delta;
-	a = 1.0;
-	b = 2 * (v_scal(ray, c_s));
-	c = v_scal(c_s, c_s) - ol->radius * ol->radius;
+	double	t = FAR;
+	double	t2;
+
+	/*
+	 * a   = D|D
+	 *    b/2 = D|X
+	 *       c   = X|X - r*r
+	 */
+
+	a = v_scal(D, D);
+	b = 2 * v_scal(D, X);
+	c = v_scal(X, X) - r * r;
+
 	delta = b * b - 4 * a * c;
 	if (delta < 0)
-		return (0); //return val to be modified to send the closest valid solution
-	else
-		return (1);	
-}
-
-double  v_intersect_sp2(t_ray ray, t_ol *ol, t_env *e)
-{
-	t_vec3 c_s; //vector ray_origin->sphere center
-
-	c_s = create_v(ray.ori, ol->cen );
-	double a;
-	double b;
-	double c;
-	double delta;
-	double t = 0;
-	double t2;
-	a = v_scal(ray.dir, ray.dir);
-	b = 2 * (v_scal(ray.dir, c_s));
-	c = v_scal(c_s, c_s) - ol->radius * ol->radius;
-	delta = b * b - 4 * a * c;
-	if (delta < 0)
-		return (FAR); //return val to be modified to send the closest valid solution
+		return (FAR);
 	else
 	{
-		t = -(-b + sqrt(delta)) / (2 * a);
-		t2 = -(-b - sqrt(delta)) / (2 * a);
+		t = (-b + sqrt(delta)) / (2 * a);
+		t2 = (-b - sqrt(delta)) / (2 * a);
 		if (t <= 0 && t2 <= 0)
-			//          return (0);
+			          return (0);
 			t = t > 0 ? t : t2;
 		t = t2 < t && t2 > 0 ? t2 : t;
 	}
@@ -89,83 +81,44 @@ double	v_intersect_pl(t_vec3 ray, t_ol *ol, t_env *e)
 	return (0);
 }
 
-// double	v_intersect_cy(t_vector ray, t_ol *ol, t_env *e)
-// {
-// 	(void)e;
-// 	(void)ol;
-// 	(void)ray;
-// 	double		t = 0; 
-// 	// V is a unit length vector that determines cylinder's axis
-
-// 	// m = D | V * t + X | V // m is the closest point on the axis to the hit point
-// 	// m = v_scal(ray, (t_point)ol.cen) * t + v_scal(point on cyn, (t_point)ol.cen);
-
-// 	// len() ? implement nous-memes
-
-// 	// a = v_scal(ray, ray) - (v_scal(ray, (t_point)ol.cen)) * 2
-// 	// c = v_scal(point on cy, point on sy) - (v_scal(point on cy, (t_point)ol.cen)) * 2 - ol.radius * 2
-// 	// b = 2 * (v_scal(ray, point on cy) - (v_scal(ray, (t_point)ol.cen) * (v_scal(point on cy, (t_point)ol.cen))))
-
-// 	// m = v_scal(ray, (t_point)ol.cen) * t + v_scal(point on cy, (t_point)ol.cen)
-// 	// N = normalize(P - C - V * m)
-
-// 	if (t < 0)
-// 		return (0); //return val to be modified to send the closest valid solution
-// 	else
-// 		return (1);
-// 	return (0);
-// }
-
 double	v_intersect_co(t_ray ray, t_ol *ol, t_env *e)
 {
-	(void)e;
-	(void)ol;
-	(void)ray;
-	double		t = 0; 
-	double		t_2 = 0; 
-	double		a = 0;
-	double		b = 0;
-	double		c = 0;
-	double		det = 0;
-	t_vec3	co;
-	t_vec3		tmp_ray;
-	t_vec3	nor_dir = v_normalise(ol->dir);
+	t_point C = ol->cen;
+	t_point O = ray.ori;
+	t_vec3	V = v_normalise(ol->dir);
+	t_vec3	D = v_normalise(ray.dir);
+	t_vec3	X = create_v(C, O);
+	double	k = tan(ol->angle / 2);
+	double	t = ray.t;
 
-	// the D is the ray and V is the direction vector
-	co = create_v(ray.ori, ol->cen);
+	double	a;
+	double	c;
+	double	b;
+	double 	delta;
+	double	t1;
+	double	t2;
 
-	a = (v_scal(ray.dir, nor_dir) * v_scal(ray.dir, nor_dir)) - (cos(ol->angle) * cos(ol->angle));
+	/*
+	 * a   = D|D - (1+k*k)*(D|V)^2
+	 *    b/2 = D|X - (1+k*k)*(D|V)*(X|V)
+	 *       c   = X|X - (1+k*k)*(X|V)^2
+	 */
 
-	b = 2 * ((v_scal(ray.dir, nor_dir) * v_scal(co, nor_dir)) - v_scal(ray.dir, co) * (cos(ol->angle) * cos(ol->angle)));
+	a = v_scal(D,D) - (1 + k * k) * v_scal(D, V) * v_scal(D,V);
+	b = 2 * (v_scal(D, X) - (1 + k * k) * (v_scal(D, V) * v_scal(X, V)));
+	c = v_scal(X, X) - (1 + k * k) * v_scal(X, V) * v_scal(X, V);
 
-	c = (v_scal(co, nor_dir) * v_scal(co, nor_dir)) - (v_scal(co, co) * (cos(ol->angle) * cos(ol->angle)));
-
-	det = b * b - 4 * a * c;
-	if (det < 0)
+	delta = b * b - 4 * a * c;
+	if (delta < 0)
 		return (FAR);
-	if (det == 0)
-		t = b / (2 * a);
-	else if (det > 0)
-	{
-		t = -(-b + sqrt(det) )/ (2 * a);
-		t_2 = -(-b - sqrt(det)) / (2 * a);
-		if (t <= 0 && t_2 <= 0)
-			return (FAR);
-		else
-		{
-			t = t < 0 ? t_2 : t;
-			t = t < t_2 ? t : t_2;
-		}
-	}
-	if (t < 0)
-		return (FAR); //return val to be modified to send the closest valid solution
 	else
 	{
-		tmp_ray.x = ol->cen.x - t * ray.dir.x; tmp_ray.y = ol->cen.y - t * ray.dir.y; tmp_ray.z = ol->cen.z - t * ray.dir.z; //vector from the point of intersection toward center
-//		if (ol->angle < M_PI / 2 && v_scal(tmp_ray, nor_dir) > 0)
-			return (t);
-//		else 
-			return (FAR);
+		t1 = (-b + sqrt(delta)) / (2 * a);
+		t2 = (-b - sqrt(delta)) / (2 * a);
+		if (t <= 0 && t2 <= 0)
+			return (0);
+		t1 = t1 > 0 ? t1 : t2;
+		t1 = t2 < t1 && t2 > 0 ? t2 : t1;
 	}
-
+	return (t1);
 }

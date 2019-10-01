@@ -6,24 +6,11 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 17:15:40 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/26 13:09:31 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/10/01 15:03:27 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sandbox.h"
-
-double	intersection(t_vec3 ray, t_ol *ol, t_env *e)
-{
-	if (ol->cur_shape == 1)
-		return (v_intersect_sp(ray, ol, e));
-//	if (ol->cur_shape == 2)
-//		return (v_intersect_co(ray, ol, e));
-//	if (ol->cur_shape == 3)
-//		return (v_intersect_cy(ray, ol, e));
-	if (ol->cur_shape == 4)
-		return (v_intersect_pl(ray, ol, e));
-	return (0);
-}
 
 double  intersection2(t_ray ray, t_ol *ol, t_env *e)
 {
@@ -33,49 +20,6 @@ double  intersection2(t_ray ray, t_ol *ol, t_env *e)
 		return (v_intersect_co(ray, ol, e));
 	if (ol->cur_shape == 3)
 		return (v_intersect_cy(ray, ol, e));
-	return (0);
-}
-
-int	sand2(t_env *e, t_ol *ol, t_ll *ll)
-{
-	int x = -1 + X0;
-	int y = -1 + Y0;
-	t_vec3  ray;
-	t_ol	*templ;
-	double	r;
-	double	t;
-	t_point cam_pos; cam_pos.x = 0; cam_pos.y = 0; cam_pos.z = -50;
-
-	templ = ol;
-	while (++x < -X0) //For each pixel
-	{
-		y = -1 + Y0;
-		while(++y < -Y0)
-		{
-			t = FAR;
-			r = 0;
-			ray = create_v(e->cam.campos, create_pt(x, y, 0));
-			ray = v_normalise(ray); //cast a ray from camera to point xy
-			templ = ol;
-			while (templ != NULL) //for each object
-			{
-				r = intersection(ray, ol, e);
-				t = r < t ? r : t;//check if there is an intersection
-				templ = templ->next;
-			}
-			if (t > 0 && t < FAR)
-			{
-				if (ol->cur_shape == 1)
-					mlx_pixel_put(e->w.mp, e->w.wp, x-X0, y-Y0, 0xFFFFFF);//color pixel
-				else if (ol->cur_shape == 2)
-					mlx_pixel_put(e->w.mp, e->w.wp, x-X0, y-Y0, 0x00FF00);//color pixel
-				else if (ol->cur_shape == 3)
-					mlx_pixel_put(e->w.mp, e->w.wp, x-X0, y-Y0, 0x0FF0FF);//color pixel
-				else if (ol->cur_shape == 4)
-					mlx_pixel_put(e->w.mp, e->w.wp, x-X0, y-Y0, 0xFF0000);//color pixel	
-			}
-		}
-	}
 	return (0);
 }
 
@@ -137,32 +81,6 @@ int raycast(t_env *e, t_ol *ol, t_ll *ll)
 						tp_l = tp_l->next;
 					}
 					color_pixel(x, y, sh, e);
-					/*
-					t_point p;
-					p.x = ray.dir.x * ray.t;
-					p.y = ray.dir.y * ray.t;
-					p.z = ray.dir.z * ray.t;
-					c += color (p, tp_o, ll);
-					s += specular(ray, p, tp_o, ll);
-			printf("%X\n", c);
-					c += 0xDD;   //ambiant light
-					c = c & 0xFF;
-					c = c << 24;
-					s = s << 24;
-					mlx_pixel_put(e->w.mp, e->w.wp, x, y, 0xFFFF00+c);
-					*/
-
-	//			if (s < 0xDD<<24)
-				//	mlx_pixel_put(e->w.mp, e->w.wp, x, y, 0xFFFFFF+s);
-					//color pixel
-					/*  tp_l = *ll;
-						while (tp_l != NULL)
-						{
-					//send shadow ray
-					//send light ray
-					//compute light
-					tp_l = tp_l->next;
-					}*/
 				}
 				tp_o = tp_o->next;
 			}

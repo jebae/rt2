@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 10:52:58 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/26 13:09:51 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/10/01 14:45:56 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_col		diffuse_color(t_vec3 normal, t_vec3 light, t_ol *ol)
 {
 	t_col	col;
 	double	It;
-	double kd = 5000; //ol->kd
+	double kd = 1; //ol->kd
 	t_vec3 n_light;
 	t_vec3 li;
 	double	norm;
@@ -47,12 +47,12 @@ t_col		diffuse_color(t_vec3 normal, t_vec3 light, t_ol *ol)
 	//////
 	norm = v_norm(light);
 	n_light = v_normalise(light);
-	It = kd * -v_scal(n_light, normal);
+	It = kd * v_scal(n_light, normal);
 	It = It < 0 ? 0 : It;
-	It /= M_PI * pow(norm, 2);
+	//It /= M_PI * pow(norm, 2);
 	//It *= li.x;
 	It = It > 1.0 ? 1.0 : It;
-	col.r = It * 0xFF; //ol->col.r;
+	col.r = It *0xFF; //ol->col.r;
 	col.g = It * 0; //ol->col.g;
 	col.b = It * 0; //ol->col.b;
 	return (col);	
@@ -93,17 +93,17 @@ t_shader		compute_color(t_ray ray,t_ol *ol, t_ll *ll)
 
 	point.x = ray.dir.x * ray.t; point.y = ray.dir.y * ray.t; point.z = ray.dir.z * ray.t;
 	normal = get_normal(ray, ol);
-	//light = create_v(point, ll->pos);
 	light = create_v(point, ll->pos);
- /*
+/* 
   	light.x = -1;
 	light.y = -1;
-	light.z = 1;
-	*/
+	light.z = -1;
+*/
 
-//	light = v_normalise(light);
-	//send shadow ray
+	light = v_normalise(light);
 	shader = init_shader();
+
+	//send shadow ray
 	/*
 	if (send_shadow_ray(point, light, ol) <= v_norm(light))
 	{
