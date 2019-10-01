@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/26 12:32:44 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/10/01 14:32:49 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/10/01 17:27:43 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void    color_pixel(int x, int y, t_shader sh, t_env *e)
 {
 	t_col   c;
 	c = sh.diff;
-//	c = color_add(sh.diff, sh.spec);
+	c = color_add(sh.diff, sh.spec);
 	c = color_add(c, e->amb.col);
 	mlx_pixel_put(e->w.mp, e->w.wp, x, y, (c.r << 16) + (c.g << 8) + c.b);
 }

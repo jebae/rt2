@@ -6,8 +6,8 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/26 14:30:54 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/10/01 11:21:26 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/10/01 16:46:01 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../srcs/raycasting_files/raycast.h"
+#include "../includes/raycast.h"

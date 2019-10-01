@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 14:08:14 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/10/01 14:47:12 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/10/01 17:22:51 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,33 +52,40 @@ double	v_intersect_sp2(t_ray ray, t_ol *ol, t_env *e)
 	return (t);
 }
 
-double	v_intersect_pl(t_vec3 ray, t_ol *ol, t_env *e)
+t_point	find_point_on_plane(t_ol *ol)
 {
-	// D is the dir of the ray --> ray 
-	// don't know what 't' is
-	// o is ray origin --> cam pos;
-	// t = -X | V / D | V
-	double		t = 0; 
-	t_vec3	tmp;
-	t_point		plane_point;
-	t_vec3	diff;
+	t_point	C;
 
-	// hello = create new vector that is the difference betweent camera position and point in the plane 
-	plane_point.x = (double)ol->d / ol->nor.x;
-	plane_point.y = 0;
-	plane_point.z = 0;
+	C.x = 0;
+	C.y = 0;
+	C.z = 0;
+	if (ol->nor.x != 0)
+		C.x = ol->d / ol->nor.x;
+	else if (ol->nor.y != 0)
+		C.y = ol->d / ol->nor.y;
+	else if (ol->nor.z != 0)
+		C.z = ol->d / ol->nor.z;
+	return (C);
+}
 
-	diff = create_v((t_point)e->cam.campos, plane_point);
-	tmp.x = ol->nor.x;
-	tmp.y = ol->nor.y;
-	tmp.z = ol->nor.z;
-	t = v_scal(diff, tmp) / v_scal(ray, tmp);
+double	v_intersect_pl(t_ray ray, t_ol *ol, t_env *e)
+{
+	t_point	O = ray.ori;
+	t_point	C;
+	t_vec3	X;
+	t_vec3	V = v_normalise(ol->nor);
+	t_vec3	D = ray.dir;
+	double	t;
 
+	C = find_point_on_plane(ol);
+	X = create_v(C, O);
+//	printf("%f %f %f\n", O.x, O.y, O.z);
+	if (v_scal(D, V) == 0)
+		return (FAR);
+	t = -v_scal(X, V) / v_scal(D, V);
 	if (t < 0)
-		return (0); //return val to be modified to send the closest valid solution
-	else
-		return (1);
-	return (0);
+		return (FAR);
+	return (t);
 }
 
 double	v_intersect_co(t_ray ray, t_ol *ol, t_env *e)

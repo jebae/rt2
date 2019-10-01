@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:31:06 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/10/01 16:03:04 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/10/01 17:39:42 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int ac, char **av)
 	t_env	*e;
 
 	/////////////////// L I G H T //////////////////////
-	t_ll	light; light.pos.x = -20; light.pos.y = -10; light.pos.z = 30;	
+	t_ll	light; light.pos.x = 0; light.pos.y = -10; light.pos.z = 25;	
 	t_ll	*ll = &light;
 	t_ll	light2; light2.pos.x = 0; light2.pos.y = 0; light2.pos.z = -20;
 	light2.next = NULL;	
@@ -45,15 +45,15 @@ int	main(int ac, char **av)
 	///////////////////////////////////////////////////
 
 	/////////////////// S P H E R E /////////////////////
-	t_ol obj; obj.cur_shape = 1; obj.cen.x = 0; obj.cen.y = 0;
-	obj.cen.z = 20; obj.next = NULL; obj.radius = 3;
+	t_ol obj; obj.cur_shape = 1; obj.cen.x = 5; obj.cen.y = 5;
+	obj.cen.z = 30; obj.next = NULL; obj.radius = 3;
 	t_ol	*ol;
 	ol = &obj;
 	/////////////////////////////////////////////////////
 
 	/////////////////// P L A N E /////////////////////
 	t_ol pla; pla.cur_shape = 4;
-	pla.nor.x = 5; pla.nor.y = 1; pla.nor.z = 3; pla.d = 2;
+	pla.nor.x = 0; pla.nor.y = 1; pla.nor.z = 0; pla.d = 2;
 	pla.next = NULL; pla.radius = 50;
 	t_ol	*ol_pla;
 	ol_pla = &pla;
@@ -79,9 +79,10 @@ int	main(int ac, char **av)
 
 //	e->cam.campos.x = 0; e->cam.campos.y = 0; e->cam.campos.z = -50;
 	(e->w) = init(&(e->w));
-	raycast(e, ol_cl, ll);
+	raycast(e, ol_pla, ll);
+//	raycast(e, ol_cl, ll);
 //	raycast(e, ol_co, ll);
-//	raycast(e, ol, ll);
+	raycast(e, ol, ll);
 	mlx_key_hook(e->w.wp, key_hook, e);
 	mlx_loop(e->w.mp);
 	return (0);

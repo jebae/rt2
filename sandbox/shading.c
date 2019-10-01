@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 10:52:58 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/10/01 14:45:56 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/10/01 17:36:33 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,11 @@ t_col		diffuse_color(t_vec3 normal, t_vec3 light, t_ol *ol)
 	t_vec3 li;
 	double	norm;
 
-	/////
-	li.x = 100.0;
-	//////
 	norm = v_norm(light);
 	n_light = v_normalise(light);
 	It = kd * v_scal(n_light, normal);
 	It = It < 0 ? 0 : It;
 	//It /= M_PI * pow(norm, 2);
-	//It *= li.x;
 	It = It > 1.0 ? 1.0 : It;
 	col.r = It *0xFF; //ol->col.r;
 	col.g = It * 0; //ol->col.g;
@@ -66,8 +62,8 @@ t_col		specular_color(t_ray ray, t_vec3 normal, t_ol *ol, t_ll *ll)
 	t_point	point;
 	t_col	c;
 
-	point.x = ray.dir.x * -ray.t;
-   	point.y = ray.dir.y * -ray.t;
+	point.x = ray.dir.x * ray.t;
+   	point.y = ray.dir.y * ray.t;
    	point.z = ray.dir.z * ray.t;
 	L = create_v(point, ll->pos);
 	L = v_normalise(L);
@@ -76,11 +72,11 @@ t_col		specular_color(t_ray ray, t_vec3 normal, t_ol *ol, t_ll *ll)
 	R = v_add(R, L, '-');
 	tmp = v_scal(R, v_mult(ray.dir, -1));
 	tmp = tmp < 0 ? 0 : tmp;
-		int sp = 10;
+		int sp = 1000;
 	tmp = pow(tmp, sp);	//ol->sp;
-	c.r = 0.5 *0xFF * tmp; //ll->col.r
-	c.g = 0.5 * 0xFF * tmp; //ll->col.g
-	c.b = 0.5 * 0xFF * tmp; //ll->col.b
+	c.r = 1 *0xFF * tmp; //ll->col.r
+	c.g = 1 * 0xFF * tmp; //ll->col.g
+	c.b = 1 * 0xFF * tmp; //ll->col.b
 	return (c);
 }
 

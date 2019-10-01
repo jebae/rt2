@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 17:15:40 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/10/01 15:03:27 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/10/01 17:37:53 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ double  intersection2(t_ray ray, t_ol *ol, t_env *e)
 		return (v_intersect_co(ray, ol, e));
 	if (ol->cur_shape == 3)
 		return (v_intersect_cy(ray, ol, e));
+	if (ol->cur_shape == 4)
+		return (v_intersect_pl(ray, ol, e));
 	return (0);
 }
 
