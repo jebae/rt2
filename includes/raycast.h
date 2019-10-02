@@ -51,13 +51,13 @@ t_vec3    v_normalise(t_vec3 u);
 ** Intersection functions
 */
 
-double  v_intersect_sp(t_vec3 ray, t_ol *ol, t_env *e);
-double  v_intersect_pl(t_ray ray, t_ol *ol, t_env *e);
+double  v_intersect_sp(t_vec3 ray, t_ol *ol);
+double  v_intersect_pl(t_ray ray, t_ol *ol);
 
-double  v_intersect_cy(t_ray ray, t_ol *ol, t_env *e);
-double  v_intersect_co(t_ray ray, t_ol *ol, t_env *e);
-double  v_intersect_sp2(t_ray ray, t_ol *ol, t_env *e);
-double  intersection2(t_ray ray, t_ol *ol, t_env *e);
+double  v_intersect_cy(t_ray ray, t_ol *ol);
+double  v_intersect_co(t_ray ray, t_ol *ol);
+double  v_intersect_sp2(t_ray ray, t_ol *ol);
+double  intersection2(t_ray ray, t_ol *ol);
 
 /*
 ** Coloring functions

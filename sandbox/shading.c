@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 10:52:58 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/10/02 11:41:29 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/10/02 15:59:27 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ double		send_shadow_ray(t_point point, t_vec3 light,  t_ol *ol)
 	s_ray.t = FAR;
 	while (tp_o != NULL)
 	{
-		r = intersection2(s_ray, tp_o, e);
+		r = intersection2(s_ray, tp_o);
 		s_ray.t = r < s_ray.t ? r : s_ray.t;
 		tp_o = tp_o->next;
 	}

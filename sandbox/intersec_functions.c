@@ -6,13 +6,13 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 14:08:14 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/10/01 17:22:51 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/10/02 15:56:21 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sandbox.h"
 
-double	v_intersect_sp2(t_ray ray, t_ol *ol, t_env *e)
+double	v_intersect_sp2(t_ray ray, t_ol *ol)
 {
 	t_point	C = ol->cen;
 	t_point	O = ray.ori;
@@ -68,7 +68,7 @@ t_point	find_point_on_plane(t_ol *ol)
 	return (C);
 }
 
-double	v_intersect_pl(t_ray ray, t_ol *ol, t_env *e)
+double	v_intersect_pl(t_ray ray, t_ol *ol)
 {
 	t_point	O = ray.ori;
 	t_point	C;
@@ -88,7 +88,7 @@ double	v_intersect_pl(t_ray ray, t_ol *ol, t_env *e)
 	return (t);
 }
 
-double	v_intersect_co(t_ray ray, t_ol *ol, t_env *e)
+double	v_intersect_co(t_ray ray, t_ol *ol)
 {
 	t_point C = ol->cen;
 	t_point O = ray.ori;

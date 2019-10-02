@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:31:06 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/10/01 17:39:42 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/10/02 15:52:44 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	main(int ac, char **av)
 	raycast(e, ol_pla, ll);
 //	raycast(e, ol_cl, ll);
 //	raycast(e, ol_co, ll);
-	raycast(e, ol, ll);
+//	raycast(e, ol, ll);
 	mlx_key_hook(e->w.wp, key_hook, e);
 	mlx_loop(e->w.mp);
 	return (0);

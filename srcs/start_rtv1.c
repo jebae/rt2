@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:55:08 by mhernand          #+#    #+#             */
-/*   Updated: 2019/09/26 13:22:10 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/10/02 13:51:49 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,41 @@ void    start_rtv1(t_env *e)
 	e->cam.left.x = 0.33; e->cam.left.y = 0; e->cam.left.z = 0;
 	e->cam.up.x = 0; e->cam.up.y = 0.33; e->cam.up.z = 0;
 	e->cam.forw.x = 0; e->cam.forw.y = 0; e->cam.forw.z = 1;
-	e->cam.f_wdth = WIDTH; e->cam.f_hght = WIDTH; e->cam.focal_length = 100;
+	e->cam.f_wdth = WIDTH / 128; e->cam.f_hght = WIDTH / 128; e->cam.focal_length = 3;
 	
 	//amb
 	e->amb.col.r = 0xFF * 0.1; e->amb.col.g = 0xFF * 0.1; e->amb.col.b = 0xFF * 0.2;
 
+	/////////////////// L I G H T //////////////////////
+	t_ll	light; light.pos.x = 0; light.pos.y = -10; light.pos.z = 25;	
+	t_ll	*ll = &light;
+	t_ll	light2; light2.pos.x = 0; light2.pos.y = 0; light2.pos.z = -20;
+	light2.next = NULL;	
+	light.next = &light2;	
+	ll = &light;
+	///////////////////////////////////////////////////
+
+	/////////////////// C A M E R A //////////////////////
+	e->cam.campos.x = 0; e->cam.campos.y = 0; e->cam.campos.z = 0;
+	e->cam.left.x = 0.33; e->cam.left.y = 0; e->cam.left.z = 0;
+	e->cam.up.x = 0; e->cam.up.y = 0.33; e->cam.up.z = 0;
+	e->cam.forw.x = 0; e->cam.forw.y = 0; e->cam.forw.z = 1;
+	e->cam.f_wdth = WIDTH / 128; e->cam.f_hght = WIDTH / 128; e->cam.focal_length = 3;
+
+	e->amb.col.r = 0xFF * 0.1; e->amb.col.g = 0xFF * 0.1; e->amb.col.b = 0xFF * 0.2;
+	///////////////////////////////////////////////////
+/*
+	/////////////////// S P H E R E /////////////////////
+	t_ol obj; obj.cur_shape = 1; obj.cen.x = 5; obj.cen.y = 5;
+	obj.cen.z = 30; obj.next = NULL; obj.radius = 3;
+	t_ol	*ol;
+	ol = &obj;
+	/////////////////////////////////////////////////////
+*/	
 	//raycast
-	raycast(e, e->ll_obj, e->ll_lit);
+	printf("hello i am light [%f] [%f] [%f]\n", e->ll_lit->pos.x, e->ll_lit->pos.y, e->ll_lit->pos.z);
+	printf("hello i am FAKE light [%f] [%f] [%f]\n", ll->pos.x, ll->pos.y, ll->pos.z);
+	raycast(e, e->ll_obj, ll);
 	mlx_put_image_to_window(e->w.mp, e->w.wp, e->w.ip, 0, 0);
 	mlx_hook(e->w.wp, 2, 1L << 2, key_press, e);
 	mlx_hook(e->w.wp, 3, 1L << 3, key_release, e);

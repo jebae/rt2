@@ -6,33 +6,22 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 17:15:40 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/26 14:23:29 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/10/01 17:37:53 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycast.h"
 
-double	intersection(t_vec3 ray, t_ol *ol, t_env *e)
+double  intersection2(t_ray ray, t_ol *ol)
 {
 	if (ol->cur_shape == 1)
-		return (v_intersect_sp(ray, ol, e));
-//	if (ol->cur_shape == 2)
-//		return (v_intersect_co(ray, ol, e));
-//	if (ol->cur_shape == 3)
-//		return (v_intersect_cy(ray, ol, e));
-	if (ol->cur_shape == 4)
-		return (v_intersect_pl(ray, ol, e));
-	return (0);
-}
-
-double  intersection2(t_ray ray, t_ol *ol, t_env *e)
-{
-	if (ol->cur_shape == 1)
-		return (v_intersect_sp2(ray, ol, e));
+		return (v_intersect_sp2(ray, ol));
 	if (ol->cur_shape == 2)
-		return (v_intersect_co(ray, ol, e));
+		return (v_intersect_co(ray, ol));
 	if (ol->cur_shape == 3)
-		return (v_intersect_cy(ray, ol, e));
+		return (v_intersect_cy(ray, ol));
+	if (ol->cur_shape == 4)
+		return (v_intersect_pl(ray, ol));
 	return (0);
 }
 
@@ -59,18 +48,16 @@ t_ray   cast_ray(int x, int y, t_camera cam)
 	return (ray);
 }
 
-int 			raycast(t_env *e, t_ol *ol, t_ll *ll)
+int raycast(t_env *e, t_ol *ol, t_ll *ll)
 {
-	int 		x;
-	int 		y;
-	t_ray   	ray;
-	t_ll    	*tp_l;
-	t_ol    	*tp_o;
+	int x = 0;
+	int y = 0;
+	t_ray   ray;
+	t_ll    *tp_l;
+	t_ol    *tp_o;
 	t_shader	sh;
-	double		r;
 
-	x = 0;
-	y = 0;
+	double r;
 	while (x < WIDTH)
 	{
 		y = 0;
@@ -82,7 +69,7 @@ int 			raycast(t_env *e, t_ol *ol, t_ll *ll)
 			while (tp_o != NULL)
 			{
 				// intersect
-				r = intersection2(ray, tp_o, e);
+				r = intersection2(ray, tp_o);
 				ray.t = r < ray.t ? r : ray.t;//check if there is an intersection
 				if (ray.t > 0 && ray.t < FAR)
 				{
