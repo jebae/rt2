@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 10:52:58 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/10/01 17:36:33 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/10/02 11:41:29 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,18 +59,20 @@ t_col		specular_color(t_ray ray, t_vec3 normal, t_ol *ol, t_ll *ll)
 	t_vec3	L;
 	double tmp;
 	t_vec3	R;
+	t_vec3	V = v_mult(ray.dir, -1);
 	t_point	point;
 	t_col	c;
 
-	point.x = ray.dir.x * ray.t;
-   	point.y = ray.dir.y * ray.t;
-   	point.z = ray.dir.z * ray.t;
+	point.x = ray.ori.x + ray.dir.x * ray.t;
+   	point.y = ray.ori.y + ray.dir.y * ray.t;
+   	point.z = ray.ori.z + ray.dir.z * ray.t;
 	L = create_v(point, ll->pos);
 	L = v_normalise(L);
 	tmp = v_scal(normal, L);
+	tmp = tmp < 0 ? 0 : tmp;
 	R = v_mult(normal, 2 * tmp);
 	R = v_add(R, L, '-');
-	tmp = v_scal(R, v_mult(ray.dir, -1));
+	tmp = v_scal(R, V);
 	tmp = tmp < 0 ? 0 : tmp;
 		int sp = 1000;
 	tmp = pow(tmp, sp);	//ol->sp;
