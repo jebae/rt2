@@ -28,7 +28,7 @@ void    start_rtv1(t_env *e)
 	t_ll	*ll = &light;
 	t_ll	light2; light2.pos.x = 0; light2.pos.y = 0; light2.pos.z = -20;
 	light2.next = NULL;	
-	light.next = &light2;	
+	light.next = NULL;	
 	ll = &light;
 	///////////////////////////////////////////////////
 
@@ -41,18 +41,28 @@ void    start_rtv1(t_env *e)
 
 	e->amb.col.r = 0xFF * 0.1; e->amb.col.g = 0xFF * 0.1; e->amb.col.b = 0xFF * 0.2;
 	///////////////////////////////////////////////////
-/*
+
 	/////////////////// S P H E R E /////////////////////
-	t_ol obj; obj.cur_shape = 1; obj.cen.x = 5; obj.cen.y = 5;
+	t_ol obj; obj.cur_shape = 1; obj.cen.x = 0; obj.cen.y = -1;
 	obj.cen.z = 30; obj.next = NULL; obj.radius = 3;
 	t_ol	*ol;
 	ol = &obj;
 	/////////////////////////////////////////////////////
-*/	
+
+	/////////////////// P L A N E /////////////////////
+	t_ol pla; pla.cur_shape = 4;
+	pla.nor.x = 0; pla.nor.y = 1; pla.nor.z = 0; pla.d = 2;
+	pla.next = &obj; pla.radius = 50;
+	t_ol	*ol_pla;
+	ol_pla = &pla;
+	/////////////////////////////////////////////////////
+	
 	//raycast
 	printf("hello i am light [%f] [%f] [%f]\n", e->ll_lit->pos.x, e->ll_lit->pos.y, e->ll_lit->pos.z);
 	printf("hello i am FAKE light [%f] [%f] [%f]\n", ll->pos.x, ll->pos.y, ll->pos.z);
-	raycast(e, e->ll_obj, ll);
+	printf("obj 1 :%d, obj 2 :%d\n", e->ll_obj->cur_shape, e->ll_obj->next->cur_shape);
+	//raycast(e, e->ll_obj->next, e->ll_lit);
+	raycast(e, ol_pla, ll);
 	mlx_put_image_to_window(e->w.mp, e->w.wp, e->w.ip, 0, 0);
 	mlx_hook(e->w.wp, 2, 1L << 2, key_press, e);
 	mlx_hook(e->w.wp, 3, 1L << 3, key_release, e);

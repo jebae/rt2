@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:31:06 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/10/02 15:52:44 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/10/03 12:58:44 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(int ac, char **av)
 	/////////////////// P L A N E /////////////////////
 	t_ol pla; pla.cur_shape = 4;
 	pla.nor.x = 0; pla.nor.y = 1; pla.nor.z = 0; pla.d = 2;
-	pla.next = NULL; pla.radius = 50;
+	pla.next = &obj; pla.radius = 50;
 	t_ol	*ol_pla;
 	ol_pla = &pla;
 	/////////////////////////////////////////////////////

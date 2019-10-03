@@ -73,6 +73,8 @@ int raycast(t_env *e, t_ol *ol, t_ll *ll)
 				ray.t = r < ray.t ? r : ray.t;//check if there is an intersection
 				unsigned int c  = 0;
 				unsigned int s = 0;
+				
+				tp_o = tp_o->next;
 				if (ray.t > 0 && ray.t < FAR)
 				{
 					tp_l = ll;
@@ -84,7 +86,6 @@ int raycast(t_env *e, t_ol *ol, t_ll *ll)
 					}
 					color_pixel(x, y, sh, e);
 				}
-				tp_o = tp_o->next;
 			}
 			y++;
 		}

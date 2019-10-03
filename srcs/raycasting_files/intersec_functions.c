@@ -56,15 +56,10 @@ t_point	find_point_on_plane(t_ol *ol)
 {
 	t_point	C;
 
-	C.x = 0;
-	C.y = 0;
-	C.z = 0;
-	if (ol->nor.x != 0)
-		C.x = ol->d / ol->nor.x;
-	else if (ol->nor.y != 0)
-		C.y = ol->d / ol->nor.y;
-	else if (ol->nor.z != 0)
-		C.z = ol->d / ol->nor.z;
+	C.x = ol->nor.x * ol->d / v_scal(ol->nor, ol->nor);
+	C.y = ol->nor.y * ol->d / v_scal(ol->nor, ol->nor);
+	C.z = ol->nor.z * ol->d / v_scal(ol->nor, ol->nor);
+	
 	return (C);
 }
 
@@ -79,6 +74,7 @@ double	v_intersect_pl(t_ray ray, t_ol *ol)
 
 	C = find_point_on_plane(ol);
 	X = create_v(C, O);
+	X = v_normalise(X);
 //	printf("%f %f %f\n", O.x, O.y, O.z);
 	if (v_scal(D, V) == 0)
 		return (FAR);

@@ -70,9 +70,10 @@ int raycast(t_env *e, t_ol *ol, t_ll *ll)
 			{
 				// intersect
 				r = intersection2(ray, tp_o);
-				ray.t = r < ray.t ? r : ray.t;//check if there is an intersection
-				if (ray.t > 0 && ray.t < FAR)
+				//check if there is an intersection
+				if (r > 0 && r < FAR && r < ray.t)
 				{
+					ray.t = r < ray.t ? r : ray.t;
 					tp_l = ll;
 					sh = init_shader();
 					while (tp_l != NULL)
