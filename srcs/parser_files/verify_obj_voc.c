@@ -130,6 +130,7 @@ int		shapevocab_checker(t_env *e, t_parser *p)
 	if (e->cs == 4)
 		if ((ret = shapevocab_checker_plane(p)) != 0)
 			return (ret);
-	ft_strfree(p->s_tmp);
+	free(p->s_tmp);
+	p->s_tmp = NULL;
 	return (0);
 }

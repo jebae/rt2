@@ -70,6 +70,5 @@ int		verify_numbers_three(t_env *e, t_parser *p, t_ll *l_head, t_ol *o_head)
 	}
 	else
 		storing_three(e, p, l_tmp, o_tmp);
-	// ft_strfree(p->strtwo);
 	return (0);
 }

@@ -105,6 +105,5 @@ int		verifyobjecttags_closings(t_env *e, t_parser *p, char *split)
 		if ((p->ret_p = verifyobjecttags_closings_two(e, p)) != 0)
 			return (p->ret_p);
 	}
-	ft_strfree(p->tmp);
 	return (0);
 }

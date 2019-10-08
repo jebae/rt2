@@ -56,7 +56,6 @@ int			globals(t_parser *p, char *gnl_line)
 		}
 	if ((p->ret_p = globals_two(p, tabless, ret_tabs)) != 0)
 		return (p->ret_p);
-	ft_strfree(tabless);
 	return (0);
 }
 
