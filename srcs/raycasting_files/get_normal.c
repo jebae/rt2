@@ -12,10 +12,10 @@
 
 #include "raycast.h"
 
-t_vec3      normal_sphere(t_ray ray, t_ol * ol)
+t_vec3	normal_sphere(t_ray ray, t_ol * ol)
 {
-	t_vec3  normal;
-	t_point point;
+	t_vec3	normal;
+	t_point	point;
 
 	point = find_point_from_ray(ray);
 	normal = create_v(ol->cen, point);
@@ -23,7 +23,7 @@ t_vec3      normal_sphere(t_ray ray, t_ol * ol)
 	return (normal);
 }
 
-t_vec3      normal_cylinder(t_ray ray, t_ol *ol)
+t_vec3	normal_cylinder(t_ray ray, t_ol *ol)
 {
 	t_vec3	X;
 	t_vec3	N;
@@ -39,7 +39,7 @@ t_vec3      normal_cylinder(t_ray ray, t_ol *ol)
 	return (N);
 }
 
-t_vec3      normal_cone(t_ray ray, t_ol *ol)
+t_vec3	normal_cone(t_ray ray, t_ol *ol)
 {
 	t_point	P;
 	t_vec3	X;
@@ -47,7 +47,6 @@ t_vec3      normal_cone(t_ray ray, t_ol *ol)
 	double	k;
 	double	m;
 
-	// m = D|V*t + X|V
 	P = find_point_from_ray(ray);
 	X = create_v(ol->cen, ray.ori);
 	ol->dir = v_normalise(ol->dir);
@@ -60,7 +59,7 @@ t_vec3      normal_cone(t_ray ray, t_ol *ol)
 	return (N);
 }
 
-t_vec3		normal_plane(t_ray ray, t_ol *ol)
+t_vec3	normal_plane(t_ray ray, t_ol *ol)
 {
 	t_vec3	normal;
 
@@ -71,8 +70,7 @@ t_vec3		normal_plane(t_ray ray, t_ol *ol)
 	return (v_normalise(normal));
 }
 
-
-t_vec3      get_normal(t_ray ray, t_ol *ol)
+t_vec3		get_normal(t_ray ray, t_ol *ol)
 {
 	t_vec3 normal;
 	if (ol->cur_shape == 1)
