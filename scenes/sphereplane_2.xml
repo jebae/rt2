@@ -9,30 +9,34 @@
 			<color>90, 90, 90</color>
 		</amb>
 		<light status = "basic">
-			<position>0, -10, -25</position>
-			<intensity>70, 75, 80</intensity>
-		</light>
-		<light status = "basic">
-			<position>0, 0, -20</position>
-			<intensity>70, 75, 80</intensity>
+			<position>-15, 15, 12</position>
+			<intensity>225, 225, 220</intensity>
 		</light>
 	</specs>
 	<objects>
 		<sphere status = "basic">
 			<radius>3</radius>
-			<center>0, -3, 20</center>
-			<diffusion>25, 35, 0</diffusion>
+			<center>0, 0, 10</center>
+			<diffusion>225, 235, 0</diffusion>
 			<reflection>10</reflection>
-			<specpower>10</specpower>
-			<specvalue>10</specvalue>
+			<specpower>1000</specpower>
+			<specvalue>100</specvalue>
 		</sphere>
 		<plane status = "basic">
-			<normal>0, 1, 0</normal>
-			<d>0</d>
+			<normal>0, -1, 0</normal>
+			<d>1</d>
 			<diffusion>0, 255, 0</diffusion>
+			<reflection>1</reflection>
+			<specpower>10000</specpower>
+			<specvalue>1</specvalue>
+		</plane>
+		<plane status = "basic">
+			<normal>1, 0, 0</normal>
+			<d>1</d>
+			<diffusion>0, 255, 255</diffusion>
 			<reflection>100</reflection>
-			<specpower>100</specpower>
-			<specvalue>100</specvalue>
+			<specpower>10000</specpower>
+			<specvalue>1</specvalue>
 		</plane>
 	</objects>
 </scene>

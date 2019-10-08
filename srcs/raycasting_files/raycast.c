@@ -78,7 +78,7 @@ int raycast(t_env *e, t_ol *ol, t_ll *ll)
 					sh = init_shader();
 					while (tp_l != NULL)
 					{
-						sh = shader_add(sh, compute_color(ray, tp_o, tp_l));
+						sh = shader_add(sh, compute_color(ray, tp_o, tp_l, e));
 						tp_l = tp_l->next;
 					}
 					color_pixel(x, y, sh, e);

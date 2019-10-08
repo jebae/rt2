@@ -63,7 +63,7 @@ double  intersection2(t_ray ray, t_ol *ol);
 ** Coloring functions
 */
 
-t_shader        compute_color(t_ray ray,t_ol *ol, t_ll *ll);
+t_shader        compute_color(t_ray ray,t_ol *ol, t_ll *ll, t_env *e);
 void    color_pixel(int x, int y, t_shader sh, t_env *e); //to be changed for using img
 t_shader        init_shader(void);
 t_shader        shader_add(t_shader sh1, t_shader sh2);
