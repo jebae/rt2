@@ -94,6 +94,7 @@ int		verify_line(t_env *e, t_parser *p, t_ll **l_head, t_ol **o_head)
 	else if (p->objects == 1 && (p->scene != 1 || p->specs != 2))
 		return (4);
 	ft_delsplit(p->split);
+	ft_bzero(&p, sizeof(p));
 	return (0);
 }
 
@@ -120,5 +121,6 @@ int		parser(t_env *e, t_parser *p, int fd)
 		+ p->count.cylinders;
 	e->ll_lit = l_head;
 	e->ll_obj = o_head;
+	ft_strfree(p->gnl_line);
 	return (last_checks(p));
 }
