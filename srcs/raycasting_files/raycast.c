@@ -63,14 +63,11 @@ int raycast(t_env *e, t_ol *ol, t_ll *ll)
 		y = 0;
 		while (y < WIDTH)
 		{
-			// cast a ray
 			ray = cast_ray(x, y, e->cam);
 			tp_o = ol;
 			while (tp_o != NULL)
 			{
-				// intersect
 				r = intersection(ray, tp_o);
-				//check if there is an intersection
 				if (r > 0 && r < FAR && r < ray.t)
 				{
 					ray.t = r < ray.t ? r : ray.t;
