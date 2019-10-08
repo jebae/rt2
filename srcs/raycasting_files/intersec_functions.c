@@ -6,15 +6,14 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 14:08:14 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/10/02 12:03:30 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/10/01 17:22:51 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycast.h"
 
-double	v_intersect_sp2(t_ray ray, t_ol *ol, t_env *e)
+double	v_intersect_sp2(t_ray ray, t_ol *ol)
 {
-	(void)e;
 	t_point	C = ol->cen;
 	t_point	O = ray.ori;
 	t_vec3	D = ray.dir;
@@ -56,22 +55,19 @@ double	v_intersect_sp2(t_ray ray, t_ol *ol, t_env *e)
 t_point	find_point_on_plane(t_ol *ol)
 {
 	t_point	C;
+	t_vec3	normal = v_normalise(ol->nor);
 
-	C.x = 0;
-	C.y = 0;
-	C.z = 0;
-	if (ol->nor.x != 0)
-		C.x = ol->d / ol->nor.x;
-	else if (ol->nor.y != 0)
-		C.y = ol->d / ol->nor.y;
-	else if (ol->nor.z != 0)
-		C.z = ol->d / ol->nor.z;
+	C.x = normal.x * (double)ol->d / v_scal(normal, normal);
+	C.y = normal.y * (double)ol->d / v_scal(normal, normal);
+	C.z = normal.z * (double)ol->d / v_scal(normal, normal);
+		// C.x = -100;
+		// C.y = 1;
+		// C.z = -100;
 	return (C);
 }
 
-double	v_intersect_pl(t_ray ray, t_ol *ol, t_env *e)
+double	v_intersect_pl(t_ray ray, t_ol *ol)
 {
-	(void)e;
 	t_point	O = ray.ori;
 	t_point	C;
 	t_vec3	X;
@@ -81,18 +77,23 @@ double	v_intersect_pl(t_ray ray, t_ol *ol, t_env *e)
 
 	C = find_point_on_plane(ol);
 	X = create_v(C, O);
-//	printf("%f %f %f\n", O.x, O.y, O.z);
+		
+	// X = v_normalise(X);
+	// printf("%f %f %f\n", X.x, X.y, X.z);
 	if (v_scal(D, V) == 0)
 		return (FAR);
 	t = -v_scal(X, V) / v_scal(D, V);
-	if (t < 0)
+	// t = t0 = -(dotproduct(p.dir, r.start) + p.d) / dotproduct(p.dir, r.dir);
+	// t_vec3 start; start.x = ray.ori.x; start.y = ray.ori.y; start.y = ray.ori.y; 
+	// t = -(v_scal(ol->nor, start) + ol->d) / (v_scal(ol->nor, ray.dir)); 
+	if (t <= 0)
 		return (FAR);
+		// printf("t = %f\n", t);
 	return (t);
 }
 
-double	v_intersect_co(t_ray ray, t_ol *ol, t_env *e)
+double	v_intersect_co(t_ray ray, t_ol *ol)
 {
-	(void)e;
 	t_point C = ol->cen;
 	t_point O = ray.ori;
 	t_vec3	V = v_normalise(ol->dir);

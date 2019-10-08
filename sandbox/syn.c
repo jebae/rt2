@@ -6,14 +6,14 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 17:19:01 by mhernand          #+#    #+#             */
-/*   Updated: 2019/10/01 16:18:03 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/10/02 15:58:30 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sandbox.h"
 
 
-double  v_intersect_cy(t_ray ray, t_ol *ol, t_env *e)
+double  v_intersect_cy(t_ray ray, t_ol *ol)
 {
 	t_point	O = ray.ori;
 	t_point	C = ol->cen;

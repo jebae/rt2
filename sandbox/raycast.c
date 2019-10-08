@@ -6,22 +6,22 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 17:15:40 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/10/01 17:37:53 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/10/02 15:58:19 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sandbox.h"
 
-double  intersection2(t_ray ray, t_ol *ol, t_env *e)
+double  intersection2(t_ray ray, t_ol *ol)
 {
 	if (ol->cur_shape == 1)
-		return (v_intersect_sp2(ray, ol, e));
+		return (v_intersect_sp2(ray, ol));
 	if (ol->cur_shape == 2)
-		return (v_intersect_co(ray, ol, e));
+		return (v_intersect_co(ray, ol));
 	if (ol->cur_shape == 3)
-		return (v_intersect_cy(ray, ol, e));
+		return (v_intersect_cy(ray, ol));
 	if (ol->cur_shape == 4)
-		return (v_intersect_pl(ray, ol, e));
+		return (v_intersect_pl(ray, ol));
 	return (0);
 }
 
@@ -69,10 +69,12 @@ int raycast(t_env *e, t_ol *ol, t_ll *ll)
 			while (tp_o != NULL)
 			{
 				// intersect
-				r = intersection2(ray, tp_o, e);
+				r = intersection2(ray, tp_o);
 				ray.t = r < ray.t ? r : ray.t;//check if there is an intersection
 				unsigned int c  = 0;
 				unsigned int s = 0;
+				
+				tp_o = tp_o->next;
 				if (ray.t > 0 && ray.t < FAR)
 				{
 					tp_l = ll;
@@ -84,7 +86,6 @@ int raycast(t_env *e, t_ol *ol, t_ll *ll)
 					}
 					color_pixel(x, y, sh, e);
 				}
-				tp_o = tp_o->next;
 			}
 			y++;
 		}

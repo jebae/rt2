@@ -6,22 +6,26 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 17:15:40 by sabonifa          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/10/02 12:01:16 by sabonifa         ###   ########.fr       */
+=======
+/*   Updated: 2019/10/01 17:37:53 by sabonifa         ###   ########.fr       */
+>>>>>>> ShadingBranch
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycast.h"
 
-double  intersection2(t_ray ray, t_ol *ol, t_env *e)
+double  intersection2(t_ray ray, t_ol *ol)
 {
 	if (ol->cur_shape == 1)
-		return (v_intersect_sp2(ray, ol, e));
+		return (v_intersect_sp2(ray, ol));
 	if (ol->cur_shape == 2)
-		return (v_intersect_co(ray, ol, e));
+		return (v_intersect_co(ray, ol));
 	if (ol->cur_shape == 3)
-		return (v_intersect_cy(ray, ol, e));
+		return (v_intersect_cy(ray, ol));
 	if (ol->cur_shape == 4)
-		return (v_intersect_pl(ray, ol, e));
+		return (v_intersect_pl(ray, ol));
 	return (0);
 }
 
@@ -69,15 +73,16 @@ int raycast(t_env *e, t_ol *ol, t_ll *ll)
 			while (tp_o != NULL)
 			{
 				// intersect
-				r = intersection2(ray, tp_o, e);
-				ray.t = r < ray.t ? r : ray.t;//check if there is an intersection
-				if (ray.t > 0 && ray.t < FAR)
+				r = intersection2(ray, tp_o);
+				//check if there is an intersection
+				if (r > 0 && r < FAR && r < ray.t)
 				{
+					ray.t = r < ray.t ? r : ray.t;
 					tp_l = ll;
 					sh = init_shader();
 					while (tp_l != NULL)
 					{
-						sh = shader_add(sh, compute_color(ray, tp_o, tp_l));
+						sh = shader_add(sh, compute_color(ray, tp_o, tp_l, e));
 						tp_l = tp_l->next;
 					}
 					color_pixel(x, y, sh, e);

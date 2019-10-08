@@ -51,19 +51,19 @@ t_vec3    v_normalise(t_vec3 u);
 ** Intersection functions
 */
 
-double  v_intersect_sp(t_vec3 ray, t_ol *ol, t_env *e);
-double  v_intersect_pl(t_ray ray, t_ol *ol, t_env *e);
+double  v_intersect_sp(t_vec3 ray, t_ol *ol);
+double  v_intersect_pl(t_ray ray, t_ol *ol);
 
-double  v_intersect_cy(t_ray ray, t_ol *ol, t_env *e);
-double  v_intersect_co(t_ray ray, t_ol *ol, t_env *e);
-double  v_intersect_sp2(t_ray ray, t_ol *ol, t_env *e);
-double  intersection2(t_ray ray, t_ol *ol, t_env *e);
+double  v_intersect_cy(t_ray ray, t_ol *ol);
+double  v_intersect_co(t_ray ray, t_ol *ol);
+double  v_intersect_sp2(t_ray ray, t_ol *ol);
+double  intersection2(t_ray ray, t_ol *ol);
 
 /*
 ** Coloring functions
 */
 
-t_shader        compute_color(t_ray ray,t_ol *ol, t_ll *ll);
+t_shader        compute_color(t_ray ray,t_ol *ol, t_ll *ll, t_env *e);
 void    color_pixel(int x, int y, t_shader sh, t_env *e); //to be changed for using img
 t_shader        init_shader(void);
 t_shader        shader_add(t_shader sh1, t_shader sh2);

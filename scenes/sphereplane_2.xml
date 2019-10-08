@@ -1,0 +1,42 @@
+<scene>
+	<specs>
+		<cam>
+			<position>0, 0, -50</position>
+			<direction>0, -10, 0</direction>
+		</cam>
+		<amb>
+			<specpower>80</specpower>
+			<color>90, 90, 90</color>
+		</amb>
+		<light status = "basic">
+			<position>-15, 15, 12</position>
+			<intensity>225, 225, 220</intensity>
+		</light>
+	</specs>
+	<objects>
+		<sphere status = "basic">
+			<radius>3</radius>
+			<center>0, 0, 10</center>
+			<diffusion>225, 235, 0</diffusion>
+			<reflection>10</reflection>
+			<specpower>1000</specpower>
+			<specvalue>100</specvalue>
+		</sphere>
+		<plane status = "basic">
+			<normal>0, -1, 0</normal>
+			<d>1</d>
+			<diffusion>0, 255, 0</diffusion>
+			<reflection>1</reflection>
+			<specpower>10000</specpower>
+			<specvalue>1</specvalue>
+		</plane>
+		<plane status = "basic">
+			<normal>1, 0, 0</normal>
+			<d>1</d>
+			<diffusion>0, 255, 255</diffusion>
+			<reflection>100</reflection>
+			<specpower>10000</specpower>
+			<specvalue>1</specvalue>
+		</plane>
+	</objects>
+</scene>
