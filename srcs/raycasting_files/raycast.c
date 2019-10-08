@@ -12,7 +12,7 @@
 
 #include "raycast.h"
 
-double  intersection2(t_ray ray, t_ol *ol)
+double  intersection(t_ray ray, t_ol *ol)
 {
 	if (ol->cur_shape == 1)
 		return (v_intersect_sp2(ray, ol));
@@ -69,7 +69,7 @@ int raycast(t_env *e, t_ol *ol, t_ll *ll)
 			while (tp_o != NULL)
 			{
 				// intersect
-				r = intersection2(ray, tp_o);
+				r = intersection(ray, tp_o);
 				//check if there is an intersection
 				if (r > 0 && r < FAR && r < ray.t)
 				{

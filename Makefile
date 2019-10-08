@@ -6,7 +6,7 @@
 #    By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 07:58:15 by mhernand          #+#    #+#              #
-#    Updated: 2019/10/02 12:28:42 by sabonifa         ###   ########.fr        #
+#    Updated: 2019/10/08 14:40:54 by sabonifa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,7 +90,7 @@ objects :
 	@mkdir -p $(BUILD_DIR)
 
 $(NAME):$(OBJ) | $(L_TARG)
-	@$(CC) $(CFLAGS) $(INC) libft/libft.a $(LIBMLX) -fsanitize=address $(OBJ) -o $(NAME)
+	@$(CC) $(CFLAGS) $(INC) libft/libft.a -fsanitize=address $(LIBMLX) $(OBJ) -o $(NAME)
 	@touch .gitignore
 	@printf "\033[32m[ ✔ ] $(NAME)\n\033[0m"
 	@echo $(OBJ) > .gitignore

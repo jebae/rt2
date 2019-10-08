@@ -77,7 +77,7 @@ double			send_shadow_ray(t_point point, t_vec3 light, t_ol *ol)
 	tp_o = ol;
 	while (tp_o != NULL)
 		{
-			r = intersection2(shadow_ray, tp_o);
+			r = intersection(shadow_ray, tp_o);
 			if (r > 0.00001)
 			{
 				shadow_ray.t = r < shadow_ray.t ? r : shadow_ray.t;
