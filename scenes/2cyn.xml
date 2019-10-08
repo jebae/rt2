@@ -24,5 +24,15 @@
 			<specpower>10</specpower>
 			<specvalue>10</specvalue>
 		</cylinder>
+		<cylinder status = "basic">
+			<angle>10</angle>
+			<radius>1</radius>
+			<direction>0, 1, 0</direction>
+			<center>-10, 0, 20</center>
+			<diffusion>0, 200, 0</diffusion>
+			<reflection>10</reflection>
+			<specpower>10</specpower>
+			<specvalue>10</specvalue>
+		</cylinder>
 	</objects>
 </scene>

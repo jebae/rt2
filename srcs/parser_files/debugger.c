@@ -131,11 +131,11 @@ int			error(t_env *e, t_parser *p, int i)
 	}
 	if (i > 25)
 		lineless_errors(p, i);
-	ft_strfree(p->gnl_line);
-	ft_strfree(p->strone);
-	ft_strfree(p->strtwo);
-	ft_strfree(p->tmp);
-	ft_strdel(p->split);
+	// ft_strfree(p->gnl_line);
+	// ft_strfree(p->strone);
+	// ft_strfree(p->strtwo);
+	// ft_strfree(p->tmp);
+	// ft_strdel(p->split);
 	quit(e);
 	return (0);
 }

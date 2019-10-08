@@ -12,9 +12,9 @@
 
 #include "raycast.h"
 
-t_col       color_add(t_col c1, t_col c2)
+t_col		color_add(t_col c1, t_col c2)
 {
-	t_col   c;
+	t_col	c;
 
 	c.r = (c1.r + c2.r);
 	c.g = (c1.g + c2.g);
@@ -25,9 +25,9 @@ t_col       color_add(t_col c1, t_col c2)
 	return (c);
 }
 
-t_shader        init_shader(void)
+t_shader	init_shader(void)
 {
-	t_shader    shader;
+	t_shader	shader;
 
 	shader.diff.r = 0;
 	shader.diff.g = 0;
@@ -38,27 +38,24 @@ t_shader        init_shader(void)
 	return (shader);
 }
 
-t_shader        shader_add(t_shader sh1, t_shader sh2)
+t_shader	shader_add(t_shader sh1, t_shader sh2)
 {
-	t_shader    s;
+	t_shader	s;
 
 	s.diff = color_add(sh1.diff, sh2.diff);
 	s.spec = color_add(sh1.spec, sh2.spec);
 	return (s);
 }
 
-void    color_pixel(int x, int y, t_shader sh, t_env *e)
+void		color_pixel(int x, int y, t_shader sh, t_env *e)
 {
-	t_col   c;
-	
+	t_col	c;
+
 	c = sh.diff;
 	c = color_add(sh.diff, sh.spec);
 	c = color_add(c, e->amb.col);
-	// mlx_pixel_put(e->w.mp, e->w.wp, x, y, (c.r << 16) + (c.g << 8) + c.b);
-	// images
 	e->data[0 + x * (e->w.bpp / 8) + y * e->w.sl] = c.b;
 	e->data[1 + x * (e->w.bpp / 8) + y * e->w.sl] = c.g;
 	e->data[2 + x * (e->w.bpp / 8) + y * e->w.sl] = c.r;
 	e->data[3 + x * (e->w.bpp / 8) + y * e->w.sl] = 0;
-
 }
