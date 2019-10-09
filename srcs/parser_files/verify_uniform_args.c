@@ -93,7 +93,6 @@ int		verify_tag_to_argument_three(char *string)
 
 int		verify_tag_to_argument(t_parser *p, char *string, int args)
 {
-	p->tmp = ft_strdup(string);
 	if (args == 1)
 	{
 		if (ft_strcmp("radius", string) == 0)

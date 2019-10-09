@@ -91,7 +91,7 @@ objects :
 	@mkdir -p $(BUILD_DIR)
 
 $(NAME):$(OBJ) | $(L_TARG)
-	@$(CC) $(CFLAGS) $(INC) libft/libft.a $(LIBMLX) -fsanitize=address $(OBJ) -o $(NAME)
+	@$(CC) $(CFLAGS) $(INC) libft/libft.a $(LIBMLX) $(OBJ) -o $(NAME)
 	@touch .gitignore
 	@printf "\033[32m[ ✔ ] $(NAME)\n\033[0m"
 	@echo $(OBJ) > .gitignore

@@ -29,7 +29,10 @@ int			verify_light(t_env *e, t_ll **l_head, t_parser *p)
 
 int			verifyspectags_openings(t_env *e, t_ll **l_head, t_parser *p)
 {
-	p->tmp = ft_strsub(p->split[0], 2, (ft_strlen(p->split[0]) - 2));
+	int		t;
+
+	t = ft_strclen(p->split[0], '<');
+	p->tmp = ft_strsub(p->split[0], t, (ft_strlen(p->split[0])) - t);
 	if (ft_strcmp("<cam>", p->tmp) == 0)
 	{
 		if (p->p_spec.amb_cl > 0)

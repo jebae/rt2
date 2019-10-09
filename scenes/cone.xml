@@ -1,25 +1,25 @@
 <scene>
 	<specs>
 		<cam>
-			<position>0, 100, 0</position>
-			<direction>0, 1, 0</direction>
+			<position>0, 1, 0</position>
+			<direction>0, -10, 0</direction>
 		</cam>
 		<amb>
 			<specpower>80</specpower>
-			<color>0, 0, 2550</color>
+			<color>90, 90, 90</color>
 		</amb>
 		<light status = "basic">
-			<position>-12, 0, 25</position>
-			<intensity>255, 255, 255</intensity>
+			<position>26, 22, 25</position>
+			<intensity>70, 75, 80</intensity>
 		</light>
 	</specs>
 	<objects>
 		<cone status = "basic">
-			<angle>60</angle>
-			<radius>5</radius>
+			<angle>80</angle>
+			<radius>3</radius>
 			<direction>0, 1, 0</direction>
-			<center>0, 0, 25</center>
-			<diffusion>0, 200, 0</diffusion>
+			<center>0, 0, 20</center>
+			<diffusion>255, 20, 100</diffusion>
 			<reflection>10</reflection>
 			<specpower>10</specpower>
 			<specvalue>10</specvalue>

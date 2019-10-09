@@ -22,5 +22,69 @@
 			<specpower>10</specpower>
 			<specvalue>10</specvalue>
 		</sphere>
+		<sphere status = "basic">
+			<radius>3</radius>
+			<center>5, 5, 30</center>
+			<diffusion>25, 35, 0</diffusion>
+			<reflection>10</reflection>
+			<specpower>10</specpower>
+			<specvalue>10</specvalue>
+		</sphere>
+		<sphere status = "basic">
+			<radius>3</radius>
+			<center>5, 5, 30</center>
+			<diffusion>25, 35, 0</diffusion>
+			<reflection>10</reflection>
+			<specpower>10</specpower>
+			<specvalue>10</specvalue>
+		</sphere>
+		<sphere status = "basic">
+			<radius>3</radius>
+			<center>5, 5, 30</center>
+			<diffusion>25, 35, 0</diffusion>
+			<reflection>10</reflection>
+			<specpower>10</specpower>
+			<specvalue>10</specvalue>
+		</sphere>
+		<sphere status = "basic">
+			<radius>3</radius>
+			<center>5, 5, 30</center>
+			<diffusion>25, 35, 0</diffusion>
+			<reflection>10</reflection>
+			<specpower>10</specpower>
+			<specvalue>10</specvalue>
+		</sphere>
+		<sphere status = "basic">
+			<radius>3</radius>
+			<center>5, 5, 30</center>
+			<diffusion>25, 35, 0</diffusion>
+			<reflection>10</reflection>
+			<specpower>10</specpower>
+			<specvalue>10</specvalue>
+		</sphere>
+		<sphere status = "basic">
+			<radius>3</radius>
+			<center>5, 5, 30</center>
+			<diffusion>25, 35, 0</diffusion>
+			<reflection>10</reflection>
+			<specpower>10</specpower>
+			<specvalue>10</specvalue>
+		</sphere>
+		<sphere status = "basic">
+			<radius>3</radius>
+			<center>5, 5, 30</center>
+			<diffusion>25, 35, 0</diffusion>
+			<reflection>10</reflection>
+			<specpower>10</specpower>
+			<specvalue>10</specvalue>
+		</sphere>
+		<sphere status = "basic">
+			<radius>3</radius>
+			<center>5, 5, 30</center>
+			<diffusion>25, 35, 0</diffusion>
+			<reflection>10</reflection>
+			<specpower>10</specpower>
+			<specvalue>10</specvalue>
+		</sphere>
 	</objects>
 </scene>

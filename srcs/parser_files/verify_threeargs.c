@@ -121,7 +121,7 @@ int		verifyargs_three(t_env *e, t_parser *p, t_ll **l_head, t_ol **o_head)
 	p->v2 = ft_atoi(p->split[1]);
 	p->v3 = ft_atoi(p->split[2]);
 	if ((p->ret_p = verify_numbers_three(e, p, *l_head, *o_head)) != 0)
-		return (p->ret_p);
+		return (p->ret_p); // something here ?
 	ft_strfree(p->strone);
 	ft_strfree(p->strtwo);
 	return (0);

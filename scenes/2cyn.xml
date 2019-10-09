@@ -16,7 +16,7 @@
 	<objects>
 		<cylinder status = "basic">
 			<angle>10</angle>
-			<radius>1</radius>
+			<radius>5</radius>
 			<direction>0, 1, 0</direction>
 			<center>-10, 0, 20</center>
 			<diffusion>0, 200, 0</diffusion>
@@ -26,9 +26,9 @@
 		</cylinder>
 		<cylinder status = "basic">
 			<angle>10</angle>
-			<radius>1</radius>
+			<radius>2</radius>
 			<direction>0, 1, 0</direction>
-			<center>-10, 0, 20</center>
+			<center>0, 10, 20</center>
 			<diffusion>0, 200, 0</diffusion>
 			<reflection>10</reflection>
 			<specpower>10</specpower>

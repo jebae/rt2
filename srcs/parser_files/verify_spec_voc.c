@@ -43,7 +43,10 @@ int		verify_spec_atb_light(t_parser *p)
 
 int		verify_spec_atb(t_parser *p)
 {
-	p->s_tmp = ft_strsub(p->split[0], 4, (ft_strclen(p->split[0], '>') - 4));
+	int	t;
+
+	t = ft_strclen(p->split[0], '<') + 1;
+	p->s_tmp = ft_strsub(p->split[0], t, (ft_strclen(p->split[0], '>') - t));
 	if (p->p_spec.cam == 1)
 	{
 		if (ft_strcmp("position", p->s_tmp) == 0)

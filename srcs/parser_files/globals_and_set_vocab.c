@@ -49,13 +49,16 @@ int			globals(t_parser *p, char *gnl_line)
 		p->skip = 1;
 	}
 	if (ft_strcmp("</specs>", tabless) == 0 && ret_tabs == 1)
+	{
 		if ((p->ret_p = open_close(&p->specs)) != 0)
 		{
 			ft_strfree(tabless);
 			return (p->ret_p);
 		}
+	}
 	if ((p->ret_p = globals_two(p, tabless, ret_tabs)) != 0)
 		return (p->ret_p);
+	ft_strfree(tabless);
 	return (0);
 }
 

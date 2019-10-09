@@ -28,6 +28,8 @@ void		ft_delsplit(char **tab)
 		}
 		i++;
 	}
+	free(tab[i]);
+	tab[i] = NULL;
 	free(tab);
 	tab = NULL;
 }
