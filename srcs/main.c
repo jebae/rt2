@@ -12,7 +12,7 @@
 
 #include "rtv1.h"
 
-int			quit(t_env *e)
+int				quit(t_env *e)
 {
 	if (e->w.ip)
 		mlx_destroy_image(e->w.mp, e->w.ip);
@@ -24,7 +24,7 @@ int			quit(t_env *e)
 	return (0);
 }
 
-int			errors(t_env *e, int i)
+int				errors(t_env *e, int i)
 {
 	if (i == 0)
 		ft_putendl("usage:\t./rtv1 scene");
@@ -38,7 +38,7 @@ int			errors(t_env *e, int i)
 	return (0);
 }
 
-int			main(int argc, char **argv)
+int				main(int argc, char **argv)
 {
 	t_parser	p;
 	t_env		e;
@@ -52,7 +52,7 @@ int			main(int argc, char **argv)
 	fd = open(argv[1], O_RDWR);
 	if (fd < 0)
 		errors(&e, 1);
-	if ((ret = parser(&e, &p, fd)) != 0) // parser
+	if ((ret = parser(&e, &p, fd)) != 0)
 		error(&e, &p, ret);
 	if (!(e.w.mp = mlx_init()) \
 			|| !(e.w.wp = mlx_new_window(e.w.mp, WIDTH, HEIGHT, "RTv1")))

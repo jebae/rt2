@@ -57,10 +57,11 @@ SRCS = main.c start_rtv1.c\
 	raycasting_files/color_op.c\
 	raycasting_files/get_normal.c\
 	raycasting_files/intersec_functions.c\
+	raycasting_files/intersec_functions_2.c\
 	raycasting_files/raycast.c\
 	raycasting_files/shading.c\
-	raycasting_files/syn.c\
-	raycasting_files/vector_op.c
+	raycasting_files/vector_op.c\
+	raycasting_files/vector_op_2.c
 
 SUB_FOLD = parser_files handle raycasting_files
 

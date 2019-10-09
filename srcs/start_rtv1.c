@@ -71,18 +71,8 @@ void    start_rtv1(t_env *e)
 	////////
 	
 	//raycast
-<<<<<<< HEAD
-	printf("hello i am light [%f] [%f] [%f]\n", e->ll_lit->pos.x, e->ll_lit->pos.y, e->ll_lit->pos.z);
-	printf("hello i am FAKE light [%f] [%f] [%f]\n", ll->pos.x, ll->pos.y, ll->pos.z);
-	printf("obj 1 :%d, obj 2 :%d\n", e->ll_obj->cur_shape, e->ll_obj->next->cur_shape);
-	//raycast(e, e->ll_obj->next, e->ll_lit);
-=======
-	// printf("hello i am light [%f] [%f] [%f]\n", e->ll_lit->pos.x, e->ll_lit->pos.y, e->ll_lit->pos.z);
-	// printf("hello i am FAKE light [%f] [%f] [%f]\n", ll->pos.x, ll->pos.y, ll->pos.z);
-	// printf("obj 1 :%d, obj 2 :%d\n", e->ll_obj->cur_shape, e->ll_obj->next->cur_shape);
 	printf("%f\n", (((e->ll_obj->angle * M_PI) / 180) / 2));
 	printf("%f\n", (e->ll_obj->angle));
->>>>>>> c8496272eaa312ca8293ee6913815e7739460bf3
 	raycast(e, e->ll_obj, e->ll_lit);
 	// raycast(e, ol_cl, e->ll_lit);
 	// raycast(e, ol_co, e->ll_lit);

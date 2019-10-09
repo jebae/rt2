@@ -6,13 +6,13 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 17:15:40 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/10/01 17:37:53 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/10/09 11:23:18 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycast.h"
 
-double  intersection(t_ray ray, t_ol *ol)
+double			intersection(t_ray ray, t_ol *ol)
 {
 	if (ol->cur_shape == 1)
 		return (v_intersect_sp2(ray, ol));
@@ -25,17 +25,17 @@ double  intersection(t_ray ray, t_ol *ol)
 	return (0);
 }
 
-double  to_vertex(int x, double f_width, int w_width)
+double			to_vertex(int x, double f_width, int w_width)
 {
-	return ( x * f_width / w_width - (f_width / 2));
+	return (x * f_width / w_width - (f_width / 2));
 }
 
-t_ray   cast_ray(int x, int y, t_camera cam)
+t_ray			cast_ray(int x, int y, t_camera cam)
 {
-	t_ray   ray;
-	t_vec3    up;
-	t_vec3    left;
-	t_vec3    forw;
+	t_ray		ray;
+	t_vec3		up;
+	t_vec3		left;
+	t_vec3		forw;
 
 	ray.ori = cam.campos;
 	left = v_mult(cam.left, to_vertex(x, cam.f_wdth, WIDTH));
@@ -48,43 +48,44 @@ t_ray   cast_ray(int x, int y, t_camera cam)
 	return (ray);
 }
 
-int raycast(t_env *e, t_ol *ol, t_ll *ll)
+void			raycast_2(t_env *e, t_shader sh, t_ll *ll, t_ray ray)
 {
-	int x = 0;
-	int y = 0;
-	t_ray   ray;
-	t_ll    *tp_l;
-	t_ol    *tp_o;
+	while (e->tp_o != NULL)
+	{
+		e->r = intersection(ray, e->tp_o);
+		if (e->r > 0 && e->r < FAR && e->r < ray.t)
+		{
+			ray.t = e->r < ray.t ? e->r : ray.t;
+			e->tp_l = ll;
+			sh = init_shader();
+			while (e->tp_l != NULL)
+			{
+				sh = shader_add(sh, compute_color(ray, e->tp_o, e->tp_l, e));
+				e->tp_l = e->tp_l->next;
+			}
+			color_pixel(e->x, e->y, sh, e);
+		}
+		e->tp_o = e->tp_o->next;
+	}
+}
+
+int				raycast(t_env *e, t_ol *ol, t_ll *ll)
+{
+	t_ray		ray;
 	t_shader	sh;
 
-	double r;
-	while (x < WIDTH)
+	ft_bzero(&sh, sizeof(sh));
+	while (e->x < WIDTH)
 	{
-		y = 0;
-		while (y < WIDTH)
+		e->y = 0;
+		while (e->y < WIDTH)
 		{
-			ray = cast_ray(x, y, e->cam);
-			tp_o = ol;
-			while (tp_o != NULL)
-			{
-				r = intersection(ray, tp_o);
-				if (r > 0 && r < FAR && r < ray.t)
-				{
-					ray.t = r < ray.t ? r : ray.t;
-					tp_l = ll;
-					sh = init_shader();
-					while (tp_l != NULL)
-					{
-						sh = shader_add(sh, compute_color(ray, tp_o, tp_l, e));
-						tp_l = tp_l->next;
-					}
-					color_pixel(x, y, sh, e);
-				}
-				tp_o = tp_o->next;
-			}
-			y++;
+			ray = cast_ray(e->x, e->y, e->cam);
+			e->tp_o = ol;
+			raycast_2(e, sh, ll, ray);
+			e->y++;
 		}
-		x++;
+		e->x++;
 	}
 	return (0);
 }

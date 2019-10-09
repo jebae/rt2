@@ -22,7 +22,7 @@ t_point		create_pt(double x, double y, double z)
 	return (p);
 }
 
-t_vec3	create_v(t_point ori, t_point dest)
+t_vec3		create_v(t_point ori, t_point dest)
 {
 	t_vec3	u;
 
@@ -32,10 +32,10 @@ t_vec3	create_v(t_point ori, t_point dest)
 	return (u);
 }
 
-t_vec3	v_add(t_vec3 u, t_vec3 v, char c)
+t_vec3		v_add(t_vec3 u, t_vec3 v, char c)
 {
 	t_vec3	w;
-	int			s;
+	int		s;
 
 	s = 0;
 	if (c == '+')
@@ -48,37 +48,12 @@ t_vec3	v_add(t_vec3 u, t_vec3 v, char c)
 	return (w);
 }
 
-t_vec3	v_mult(t_vec3 u, double k)
+t_vec3		v_mult(t_vec3 u, double k)
 {
 	t_vec3	w;
 
 	w.x = k * u.x;
 	w.y = k * u.y;
 	w.z = k * u.z;
-	return (w);
-}
-
-double			v_scal(t_vec3 u, t_vec3 v)
-{
-	return (u.x * v.x + u.y * v.y + u.z * v.z);
-}
-
-double			v_norm(t_vec3 u)
-{
-	return (sqrt(v_scal(u, u)));
-}
-
-t_vec3		v_normalise(t_vec3 u)
-{
-	return (v_mult(u, 1 / v_norm(u)));
-}
-
-t_vec3	v_cross(t_vec3 u, t_vec3 v)
-{
-	t_vec3	w;
-
-	w.x = u.y * v.z - u.z * v.y;
-	w.y = u.z * v.x - u.x * v.z;
-	w.z = u.x * v.y - u.y * v.x;
 	return (w);
 }

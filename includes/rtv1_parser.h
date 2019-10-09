@@ -38,7 +38,7 @@ typedef struct		s_spec
 	int				amb_cl;
 }					t_spec;
 
-typedef struct		s_parseobj 
+typedef struct		s_parseobj
 {
 	int				sphere;
 	int				plane;
@@ -100,24 +100,24 @@ typedef struct		s_sphere_atb
 
 typedef struct		s_cam_atb
 {
-	int				position; // can be all 0, 0, 0 and negative
-	int				direction; // vector, can be all negative but not all 0, 0, 0
-	int				rotation; // can be all 0, 0, 0 and negative // no rules but limit is 360 (max)! -360 (min)
-	int				translation; // 0, 0, 0 // no rules add translation to position
+	int				position;
+	int				direction;
+	int				rotation;
+	int				translation;
 }					t_cam_atb;
 
 typedef struct		s_amb_atb
 {
 	int				power;
-	int				color; // ??
+	int				color;
 }					t_amb_atb;
 
 typedef struct		s_lig_atb
 {
 	int				position;
-	int				intensity; // 0 (min) to 255 (max)
-	int				rotate; // can be all 0, 0, 0 and negative // no rules but limit is 360 !
-	int				translate; // 0, 0, 0 // no rules add translation to position
+	int				intensity;
+	int				rotate;
+	int				translate;
 }					t_lig_atb;
 
 typedef struct		s_shape_count
@@ -146,8 +146,8 @@ typedef struct		s_parser
 	int				spec_order;
 	int				skip;
 	int				objects;
-	int 			voc_i;
-	int 			voc_check;
+	int				voc_i;
+	int				voc_check;
 	int				status;
 	int				set_one;
 	int				set_two;
@@ -169,7 +169,7 @@ typedef struct		s_parser
 	int				ret_p;
 	t_parseobj		p_obj;
 	t_spec			p_spec;
-	t_ret 			ret;
+	t_ret			ret;
 	t_shape_count	count;
 	t_pla_atb		p_atb;
 	t_cyn_atb		y_atb;
@@ -180,7 +180,6 @@ typedef struct		s_parser
 	t_cam_atb		ca_atb;
 }					t_parser;
 
-//functions for parser
 void				set_vocab(t_parser *p);
 int					open_close(int *check_me);
 int					extract_status(t_parser *p);

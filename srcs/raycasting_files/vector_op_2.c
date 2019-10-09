@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   touch.c                                            :+:      :+:    :+:   */
+/*   vector_op_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/25 15:58:55 by mhernand          #+#    #+#             */
-/*   Updated: 2019/10/09 11:33:19 by mhernand         ###   ########.fr       */
+/*   Created: 2019/10/09 10:47:38 by mhernand          #+#    #+#             */
+/*   Updated: 2019/10/09 10:48:34 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "raycast.h"
 
-int		key_press(int key, t_env *e)
+double		v_scal(t_vec3 u, t_vec3 v)
 {
-	e->k[key] = 1;
-	return (0);
+	return (u.x * v.x + u.y * v.y + u.z * v.z);
 }
 
-int		key_release(int key, t_env *e)
+double		v_norm(t_vec3 u)
 {
-	e->k[key] = 0;
-	return (0);
+	return (sqrt(v_scal(u, u)));
 }
 
-int		touch(t_env *e)
+t_vec3		v_normalise(t_vec3 u)
 {
-	if (e->k[ESC] == 1)
-		quit(e);
-	return (0);
+	return (v_mult(u, 1 / v_norm(u)));
+}
+
+t_vec3		v_cross(t_vec3 u, t_vec3 v)
+{
+	t_vec3	w;
+
+	w.x = u.y * v.z - u.z * v.y;
+	w.y = u.z * v.x - u.x * v.z;
+	w.z = u.x * v.y - u.y * v.x;
+	return (w);
 }
