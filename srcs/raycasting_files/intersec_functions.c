@@ -12,112 +12,11 @@
 
 #include "raycast.h"
 
-double	v_intersect_sp2(t_ray ray, t_ol *ol)
+double	find_closest_intersection(double a, double b, double c)
 {
-	t_point	C = ol->cen;
-	t_point	O = ray.ori;
-	t_vec3	D = ray.dir;
-	t_vec3	X = create_v(C, O);
-
-	double 	a;
-	double	b;
-	double	c;
-	double	r = ol->radius;
-	double delta;
-	double	t = FAR;
-	double	t2;
-
-	/*
-	 * a   = D|D
-	 *    b/2 = D|X
-	 *       c   = X|X - r*r
-	 */
-
-	a = v_scal(D, D);
-	b = 2 * v_scal(D, X);
-	c = v_scal(X, X) - r * r;
-
-	delta = b * b - 4 * a * c;
-	if (delta < 0)
-		return (FAR);
-	else
-	{
-		t = (-b + sqrt(delta)) / (2 * a);
-		t2 = (-b - sqrt(delta)) / (2 * a);
-		if (t <= 0 && t2 <= 0)
-			          return (0);
-			t = t > 0 ? t : t2;
-		t = t2 < t && t2 > 0 ? t2 : t;
-	}
-	return (t);
-}
-
-t_point	find_point_on_plane(t_ol *ol)
-{
-	t_point	C;
-	t_vec3	normal = v_normalise(ol->nor);
-
-	C.x = normal.x * (double)ol->d / v_scal(normal, normal);
-	C.y = normal.y * (double)ol->d / v_scal(normal, normal);
-	C.z = normal.z * (double)ol->d / v_scal(normal, normal);
-		// C.x = -100;
-		// C.y = 1;
-		// C.z = -100;
-	return (C);
-}
-
-double	v_intersect_pl(t_ray ray, t_ol *ol)
-{
-	t_point	O = ray.ori;
-	t_point	C;
-	t_vec3	X;
-	t_vec3	V = v_normalise(ol->nor);
-	t_vec3	D = ray.dir;
-	double	t;
-
-	C = find_point_on_plane(ol);
-	X = create_v(C, O);
-		
-	// X = v_normalise(X);
-	// printf("%f %f %f\n", X.x, X.y, X.z);
-	if (v_scal(D, V) == 0)
-		return (FAR);
-	t = -v_scal(X, V) / v_scal(D, V);
-	// t = t0 = -(dotproduct(p.dir, r.start) + p.d) / dotproduct(p.dir, r.dir);
-	// t_vec3 start; start.x = ray.ori.x; start.y = ray.ori.y; start.y = ray.ori.y; 
-	// t = -(v_scal(ol->nor, start) + ol->d) / (v_scal(ol->nor, ray.dir)); 
-	if (t <= 0)
-		return (FAR);
-		// printf("t = %f\n", t);
-	return (t);
-}
-
-double	v_intersect_co(t_ray ray, t_ol *ol)
-{
-	t_point C = ol->cen;
-	t_point O = ray.ori;
-	t_vec3	V = v_normalise(ol->dir);
-	t_vec3	D = v_normalise(ray.dir);
-	t_vec3	X = create_v(C, O);
-	double	k = tan(ol->angle / 2);
-	double	t = ray.t;
-
-	double	a;
-	double	c;
-	double	b;
-	double 	delta;
+	double	delta;
 	double	t1;
 	double	t2;
-
-	/*
-	 * a   = D|D - (1+k*k)*(D|V)^2
-	 *    b/2 = D|X - (1+k*k)*(D|V)*(X|V)
-	 *       c   = X|X - (1+k*k)*(X|V)^2
-	 */
-
-	a = v_scal(D,D) - (1 + k * k) * v_scal(D, V) * v_scal(D,V);
-	b = 2 * (v_scal(D, X) - (1 + k * k) * (v_scal(D, V) * v_scal(X, V)));
-	c = v_scal(X, X) - (1 + k * k) * v_scal(X, V) * v_scal(X, V);
 
 	delta = b * b - 4 * a * c;
 	if (delta < 0)
@@ -126,10 +25,91 @@ double	v_intersect_co(t_ray ray, t_ol *ol)
 	{
 		t1 = (-b + sqrt(delta)) / (2 * a);
 		t2 = (-b - sqrt(delta)) / (2 * a);
-		if (t <= 0 && t2 <= 0)
+		if (t1 <= 0 && t2 <= 0)
 			return (0);
 		t1 = t1 > 0 ? t1 : t2;
 		t1 = t2 < t1 && t2 > 0 ? t2 : t1;
 	}
 	return (t1);
+}
+
+double	v_intersect_sp2(t_ray ray, t_ol *ol)
+{
+	t_vec3	v;
+	double	a;
+	double	b;
+	double	c;
+
+	v = create_v(ol->cen, ray.ori);
+	a = v_scal(ray.dir, ray.dir);
+	b = 2 * v_scal(ray.dir, v);
+	c = v_scal(v, v) - ol->radius * ol->radius;
+	return (find_closest_intersection(a, b, c));
+}
+
+t_point	find_point_on_plane(t_ol *ol)
+{
+	t_point	c;
+	t_vec3	normal;
+
+	normal = v_normalise(ol->nor);
+	c.x = normal.x * (double)ol->d / v_scal(normal, normal);
+	c.y = normal.y * (double)ol->d / v_scal(normal, normal);
+	c.z = normal.z * (double)ol->d / v_scal(normal, normal);
+	return (c);
+}
+
+double	v_intersect_pl(t_ray ray, t_ol *ol)
+{
+	t_point	c;
+	t_vec3	v;
+	double	t;
+
+	ol->nor = v_normalise(ol->nor);
+	c = find_point_on_plane(ol);
+	v = create_v(c, ray.ori);
+	if (v_scal(ray.dir, ol->nor) == 0)
+		return (FAR);
+	t = -v_scal(v, ol->nor) / v_scal(ray.dir, ol->nor);
+	if (t <= 0)
+		return (FAR);
+	return (t);
+}
+
+double	v_intersect_co(t_ray ray, t_ol *ol)
+{
+	t_vec3	v;
+	double	k;
+	double	a;
+	double	c;
+	double	b;
+
+	v = create_v(ol->cen, ray.ori);
+	k = tan(((ol->angle * M_PI) / 180) / 2);
+	ol->dir = v_normalise(ol->dir);
+	a = v_scal(ray.dir, ray.dir) - (1 + k * k)\
+		* v_scal(ray.dir, ol->dir) * v_scal(ray.dir, ol->dir);
+	b = 2 * (v_scal(ray.dir, v) - (1 + k * k)\
+		* (v_scal(ray.dir, ol->dir) * v_scal(v, ol->dir)));
+	c = v_scal(v, v) - (1 + k * k)\
+		* v_scal(v, ol->dir) * v_scal(v, ol->dir);
+	return (find_closest_intersection(a, b, c));
+}
+
+double	v_intersect_cy(t_ray ray, t_ol *ol)
+{
+	t_vec3	v;
+	double	a;
+	double	b;
+	double	c;
+
+	v = create_v(ol->cen, ray.ori);
+	ol->dir = v_normalise(ol->dir);
+	a = v_scal(ray.dir, ray.dir)\
+		- v_scal(ray.dir, ol->dir) * v_scal(ray.dir, ol->dir);
+	b = 2 * (v_scal(ray.dir, v)\
+		- v_scal(ray.dir, ol->dir) * v_scal(v, ol->dir));
+	c = v_scal(v, v) - v_scal(v, ol->dir) * v_scal(v, ol->dir)\
+		- ol->radius * ol->radius;
+	return (find_closest_intersection(a, b, c));
 }

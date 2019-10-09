@@ -57,7 +57,8 @@ double  v_intersect_pl(t_ray ray, t_ol *ol);
 double  v_intersect_cy(t_ray ray, t_ol *ol);
 double  v_intersect_co(t_ray ray, t_ol *ol);
 double  v_intersect_sp2(t_ray ray, t_ol *ol);
-double  intersection2(t_ray ray, t_ol *ol);
+double  intersection(t_ray ray, t_ol *ol);
+t_point		find_point_from_ray(t_ray ray);
 
 /*
 ** Coloring functions

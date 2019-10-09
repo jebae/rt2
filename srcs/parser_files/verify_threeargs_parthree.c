@@ -71,7 +71,7 @@ int		storing_three(t_env *e, t_parser *p, t_ll *l_tmp, t_ol *o_tmp)
 {
 	if (ft_strcmp("center", p->strtwo) == 0)
 	{
-		if ((e->cs == 0 || e->cs == 1 || e->cs == 2) && (p->objects == 1))
+		if ((e->cs == 1 || e->cs == 2 || e->cs == 3) && (p->objects == 1))
 		{
 			while (o_tmp->next != NULL)
 				o_tmp = o_tmp->next;

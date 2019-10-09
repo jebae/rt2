@@ -9,16 +9,16 @@
 			<color>0, 0, 2550</color>
 		</amb>
 		<light status = "basic">
-			<position>16, 12, 15</position>
-			<intensity>70, 75, 80</intensity>
+			<position>-12, 0, 25</position>
+			<intensity>255, 255, 255</intensity>
 		</light>
 	</specs>
 	<objects>
 		<cone status = "basic">
-			<angle>10</angle>
-			<radius>10</radius>
-			<direction>1, 2, 3</direction>
-			<center>10, 10, 0</center>
+			<angle>60</angle>
+			<radius>5</radius>
+			<direction>0, 1, 0</direction>
+			<center>0, 0, 25</center>
 			<diffusion>0, 200, 0</diffusion>
 			<reflection>10</reflection>
 			<specpower>10</specpower>
