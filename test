@@ -9,47 +9,47 @@ SCN5=scenes/plane.xml
 SCN6=scenes/sphereplane_2.xml
 SCN7=scenes/columns.xml
 
-for run in $(seq 1 100)
-do 
-	$CMD $SCN1;
-	echo $run "+++++++++++++++++++++++++++++++" $SCN1;
-	echo $CMD $SCN1 >> allshapes;
-done
+# for run in $(seq 1 100)
+# do 
+# 	$CMD $SCN1;
+# 	echo $run "+++++++++++++++++++++++++++++++" $SCN1;
+# 	echo $CMD $SCN1 >> allshapes;
+# done
 
-for run in $(seq 1 100) # i do not work
-do 
-	$CMD $SCN2;
-	echo $run "--------------------------------" $SCN2;
-	echo $CMD $SCN2 >> allshapes;
-done
+# for run in $(seq 1 100) # i do not work
+# do 
+# 	$CMD $SCN2;
+# 	echo $run "--------------------------------" $SCN2;
+# 	echo $CMD $SCN2 >> allshapes;
+# done
 
-for run in $(seq 1 100) # i do not work
-do 
-	$CMD $SCN3;
-	echo $run "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" $SCN3;
-	echo $CMD $SCN3 >> allshapes;
-done
+# for run in $(seq 1 100) # i do not work
+# do 
+# 	$CMD $SCN3;
+# 	echo $run "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" $SCN3;
+# 	echo $CMD $SCN3 >> allshapes;
+# done
 
-for run in $(seq 1 100)
-do 
-	$CMD $SCN4;
-	echo $run "++++++++++++++++++++++++++++++++" $SCN4;
-	echo $CMD $SCN4 >> allshapes;
-done
+# for run in $(seq 1 100)
+# do 
+# 	$CMD $SCN4;
+# 	echo $run "++++++++++++++++++++++++++++++++" $SCN4;
+# 	echo $CMD $SCN4 >> allshapes;
+# done
 
-for run in $(seq 1 100)
-do 
-	$CMD $SCN5;
-	echo $run "================================" $SCN5;
-	echo $CMD $SCN5 >> allshapes;
-done
+# for run in $(seq 1 100)
+# do 
+# 	$CMD $SCN5;
+# 	echo $run "================================" $SCN5;
+# 	echo $CMD $SCN5 >> allshapes;
+# done
 
-for run in $(seq 1 100)
-do 
-	$CMD $SCN6;
-	echo $run "********************************" $SCN6;
-	echo $CMD $SCN6 >> allshapes;
-done
+# for run in $(seq 1 100)
+# do 
+# 	$CMD $SCN6;
+# 	echo $run "********************************" $SCN6;
+# 	echo $CMD $SCN6 >> allshapes;
+# done
 
 for run in $(seq 1 100)
 do 

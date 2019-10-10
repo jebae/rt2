@@ -15,13 +15,15 @@
 int			ft_charfreq(char *str, int c)
 {
 	size_t	freq;
+	size_t	i;
 
 	freq = 0;
-	while (*str)
+	i = 0;
+	while (str[i])
 	{
-		if (*str == c)
+		if (str[i] == c)
 			freq++;
-		str++;
+		i++;
 	}
 	return (freq);
 }

@@ -97,6 +97,7 @@ int		verify_line(t_env *e, t_parser *p, t_ll **l_head, t_ol **o_head)
 	return (0);
 }
 
+
 int		parser(t_env *e, t_parser *p, int fd)
 {
 	t_ll		*l_head;
