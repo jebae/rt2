@@ -1,8 +1,8 @@
 <scene>
 	<specs>
 		<cam>
-			<position>0, 1, 0</position>
-			<direction>0, -10, 0</direction>
+			<position>0, 0, -50</position>
+			<direction>0, 0, 1</direction>
 		</cam>
 		<amb>
 			<specpower>80</specpower>
@@ -10,6 +10,10 @@
 		</amb>
 		<light status = "basic">
 			<position>-15, -15, 0</position>
+			<intensity>255, 255, 255</intensity>
+		</light>
+		<light status = "basic">
+			<position>15, -15, 0</position>
 			<intensity>255, 255, 255</intensity>
 		</light>
 	</specs>

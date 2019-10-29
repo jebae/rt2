@@ -10,30 +10,56 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strtrim(char const *s)
+static size_t	ft_firstchar_index(char *str)
 {
-	char	*ptr;
-	int		i;
-	int		len;
+	size_t	i;
 
 	i = 0;
+	while (str[i] && (str[i] == ' ' || str[i] == '\n' || str[i] == '\t'))
+		i++;
+	return (i);
+}
+
+static size_t	ft_lastchar_index(char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	i--;
+	while ((str[i] == ' ' || str[i] == '\n' || str[i] == '\t') && i > 0)
+		i--;
+	return (i);
+}
+
+char			*ft_strtrim(char const *s)
+{
+	size_t	first_char;
+	size_t	last_char;
+	size_t	i;
+	char	*trim;
+
 	if (!s)
 		return (NULL);
-	if (s[0] == '\0')
-		return ((char*)s);
-	while (s[i] && (s[i] == '\n' || s[i] == '\t' || s[i] == ' '))
-		i++;
-	len = ft_strlen(s);
-	if (len == 0)
-		return (ft_strnew(len));
-	while (s[len - 1] == '\n' || s[len - 1] == '\t' || s[len - 1] == ' ')
-		len--;
-	if (len == 0 && len + 1 == 0 && len - i == 0)
-		return (0);
-	if (!(ptr = ft_strsub(s, i, len - i)))
+	if (*s == 0)
+		return (ft_strdup(""));
+	first_char = ft_firstchar_index((char*)s);
+	last_char = ft_lastchar_index((char*)s);
+	i = last_char - first_char + 1;
+	if (first_char > last_char)
+		i = 0;
+	if (!(trim = (char*)malloc(sizeof(*trim) * (i + 1))))
 		return (NULL);
-	ptr[len] = '\0';
-	return (ptr);
+	i = 0;
+	while (first_char + i <= last_char)
+	{
+		trim[i] = s[first_char + i];
+		i++;
+	}
+	trim[i] = 0;
+	return (trim);
 }

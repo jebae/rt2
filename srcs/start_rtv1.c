@@ -11,6 +11,22 @@
 /* ************************************************************************** */
 
 #include "rtv1.h"
+#include "raycast.h"
+
+t_env   *setup_camera(t_env *e)
+{
+    t_vec3        tmp;
+
+    tmp.x = 0;
+    tmp.y = 1;
+    tmp.z = 0;
+
+    e->cam.forw = v_normalise(e->cam.camdir);
+    e->cam.left = (v_cross(tmp, e->cam.forw));
+    e->cam.up = v_normalise(v_cross(e->cam.forw, e->cam.left));
+        e->cam.f_wdth = WIDTH / 384; e->cam.f_hght = WIDTH / 384; e->cam.focal_length = 1;
+    return (e);
+}
 
 void    start_rtv1(t_env *e)
 {
@@ -19,12 +35,18 @@ void    start_rtv1(t_env *e)
 	e->cam.left.x = 0.33; e->cam.left.y = 0; e->cam.left.z = 0;
 	e->cam.up.x = 0; e->cam.up.y = 0.33; e->cam.up.z = 0;
 	e->cam.forw.x = 0; e->cam.forw.y = 0; e->cam.forw.z = 0.33;
-	e->cam.f_wdth = WIDTH / 128; e->cam.f_hght = WIDTH / 128; e->cam.focal_length = 3;
+	e->cam.f_wdth = WIDTH / 128; e->cam.f_hght = WIDTH / 128; e->cam.focal_length = 1;
 	
 	
 	//raycast
-	printf("%f\n", (((e->ll_obj->angle * M_PI) / 180) / 2));
-	printf("%f\n", (e->ll_obj->angle));
+	 e = setup_camera(e);
+        printf("dir = (%f %f %f)\n", e->cam.camdir.x, e->cam.camdir.y, e->cam.camdir.z);
+        printf("forward = (%f %f %f)\n", e->cam.forw.x, e->cam.forw.y, e->cam.forw.z);
+        printf("left = (%f %f %f)\n", e->cam.left.x, e->cam.left.y, e->cam.left.z);
+        printf("up = (%f %f %f)\n", e->cam.up.x, e->cam.up.y, e->cam.up.z);
+	// printf("%f\n", (((e->ll_obj->angle * M_PI) / 180) / 2));
+	// printf("%f\n", (e->ll_obj->angle));
+
 	raycast(e, e->ll_obj, e->ll_lit);
 	// raycast(e, ol_cl, e->ll_lit);
 	// raycast(e, ol_co, e->ll_lit);

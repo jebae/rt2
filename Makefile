@@ -16,7 +16,7 @@ NAME = RTv1
 
 # INC2 =  rtv1.h
 
-CFLAGS = -Wall -Werror -Wextra -g3 # remove g3 flag
+CFLAGS = -Wall -Werror -Wextra -Ofast #-fsanitize=address# remove g3 flag
 
 # LIB_A = libft/libft.a
 
