@@ -6,7 +6,7 @@
 		</cam>
 		<amb>
 			<specpower>100</specpower>
-			<color>10, 10, 50</color>
+			<color>10, 10, 5</color>
 		</amb>
 		<light status = "basic">
 			<position>30, 0, 0</position>
@@ -19,10 +19,18 @@
 			<radius>3</radius>
 			<direction>0, 1, 0</direction>
 			<center>0, 0, 20</center>
-			<diffusion>100, 10, 100</diffusion>
+			<diffusion>255, 20, 100</diffusion>
 			<reflection>10</reflection>
-			<specpower>10</specpower>
-			<specvalue>10</specvalue>
+			<specpower>100</specpower>
+			<specvalue>100</specvalue>
 		</cone>
+		<plane status = "basic">
+			<normal>0, -25, 0</normal>
+			<d>-10</d>
+			<diffusion>0, 0, 225</diffusion>
+			<reflection>100</reflection>
+			<specpower>100</specpower>
+			<specvalue>100</specvalue>
+		</plane>
 	</objects>
 </scene>

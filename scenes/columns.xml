@@ -21,7 +21,7 @@
 		<sphere status = "basic">
 			<radius>3</radius>
 			<center>-15, 15, 20</center>
-			<diffusion>225, 235, 0</diffusion>
+			<diffusion>192, 192, 192</diffusion>
 			<reflection>10</reflection>
 			<specpower>1000</specpower>
 			<specvalue>100</specvalue>
@@ -29,7 +29,7 @@
 		<sphere status = "basic">
 			<radius>3</radius>
 			<center>15, 15, 20</center>
-			<diffusion>225, 235, 0</diffusion>
+			<diffusion>192, 192, 192</diffusion>
 			<reflection>10</reflection>
 			<specpower>1000</specpower>
 			<specvalue>100</specvalue>
@@ -37,7 +37,7 @@
 		<sphere status = "basic">
 			<radius>3</radius>
 			<center>10, 15, 25</center>
-			<diffusion>225, 235, 0</diffusion>
+			<diffusion>192, 192, 192</diffusion>
 			<reflection>10</reflection>
 			<specpower>1000</specpower>
 			<specvalue>100</specvalue>
@@ -45,79 +45,79 @@
 		<sphere status = "basic">
 			<radius>3</radius>
 			<center>-10, 15, 25</center>
-			<diffusion>225, 235, 0</diffusion>
+			<diffusion>192, 192, 192</diffusion>
 			<reflection>10</reflection>
 			<specpower>1000</specpower>
 			<specvalue>100</specvalue>
 		</sphere>
 		<sphere status = "basic">
 			<radius>3</radius>
-			<center>-15, -15, 20</center>
-			<diffusion>225, 235, 0</diffusion>
+			<center>-15, -17, 20</center>
+			<diffusion>192, 192, 192</diffusion>
 			<reflection>10</reflection>
 			<specpower>1000</specpower>
 			<specvalue>100</specvalue>
 		</sphere>
 		<sphere status = "basic">
 			<radius>3</radius>
-			<center>15, -15, 20</center>
-			<diffusion>225, 235, 0</diffusion>
+			<center>15, -17, 20</center>
+			<diffusion>192, 192, 192</diffusion>
 			<reflection>10</reflection>
 			<specpower>1000</specpower>
 			<specvalue>100</specvalue>
 		</sphere>
 		<sphere status = "basic">
 			<radius>3</radius>
-			<center>10, -15, 25</center>
-			<diffusion>225, 235, 0</diffusion>
+			<center>10, -17, 25</center>
+			<diffusion>192, 192, 192</diffusion>
 			<reflection>10</reflection>
 			<specpower>1000</specpower>
 			<specvalue>100</specvalue>
 		</sphere>
 		<sphere status = "basic">
 			<radius>3</radius>
-			<center>-10, -15, 25</center>
-			<diffusion>225, 235, 0</diffusion>
+			<center>-10, -17, 25</center>
+			<diffusion>192, 192, 192</diffusion>
 			<reflection>10</reflection>
 			<specpower>1000</specpower>
 			<specvalue>100</specvalue>
 		</sphere>
 		<cylinder status = "basic">
 			<angle>10</angle>
-			<radius>1</radius>
+			<radius>2</radius>
 			<direction>0, 1, 0</direction>
 			<center>-15, 0, 20</center>
-			<diffusion>0, 200, 0</diffusion>
+			<diffusion>192, 192, 192</diffusion>
 			<reflection>10</reflection>
 			<specpower>10</specpower>
 			<specvalue>10</specvalue>
 		</cylinder>
 		<cylinder status = "basic">
 			<angle>10</angle>
-			<radius>1</radius>
+			<radius>2</radius>
 			<direction>0, 1, 0</direction>
 			<center>15, 0, 20</center>
-			<diffusion>0, 200, 0</diffusion>
+			<diffusion>192, 192, 192</diffusion>
 			<reflection>10</reflection>
 			<specpower>10</specpower>
 			<specvalue>10</specvalue>
 		</cylinder>
 		<cylinder status = "basic">
 			<angle>10</angle>
-			<radius>1</radius>
+			<radius>2</radius>
 			<direction>0, 1, 0</direction>
 			<center>10, 0, 25</center>
-			<diffusion>0, 200, 0</diffusion>
+			<diffusion>192, 192, 192</diffusion>
 			<reflection>10</reflection>
 			<specpower>10</specpower>
 			<specvalue>10</specvalue>
 		</cylinder>
 		<cylinder status = "basic">
 			<angle>10</angle>
-			<radius>1</radius>
+			<radius>2</radius>
 			<direction>0, 1, 0</direction>
 			<center>-10, 0, 25</center>
-			<diffusion>0, 200, 0</diffusion>
+			<diffusion>169, 169, 169</diffusion>
 			<reflection>10</reflection>
 			<specpower>10</specpower>
 			<specvalue>10</specvalue>
@@ -125,33 +125,33 @@
 		<plane status = "basic">
 			<normal>0, 1, 0</normal>
 			<d>15</d>
-			<diffusion>0, 255, 0</diffusion>
+			<diffusion>47, 79, 79</diffusion>
 			<reflection>1</reflection>
 			<specpower>10000</specpower>
 			<specvalue>1</specvalue>
 		</plane>
 		<plane status = "basic">
 			<normal>0, 1, 0</normal>
-			<d>-16</d>
-			<diffusion>0, 255, 0</diffusion>
+			<d>-17</d>
+			<diffusion>119, 136, 153</diffusion>
 			<reflection>1</reflection>
-			<specpower>10000</specpower>
-			<specvalue>1</specvalue>
+			<specpower>1000</specpower>
+			<specvalue>100</specvalue>
 		</plane>
 		<plane status = "basic">
 			<normal>0, 0, -1</normal>
 			<d>-50</d>
-			<diffusion>0, 255, 0</diffusion>
+			<diffusion>0, 50, 225</diffusion>
 			<reflection>1</reflection>
 			<specpower>10000</specpower>
 			<specvalue>1</specvalue>
 		</plane>
 		<sphere status = "basic">
 			<radius>3</radius>
-			<center>0, 0, 20</center>
+			<center>0, 0, 27</center>
 			<diffusion>225, 0, 0</diffusion>
 			<reflection>10</reflection>
-			<specpower>1000</specpower>
+			<specpower>100</specpower>
 			<specvalue>100</specvalue>
 		</sphere>
 	</objects>

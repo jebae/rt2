@@ -2,53 +2,65 @@
 	<specs>
 		<cam>
 			<position>0, 0, -50</position>
-			<direction>0, -10, 0</direction>
+			<direction>0, 0, 1</direction>
 		</cam>
 		<amb>
-			<specpower>80</specpower>
-			<color>90, 90, 90</color>
+			<specpower>0</specpower>
+			<color>9, 15, 10</color>
 		</amb>
 		<light status = "basic">
-			<position>-15, 15, 12</position>
-			<intensity>225, 225, 220</intensity>
+			<position>10, 0, 0</position>
+			<intensity>255, 255, 255</intensity>
+		</light>
+		<light status = "basic">
+			<position>-1, 5, 2</position>
+			<intensity>25, 25, 25</intensity>
 		</light>
 	</specs>
 	<objects>
-		<sphere status = "basic">
-			<radius>3</radius>
-			<center>0, 0, 10</center>
-			<diffusion>225, 235, 0</diffusion>
+		<plane status = "basic">
+			<normal>0, -25, 0</normal>
+			<d>-7</d>
+			<diffusion>195, 195, 195</diffusion>
+			<reflection>0</reflection>
+			<specpower>0</specpower>
+			<specvalue>0</specvalue>
+		</plane>
+		<plane status = "basic">
+			<normal>0, 1, 0</normal>
+			<d>-20</d>
+			<diffusion>0, 100, 205</diffusion>
 			<reflection>10</reflection>
 			<specpower>1000</specpower>
+			<specvalue>10000</specvalue>
+		</plane>
+		<sphere status = "basic">
+			<radius>3</radius>
+			<center>0, 5, 15</center>
+			<diffusion>225, 0, 0</diffusion>
+			<reflection>10</reflection>
+			<specpower>20</specpower>
 			<specvalue>100</specvalue>
 		</sphere>
-		<plane status = "basic">
-			<normal>0, -1, 0</normal>
-			<d>4</d>
-			<diffusion>0, 255, 0</diffusion>
-			<reflection>1</reflection>
-			<specpower>10000</specpower>
-			<specvalue>1</specvalue>
-		</plane>
-		<cylinder status = "basic">
-			<radius>3</radius>
-			<angle>4</angle>
-			<direction>4, 10, 1</direction>
-			<center>0, 0, 10</center>
-			<diffusion>0, 255, 0</diffusion>
-			<reflection>1</reflection>
-			<specpower>10000</specpower>
-			<specvalue>1</specvalue>
-		</cylinder>
 		<cone status = "basic">
-			<radius>3</radius>
-			<angle>4</angle>
-			<direction>4, 10, 1</direction>
-			<center>0, 0, 10</center>
-			<diffusion>0, 255, 0</diffusion>
-			<reflection>1</reflection>
-			<specpower>10000</specpower>
-			<specvalue>1</specvalue>
+			<angle>65</angle>
+			<radius>2</radius>
+			<direction>10, 10, 1</direction>
+			<center>3, 3, 16</center>
+			<diffusion>255, 255, 50</diffusion>
+			<reflection>0</reflection>
+			<specpower>0</specpower>
+			<specvalue>0</specvalue>
 		</cone>
+		<cylinder status = "basic">
+			<angle>15</angle>
+			<radius>2</radius>
+			<direction>-2, 2, 0</direction>
+			<center>-4, 0, 15</center>
+			<diffusion>0, 169, 169</diffusion>
+			<reflection>10</reflection>
+			<specpower>10</specpower>
+			<specvalue>10</specvalue>
+		</cylinder>
 	</objects>
 </scene>
