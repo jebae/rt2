@@ -23,7 +23,6 @@ int			globals_two(t_parser *p, char *tabless, int ret_tabs)
 	{
 		if ((p->ret_p = open_close(&p->objects)) != 0)
 		{
-			printf("globals two\n");
 			ft_strfree(tabless);
 			return (p->ret_p);
 		}
