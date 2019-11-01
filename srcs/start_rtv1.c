@@ -46,7 +46,7 @@ t_env   *setup_camera(t_env *e)
 
 void    start_rtv1(t_env *e)
 {
-	 e = setup_camera(e);
+	e = setup_camera(e);
 	raycast(e, e->ll_obj, e->ll_lit);
 	mlx_put_image_to_window(e->w.mp, e->w.wp, e->w.ip, 0, 0);
 	mlx_hook(e->w.wp, 2, 1L << 2, key_press, e);

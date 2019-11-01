@@ -1,7 +1,7 @@
 <scene>
 	<specs>
 		<cam>
-			<position>100, 0, 0</position>
+			<position>0, 0, -1</position>
 			<direction>0, 0, 1</direction>
 		</cam>
 		<amb>
