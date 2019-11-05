@@ -13,7 +13,7 @@
 			<intensity>255, 255, 255</intensity>
 		</light>
 		<light status = "basic">
-			<position>-1, 5, 2</position>
+			<position>-1, 15, 2</position>
 			<intensity>25, 25, 25</intensity>
 		</light>
 	</specs>

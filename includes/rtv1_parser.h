@@ -54,7 +54,9 @@ typedef struct		s_pla_atb
 	int				reflection;
 	int				specpower;
 	int				specvalue;
-	int				rotate;
+	int				rotate_x;
+	int				rotate_y;
+	int				rotate_z;
 	int				translate;
 }					t_pla_atb;
 
@@ -68,7 +70,9 @@ typedef struct		s_cyn_atb
 	int				specpower;
 	int				specvalue;
 	int				angle;
-	int				rotate;
+	int				rotate_x;
+	int				rotate_y;
+	int				rotate_z;
 	int				translate;
 }					t_cyn_atb;
 
@@ -82,7 +86,9 @@ typedef struct		s_cone_atb
 	int				specpower;
 	int				specvalue;
 	int				angle;
-	int				rotate;
+	int				rotate_x;
+	int				rotate_y;
+	int				rotate_z;
 	int				translate;
 }					t_cone_atb;
 
@@ -94,7 +100,9 @@ typedef struct		s_sphere_atb
 	int				reflection;
 	int				specpower;
 	int				specvalue;
-	int				rotate;
+	int				rotate_x;
+	int				rotate_y;
+	int				rotate_z;
 	int				translate;
 }					t_sphere_atb;
 
@@ -102,8 +110,8 @@ typedef struct		s_cam_atb
 {
 	int				position;
 	int				direction;
-	int				rotation;
-	int				translation;
+	int				rotate;
+	int				translate;
 }					t_cam_atb;
 
 typedef struct		s_amb_atb
@@ -139,7 +147,7 @@ typedef struct		s_parser
 	char			*tmp;
 	char			*t;
 	char			*vocab_one[4];
-	char			*vocab_two[16];
+	char			*vocab_two[19];
 	int				skips;
 	int				scene;
 	int				specs;

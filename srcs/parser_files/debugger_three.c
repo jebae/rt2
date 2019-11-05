@@ -12,6 +12,21 @@
 
 #include "rtv1.h"
 
+void		line_errors_3(t_parser *p, int i)
+{
+	if (i == 86)
+	{
+		ft_putstr("Oops ! This object tag [");
+		ft_putstr(p->strtwo);
+		ft_putendl("] has a range between 0 and 255. ");
+	}
+	if (i == 87)
+	{
+		ft_putstr("Oops ! This rotation tag is greater than 1");
+		ft_putendl(" or less then -1. ");
+	}
+}
+
 void		line_errors_2(t_parser *p, int i)
 {
 	if (i == 83)
@@ -33,12 +48,8 @@ void		line_errors_2(t_parser *p, int i)
 		ft_putstr("] was given all zero value,");
 		ft_putendl(" at least one value must be greater/less than zero. ");
 	}
-	if (i == 86)
-	{
-		ft_putstr("Oops ! This object tag [");
-		ft_putstr(p->strtwo);
-		ft_putendl("] has a range between 0 and 255. ");
-	}
+	if (i > 85)
+		line_errors_3(p, i);
 }
 
 void		line_errors(t_parser *p, int i)
@@ -77,7 +88,9 @@ void		lineless_errors_nine(int i)
 		ft_putendl("set to 'extra' but some parameters are missing.");
 	}
 	if (i == 71)
-		ft_putstr("Oops ! Bad malloc.");
+		ft_putendl("Oops ! Bad malloc.");
+	if (i == 72)
+		ft_putendl("Oops ! Poor file.");
 }
 
 void		lineless_errors_eight(t_parser *p, int i)

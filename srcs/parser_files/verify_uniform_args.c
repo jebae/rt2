@@ -76,7 +76,11 @@ int		verify_tag_to_argument_three(char *string)
 		return (0);
 	else if (ft_strcmp("diffusion", string) == 0)
 		return (0);
-	else if (ft_strcmp("rotate", string) == 0)
+	else if (ft_strcmp("rotate_x", string) == 0)
+		return (0);
+	else if (ft_strcmp("rotate_y", string) == 0)
+		return (0);
+	else if (ft_strcmp("rotate_z", string) == 0)
 		return (0);
 	else if (ft_strcmp("translate", string) == 0)
 		return (0);

@@ -62,8 +62,8 @@ int		storing_three_2(t_env *e, t_parser *p, t_ll *l_tmp, t_ol *o_tmp)
 		if (p->specs == 2 && p->objects == 1)
 			store_diffusion(e, p, o_tmp);
 	}
-	else
-		storing_three_3(e, p, l_tmp, o_tmp);
+	else if (storing_three_3(e, p, l_tmp, o_tmp) != 0)
+		return (87);
 	return (0);
 }
 
