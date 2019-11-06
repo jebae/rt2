@@ -32,9 +32,9 @@ t_point	find_point_on_plane(t_ol *ol)
 	t_vec3	normal;
 
 	normal = v_normalise(ol->nor);
-	c.x = normal.x * (double)ol->d / v_scal(normal, normal);
-	c.y = normal.y * (double)ol->d / v_scal(normal, normal);
-	c.z = normal.z * (double)ol->d / v_scal(normal, normal);
+	c.x = ol->nor.x * (double)ol->d / v_scal(ol->nor, ol->nor);
+	c.y = ol->nor.y * (double)ol->d / v_scal(ol->nor, ol->nor);
+	c.z = ol->nor.z * (double)ol->d / v_scal(ol->nor, ol->nor);
 	return (c);
 }
 
@@ -42,14 +42,15 @@ double	v_intersect_pl(t_ray ray, t_ol *ol)
 {
 	t_point	c;
 	t_vec3	v;
+	t_vec3	norm;
 	double	t;
 
-	ol->nor = v_normalise(ol->nor);
+	norm = v_normalise(ol->nor);
 	c = find_point_on_plane(ol);
 	v = create_v(c, ray.ori);
-	if (v_scal(ray.dir, ol->nor) == 0)
+	if (v_scal(ray.dir, norm) == 0)
 		return (FAR);
-	t = -v_scal(v, ol->nor) / v_scal(ray.dir, ol->nor);
+	t = -v_scal(v, norm) / v_scal(ray.dir, norm);
 	if (t <= 0)
 		return (FAR);
 	return (t);

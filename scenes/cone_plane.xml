@@ -1,7 +1,7 @@
 <scene>
 	<specs>
 		<cam>
-			<position>100, 0, 0</position>
+			<position>0, 0, -1</position>
 			<direction>0, 0, 1</direction>
 		</cam>
 		<amb>
@@ -25,7 +25,7 @@
 			<specvalue>100</specvalue>
 		</cone>
 		<plane status = "basic">
-			<normal>0, -25, 0</normal>
+			<normal>0, -1, 0</normal>
 			<d>-10</d>
 			<diffusion>0, 0, 225</diffusion>
 			<reflection>100</reflection>
