@@ -2,36 +2,32 @@
 	<specs>
 		<cam>
 			<position>0, 0, -50</position>
-			<direction>1, 1, 1</direction>
+			<direction>0, 0, 1</direction>
 		</cam>
 		<amb>
 			<specpower>0</specpower>
 			<color>9, 15, 10</color>
 		</amb>
 		<light status = "basic">
-			<position>10, 0, 0</position>
+			<position>25, 0, 1</position>
 			<intensity>255, 255, 255</intensity>
 		</light>
 	</specs>
 	<objects>
-		<sphere status = "extra">
-			<radius>4</radius>
-			<center>5, 10, 10</center>
-			<diffusion>255, 35, 0</diffusion>
+		<sphere status = "basic">
+			<radius>6</radius>
+			<center>0, 0, 24</center>
+			<diffusion>148, 170, 42</diffusion>
 			<reflection>10</reflection>
-			<specpower>15</specpower>
-			<specvalue>350</specvalue>
-			<translate>255, 35, 0</translate>
-			<rotate_x>1, 0, 0</rotate_x>
-			<rotate_y>1, 0, 0</rotate_y>
-			<rotate_z>0, 0, 0</rotate_z>
+			<specpower>35</specpower>
+			<specvalue>90</specvalue>
 		</sphere>
 		<plane status = "basic">
 			<normal>3, -3, 1</normal>
 			<d>-5</d>
-			<diffusion>0, 255, 0</diffusion>
+			<diffusion>255, 105, 180</diffusion>
 			<reflection>100</reflection>
-			<specpower>10</specpower>
+			<specpower>100</specpower>
 			<specvalue>100</specvalue>
 		</plane>
 	</objects>
