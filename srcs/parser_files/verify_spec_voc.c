@@ -12,20 +12,6 @@
 
 #include "rtv1.h"
 
-void	reset_spec_atb(t_parser *p)
-{
-	p->ca_atb.position = 0;
-	p->ca_atb.direction = 0;
-	p->ca_atb.rotate = 0;
-	p->ca_atb.translate = 0;
-	p->a_atb.power = 0;
-	p->a_atb.color = 0;
-	p->l_atb.position = 0;
-	p->l_atb.intensity = 0;
-	p->l_atb.rotate = 0;
-	p->l_atb.translate = 0;
-}
-
 int		verify_spec_atb_light(t_parser *p)
 {
 	if (ft_strcmp("position", p->s_tmp) == 0)
@@ -38,6 +24,17 @@ int		verify_spec_atb_light(t_parser *p)
 		p->l_atb.translate++;
 	else
 		return (68);
+	return (0);
+}
+
+int		verify_spec_atb_amb(t_parser *p)
+{
+	if (ft_strcmp("specpower", p->s_tmp) == 0)
+		p->a_atb.power++;
+	else if (ft_strcmp("color", p->s_tmp) == 0)
+		p->a_atb.color++;
+	else
+		return (65);
 	return (0);
 }
 
@@ -57,14 +54,8 @@ int		verify_spec_atb(t_parser *p)
 			return (62);
 	}
 	if (p->p_spec.amb == 1)
-	{
-		if (ft_strcmp("specpower", p->s_tmp) == 0)
-			p->a_atb.power++;
-		else if (ft_strcmp("color", p->s_tmp) == 0)
-			p->a_atb.color++;
-		else
-			return (65);
-	}
+		if ((p->ret_p = verify_spec_atb_amb(p)) != 0)
+			return (p->ret_p);
 	if (p->p_spec.light >= 1)
 		if ((p->ret_p = verify_spec_atb_light(p)) != 0)
 			return (p->ret_p);

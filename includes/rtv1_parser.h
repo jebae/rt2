@@ -211,5 +211,6 @@ int					checkforopenobjecttags(t_parser *p);
 int					last_checks(t_parser *p);
 int					verify_values(t_parser *p);
 int					verify_values_diff(t_parser *p);
+void				reset_spec_atb(t_parser *p);
 
 #endif

@@ -56,7 +56,7 @@ t_point		find_point_from_ray(t_ray ray);
 ** Coloring functions
 */
 t_shader	compute_color(t_ray ray, t_ol *ol, t_ll *ll, t_env *e);
-void		color_pixel(int x, int y, t_shader sh, t_env *e); //to be changed for using img
+void		color_pixel(int x, int y, t_shader sh, t_env *e);
 t_shader	init_shader(void);
 t_shader	shader_add(t_shader sh1, t_shader sh2);
 int			specular(t_ray ray, t_point p, t_ol *ol, t_ll *ll);

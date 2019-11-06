@@ -63,6 +63,5 @@ int				main(int argc, char **argv)
 		errors(&e, 2);
 	start_rtv1(&e);
 	mlx_loop(e.w.mp);
-	printf("---------success~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 	return (0);
 }
