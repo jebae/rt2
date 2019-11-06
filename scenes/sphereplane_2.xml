@@ -5,29 +5,29 @@
 			<direction>0, 0, 1</direction>
 		</cam>
 		<amb>
-			<specpower>80</specpower>
-			<color>10, 15, 10</color>
+			<specpower>0</specpower>
+			<color>9, 15, 10</color>
 		</amb>
 		<light status = "basic">
-			<position>55, 2, -10</position>
-			<intensity>70, 75, 80</intensity>
+			<position>25, 0, 1</position>
+			<intensity>255, 255, 255</intensity>
 		</light>
 	</specs>
 	<objects>
 		<sphere status = "basic">
 			<radius>6</radius>
 			<center>0, 0, 24</center>
-			<diffusion>255, 35, 0</diffusion>
+			<diffusion>148, 170, 42</diffusion>
 			<reflection>10</reflection>
-			<specpower>15</specpower>
-			<specvalue>350</specvalue>
+			<specpower>35</specpower>
+			<specvalue>90</specvalue>
 		</sphere>
 		<plane status = "basic">
-			<normal>1, -1, 0</normal>
-			<d>-15</d>
-			<diffusion>0, 255, 0</diffusion>
+			<normal>3, -3, 1</normal>
+			<d>-5</d>
+			<diffusion>255, 105, 180</diffusion>
 			<reflection>100</reflection>
-			<specpower>10</specpower>
+			<specpower>100</specpower>
 			<specvalue>100</specvalue>
 		</plane>
 	</objects>

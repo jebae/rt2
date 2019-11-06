@@ -12,22 +12,43 @@
 
 #include "rtv1.h"
 
-void	store_obj_rot(t_parser *p, t_ol *o_tmp)
+int		verify_rotation(t_parser *p)
 {
-	while (o_tmp->next != NULL)
-		o_tmp = o_tmp->next;
-	o_tmp->rot.x = p->v1;
-	o_tmp->rot.y = p->v2;
-	o_tmp->rot.z = p->v3;
+	if (p->v1 < -1 || p->v1 > 1)
+		return (-1);
+	if (p->v2 < -1 || p->v2 > 1)
+		return (-1);
+	if (p->v3 < -1 || p->v3 > 1)
+		return (-1);
+	return (0);
 }
 
-void	store_obj_tra(t_parser *p, t_ol *o_tmp)
+void	store_obj_rot(t_parser *p, t_ol *o_tmp, char *str)
 {
-	while (o_tmp->next != NULL)
-		o_tmp = o_tmp->next;
-	o_tmp->tra.x = p->v1;
-	o_tmp->tra.y = p->v2;
-	o_tmp->tra.z = p->v3;
+	if (ft_strcmp("rotate_x", str) == 0)
+	{
+		while (o_tmp->next != NULL)
+			o_tmp = o_tmp->next;
+		o_tmp->rot_x.x = p->v1;
+		o_tmp->rot_x.y = p->v2;
+		o_tmp->rot_x.z = p->v3;
+	}
+	else if (ft_strcmp("rotate_y", str) == 0)
+	{
+		while (o_tmp->next != NULL)
+			o_tmp = o_tmp->next;
+		o_tmp->rot_y.x = p->v1;
+		o_tmp->rot_y.y = p->v2;
+		o_tmp->rot_y.z = p->v3;
+	}
+	else if (ft_strcmp("rotate_z", str) == 0)
+	{
+		while (o_tmp->next != NULL)
+			o_tmp = o_tmp->next;
+		o_tmp->rot_z.x = p->v1;
+		o_tmp->rot_z.y = p->v2;
+		o_tmp->rot_z.z = p->v3;
+	}
 }
 
 void	store_pos(t_env *e, t_parser *p, t_ll *l_tmp)
@@ -48,18 +69,9 @@ void	store_pos(t_env *e, t_parser *p, t_ll *l_tmp)
 	}
 }
 
-void	store_lit_tra(t_parser *p, t_ll *l_tmp)
+int		storing_three_3(t_env *e, t_parser *p, t_ll *l_tmp, t_ol *o_tmp)
 {
-	while (l_tmp->next != NULL)
-		l_tmp = l_tmp->next;
-	l_tmp->tra.x = p->v1;
-	l_tmp->tra.y = p->v2;
-	l_tmp->tra.z = p->v3;
-}
-
-void	storing_three_3(t_env *e, t_parser *p, t_ll *l_tmp, t_ol *o_tmp)
-{
-	if (ft_strcmp("rotate", p->strtwo) == 0)
+	if (ft_strncmp("rotate", p->strtwo, 5) == 0)
 	{
 		if (p->p_spec.cam_cl == 1 && p->p_spec.amb_cl == 1
 				&& p->status == 2 && p->objects == 0)
@@ -71,16 +83,15 @@ void	storing_three_3(t_env *e, t_parser *p, t_ll *l_tmp, t_ol *o_tmp)
 			l_tmp->rot.z = p->v3;
 		}
 		if (p->objects == 1 && p->status == 2)
-			store_obj_rot(p, o_tmp);
+		{
+			if (verify_rotation(p) != 0)
+				return (87);
+			store_obj_rot(p, o_tmp, p->strtwo);
+		}
 	}
 	else if (ft_strcmp("translate", p->strtwo) == 0)
-	{
-		if (p->p_spec.cam_cl == 1 && p->p_spec.amb_cl == 1
-				&& p->status == 2 && p->objects == 0)
-			store_lit_tra(p, l_tmp);
-		if (p->objects == 1 && p->status == 2)
-			store_obj_tra(p, o_tmp);
-	}
+		store_translate(p, l_tmp, o_tmp);
 	else if (ft_strcmp("position", p->strtwo) == 0)
 		store_pos(e, p, l_tmp);
+	return (0);
 }

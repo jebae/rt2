@@ -12,19 +12,9 @@
 
 NAME = RTv1
 
-# INC1 = rtv1_parser.h
-
-# INC2 =  rtv1.h
-
-CFLAGS = -Wall -Werror -Wextra -Ofast #-fsanitize=address# remove g3 flag
-
-# LIB_A = libft/libft.a
-
-# MLX_A = minilibx_macos/mlx.a
+CFLAGS = -Wall -Werror -Wextra -Ofast
 
 INC = -I includes/
-
-#  -fsanitize=address
 
 CC = gcc
 
@@ -36,6 +26,7 @@ SRCS = main.c start_rtv1.c\
 	handle/touch.c\
 	parser_files/parser.c\
 	parser_files/verify_specs_setup.c\
+	parser_files/spec_reset.c\
 	parser_files/verify_shapes.c\
 	parser_files/verify_onearg.c\
 	parser_files/verify_threeargs.c\
@@ -50,6 +41,7 @@ SRCS = main.c start_rtv1.c\
 	parser_files/verify_threeargs_partwo.c\
 	parser_files/verify_threeargs_parthree.c\
 	parser_files/verify_threeargs_partfour.c\
+	parser_files/verify_threeargs_partfive.c\
 	parser_files/globals_and_set_vocab.c\
 	parser_files/verify_shapes_two.c\
 	parser_files/create_links.c\

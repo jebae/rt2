@@ -23,10 +23,12 @@ int		shapevocab_checker_partwo_sphere(t_parser *p)
 			|| p->s_atb.specpower > 1)
 		return (40);
 	if (p->status == 1)
-		if (p->s_atb.rotate != 0 || p->s_atb.translate != 0)
+		if (p->s_atb.rotate_x != 0 || p->s_atb.rotate_y != 0
+			|| p->s_atb.rotate_z != 0 || p->s_atb.translate != 0)
 			return (41);
 	if (p->status == 2)
-		if (p->s_atb.rotate != 1 || p->s_atb.translate != 1)
+		if (p->s_atb.rotate_x != 1 || p->s_atb.rotate_y != 1
+			|| p->s_atb.rotate_z != 1 || p->s_atb.translate != 1)
 			return (42);
 	return (0);
 }
@@ -44,10 +46,12 @@ int		shapevocab_checker_partwo_cone(t_parser *p)
 			|| p->c_atb.angle > 1)
 		return (44);
 	if (p->status == 1)
-		if (p->c_atb.rotate != 0 || p->c_atb.translate != 0)
+		if (p->c_atb.rotate_x != 0 || p->c_atb.rotate_y != 0
+			|| p->c_atb.rotate_z != 0 || p->c_atb.translate != 0)
 			return (45);
 	if (p->status == 2)
-		if (p->c_atb.rotate != 1 || p->c_atb.translate != 1)
+		if (p->c_atb.rotate_x != 1 || p->c_atb.rotate_y != 1
+			|| p->c_atb.rotate_z != 1 || p->c_atb.translate != 1)
 			return (46);
 	return (0);
 }
@@ -65,10 +69,12 @@ int		shapevocab_checker_partwo_cyn(t_parser *p)
 			|| p->y_atb.angle > 1)
 		return (48);
 	if (p->status == 1)
-		if (p->y_atb.rotate != 0 || p->y_atb.translate != 0)
+		if (p->y_atb.rotate_x != 0 || p->y_atb.rotate_y != 0
+			|| p->y_atb.rotate_z != 0 || p->y_atb.translate != 0)
 			return (49);
 	if (p->status == 2)
-		if (p->y_atb.rotate != 1 || p->y_atb.translate != 1)
+		if (p->y_atb.rotate_x != 1 || p->y_atb.rotate_y != 1
+			|| p->y_atb.rotate_z != 1 || p->y_atb.translate != 1)
 			return (50);
 	return (0);
 }
@@ -84,10 +90,12 @@ int		shapevocab_checker_partwo_plane(t_parser *p)
 			|| p->p_atb.specpower > 1)
 		return (52);
 	if (p->status == 1)
-		if (p->p_atb.rotate != 0 || p->p_atb.translate != 0)
+		if (p->p_atb.rotate_x != 0 || p->p_atb.rotate_y != 0
+			|| p->p_atb.rotate_z != 0 || p->p_atb.translate != 0)
 			return (53);
 	if (p->status == 2)
-		if (p->p_atb.rotate != 1 || p->p_atb.translate != 1)
+		if (p->p_atb.rotate_x != 1 || p->p_atb.rotate_y != 1
+			|| p->p_atb.rotate_z != 1 || p->p_atb.translate != 1)
 			return (54);
 	return (0);
 }

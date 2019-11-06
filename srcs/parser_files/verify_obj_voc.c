@@ -26,8 +26,12 @@ int		shapevocab_checker_shpere(t_parser *p)
 		p->s_atb.specvalue++;
 	else if (ft_strcmp("specpower", p->s_tmp) == 0)
 		p->s_atb.specpower++;
-	else if (ft_strcmp("rotate", p->s_tmp) == 0)
-		p->s_atb.rotate++;
+	else if (ft_strcmp("rotate_x", p->s_tmp) == 0)
+		p->s_atb.rotate_x++;
+	else if (ft_strcmp("rotate_y", p->s_tmp) == 0)
+		p->s_atb.rotate_y++;
+	else if (ft_strcmp("rotate_z", p->s_tmp) == 0)
+		p->s_atb.rotate_z++;
 	else if (ft_strcmp("translate", p->s_tmp) == 0)
 		p->s_atb.translate++;
 	else
@@ -37,9 +41,7 @@ int		shapevocab_checker_shpere(t_parser *p)
 
 int		shapevocab_checker_cone(t_parser *p)
 {
-	if (ft_strcmp("radius", p->s_tmp) == 0)
-		p->c_atb.radius++;
-	else if (ft_strcmp("center", p->s_tmp) == 0)
+	if (ft_strcmp("center", p->s_tmp) == 0)
 		p->c_atb.center++;
 	else if (ft_strcmp("diffusion", p->s_tmp) == 0)
 		p->c_atb.diffusion++;
@@ -51,8 +53,12 @@ int		shapevocab_checker_cone(t_parser *p)
 		p->c_atb.specpower++;
 	else if (ft_strcmp("angle", p->s_tmp) == 0)
 		p->c_atb.angle++;
-	else if (ft_strcmp("rotate", p->s_tmp) == 0)
-		p->c_atb.rotate++;
+	else if (ft_strcmp("rotate_x", p->s_tmp) == 0)
+		p->c_atb.rotate_x++;
+	else if (ft_strcmp("rotate_y", p->s_tmp) == 0)
+		p->c_atb.rotate_y++;
+	else if (ft_strcmp("rotate_z", p->s_tmp) == 0)
+		p->c_atb.rotate_z++;
 	else if (ft_strcmp("translate", p->s_tmp) == 0)
 		p->c_atb.translate++;
 	else if (ft_strcmp("direction", p->s_tmp) == 0)
@@ -64,9 +70,7 @@ int		shapevocab_checker_cone(t_parser *p)
 
 int		shapevocab_checker_cyn(t_parser *p)
 {
-	if (ft_strcmp("radius", p->s_tmp) == 0)
-		p->y_atb.radius++;
-	else if (ft_strcmp("center", p->s_tmp) == 0)
+	if (ft_strcmp("center", p->s_tmp) == 0)
 		p->y_atb.center++;
 	else if (ft_strcmp("diffusion", p->s_tmp) == 0)
 		p->y_atb.diffusion++;
@@ -78,8 +82,12 @@ int		shapevocab_checker_cyn(t_parser *p)
 		p->y_atb.specpower++;
 	else if (ft_strcmp("angle", p->s_tmp) == 0)
 		p->y_atb.angle++;
-	else if (ft_strcmp("rotate", p->s_tmp) == 0)
-		p->y_atb.rotate++;
+	else if (ft_strcmp("rotate_x", p->s_tmp) == 0)
+		p->y_atb.rotate_x++;
+	else if (ft_strcmp("rotate_y", p->s_tmp) == 0)
+		p->y_atb.rotate_y++;
+	else if (ft_strcmp("rotate_z", p->s_tmp) == 0)
+		p->y_atb.rotate_z++;
 	else if (ft_strcmp("translate", p->s_tmp) == 0)
 		p->y_atb.translate++;
 	else if (ft_strcmp("direction", p->s_tmp) == 0)
@@ -103,8 +111,12 @@ int		shapevocab_checker_plane(t_parser *p)
 		p->p_atb.specvalue++;
 	else if (ft_strcmp("specpower", p->s_tmp) == 0)
 		p->p_atb.specpower++;
-	else if (ft_strcmp("rotate", p->s_tmp) == 0)
-		p->p_atb.rotate++;
+	else if (ft_strcmp("rotate_x", p->s_tmp) == 0)
+		p->p_atb.rotate_x++;
+	else if (ft_strcmp("rotate_y", p->s_tmp) == 0)
+		p->p_atb.rotate_y++;
+	else if (ft_strcmp("rotate_z", p->s_tmp) == 0)
+		p->p_atb.rotate_z++;
 	else if (ft_strcmp("translate", p->s_tmp) == 0)
 		p->p_atb.translate++;
 	else
@@ -114,22 +126,27 @@ int		shapevocab_checker_plane(t_parser *p)
 
 int		shapevocab_checker(t_env *e, t_parser *p)
 {
-	int	ret;
-
-	ret = 0;
 	p->s_tmp = ft_strsub(p->split[0], 4, (ft_strclen(p->split[0], '>') - 4));
 	if (e->cs == 1)
-		if ((ret = shapevocab_checker_shpere(p)) != 0)
-			return (ret);
+		if ((p->ret_p = shapevocab_checker_shpere(p)) != 0)
+			return (p->ret_p);
 	if (e->cs == 2)
-		if ((ret = shapevocab_checker_cone(p)) != 0)
-			return (ret);
+	{
+		if (ft_strcmp("radius", p->s_tmp) == 0)
+			p->c_atb.radius++;
+		else if ((p->ret_p = shapevocab_checker_cone(p)) != 0)
+			return (p->ret_p);
+	}
 	if (e->cs == 3)
-		if ((ret = shapevocab_checker_cyn(p)) != 0)
-			return (ret);
+	{
+		if (ft_strcmp("radius", p->s_tmp) == 0)
+			p->y_atb.radius++;
+		else if ((p->ret_p = shapevocab_checker_cyn(p)) != 0)
+			return (p->ret_p);
+	}
 	if (e->cs == 4)
-		if ((ret = shapevocab_checker_plane(p)) != 0)
-			return (ret);
+		if ((p->ret_p = shapevocab_checker_plane(p)) != 0)
+			return (p->ret_p);
 	free(p->s_tmp);
 	p->s_tmp = NULL;
 	return (0);

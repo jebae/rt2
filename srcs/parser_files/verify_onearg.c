@@ -55,7 +55,7 @@ int		verifyvocab_one(t_parser *p)
 	if (ft_strcmp(p->strone, p->strtwo) != 0)
 		return (-1);
 	else
-		while (++p->voc_i < 16)
+		while (++p->voc_i < 19)
 			if (ft_strcmp(p->strone, p->vocab_two[p->voc_i]) == 0)
 				p->voc_check++;
 	if ((p->ret_p = verify_tag_to_argument(p, p->strone, 1)) != 0)

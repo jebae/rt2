@@ -22,7 +22,7 @@
 # include <string.h>
 # include <fcntl.h>
 # include <assert.h>
-# include <stdio.h> // remove
+# include <stdio.h> // remove !!
 # define WIDTH		800
 # define HEIGHT 	800
 # define FAR		2000000.0
@@ -113,7 +113,10 @@ typedef struct		s_ol
 	t_vec3			dir;
 	t_point			cen;
 	t_vec3			nor;
-	t_vec3			rot;
+	t_vec3			rot; // remove me !
+	t_vec3			rot_x;
+	t_vec3			rot_y;
+	t_vec3			rot_z;
 	t_vec3			tra;
 	t_vec3			pla_po;
 	struct s_ol		*next;
@@ -191,8 +194,10 @@ int					add_link_light(t_env *e, t_ll **head);
 int					add_link_obj(t_env *e, t_ol **head);
 int					storing_three(t_env *e, t_parser *p, t_ll *l_tmp,
 						t_ol *o_tmp);
-void				storing_three_3(t_env *e, t_parser *p, t_ll *l_tmp,
+int					storing_three_3(t_env *e, t_parser *p, t_ll *l_tmp,
 						t_ol *o_tmp);
+void				store_lit_tra(t_parser *p, t_ll *l_tmp);
+void				store_translate(t_parser *p, t_ll *l_tmp, t_ol *o_tmp);
 int					raycast(t_env *e, t_ol *ol, t_ll *ll);
 int					main(int argc, char **argv);
 

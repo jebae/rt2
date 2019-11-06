@@ -26,7 +26,7 @@ int		verifyvocab_three(t_parser *p)
 	if (ft_strcmp(p->strone, p->strtwo) != 0)
 		return (-1);
 	else
-		while (++p->voc_i < 16)
+		while (++p->voc_i < 19)
 			if (ft_strcmp(p->strone, p->vocab_two[p->voc_i]) == 0)
 				p->voc_check++;
 	if ((p->ret_p = verify_tag_to_argument(p, p->strone, 3)) != 0)
@@ -121,7 +121,7 @@ int		verifyargs_three(t_env *e, t_parser *p, t_ll **l_head, t_ol **o_head)
 	p->v2 = ft_atoi(p->split[1]);
 	p->v3 = ft_atoi(p->split[2]);
 	if ((p->ret_p = verify_numbers_three(e, p, *l_head, *o_head)) != 0)
-		return (p->ret_p); // something here ?
+		return (p->ret_p);
 	ft_strfree(p->strone);
 	ft_strfree(p->strtwo);
 	return (0);

@@ -113,6 +113,8 @@ int		parser(t_env *e, t_parser *p, int fd)
 		if ((p->objects == 1 || p->specs == 1) && !p->skip
 				&& ((p->ret.tag = verify_line(e, p, &l_head, &o_head)) != 0))
 			return (p->ret.tag);
+		if (!ft_isascii(p->gnl_line[0]))
+			return (72);
 		if (p->gnl_line)
 			ft_strfree(p->gnl_line);
 	}
