@@ -22,7 +22,6 @@
 # include <string.h>
 # include <fcntl.h>
 # include <assert.h>
-# include <stdio.h> // remove !!
 # define WIDTH		800
 # define HEIGHT 	800
 # define FAR		2000000.0
@@ -113,7 +112,7 @@ typedef struct		s_ol
 	t_vec3			dir;
 	t_point			cen;
 	t_vec3			nor;
-	t_vec3			rot; // remove me !
+	t_vec3			rot;
 	t_vec3			rot_x;
 	t_vec3			rot_y;
 	t_vec3			rot_z;
