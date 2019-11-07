@@ -46,27 +46,27 @@ t_env	*setup_camera(t_env *e)
 
 void	start_rtv1(t_env *e)
 {	///////////////////////////////////
-		t_vec3 trans;
-		trans.x = 5;
-		trans.y = 0;
-		trans.z = 0;
-		// e->ll_obj->tra = trans;
-		t_vec3			r_x;
-		t_vec3			r_y;
-		t_vec3			r_z;
+		// t_vec3 trans;
+		// trans.x = 5;
+		// trans.y = 0;
+		// trans.z = 0;
+		// // e->ll_obj->tra = trans;
+		// t_vec3			r_x;
+		// t_vec3			r_y;
+		// t_vec3			r_z;
 
-		r_x.x = 0.707;
-		r_x.y = 0.707;
-		r_x.z = 0;
-		r_y.x = -0.707;
-		r_y.y = 0.707;
-		r_y.z = 0;
-		r_z.x = 0;
-		r_z.y = 0;
-		r_z.z = 1;
-		e->ll_obj->rot_x = r_x;
-		e->ll_obj->rot_y = r_y;
-		e->ll_obj->rot_z = r_z;
+		// r_x.x = 0.707;
+		// r_x.y = 0.707;
+		// r_x.z = 0;
+		// r_y.x = -0.707;
+		// r_y.y = 0.707;
+		// r_y.z = 0;
+		// r_z.x = 0;
+		// r_z.y = 0;
+		// r_z.z = 1;
+		// e->ll_obj->rot_x = r_x;
+		// e->ll_obj->rot_y = r_y;
+		// e->ll_obj->rot_z = r_z;
 	///////////////////////////////
 	e = setup_camera(e);
 	e->ll_obj = apply_extra(e->ll_obj);

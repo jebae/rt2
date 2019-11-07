@@ -16,7 +16,6 @@ t_point		translation(t_point pos, t_vec3 trans)
 {
 	t_point	new;
 
-	trans = v_mult(trans, 0.01);
 	new.x = pos.x + trans.x;
 	new.y = pos.y + trans.y;
 	new.z = pos.z + trans.z;
@@ -65,8 +64,8 @@ t_ol		*apply_extra(t_ol *ll_obj)
 			if (m3_det(ll_obj->rot_x, ll_obj->rot_y, ll_obj->rot_z) < 0.9\
 				&& m3_det(ll_obj->rot_x, ll_obj->rot_y, ll_obj->rot_z) > 1.1)
 			{
-				ft_putstr("A rotation matrix has poor arguments\
-						, it has been ignored\n");
+				ft_putendl("A rotation matrix has poor arguments\
+						, it has been ignored");
 			}
 			else
 			{
