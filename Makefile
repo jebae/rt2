@@ -22,7 +22,7 @@ SRC_DIR = srcs
 
 OBJ_DIR = objects
 
-SRCS = main.c start_rtv1.c\
+SRCS = main.c\
 	handle/touch.c\
 	parser_files/parser.c\
 	parser_files/verify_specs_setup.c\
@@ -53,7 +53,10 @@ SRCS = main.c start_rtv1.c\
 	raycasting_files/raycast.c\
 	raycasting_files/shading.c\
 	raycasting_files/vector_op.c\
-	raycasting_files/vector_op_2.c
+	raycasting_files/vector_op_2.c\
+	raycasting_files/object_manipulation.c\
+	raycasting_files/start_rtv1.c\
+	raycasting_files/matrix_check.c
 
 SUB_FOLD = parser_files handle raycasting_files
 

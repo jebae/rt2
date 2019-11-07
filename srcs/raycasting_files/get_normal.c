@@ -65,7 +65,7 @@ t_vec3	normal_plane(t_ray ray, t_ol *ol)
 
 	if (v_scal(ray.dir, v_normalise(ol->nor)) <= 0)
 		normal = v_mult(ol->nor, 1);
-	else 
+	else
 		normal = v_mult(ol->nor, -1);
 	return (v_normalise(normal));
 }

@@ -14,10 +14,14 @@
 		</light>
 	</specs>
 	<objects>
-		<cylinder status = "basic">
+		<cylinder status = "extra">
 			<angle>10</angle>
 			<radius>8</radius>
 			<direction>0, 1, 0</direction>
+			<translate>-50, 50, 50</translate>
+			<rotate_x>0, 0, 0</rotate_x>
+			<rotate_y>0, 0, 0</rotate_y>
+			<rotate_z>0, 0, 0</rotate_z>
 			<center>0, 0, 20</center>
 			<diffusion>0, 200, 0</diffusion>
 			<reflection>10</reflection>

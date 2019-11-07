@@ -14,11 +14,11 @@
 
 int		verify_rotation(t_parser *p)
 {
-	if (p->v1 < -1 || p->v1 > 1)
+	if (p->v1 < -100 || p->v1 > 100)
 		return (-1);
-	if (p->v2 < -1 || p->v2 > 1)
+	if (p->v2 < -100 || p->v2 > 100)
 		return (-1);
-	if (p->v3 < -1 || p->v3 > 1)
+	if (p->v3 < -100 || p->v3 > 100)
 		return (-1);
 	return (0);
 }

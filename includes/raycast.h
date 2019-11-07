@@ -70,4 +70,14 @@ t_vec3		normal_cylinder(t_ray ray, t_ol *ol);
 t_vec3		normal_cone(t_ray ray, t_ol *ol);
 t_vec3		get_normal(t_ray ray, t_ol *ol);
 
+/*
+** Object manipulation functions
+*/
+
+t_point		translation(t_point pos, t_vec3 trans);
+t_vec3		rotation(t_vec3 axis, t_vec3 rotx, t_vec3 roty, t_vec3 rotz);
+int			is_vector_empty(t_vec3 vec);
+int			is_matrix_empty(t_vec3 x, t_vec3 y, t_vec3 z);
+t_ol        *apply_extra(t_ol *ll_obj);
+float	    m3_det(t_vec3 x, t_vec3 y, t_vec3 z);
 #endif
