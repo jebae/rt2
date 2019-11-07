@@ -21,10 +21,10 @@
 		<plane status = "basic">
 			<normal>0, -1, 0</normal>
 			<d>-6</d>
-			<diffusion>203, 36, 36</diffusion>
-			<reflection>5</reflection>
-			<specpower>5</specpower>
-			<specvalue>5</specvalue>
+			<diffusion>160, 25, 25</diffusion>
+			<reflection>10</reflection>
+			<specpower>15</specpower>
+			<specvalue>50</specvalue>
 		</plane>
 		<plane status = "basic">
 			<normal>0, 0, 1</normal>
@@ -38,41 +38,41 @@
 			<normal>35, 0, -1</normal>
 			<d>-165</d>
 			<diffusion>254, 133, 133</diffusion>
-			<reflection>10</reflection>
-			<specpower>5</specpower>
-			<specvalue>5</specvalue>
+			<reflection>0</reflection>
+			<specpower>0</specpower>
+			<specvalue>0</specvalue>
 		</plane>
 		<plane status = "basic">
 			<normal>35, 0, 1</normal>
 			<d>165</d>
 			<diffusion>254, 133, 133</diffusion>
-			<reflection>10</reflection>
-			<specpower>5</specpower>
-			<specvalue>5</specvalue>
+			<reflection>0</reflection>
+			<specpower>0</specpower>
+			<specvalue>0</specvalue>
 		</plane>
 		<sphere status = "basic">
 			<radius>3</radius>
 			<center>3, 2, -40</center>
-			<diffusion>75, 117, 107</diffusion>
+			<diffusion>50, 76, 88</diffusion>
 			<reflection>10</reflection>
-			<specpower>10</specpower>
-			<specvalue>20</specvalue>
+			<specpower>15</specpower>
+			<specvalue>60</specvalue>
 		</sphere>
 		<sphere status = "basic">
 			<radius>2</radius>
 			<center>-3, 3, -40</center>
-			<diffusion>52, 98, 87</diffusion>
+			<diffusion>0, 46, 75</diffusion>
 			<reflection>10</reflection>
 			<specpower>15</specpower>
-			<specvalue>10</specvalue>
+			<specvalue>60</specvalue>
 		</sphere>
 		<sphere status = "basic">
 			<radius>2</radius>
 			<center>0, 3, -43</center>
-			<diffusion>92, 110, 105</diffusion>
+			<diffusion>52, 98, 87</diffusion>
 			<reflection>10</reflection>
 			<specpower>15</specpower>
-			<specvalue>10</specvalue>
+			<specvalue>60</specvalue>
 		</sphere>
 	</objects>
 </scene>

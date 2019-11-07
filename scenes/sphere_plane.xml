@@ -17,7 +17,7 @@
 		<sphere status = "basic">
 			<radius>6</radius>
 			<center>0, 0, 24</center>
-			<diffusion>255, 193, 0</diffusion>
+			<diffusion>72, 116, 191</diffusion>
 			<reflection>10</reflection>
 			<specpower>15</specpower>
 			<specvalue>35</specvalue>
@@ -25,7 +25,7 @@
 		<plane status = "basic">
 			<normal>3, -3, 1</normal>
 			<d>-5</d>
-			<diffusion>255, 0, 0</diffusion>
+			<diffusion>244, 66, 66</diffusion>
 			<reflection>100</reflection>
 			<specpower>100</specpower>
 			<specvalue>100</specvalue>

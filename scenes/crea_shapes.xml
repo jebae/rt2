@@ -23,14 +23,6 @@
 			<specvalue>350</specvalue>
 		</sphere>
 		<sphere status = "basic">
-			<radius>5</radius>
-			<center>10, 10, -31</center>
-			<diffusion>173, 255, 0</diffusion>
-			<reflection>10</reflection>
-			<specpower>15</specpower>
-			<specvalue>350</specvalue>
-		</sphere>
-		<sphere status = "basic">
 			<radius>6</radius>
 			<center>-10, -5, -22</center>
 			<diffusion>255, 113, 206</diffusion>
@@ -68,5 +60,15 @@
 			<specpower>15</specpower>
 			<specvalue>350</specvalue>
 		</cylinder>
+		<cone status = "basic">
+			<angle>40</angle>
+			<radius>5</radius>
+			<direction>0, 1, 0</direction>
+			<center>22, 0, -10</center>
+			<diffusion>127, 211, 247</diffusion>
+			<reflection>10</reflection>
+			<specpower>15</specpower>
+			<specvalue>20</specvalue>
+		</cone>
 	</objects>
 </scene>

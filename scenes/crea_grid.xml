@@ -19,10 +19,10 @@
 			<radius>1</radius>
 			<direction>0, 1, 0</direction>
 			<center>0, 0, 20</center>
-			<diffusion>169, 169, 169</diffusion>
+			<diffusion>218, 248, 227</diffusion>
 			<reflection>10</reflection>
-			<specpower>10</specpower>
-			<specvalue>10</specvalue>
+			<specpower>15</specpower>
+			<specvalue>50</specvalue>
 			<translate>0, 0, 0</translate>
 			<rotate_x>0, 0, 0</rotate_x>
 			<rotate_y>0, 0, 0</rotate_y>
@@ -33,10 +33,10 @@
 			<radius>1</radius>
 			<direction>0, 1, 0</direction>
 			<center>0, 0, 20</center>
-			<diffusion>169, 169, 169</diffusion>
+			<diffusion>218, 248, 227</diffusion>
 			<reflection>10</reflection>
-			<specpower>10</specpower>
-			<specvalue>10</specvalue>
+			<specpower>15</specpower>
+			<specvalue>50</specvalue>
 			<translate>-10, 0, 0</translate>
 			<rotate_x>0, 0, 0</rotate_x>
 			<rotate_y>0, 0, 0</rotate_y>
@@ -47,10 +47,10 @@
 			<radius>1</radius>
 			<direction>0, 1, 0</direction>
 			<center>0, 0, 20</center>
-			<diffusion>169, 169, 169</diffusion>
+			<diffusion>218, 248, 227</diffusion>
 			<reflection>10</reflection>
-			<specpower>10</specpower>
-			<specvalue>10</specvalue>
+			<specpower>15</specpower>
+			<specvalue>50</specvalue>
 			<translate>10, 0, 0</translate>
 			<rotate_x>0, 0, 0</rotate_x>
 			<rotate_y>0, 0, 0</rotate_y>
@@ -61,10 +61,10 @@
 			<radius>1</radius>
 			<direction>0, 1, 0</direction>
 			<center>0, 0, 20</center>
-			<diffusion>169, 169, 169</diffusion>
+			<diffusion>218, 248, 227</diffusion>
 			<reflection>10</reflection>
-			<specpower>10</specpower>
-			<specvalue>10</specvalue>
+			<specpower>15</specpower>
+			<specvalue>50</specvalue>
 			<translate>0, 8, 0</translate>
 			<rotate_x>0, 1, 0</rotate_x>
 			<rotate_y>-1, 0, 0</rotate_y>
@@ -75,10 +75,10 @@
 			<radius>1</radius>
 			<direction>0, 1, 0</direction>
 			<center>0, 0, 20</center>
-			<diffusion>169, 169, 169</diffusion>
+			<diffusion>218, 248, 227</diffusion>
 			<reflection>10</reflection>
-			<specpower>10</specpower>
-			<specvalue>10</specvalue>
+			<specpower>15</specpower>
+			<specvalue>50</specvalue>
 			<translate>0, -8, 0</translate>
 			<rotate_x>0, 1, 0</rotate_x>
 			<rotate_y>-1, 0, 0</rotate_y>
@@ -87,7 +87,7 @@
 		<plane status = "basic">
 			<normal>0, 1, 0</normal>
 			<d>-17</d>
-			<diffusion>0, 255, 255</diffusion>
+			<diffusion>0, 194, 199</diffusion>
 			<reflection>100</reflection>
 			<specpower>100</specpower>
 			<specvalue>100</specvalue>
@@ -95,7 +95,7 @@
 		<plane status = "basic">
 			<normal>0, 1, 0</normal>
 			<d>17</d>
-			<diffusion>0, 255, 255</diffusion>
+			<diffusion>0, 194, 199</diffusion>
 			<reflection>100</reflection>
 			<specpower>100</specpower>
 			<specvalue>100</specvalue>
@@ -103,15 +103,15 @@
 		<plane status = "basic">
 			<normal>0, 0, 1</normal>
 			<d>60</d>
-			<diffusion>0, 255, 255</diffusion>
+			<diffusion>0, 97, 97</diffusion>
 			<reflection>100</reflection>
-			<specpower>0</specpower>
-			<specvalue>0</specvalue>
+			<specpower>10</specpower>
+			<specvalue>10</specvalue>
 		</plane>
 		<sphere status = "basic">
 			<radius>6</radius>
 			<center>5, 0, 35</center>
-			<diffusion>255, 35, 0</diffusion>
+			<diffusion>255, 62, 54</diffusion>
 			<reflection>10</reflection>
 			<specpower>15</specpower>
 			<specvalue>50</specvalue>
