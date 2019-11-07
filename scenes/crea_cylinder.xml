@@ -1,0 +1,130 @@
+<scene>
+	<specs>
+		<cam>
+			<position>0, 0, -1</position>
+			<direction>0, 0, 1</direction>
+		</cam>
+		<amb>
+			<specpower>10</specpower>
+			<color>10, 10, 10</color>
+		</amb>
+		<light status = "basic">
+			<position>30, 0, 0</position>
+			<intensity>255, 255, 255</intensity>
+		</light>
+	</specs>
+	<objects>
+		<cylinder status = "extra">
+			<angle>30</angle>
+			<radius>1</radius>
+			<direction>0, 1, 0</direction>
+			<center>0, 0, 20</center>
+			<diffusion>200, 0, 0</diffusion>
+			<reflection>10</reflection>
+			<specpower>10</specpower>
+			<specvalue>10</specvalue>
+			<translate>0, 0, 0</translate>
+			<rotate_x>0, 0, 0</rotate_x>
+			<rotate_y>0, 0, 0</rotate_y>
+			<rotate_z>0, 0, 0</rotate_z>
+		</cylinder>
+		<cylinder status = "extra">
+			<angle>30</angle>
+			<radius>1</radius>
+			<direction>0, 1, 0</direction>
+			<center>0, 0, 20</center>
+			<diffusion>0, 200, 0</diffusion>
+			<reflection>10</reflection>
+			<specpower>10</specpower>
+			<specvalue>10</specvalue>
+			<translate>0, 0, 0</translate>
+			<rotate_x>86, 50, 0</rotate_x>
+			<rotate_y>-50, 86, 0</rotate_y>
+			<rotate_z>0, 0, 1</rotate_z>
+		</cylinder>
+		<cylinder status = "extra">
+			<angle>30</angle>
+			<radius>1</radius>
+			<direction>0, 1, 0</direction>
+			<center>0, 0, 20</center>
+			<diffusion>0, 0, 200</diffusion>
+			<reflection>10</reflection>
+			<specpower>10</specpower>
+			<specvalue>10</specvalue>
+			<translate>0, 0, 0</translate>
+			<rotate_x>70, 70, 0</rotate_x>
+			<rotate_y>-70, 70, 0</rotate_y>
+			<rotate_z>0, 0, 1</rotate_z>
+		</cylinder>
+		<cylinder status = "extra">
+			<angle>30</angle>
+			<radius>1</radius>
+			<direction>0, 1, 0</direction>
+			<center>0, 0, 20</center>
+			<diffusion>200, 200, 0</diffusion>
+			<reflection>10</reflection>
+			<specpower>10</specpower>
+			<specvalue>10</specvalue>
+			<translate>0, 0, 0</translate>
+			<rotate_x>50, 86, 0</rotate_x>
+			<rotate_y>-86, 50, 0</rotate_y>
+			<rotate_z>0, 0, 1</rotate_z>
+		</cylinder>
+		<cylinder status = "extra">
+			<angle>30</angle>
+			<radius>1</radius>
+			<direction>0, 1, 0</direction>
+			<center>0, 0, 20</center>
+			<diffusion>0, 200, 200</diffusion>
+			<reflection>10</reflection>
+			<specpower>10</specpower>
+			<specvalue>10</specvalue>
+			<translate>0, 0, 0</translate>
+			<rotate_x>0, 1, 0</rotate_x>
+			<rotate_y>-1, 0, 0</rotate_y>
+			<rotate_z>0, 0, 1</rotate_z>
+		</cylinder>
+		<cylinder status = "extra">
+			<angle>30</angle>
+			<radius>1</radius>
+			<direction>0, 1, 0</direction>
+			<center>0, 0, 20</center>
+			<diffusion>200, 0, 200</diffusion>
+			<reflection>10</reflection>
+			<specpower>10</specpower>
+			<specvalue>10</specvalue>
+			<translate>0, 0, 0</translate>
+			<rotate_x>50, -86, 0</rotate_x>
+			<rotate_y>86, 50, 0</rotate_y>
+			<rotate_z>0, 0, 1</rotate_z>
+		</cylinder>
+		<cylinder status = "extra">
+			<angle>30</angle>
+			<radius>1</radius>
+			<direction>0, 1, 0</direction>
+			<center>0, 0, 20</center>
+			<diffusion>200, 200, 200</diffusion>
+			<reflection>10</reflection>
+			<specpower>10</specpower>
+			<specvalue>10</specvalue>
+			<translate>0, 0, 0</translate>
+			<rotate_x>70, -70, 0</rotate_x>
+			<rotate_y>70, 70, 0</rotate_y>
+			<rotate_z>0, 0, 1</rotate_z>
+		</cylinder>
+		<cylinder status = "extra">
+			<angle>30</angle>
+			<radius>1</radius>
+			<direction>0, 1, 0</direction>
+			<center>0, 0, 20</center>
+			<diffusion>255, 97, 3</diffusion>
+			<reflection>10</reflection>
+			<specpower>10</specpower>
+			<specvalue>10</specvalue>
+			<translate>0, 0, 0</translate>
+			<rotate_x>86, -50, 0</rotate_x>
+			<rotate_y>50, 86, 0</rotate_y>
+			<rotate_z>0, 0, 1</rotate_z>
+		</cylinder>
+	</objects>
+</scene>
