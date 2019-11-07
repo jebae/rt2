@@ -21,8 +21,8 @@
 			<center>0, 0, 20</center>
 			<diffusion>100, 10, 100</diffusion>
 			<reflection>10</reflection>
-			<specpower>10</specpower>
-			<specvalue>10</specvalue>
+			<specpower>15</specpower>
+			<specvalue>50</specvalue>
 		</cone>
 	</objects>
 </scene>

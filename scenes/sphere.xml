@@ -17,10 +17,10 @@
 		<sphere status = "basic">
 			<radius>6</radius>
 			<center>0, 0, 24</center>
-			<diffusion>255, 35, 0</diffusion>
+			<diffusion>254, 0, 246</diffusion>
 			<reflection>10</reflection>
 			<specpower>15</specpower>
-			<specvalue>350</specvalue>
+			<specvalue>150</specvalue>
 		</sphere>
 	</objects>
 </scene>
