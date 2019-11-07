@@ -19,7 +19,6 @@ t_point		translation(t_point pos, t_vec3 trans)
 	new.x = pos.x + trans.x;
 	new.y = pos.y + trans.y;
 	new.z = pos.z + trans.z;
-	printf("trans obj cen = <%f, %f, %f>\n", new.x, new.y, new.z);
 	return (new);
 }
 
