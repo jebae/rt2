@@ -21,8 +21,8 @@
 			<center>0, 0, 20</center>
 			<diffusion>255, 215, 0</diffusion>
 			<reflection>10</reflection>
-			<specpower>10</specpower>
-			<specvalue>10</specvalue>
+			<specpower>15</specpower>
+			<specvalue>30</specvalue>
 		</cylinder>
 		<cylinder status = "basic">
 			<angle>10</angle>
@@ -31,8 +31,8 @@
 			<center>0, 0, 20</center>
 			<diffusion>255, 20, 147</diffusion>
 			<reflection>10</reflection>
-			<specpower>10</specpower>
-			<specvalue>10</specvalue>
+			<specpower>15</specpower>
+			<specvalue>30</specvalue>
 		</cylinder>
 	</objects>
 </scene>
