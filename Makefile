@@ -6,11 +6,11 @@
 #    By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 07:58:15 by mhernand          #+#    #+#              #
-#    Updated: 2019/10/08 14:40:54 by sabonifa         ###   ########.fr        #
+#    Updated: 2019/11/08 11:47:36 by sabonifa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = RTv1
+NAME = rtv1
 
 CFLAGS = -Wall -Werror -Wextra -Ofast
 
