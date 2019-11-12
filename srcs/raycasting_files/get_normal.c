@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/26 12:27:52 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/10/01 18:20:11 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/11/12 14:04:03 by sabonifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_vec3	normal_plane(t_ray ray, t_ol *ol)
 
 	if (v_scal(ray.dir, v_normalise(ol->nor)) <= 0)
 		normal = v_mult(ol->nor, 1);
-	else
+	else 
 		normal = v_mult(ol->nor, -1);
 	return (v_normalise(normal));
 }
