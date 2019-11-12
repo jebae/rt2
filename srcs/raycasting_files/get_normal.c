@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/26 12:27:52 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/11/12 14:04:03 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/11/12 19:35:12 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_vec3	get_normal(t_ray ray, t_ol *ol)
 		normal = normal_cone(ray, ol);
 	if (ol->cur_shape == 3)
 		normal = normal_cylinder(ray, ol);
-	if (ol->cur_shape == 4)
+	if (ol->cur_shape == 4 || ol->cur_shape == 5)
 		normal = normal_plane(ray, ol);
 	return (normal);
 }

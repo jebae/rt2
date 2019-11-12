@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/10/09 11:50:23 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/11/12 19:46:26 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define CYLINDER	1
 # define PLANE		2
 # define SPHERE		3
+# define RECTANGLE	5
 
 typedef struct		s_point
 {
@@ -95,6 +96,15 @@ typedef struct		s_ll
 	struct s_ll		*next;
 }					t_ll;
 
+typedef struct		s_rectangle
+{
+	t_vec3			p;
+	t_vec3			a;
+	t_vec3			b;
+	double			magnitude_a;
+	double			magnitude_b;
+}					t_rectangle;
+
 typedef struct		s_ol
 {
 	size_t			content_size;
@@ -118,6 +128,7 @@ typedef struct		s_ol
 	t_vec3			rot_z;
 	t_vec3			tra;
 	t_vec3			pla_po;
+	t_rectangle		rectangle;
 	struct s_ol		*next;
 }					t_ol;
 
