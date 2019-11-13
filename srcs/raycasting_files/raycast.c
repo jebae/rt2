@@ -85,8 +85,8 @@ int				raycast(t_env *e)
 	{
 
 
-		e->y = 0;
-		while (e->y < WIDTH)
+		e->y = e->y_min;
+		while (e->y < e->y_max)
 		{
 
 
