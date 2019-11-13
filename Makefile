@@ -12,7 +12,7 @@
 
 NAME = rtv1
 
-CFLAGS = -Wall -Werror -Wextra -Ofast
+CFLAGS = -Wall -Werror -Wextra -Ofast #-fsanitize=address
 
 INC = -I includes/
 
@@ -56,7 +56,8 @@ SRCS = main.c\
 	raycasting_files/vector_op_2.c\
 	raycasting_files/object_manipulation.c\
 	raycasting_files/start_rtv1.c\
-	raycasting_files/matrix_check.c
+	raycasting_files/matrix_check.c\
+	raycasting_files/multithread.c
 
 SUB_FOLD = parser_files handle raycasting_files
 

@@ -16,17 +16,15 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <math.h>
+# include <pthread.h>
 # include "rtv1.h"
 # include "rtv1_parser.h"
-# define X0 -WIDTH / 2
-# define Y0 -WIDTH / 2
-# define RAYON 70
+#include <stdio.h>
 
 t_mlx		init(t_mlx *p);
-int			sand(t_env *e);
-int			sand2(t_env *e, t_ol *ol, t_ll *ll);
-int			raycast(t_env *e, t_ol *ol, t_ll *ll);
+int			raycast(t_env *e);
 int			color(t_point p, t_ol *ol, t_ll *ll);
+void    multi_thread(t_env *e);
 
 /*
 ** Vector operations

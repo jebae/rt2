@@ -50,8 +50,12 @@ t_ray			cast_ray(int x, int y, t_camera cam)
 
 void			raycast_2(t_env *e, t_shader sh, t_ll *ll, t_ray ray)
 {
+
+
 	while (e->tp_o != NULL)
 	{
+
+
 		e->r = intersection(ray, e->tp_o);
 		if (e->r > 0 && e->r < FAR && e->r < ray.t)
 		{
@@ -67,9 +71,11 @@ void			raycast_2(t_env *e, t_shader sh, t_ll *ll, t_ray ray)
 		}
 		e->tp_o = e->tp_o->next;
 	}
+
+
 }
 
-int				raycast(t_env *e, t_ol *ol, t_ll *ll)
+int				raycast(t_env *e)
 {
 	t_ray		ray;
 	t_shader	sh;
@@ -77,12 +83,16 @@ int				raycast(t_env *e, t_ol *ol, t_ll *ll)
 	ft_bzero(&sh, sizeof(sh));
 	while (e->x < WIDTH)
 	{
+
+
 		e->y = 0;
 		while (e->y < WIDTH)
 		{
+
+
 			ray = cast_ray(e->x, e->y, e->cam);
-			e->tp_o = ol;
-			raycast_2(e, sh, ll, ray);
+			e->tp_o = e->ll_obj;
+			raycast_2(e, sh, e->ll_lit, ray);
 			e->y++;
 		}
 		e->x++;

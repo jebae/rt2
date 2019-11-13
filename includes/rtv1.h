@@ -148,6 +148,7 @@ typedef struct		s_creecam
 
 typedef struct		s_env
 {
+	int	thread;
 	char			*data;
 	int				k[300];
 	int				s_count;
@@ -164,6 +165,9 @@ typedef struct		s_env
 	t_ol			*tp_o;
 	double			r;
 	t_creecam		cc;
+	int				y_min;
+	int				y_max;
+	void			**image;
 }					t_env;
 
 void				setup_rtv1(t_env *e);
@@ -197,7 +201,6 @@ int					storing_three_3(t_env *e, t_parser *p, t_ll *l_tmp,
 						t_ol *o_tmp);
 void				store_lit_tra(t_parser *p, t_ll *l_tmp);
 void				store_translate(t_parser *p, t_ll *l_tmp, t_ol *o_tmp);
-int					raycast(t_env *e, t_ol *ol, t_ll *ll);
 int					main(int argc, char **argv);
 
 #endif
