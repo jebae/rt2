@@ -1,4 +1,4 @@
-#include "vector.h"
+#include "libvector.h"
 
 t_vec2		v2_scalar(t_vec2 u, double k)
 {

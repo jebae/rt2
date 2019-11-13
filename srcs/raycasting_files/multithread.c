@@ -1,6 +1,6 @@
 #include "raycast.h"
 
-#define MAX_THREAD 8
+#define MAX_THREAD 50
 
 void    multi_thread(t_env *e)
 {

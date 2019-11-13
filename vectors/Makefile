@@ -12,7 +12,7 @@
 
 NAME = libvector.a
 
-HEADER = vector.h
+HEADER = libvector.h
 
 CFLAGS = -Wall -Werror -Wextra
 
@@ -35,7 +35,7 @@ superfast:
 all:
 	@make $(NAME)
 
-$(NAME):$(SRCS)
+$(NAME):$(OBJECTS)
 	@ar rc $(NAME) $(OBJECTS)
 	@ranlib $(NAME)
 

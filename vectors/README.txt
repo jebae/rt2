@@ -1,4 +1,4 @@
-This library implements simple vectors manipulation in dimension 2, 3 and 4 (homogeneous coordinates), vectors are defined as custom structures, see vector.h.
+This library implements simple vectors manipulation in dimension 2, 3 and 4 (homogeneous coordinates), vectors are defined as custom structures, see libvector.h.
 Every function have the same name, prefixed by "vX_function_name" where X stands for the dimension you're working in.
 Every function returns a new instanced vector, allocated on the stack, no vector is changed.
 
@@ -34,3 +34,9 @@ t_vecX  vX_norm(t_vecX vector1)
     returns the magnitude of vector1, squared
 
 
+Future implementation (soon tm)
+
+    - Rotation from an angle
+    - Translation
+    - Compound object manipulation
+    - Homogenous coordinates (quaternions)

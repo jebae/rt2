@@ -73,6 +73,10 @@ L_FOLD = libft/
 
 L_TARG = libft
 
+V_FOLD = vectors/
+
+V_TARG = libvector
+
 M_FOLD = minilibx_macos/
 
 LIBMLX = -L ./minilibx_macos/ -lmlx -framework OpenGL -framework Appkit
@@ -87,7 +91,7 @@ objects :
 	@mkdir -p $(BUILD_DIR)
 
 $(NAME):$(OBJ) | $(L_TARG)
-	@$(CC) $(CFLAGS) $(INC) libft/libft.a $(LIBMLX) $(OBJ) -o $(NAME)
+	@$(CC) $(CFLAGS) $(INC) libft/libft.a vectors/libvector.a $(LIBMLX) $(OBJ) -o $(NAME)
 	@touch .gitignore
 	@printf "\033[32m[ ✔ ] $(NAME)\n\033[0m"
 	@echo $(OBJ) > .gitignore
@@ -99,10 +103,12 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 $(L_TARG):
 	@make -C $(L_FOLD) all
+	@make -C $(V_FOLD) all
 	@make -C $(M_FOLD)
 
 clean:
-	@make -C $(L_TARG) clean
+	@make -C $(L_FOLD) clean
+	@make -C $(V_FOLD) clean
 	@make -C $(M_FOLD) clean
 	@rm -rf $(OBJ)
 	@rm -rf $(OBJ_DIR) 2> /dev/null || true
@@ -110,7 +116,8 @@ clean:
 
 fclean: clean
 	@printf '\033[31m[ ✔ ] %s\n\033[0m' "... and fclean too !"
-	@make -C $(L_TARG) fclean
+	@make -C $(L_FOLD) fclean
+	@make -C $(V_FOLD) fclean
 	@rm -rf $(NAME)
 
 re: fclean all
