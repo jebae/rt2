@@ -10,7 +10,7 @@ t_vec2		v2_add(t_vec2 u, t_vec2 v)
 	return (w);
 }
 
-t_vec3		v3add(t_vec3 u, t_vec3 v, char c)
+t_vec3		v3_add(t_vec3 u, t_vec3 v)
 {
 	t_vec3	w;
 
@@ -20,7 +20,7 @@ t_vec3		v3add(t_vec3 u, t_vec3 v, char c)
 	return (w);
 }
 
-t_vec4		v4_add(t_vec4 u, t_vec4 v, char c)
+t_vec4		v4_add(t_vec4 u, t_vec4 v)
 {
 	t_vec4	w;
 
