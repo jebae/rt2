@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/10/09 11:56:29 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/11/13 19:34:06 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_mlx		init(t_mlx *p);
 int			sand(t_env *e);
 int			sand2(t_env *e, t_ol *ol, t_ll *ll);
 int			raycast(t_env *e, t_ol *ol, t_ll *ll);
+t_ray		cast_ray(int x, int y, t_camera cam);
 int			color(t_point p, t_ol *ol, t_ll *ll);
 
 /*
@@ -48,6 +49,7 @@ double		v_intersect_pl(t_ray ray, t_ol *ol);
 double		v_intersect_cy(t_ray ray, t_ol *ol);
 double		v_intersect_co(t_ray ray, t_ol *ol);
 double		v_intersect_sp2(t_ray ray, t_ol *ol);
+double		v_intersect_rectangle(t_ray ray, t_ol *ol);
 double		intersection(t_ray ray, t_ol *ol);
 double		find_closest_intersection(double a, double b, double c);
 t_point		find_point_from_ray(t_ray ray);

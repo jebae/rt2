@@ -6,7 +6,7 @@
 #    By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 07:58:15 by mhernand          #+#    #+#              #
-#    Updated: 2019/11/12 19:50:55 by jebae            ###   ########.fr        #
+#    Updated: 2019/11/13 20:02:07 by jebae            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,6 +100,9 @@ $(L_TARG):
 	@make -C $(L_FOLD) all
 	@make -C $(M_FOLD)
 
+test :
+	$(CC) $(CFLAGS) $(INC) -I srcs/__tests__ libft/libft.a $(LIBMLX) srcs/handle/*.c srcs/raycasting_files/*.c  srcs/__tests__/*/*.c srcs/__tests__/*.c -o test
+
 clean:
 	@make -C $(L_TARG) clean
 	@make -C $(M_FOLD) clean
@@ -114,4 +117,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean all libft
+.PHONY: all clean fclean all libft test

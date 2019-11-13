@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 10:44:27 by mhernand          #+#    #+#             */
-/*   Updated: 2019/11/12 19:49:10 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/13 19:51:14 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ double	v_intersect_rectangle(t_ray ray, t_ol *ol)
 	pp = v_add(*((t_vec3 *)&ray.ori), v_mult(ray.dir, t), '+');
 	pp = v_add(pp, ol->rectangle.p, '-');
 	length = v_scal(pp, ol->rectangle.a);
-	if (length < 0.0 || length > ol->rectangle.magnitude_a)
+	if (length < 0.0 || length > ol->rectangle.norm_a)
 		return (FAR);
 	length = v_scal(pp, ol->rectangle.b);
-	if (length < 0.0 || length > ol->rectangle.magnitude_b)
+	if (length < 0.0 || length > ol->rectangle.norm_b)
 		return (FAR);
 	return (t);
 }

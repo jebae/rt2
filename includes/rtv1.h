@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/11/12 19:46:26 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/13 19:20:41 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,8 @@ typedef struct		s_rectangle
 	t_vec3			p;
 	t_vec3			a;
 	t_vec3			b;
-	double			magnitude_a;
-	double			magnitude_b;
+	double			norm_a;
+	double			norm_b;
 }					t_rectangle;
 
 typedef struct		s_ol
