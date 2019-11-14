@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/11/13 19:34:06 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/14 15:17:26 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ t_col		color_add(t_col c1, t_col c2);
 t_vec3		normal_sphere(t_ray ray, t_ol *ol);
 t_vec3		normal_cylinder(t_ray ray, t_ol *ol);
 t_vec3		normal_cone(t_ray ray, t_ol *ol);
+t_vec3		normal_plane(t_ray ray, t_ol *ol);
 t_vec3		get_normal(t_ray ray, t_ol *ol);
 
 /*

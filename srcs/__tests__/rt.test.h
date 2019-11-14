@@ -7,6 +7,8 @@
 
 # define MLX_BPP                32
 # define MLX_ENDIAN             0
+# define KEY_ESC				53
+# define MAX(a, b) (((a) > (b)) ? (a) : (b))
 
 typedef struct	s_mlxkit
 {
@@ -16,7 +18,12 @@ typedef struct	s_mlxkit
 	int			*img_buf;
 }				t_mlxkit;
 
-void			test_rectangle_intersect(void);
 void			init_mlxkit(t_mlxkit *mlxkit);
+
+/*
+** object test
+*/
+void			test_rectangle_intersect_case1(void);
+void			test_rectangle_normal_case1(void);
 
 #endif
