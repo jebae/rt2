@@ -15,6 +15,7 @@
 # include "../minilibx_macos/mlx.h"
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
+# include "../vectors/libvector.h"
 # include "rtv1_parser.h"
 # include <math.h>
 # include <complex.h>
@@ -31,23 +32,9 @@
 # define PLANE		2
 # define SPHERE		3
 
-typedef struct		s_point
-{
-	double			x;
-	double			y;
-	double			z;
-}					t_point;
-
-typedef struct		s_vec3
-{
-	double			x;
-	double			y;
-	double			z;
-}					t_vec3;
-
 typedef struct		s_ray
 {
-	t_point			ori;
+	t_vec3			ori;
 	t_vec3			dir;
 	double			t;
 }					t_ray;
@@ -67,7 +54,7 @@ typedef struct		s_shader
 
 typedef struct		s_camera
 {
-	t_point			campos;
+	t_vec3			campos;
 	t_vec3			camdir;
 	t_vec3			*tra;
 	t_vec3			*rot;
@@ -88,8 +75,8 @@ typedef struct		s_amb
 typedef struct		s_ll
 {
 	size_t			content_size;
-	t_point			pos;
-	t_point			its;
+	t_vec3			pos;
+	t_vec3			its;
 	t_vec3			tra;
 	t_vec3			rot;
 	struct s_ll		*next;
@@ -108,9 +95,9 @@ typedef struct		s_ol
 	int				specpower;
 	int				specvalue;
 	int				ref;
-	t_point			dif;
+	t_vec3			dif;
 	t_vec3			dir;
-	t_point			cen;
+	t_vec3			cen;
 	t_vec3			nor;
 	t_vec3			rot;
 	t_vec3			rot_x;
@@ -130,14 +117,6 @@ typedef struct		s_mlx
 	int				end;
 	int				sl;
 }					t_mlx;
-
-typedef struct		s_vec4
-{
-	int				x;
-	int				y;
-	int				z;
-	int				w;
-}					t_vec4;
 
 typedef struct		s_creecam
 {

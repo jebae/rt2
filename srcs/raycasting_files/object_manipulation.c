@@ -12,9 +12,9 @@
 
 #include "raycast.h"
 
-t_point		translation(t_point pos, t_vec3 trans)
+t_vec3		translation(t_vec3 pos, t_vec3 trans)
 {
-	t_point	new;
+	t_vec3	new;
 
 	new.x = pos.x + trans.x;
 	new.y = pos.y + trans.y;
