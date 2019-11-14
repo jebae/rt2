@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/11/13 19:20:41 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/14 16:58:12 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ typedef struct		s_vec3
 	double			y;
 	double			z;
 }					t_vec3;
+
+typedef struct		s_mat3
+{
+	double			arr[3][3];
+}					t_mat3;
 
 typedef struct		s_ray
 {
@@ -105,6 +110,13 @@ typedef struct		s_rectangle
 	double			norm_b;
 }					t_rectangle;
 
+typedef struct		s_box
+{
+	t_vec3			vmin;
+	t_vec3			vmax;
+	t_mat3			mat;
+}					t_box;
+
 typedef struct		s_ol
 {
 	size_t			content_size;
@@ -129,6 +141,7 @@ typedef struct		s_ol
 	t_vec3			tra;
 	t_vec3			pla_po;
 	t_rectangle		rectangle;
+	t_box			box;
 	struct s_ol		*next;
 }					t_ol;
 

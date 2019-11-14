@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/11/14 15:17:26 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/14 16:50:39 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ double		v_scal(t_vec3 u, t_vec3 v);
 double		v_norm(t_vec3 u);
 t_vec3		v_cross(t_vec3 u, t_vec3 v);
 t_vec3		v_normalise(t_vec3 u);
+
+/*
+** Matrix operations
+*/
+t_vec3		m_mult(t_mat3 m, t_vec3 v);
 
 /*
 ** Intersection functions
