@@ -15,7 +15,7 @@
 t_vec3	normal_sphere(t_ray ray, t_ol *ol)
 {
 	t_vec3	normal;
-	t_point	point;
+	t_vec3	point;
 
 	point = find_point_from_ray(ray);
 	normal = create_v(ol->cen, point);
@@ -41,7 +41,7 @@ t_vec3	normal_cylinder(t_ray ray, t_ol *ol)
 
 t_vec3	normal_cone(t_ray ray, t_ol *ol)
 {
-	t_point	p;
+	t_vec3	p;
 	t_vec3	v;
 	t_vec3	n;
 	double	k;

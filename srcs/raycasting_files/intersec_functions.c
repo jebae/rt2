@@ -26,9 +26,9 @@ double	v_intersect_sp2(t_ray ray, t_ol *ol)
 	return (find_closest_intersection(a, b, c));
 }
 
-t_point	find_point_on_plane(t_ol *ol)
+t_vec3	find_point_on_plane(t_ol *ol)
 {
-	t_point	c;
+	t_vec3	c;
 	t_vec3	normal;
 
 	normal = v_normalise(ol->nor);
@@ -40,7 +40,7 @@ t_point	find_point_on_plane(t_ol *ol)
 
 double	v_intersect_pl(t_ray ray, t_ol *ol)
 {
-	t_point	c;
+	t_vec3	c;
 	t_vec3	v;
 	t_vec3	norm;
 	double	t;

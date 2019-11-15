@@ -12,9 +12,9 @@
 
 #include "raycast.h"
 
-t_point		create_pt(double x, double y, double z)
+t_vec3		create_pt(double x, double y, double z)
 {
-	t_point	p;
+	t_vec3	p;
 
 	p.x = x;
 	p.y = y;
@@ -22,7 +22,7 @@ t_point		create_pt(double x, double y, double z)
 	return (p);
 }
 
-t_vec3		create_v(t_point ori, t_point dest)
+t_vec3		create_v(t_vec3 ori, t_vec3 dest)
 {
 	t_vec3	u;
 

@@ -8,7 +8,7 @@ void		test_rectangle_intersect_case1(void)
 	t_ol		ol;
 
 	init_mlxkit(&mlxkit);
-	cam.campos = (t_point){0.0, 0.0, -1.0};
+	cam.campos = (t_vec3){0.0, 0.0, -1.0};
 	cam.camdir = (t_vec3){0.0, 0.0, 1.0};
 	cam.left = (t_vec3){-1.0, 0.0, 0.0};
 	cam.up = (t_vec3){0.0, -1.0, 0.0};
@@ -49,7 +49,7 @@ void		test_rectangle_normal_case1(void)
 	double		n_dot_l;
 
 	init_mlxkit(&mlxkit);
-	cam.campos = (t_point){0.0, 0.0, -1.0};
+	cam.campos = (t_vec3){0.0, 0.0, -1.0};
 	cam.camdir = (t_vec3){0.0, 0.0, 1.0};
 	cam.left = (t_vec3){-1.0, 0.0, 0.0};
 	cam.up = (t_vec3){0.0, -1.0, 0.0};

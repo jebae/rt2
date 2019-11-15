@@ -12,9 +12,9 @@
 
 #include "raycast.h"
 
-t_point			find_point_from_ray(t_ray ray)
+t_vec3			find_point_from_ray(t_ray ray)
 {
-	t_point		point;
+	t_vec3		point;
 
 	point.x = ray.ori.x + ray.dir.x * ray.t;
 	point.y = ray.ori.y + ray.dir.y * ray.t;
@@ -64,7 +64,7 @@ t_col			specular_color(t_ray ray, t_vec3 normal, t_ol *ol, t_ll *ll)
 	return (c);
 }
 
-double			send_shadow_ray(t_point point, t_vec3 light, t_ol *ol)
+double			send_shadow_ray(t_vec3 point, t_vec3 light, t_ol *ol)
 {
 	t_ray		shadow_ray;
 	t_ol		*tp_o;
@@ -89,7 +89,7 @@ double			send_shadow_ray(t_point point, t_vec3 light, t_ol *ol)
 t_shader		compute_color(t_ray ray, t_ol *ol, t_ll *ll, t_env *e)
 {
 	t_shader	shader;
-	t_point		point;
+	t_vec3		point;
 	t_vec3		normal;
 	t_vec3		light;
 

@@ -25,5 +25,6 @@ void			init_mlxkit(t_mlxkit *mlxkit);
 */
 void			test_rectangle_intersect_case1(void);
 void			test_rectangle_normal_case1(void);
+void			test_box_intersect_case1(void);
 
 #endif

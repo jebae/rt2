@@ -55,21 +55,54 @@ double	v_intersect_rectangle(t_ray ray, t_ol *ol)
 	return (t);
 }
 
+static void		swap_double(double *a, double *b)
+{
+	double		temp;
+
+	temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
 static double	box_get_t(t_ray *ray, t_box *box)
 {
-	double	tmin[3];
-	double	tmax[3];
+	int			i;
+	double		tmin[4];
+	double		tmax[4];
 
-	tmin[0] = 
+	tmin[0] = -FAR;
+	tmax[0] = FAR;
+	i = 0;
+	while (i < 3)
+	{
+
+		tmin[i + 1] = -((double *)&ray->ori)[i] / ((double *)&ray->dir)[i];
+		tmax[i + 1] = (((double *)&box->vmax)[i] - ((double *)&ray->ori)[i])
+			/ ((double *)&ray->dir)[i];
+		if (tmin[i + 1] > tmax[i + 1])
+			swap_double(&(tmin[i + 1]), &(tmax[i + 1]));
+		if (tmin[0] > tmax[i + 1] || tmax[0] < tmin[i + 1])
+			return (FAR);
+		if (tmin[0] < tmin[i + 1])
+			tmin[0] = tmin[i + 1];
+		if (tmax[0] > tmax[i + 1])
+			tmax[0] = tmax[i + 1];
+		i++;
+	}
+	if (tmin[0] >= 0)
+		return (tmin[0]);
+	else if (tmin[0] < 0 && tmax[0] >= 0)
+		return (tmax[0]);
+	return (FAR);
 }
 
 double			v_intersect_box(t_ray ray, t_ol *ol)
 {
-	double		t;
 	t_box		*box;
 
 	box = &ol->box;
 	ray.ori = v_add(ray.ori, box->vmin, '-');
 	ray.ori = m_mult(box->mat, ray.ori);
 	ray.dir = m_mult(box->mat, ray.dir);
+	return (box_get_t(&ray, box));
 }
