@@ -78,7 +78,8 @@ double			send_shadow_ray(t_vec3 point, t_vec3 light, t_ol *ol)
 	tp_o = ol;
 	while (tp_o != NULL)
 	{
-		r = intersection(shadow_ray, tp_o);
+		r = tp_o->intersect(shadow_ray, tp_o->object);
+		// r = intersection(shadow_ray, tp_o);
 		if (r > 0.00001)
 			shadow_ray.t = r < shadow_ray.t ? r : shadow_ray.t;
 		tp_o = tp_o->next;
@@ -94,7 +95,8 @@ t_shader		compute_color(t_ray ray, t_ol *ol, t_ll *ll, t_env *e)
 	t_vec3		light;
 
 	point = find_point_from_ray(ray);
-	normal = get_normal(ray, ol);
+	// normal = get_normal(ray, ol);
+	normal = ol->get_normal(ray, ol->object);
 	light = v3_frompoints(point, ll->pos); //to change
 	shader = init_shader();
 	if (send_shadow_ray(point, light, e->ll_obj) < v3_norm(light))

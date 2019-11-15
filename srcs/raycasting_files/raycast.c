@@ -12,18 +12,18 @@
 
 #include "raycast.h"
 
-double			intersection(t_ray ray, t_ol *ol)
-{
-	if (ol->cur_shape == 1)
-		return (v_intersect_sp2(ray, ol));
-	if (ol->cur_shape == 2)
-		return (v_intersect_co(ray, ol));
-	if (ol->cur_shape == 3)
-		return (v_intersect_cy(ray, ol));
-	if (ol->cur_shape == 4)
-		return (v_intersect_pl(ray, ol));
-	return (0);
-}
+// double			intersection(t_ray ray, t_ol *ol)
+// {
+// 	if (ol->cur_shape == 1)
+// 		return (v_intersect_sp2(ray, ol));
+// 	if (ol->cur_shape == 2)
+// 		return (v_intersect_co(ray, ol));
+// 	if (ol->cur_shape == 3)
+// 		return (v_intersect_cy(ray, ol));
+// 	if (ol->cur_shape == 4)
+// 		return (v_intersect_pl(ray, ol));
+// 	return (0);
+// }
 
 double			to_vertex(int x, double f_width, int w_width)
 {
@@ -57,7 +57,8 @@ void			raycast_2(t_env *e, t_shader sh, t_ll *ll, t_ray ray)
 	{
 
 
-		e->r = intersection(ray, e->tp_o);
+		// e->r = intersection(ray, e->tp_o);
+		e->r = e->tp_o->intersect(ray, e->tp_o->object);
 		if (e->r > 0 && e->r < FAR && e->r < ray.t)
 		{
 			ray.t = e->r < ray.t ? e->r : ray.t;
@@ -81,7 +82,8 @@ void			raycast_3(t_env *e, t_shader sh, t_ll *ll, t_ray ray)
 
 	while (e->tp_o != NULL)
 	{
-		e->r = intersection(ray, e->tp_o);
+		// e->r = intersection(ray, e->tp_o);
+		e->r = e->tp_o->intersect(ray, e->tp_o->object);
 		if (e->r > 0 && e->r < FAR && e->r < ray.t)
 		{
 			ray.t = e->r < ray.t ? e->r : ray.t;

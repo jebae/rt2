@@ -15,7 +15,7 @@
 # include "../minilibx_macos/mlx.h"
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
-# include "../vectors/libvector.h"
+# include "../libvector/libvector.h"
 # include "rtv1_parser.h"
 # include <math.h>
 # include <complex.h>
@@ -82,31 +82,73 @@ typedef struct		s_ll
 	struct s_ll		*next;
 }					t_ll;
 
+// typedef struct		s_ol
+// {
+// 	size_t			content_size;
+// 	int				status;
+// 	int				d;
+// 	double			angle;
+// 	int				radius;
+// 	int				s_pow;
+// 	int				s_val;
+// 	int				cur_shape;
+// 	int				specpower;
+// 	int				specvalue;
+// 	int				ref;
+// 	t_vec3			dif;
+// 	t_vec3			dir;
+// 	t_vec3			cen;
+// 	t_vec3			nor;
+// 	t_vec3			rot;
+// 	t_vec3			rot_x;
+// 	t_vec3			rot_y;
+// 	t_vec3			rot_z;
+// 	t_vec3			translation;
+// 	t_vec3			pla_po;
+// 	struct s_ol		*next;
+// }					t_ol;
+
 typedef struct		s_ol
 {
-	size_t			content_size;
-	int				status;
-	int				d;
-	double			angle;
-	int				radius;
-	int				s_pow;
-	int				s_val;
-	int				cur_shape;
+	void			*object;
 	int				specpower;
 	int				specvalue;
-	int				ref;
 	t_vec3			dif;
-	t_vec3			dir;
-	t_vec3			cen;
-	t_vec3			nor;
-	t_vec3			rot;
-	t_vec3			rot_x;
-	t_vec3			rot_y;
-	t_vec3			rot_z;
-	t_vec3			tra;
-	t_vec3			pla_po;
+	double			(*intersect)(t_ray ray, void *object);
+	t_vec3			(*get_normal)(t_ray ray, void *object);
 	struct s_ol		*next;
+	// int				status;	
+	// t_vec3			rot_x;
+	// t_vec3			rot_y;
+	// t_vec3			rot_z;
+	// t_vec3			translation;
 }					t_ol;
+typedef struct 		s_sphere
+{
+	t_vec3			cen;
+	double			radius;
+}					t_sphere;
+
+typedef struct		s_cone
+{
+	t_vec3			cen;
+	t_vec3			axis;
+	double			angle;
+}					t_cone;
+
+typedef struct		s_cyl
+{
+	t_vec3			cen;
+	t_vec3			axis;
+	double			radius;
+}					t_cyl;
+
+typedef struct		s_plane
+{
+	t_vec3			normal;
+	double			d;
+}					t_plane;
+
 
 typedef struct		s_mlx
 {

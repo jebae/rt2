@@ -27,6 +27,7 @@ int		key_release(int key, t_env *e)
 int		touch(t_env *e)
 {
 	if (e->k[ESC] == 1)
-		quit(e);
+		exit(0);
+		// quit(e);
 	return (0);
 }

@@ -23,6 +23,7 @@
 
 t_mlx		init(t_mlx *p);
 int			raycast(t_env *e);
+t_ray		cast_ray(int x, int y, t_camera cam);
 int			color(t_vec3 p, t_ol *ol, t_ll *ll);
 void    multi_thread(t_env *e);
 
@@ -42,10 +43,10 @@ t_vec3		v_normalise(t_vec3 u);
 ** Intersection functions
 */
 double		v_intersect_sp(t_vec3 ray, t_ol *ol);
-double		v_intersect_pl(t_ray ray, t_ol *ol);
-double		v_intersect_cy(t_ray ray, t_ol *ol);
-double		v_intersect_co(t_ray ray, t_ol *ol);
-double		v_intersect_sp2(t_ray ray, t_ol *ol);
+double		v_intersect_pl(t_ray ray, void *object);
+double		v_intersect_cy(t_ray ray, void *object);
+double		v_intersect_co(t_ray ray, void *object);
+double		v_intersect_sp2(t_ray ray, void *object);
 double		intersection(t_ray ray, t_ol *ol);
 double		find_closest_intersection(double a, double b, double c);
 t_vec3		find_point_from_ray(t_ray ray);
@@ -63,9 +64,10 @@ t_col		color_add(t_col c1, t_col c2);
 /*
 ** Normal related functions
 */
-t_vec3		normal_sphere(t_ray ray, t_ol *ol);
-t_vec3		normal_cylinder(t_ray ray, t_ol *ol);
-t_vec3		normal_cone(t_ray ray, t_ol *ol);
+t_vec3		normal_sphere(t_ray ray, void *object);
+t_vec3		normal_cylinder(t_ray ray, void *object);
+t_vec3		normal_cone(t_ray ray, void *object);
+t_vec3	    normal_plane(t_ray ray, void *object);
 t_vec3		get_normal(t_ray ray, t_ol *ol);
 
 /*

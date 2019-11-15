@@ -54,7 +54,6 @@ SRCS = main.c\
 	raycasting_files/shading.c\
 	raycasting_files/vector_op.c\
 	raycasting_files/vector_op_2.c\
-	raycasting_files/object_manipulation.c\
 	raycasting_files/start_rtv1.c\
 	raycasting_files/matrix_check.c\
 	raycasting_files/multithread.c
@@ -73,7 +72,7 @@ L_FOLD = libft/
 
 L_TARG = libft
 
-V_FOLD = vectors/
+V_FOLD = libvector/
 
 V_TARG = libvector
 
@@ -106,6 +105,9 @@ $(L_TARG):
 	@make -C $(V_FOLD) all
 	@make -C $(M_FOLD)
 
+test :
+	$(CC) $(CFLAGS) $(INC) -I srcs/__tests__ libft/libft.a libvector/libvector.a $(LIBMLX) srcs/handle/*.c srcs/raycasting_files/*.c  srcs/__tests__/*/*.c srcs/__tests__/*.c -o test
+
 clean:
 	@make -C $(L_FOLD) clean
 	@make -C $(V_FOLD) clean
@@ -122,4 +124,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean all libft
+.PHONY: all clean fclean all libft test
