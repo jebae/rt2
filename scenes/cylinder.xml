@@ -1,7 +1,7 @@
 <scene>
 	<specs>
 		<cam>
-			<position>0, 0, -1</position>
+			<position>0, -10, -1</position>
 			<direction>0, 0, 1</direction>
 		</cam>
 		<amb>
@@ -10,7 +10,7 @@
 		</amb>
 		<light status = "basic">
 			<position>30, 0, 0</position>
-			<intensity>255, 255, 255</intensity>
+			<intensity>255, 255, 0</intensity>
 		</light>
 	</specs>
 	<objects>
@@ -19,7 +19,7 @@
 			<radius>8</radius>
 			<direction>0, 1, 0</direction>
 			<center>0, 0, 20</center>
-			<diffusion>0, 200, 0</diffusion>
+			<diffusion>200, 200, 200</diffusion>
 			<reflection>10</reflection>
 			<specpower>10</specpower>
 			<specvalue>10</specvalue>

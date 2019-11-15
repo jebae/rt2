@@ -28,3 +28,52 @@ void		init_mlxkit(t_mlxkit *mlxkit)
 	mlxkit->img_buf = (int *)mlx_get_data_addr(mlxkit->p_img, &bpp, &width, &endian);
 	mlx_key_hook(mlxkit->p_win, &mlxkit_key_press, mlxkit);
 }
+
+void		render_intersect_test(
+	t_mlxkit *mlxkit,
+	t_camera *cam,
+	t_ol *ol
+)
+{
+	t_ray		ray;
+
+	for (int i=0; i < WIDTH; i++)
+	{
+		for (int j=0; j < WIDTH; j++)
+		{
+			ray = cast_ray(j, i, *cam);
+			if (ol->intersect(ray, ol->object) != FAR)
+				mlxkit->img_buf[j + i * WIDTH] = 0xffffff;
+		}
+	}
+	mlx_put_image_to_window(mlxkit->p_mlx, mlxkit->p_win, mlxkit->p_img, 0, 0);
+	ft_memdel((void **)&ol->object);
+	mlx_loop(mlxkit->p_mlx);
+}
+
+void		render_normal_test(
+	t_mlxkit *mlxkit,
+	t_camera *cam,
+	t_ol *ol
+)
+{
+	t_ray		ray;
+	t_vec3		n;
+	double		n_dot_l;
+
+	for (int i=0; i < WIDTH; i++)
+	{
+		for (int j=0; j < WIDTH; j++)
+		{
+			ray = cast_ray(j, i, *cam);
+			if ((ray.t = ol->intersect(ray, ol->object)) == FAR)
+				continue ;
+			n = ol->get_normal(ray, ol->object);
+			n_dot_l = v3_dotpdt(v3_scalar(ray.dir, -1.0), n);
+			mlxkit->img_buf[j + i * WIDTH] = 0x0000ff * MAX(0.0, n_dot_l);
+		}
+	}
+	mlx_put_image_to_window(mlxkit->p_mlx, mlxkit->p_win, mlxkit->p_img, 0, 0);
+	ft_memdel((void **)&ol->object);
+	mlx_loop(mlxkit->p_mlx);
+}

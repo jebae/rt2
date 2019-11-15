@@ -20,11 +20,39 @@ typedef struct	s_mlxkit
 
 void			init_mlxkit(t_mlxkit *mlxkit);
 
+void			render_intersect_test(
+	t_mlxkit *mlxkit,
+	t_camera *cam,
+	t_ol *ol
+);
+
+void			render_normal_test(
+	t_mlxkit *mlxkit,
+	t_camera *cam,
+	t_ol *ol
+);
+
 /*
 ** object test
 */
+void			test_sphere_intersect_case1(void);
+void			test_sphere_normal_case1(void);
+
+void			test_cylinder_intersect_case1(void);
+void			test_cylinder_normal_case1(void);
+
+void			test_cone_intersect_case1(void);
+void			test_cone_normal_case1(void);
+
 void			test_rectangle_intersect_case1(void);
+void			test_rectangle_intersect_case2(void);
 void			test_rectangle_normal_case1(void);
+void			test_rectangle_normal_case2(void);
+
 void			test_box_intersect_case1(void);
+void			test_box_intersect_case2(void);
+
+void			test_plane_intersect_case1();
+void			test_plane_normal_case1();
 
 #endif

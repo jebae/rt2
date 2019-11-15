@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/11/14 16:58:12 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/15 16:59:44 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "../minilibx_macos/mlx.h"
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
+# include "../libvector/libvector.h"
 # include "rtv1_parser.h"
 # include <math.h>
 # include <complex.h>
@@ -31,13 +32,6 @@
 # define PLANE		2
 # define SPHERE		3
 # define RECTANGLE	5
-
-typedef struct		s_vec3
-{
-	double			x;
-	double			y;
-	double			z;
-}					t_vec3;
 
 typedef struct		s_mat3
 {
@@ -94,13 +88,57 @@ typedef struct		s_ll
 	struct s_ll		*next;
 }					t_ll;
 
+typedef struct		s_ol
+{
+	void			*object;
+	int				specpower;
+	int				specvalue;
+	t_vec3			dif;
+	double			(*intersect)(t_ray ray, void *object);
+	t_vec3			(*get_normal)(t_ray ray, void *object);
+	struct s_ol		*next;
+	// int				status;	
+	// t_vec3			rot_x;
+	// t_vec3			rot_y;
+	// t_vec3			rot_z;
+	// t_vec3			translation;
+}					t_ol;
+
+typedef struct 		s_sphere
+{
+	t_vec3			cen;
+	double			radius;
+}					t_sphere;
+
+typedef struct		s_cone
+{
+	t_vec3			cen;
+	t_vec3			axis;
+	double			angle;
+}					t_cone;
+
+typedef struct		s_cyl
+{
+	t_vec3			cen;
+	t_vec3			axis;
+	double			radius;
+}					t_cyl;
+
+typedef struct		s_plane
+{
+	t_vec3			normal;
+	double			d;
+}					t_plane;
+
 typedef struct		s_rectangle
 {
 	t_vec3			p;
 	t_vec3			a;
 	t_vec3			b;
+	t_vec3			normal;
 	double			norm_a;
 	double			norm_b;
+	double			d;
 }					t_rectangle;
 
 typedef struct		s_box
@@ -109,34 +147,6 @@ typedef struct		s_box
 	t_vec3			vmax;
 	t_mat3			mat;
 }					t_box;
-
-typedef struct		s_ol
-{
-	size_t			content_size;
-	int				status;
-	int				d;
-	double			angle;
-	int				radius;
-	int				s_pow;
-	int				s_val;
-	int				cur_shape;
-	int				specpower;
-	int				specvalue;
-	int				ref;
-	t_vec3			dif;
-	t_vec3			dir;
-	t_vec3			cen;
-	t_vec3			nor;
-	t_vec3			rot;
-	t_vec3			rot_x;
-	t_vec3			rot_y;
-	t_vec3			rot_z;
-	t_vec3			tra;
-	t_vec3			pla_po;
-	t_rectangle		rectangle;
-	t_box			box;
-	struct s_ol		*next;
-}					t_ol;
 
 typedef struct		s_mlx
 {
@@ -148,14 +158,6 @@ typedef struct		s_mlx
 	int				sl;
 }					t_mlx;
 
-typedef struct		s_vec4
-{
-	int				x;
-	int				y;
-	int				z;
-	int				w;
-}					t_vec4;
-
 typedef struct		s_creecam
 {
 	t_vec4			v1;
@@ -165,6 +167,7 @@ typedef struct		s_creecam
 
 typedef struct		s_env
 {
+	int	thread;
 	char			*data;
 	int				k[300];
 	int				s_count;
@@ -181,6 +184,9 @@ typedef struct		s_env
 	t_ol			*tp_o;
 	double			r;
 	t_creecam		cc;
+	int				y_min;
+	int				y_max;
+	void			**image;
 }					t_env;
 
 void				setup_rtv1(t_env *e);
@@ -214,7 +220,6 @@ int					storing_three_3(t_env *e, t_parser *p, t_ll *l_tmp,
 						t_ol *o_tmp);
 void				store_lit_tra(t_parser *p, t_ll *l_tmp);
 void				store_translate(t_parser *p, t_ll *l_tmp, t_ol *o_tmp);
-int					raycast(t_env *e, t_ol *ol, t_ll *ll);
 int					main(int argc, char **argv);
 
 #endif

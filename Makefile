@@ -6,13 +6,13 @@
 #    By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 07:58:15 by mhernand          #+#    #+#              #
-#    Updated: 2019/11/13 20:02:07 by jebae            ###   ########.fr        #
+#    Updated: 2019/11/15 16:50:30 by jebae            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = rtv1
 
-CFLAGS = -Wall -Werror -Wextra -Ofast
+CFLAGS = -Wall -Werror -Wextra -Ofast #-fsanitize=address
 
 INC = -I includes/
 
@@ -54,9 +54,9 @@ SRCS = main.c\
 	raycasting_files/shading.c\
 	raycasting_files/vector_op.c\
 	raycasting_files/vector_op_2.c\
-	raycasting_files/object_manipulation.c\
 	raycasting_files/start_rtv1.c\
-	raycasting_files/matrix_check.c
+	raycasting_files/matrix_check.c\
+	raycasting_files/multithread.c
 
 SUB_FOLD = parser_files handle raycasting_files
 
@@ -72,6 +72,10 @@ L_FOLD = libft/
 
 L_TARG = libft
 
+V_FOLD = libvector/
+
+V_TARG = libvector
+
 M_FOLD = minilibx_macos/
 
 LIBMLX = -L ./minilibx_macos/ -lmlx -framework OpenGL -framework Appkit
@@ -86,7 +90,7 @@ objects :
 	@mkdir -p $(BUILD_DIR)
 
 $(NAME):$(OBJ) | $(L_TARG)
-	@$(CC) $(CFLAGS) $(INC) libft/libft.a $(LIBMLX) $(OBJ) -o $(NAME)
+	@$(CC) $(CFLAGS) $(INC) libft/libft.a vectors/libvector.a $(LIBMLX) $(OBJ) -o $(NAME)
 	@touch .gitignore
 	@printf "\033[32m[ ✔ ] $(NAME)\n\033[0m"
 	@echo $(OBJ) > .gitignore
@@ -98,13 +102,15 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 $(L_TARG):
 	@make -C $(L_FOLD) all
+	@make -C $(V_FOLD) all
 	@make -C $(M_FOLD)
 
 test :
-	$(CC) $(CFLAGS) $(INC) -I srcs/__tests__ libft/libft.a $(LIBMLX) srcs/handle/*.c srcs/raycasting_files/*.c  srcs/__tests__/*/*.c srcs/__tests__/*.c -o test
+	$(CC) $(CFLAGS) $(INC) -I srcs/__tests__ libft/libft.a libvector/libvector.a $(LIBMLX) srcs/handle/*.c srcs/raycasting_files/*.c  srcs/__tests__/*/*.c srcs/__tests__/*.c -o test
 
 clean:
-	@make -C $(L_TARG) clean
+	@make -C $(L_FOLD) clean
+	@make -C $(V_FOLD) clean
 	@make -C $(M_FOLD) clean
 	@rm -rf $(OBJ)
 	@rm -rf $(OBJ_DIR) 2> /dev/null || true
@@ -112,7 +118,8 @@ clean:
 
 fclean: clean
 	@printf '\033[31m[ ✔ ] %s\n\033[0m' "... and fclean too !"
-	@make -C $(L_TARG) fclean
+	@make -C $(L_FOLD) fclean
+	@make -C $(V_FOLD) fclean
 	@rm -rf $(NAME)
 
 re: fclean all
