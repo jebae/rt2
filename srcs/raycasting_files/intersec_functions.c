@@ -76,12 +76,50 @@ double	v_intersect_co(t_ray ray, t_ol *ol)
 	return (find_closest_intersection(a, b, c));
 }
 
+double	find_closest_intersection1(double a, double b, double c)
+{
+	double	delta;
+	double	t1;
+	double	t2;
+
+	delta = b * b - 4 * a * c;
+	if (delta < 0)
+		return (FAR);
+	else
+	{
+		t1 = (-b + sqrt(delta)) / (2 * a);
+		t2 = (-b - sqrt(delta)) / (2 * a);
+		return (t1);
+	}
+}
+
+double	find_closest_intersection2(double a, double b, double c)
+{
+	double	delta;
+	double	t1;
+	double	t2;
+
+	delta = b * b - 4 * a * c;
+	if (delta < 0)
+		return (FAR);
+	else
+	{
+		t1 = (-b + sqrt(delta)) / (2 * a);
+		t2 = (-b - sqrt(delta)) / (2 * a);
+		return (t2);
+	}
+}
+
+
 double	v_intersect_cy(t_ray ray, t_ol *ol)
 {
 	t_vec3	v;
 	double	a;
 	double	b;
 	double	c;
+
+	int MAX  = 5;
+
 
 	v = v3_frompoints(ol->cen, ray.ori); //to change
 	ol->dir = v3_normalise(ol->dir);
@@ -91,5 +129,25 @@ double	v_intersect_cy(t_ray ray, t_ol *ol)
 		- v3_dotpdt(ray.dir, ol->dir) * v3_dotpdt(v, ol->dir));
 	c = v3_dotpdt(v, v) - v3_dotpdt(v, ol->dir) * v3_dotpdt(v, ol->dir)\
 		- ol->radius * ol->radius;
-	return (find_closest_intersection(a, b, c));
+	
+	double t1;
+	double t2;
+	t1 = (find_closest_intersection1(a, b, c));
+	t2 = (find_closest_intersection2(a, b, c));
+
+
+	//m = D|V*t + X|V
+	double m1 = v3_dotpdt(ray.dir, ol->dir) * t1 + v3_dotpdt(v, ol->dir);
+	double m2 = v3_dotpdt(ray.dir, ol->dir) * t2 + v3_dotpdt(v, ol->dir);
+	if (m1 > MAX || m1 < -MAX)
+		t1 = FAR;
+	if (m2 > MAX || m2 < -MAX)
+		t2 = FAR;
+	if (t1 <= 0 && t2 <= 0)
+		return (FAR);
+	t1 = t1 > 0 ? t1 : t2;
+	t1 = t2 < t1 && t2 > 0 ? t2 : t1;
+	
+	return (t1);
 }
+

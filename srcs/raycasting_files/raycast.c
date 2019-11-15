@@ -48,31 +48,32 @@ t_ray			cast_ray(int x, int y, t_camera cam)
 	return (ray);
 }
 
-//////////////////// D E P R E C A T E D ///////////////////// slower than raycast3
-// void			raycast_2(t_env *e, t_shader sh, t_ll *ll, t_ray ray)
-// {
+//////////////////// D E P R E C A T E D ///////////////////// slower than raycast3 
+void			raycast_2(t_env *e, t_shader sh, t_ll *ll, t_ray ray)
+{
 
 
-// 	while (e->tp_o != NULL)
-// 	{
+	while (e->tp_o != NULL)
+	{
 
 
-// 		e->r = intersection(ray, e->tp_o);
-// 		if (e->r > 0 && e->r < FAR && e->r < ray.t)
-// 		{
-// 			ray.t = e->r < ray.t ? e->r : ray.t;
-// 			e->tp_l = ll;
-// 			sh = init_shader();
-// 			while (e->tp_l != NULL)
-// 			{
-// 				sh = shader_add(sh, compute_color(ray, e->tp_o, e->tp_l, e));
-// 				e->tp_l = e->tp_l->next;
-// 			}
-// 			color_pixel(e->x, e->y, sh, e);
-// 		}
-// 		e->tp_o = e->tp_o->next;
-// 	}
-// }
+		e->r = intersection(ray, e->tp_o);
+		if (e->r > 0 && e->r < FAR && e->r < ray.t)
+		{
+			ray.t = e->r < ray.t ? e->r : ray.t;
+			e->tp_l = ll;
+			sh = init_shader();
+			while (e->tp_l != NULL)
+			{
+				sh = shader_add(sh, compute_color(ray, e->tp_o, e->tp_l, e));
+				e->tp_l = e->tp_l->next;
+			}
+			color_pixel(e->x, e->y, sh, e);
+		}
+		e->tp_o = e->tp_o->next;
+	}
+}
+/////////////////////////////////////////////////////////////////
 
 void			raycast_3(t_env *e, t_shader sh, t_ll *ll, t_ray ray)
 {
@@ -95,7 +96,8 @@ void			raycast_3(t_env *e, t_shader sh, t_ll *ll, t_ray ray)
 			sh = shader_add(sh, compute_color(ray, obj, e->tp_l, e));
 			e->tp_l = e->tp_l->next;
 		}
-		color_pixel(e->x, e->y, sh, e);
+		if (ray.t < FAR)
+			color_pixel(e->x, e->y, sh, e);
 }
 
 int				raycast(t_env *e)
