@@ -22,11 +22,11 @@ double			v_intersect_rectangle(t_ray ray, void *object)
 		return (FAR);
 	ray.t = t;
 	pp = find_point_from_ray(ray);
-	pp = v_add(pp, rect->p, '-');
-	length = v_scal(pp, rect->a);
+	pp = v3_sub(pp, rect->p);
+	length = v3_dotpdt(pp, rect->a);
 	if (length < 0.0 || length > rect->norm_a)
 		return (FAR);
-	length = v_scal(pp, rect->b);
+	length = v3_dotpdt(pp, rect->b);
 	if (length < 0.0 || length > rect->norm_b)
 		return (FAR);
 	return (t);

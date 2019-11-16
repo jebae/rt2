@@ -51,6 +51,10 @@ void			test_rectangle_normal_case2(void);
 
 void			test_box_intersect_case1(void);
 void			test_box_intersect_case2(void);
+void			test_box_intersect_case3(void);
+void			test_box_normal_case1(void);
+void			test_box_normal_case2(void);
+void			test_box_normal_case3(void);
 
 void			test_plane_intersect_case1();
 void			test_plane_normal_case1();

@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/11/15 17:31:25 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/16 16:58:50 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ t_vec3		normal_cylinder(t_ray ray, void *object);
 t_vec3		normal_cone(t_ray ray, void *object);
 t_vec3	    normal_plane(t_ray ray, void *object);
 t_vec3		normal_rectangle(t_ray ray, void *object);
+t_vec3		normal_box(t_ray ray, void *object);
 t_vec3		get_normal(t_ray ray, t_ol *ol);
 
 /*

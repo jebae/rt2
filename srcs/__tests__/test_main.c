@@ -17,6 +17,10 @@ int		main()
 	//test_rectangle_normal_case2();
 
 	//test_box_intersect_case1();
-	test_box_intersect_case2();
+	//test_box_intersect_case2();
+	//test_box_intersect_case3();
+	test_box_normal_case1();
+	//test_box_normal_case2();
+	//test_box_normal_case3();
 	return (0);
 }
