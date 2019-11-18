@@ -54,6 +54,7 @@ double		v_intersect_co(t_ray ray, void *object);
 double		v_intersect_sp2(t_ray ray, void *object);
 double		v_intersect_rectangle(t_ray ray, void *object);
 double		v_intersect_box(t_ray ray, void *object);
+double		v_intersect_triangle(t_ray ray, void *object);
 double		intersection(t_ray ray, t_ol *ol);
 double		find_closest_intersection(double a, double b, double c);
 t_vec3		find_point_from_ray(t_ray ray);
@@ -77,6 +78,7 @@ t_vec3		normal_cone(t_ray ray, void *object);
 t_vec3	    normal_plane(t_ray ray, void *object);
 t_vec3		normal_rectangle(t_ray ray, void *object);
 t_vec3		normal_box(t_ray ray, void *object);
+t_vec3		normal_triangle(t_ray ray, void *object);
 t_vec3		get_normal(t_ray ray, t_ol *ol);
 
 /*

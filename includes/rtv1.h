@@ -148,6 +148,14 @@ typedef struct		s_box
 	t_mat3			mat;
 }					t_box;
 
+typedef struct		s_triangle
+{
+	t_vec3			a;
+	t_vec3			ab;
+	t_vec3			ac;
+	t_vec3			normal;
+}					t_triangle;
+
 typedef struct		s_mlx
 {
 	void			*mp;
