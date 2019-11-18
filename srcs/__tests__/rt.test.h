@@ -64,4 +64,11 @@ void			test_triangle_intersect_case2(void);
 void			test_triangle_normal_case1(void);
 void			test_triangle_normal_case2(void);
 
+void			test_pyramid_intersect_case1(void);
+void			test_pyramid_intersect_case2(void);
+void			test_pyramid_intersect_case3(void);
+void			test_pyramid_normal_case1(void);
+void			test_pyramid_normal_case2(void);
+void			test_pyramid_normal_case3(void);
+
 #endif

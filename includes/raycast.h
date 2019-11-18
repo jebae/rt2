@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/11/16 16:58:50 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/18 17:05:32 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ double		v_intersect_sp2(t_ray ray, void *object);
 double		v_intersect_rectangle(t_ray ray, void *object);
 double		v_intersect_box(t_ray ray, void *object);
 double		v_intersect_triangle(t_ray ray, void *object);
+double		v_intersect_pyramid(t_ray ray, void *object);
 double		intersection(t_ray ray, t_ol *ol);
 double		find_closest_intersection(double a, double b, double c);
 t_vec3		find_point_from_ray(t_ray ray);
@@ -79,6 +80,7 @@ t_vec3	    normal_plane(t_ray ray, void *object);
 t_vec3		normal_rectangle(t_ray ray, void *object);
 t_vec3		normal_box(t_ray ray, void *object);
 t_vec3		normal_triangle(t_ray ray, void *object);
+t_vec3		normal_pyramid(t_ray ray, void *object);
 t_vec3		get_normal(t_ray ray, t_ol *ol);
 
 /*

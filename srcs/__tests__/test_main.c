@@ -26,6 +26,13 @@ int		main()
 	//test_triangle_intersect_case1();
 	//test_triangle_intersect_case2();
 	//test_triangle_normal_case1();
-	test_triangle_normal_case2();
+	//test_triangle_normal_case2();
+
+	//test_pyramid_intersect_case1();
+	//test_pyramid_intersect_case2();
+	//test_pyramid_intersect_case3();
+	//test_pyramid_normal_case1();
+	//test_pyramid_normal_case2();
+	test_pyramid_normal_case3();
 	return (0);
 }

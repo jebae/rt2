@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/11/15 16:59:44 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/18 16:33:55 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,15 @@ typedef struct		s_triangle
 	t_vec3			ac;
 	t_vec3			normal;
 }					t_triangle;
+
+typedef struct		s_pyramid
+{
+	t_triangle		sides[4];
+	t_vec3			u;
+	t_vec3			v;
+	double			norm_u;
+	double			norm_v;
+}					t_pyramid;
 
 typedef struct		s_mlx
 {
