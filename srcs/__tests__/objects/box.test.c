@@ -139,11 +139,11 @@ static void	box_case3(t_ol *ol)
 	ol->get_normal = &normal_box;
     ol->object = ft_memalloc(sizeof(t_box));
 	box = ol->object;
-	box->vmin = (t_vec3){-1.0, 1.0, 1.0};
-	box->vmax = (t_vec3){2.0, -2.0, 1.0};
+	box->vmin = (t_vec3){-1.0, 1.0, 5.0};
+	box->vmax = (t_vec3){2.0, 2.0, 1.0};
 	a = (t_vec3){1.0, 0.0, 0.0};
 	a = v3_normalise(a);
-	b = (t_vec3){0.0, 1.0, 0.0};
+	b = (t_vec3){0.0, -1.0, 0.0};
 	b = v3_normalise(b);
 	c = v3_cross(a, b);
 	c = v3_normalise(c);

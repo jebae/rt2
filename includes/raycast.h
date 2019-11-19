@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/11/18 17:05:32 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/19 17:20:12 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,14 @@ t_vec3		v_normalise(t_vec3 u);
 ** Matrix operations
 */
 t_vec3		m_mult(t_mat3 m, t_vec3 v);
+
+/*
+** Set object attributes from parser functions
+*/
+int			set_sphere(t_sphere *sphere, t_vec3 cen, double radius);
+int			set_cone(t_cone *cone, t_arg_cone *arg);
+int			set_cyl(t_cyl *cyl, t_arg_cyl *arg);
+int			set_plane(t_plane *plane, t_vec3 normal, double d);
 
 /*
 ** Intersection functions

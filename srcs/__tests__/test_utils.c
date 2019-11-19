@@ -77,3 +77,12 @@ void		render_normal_test(
 	ft_memdel((void **)&ol->object);
 	mlx_loop(mlxkit->p_mlx);
 }
+
+void		test(int res, const char *msg)
+{
+	if (!res)
+	{
+		printf(KRED "[FAILED] " KNRM);
+		printf("%s\n", msg);
+	}
+}

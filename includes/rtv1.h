@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/11/18 16:33:55 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/19 16:33:03 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@
 # define PLANE		2
 # define SPHERE		3
 # define RECTANGLE	5
+
+/*
+** macro
+*/
+# define RT_SUCCESS	0
+# define RT_FAIL	1
 
 typedef struct		s_mat3
 {
@@ -173,6 +179,23 @@ typedef struct		s_ring
 	double			r2;
 	double			d;
 }					t_ring;
+
+/*
+** set_object args
+*/
+typedef struct		s_arg_cone
+{
+	t_vec3			cen;
+	t_vec3			axis;
+	double			angle;	
+}					t_arg_cone;
+
+typedef struct		s_arg_cyl
+{
+	t_vec3			cen;
+	t_vec3			axis;
+	double			radius;
+}					t_arg_cyl;
 
 typedef struct		s_mlx
 {
