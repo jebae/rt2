@@ -21,6 +21,33 @@ int		main()
 	test_set_plane_case1();
 	test_set_plane_case2();
 
+	test_set_rectangle_case1();
+	test_set_rectangle_case2();
+	test_set_rectangle_case3();
+	test_set_rectangle_case4();
+
+	test_set_box_case1();
+	test_set_box_case2();
+	test_set_box_case3();
+	test_set_box_case4();
+
+	test_set_triangle_case1();
+	test_set_triangle_case2();
+	test_set_triangle_case3();
+	test_set_triangle_case4();
+
+	test_set_pyramid_case1();
+	test_set_pyramid_case2();
+	test_set_pyramid_case3();
+	test_set_pyramid_case4();
+	test_set_pyramid_case5();
+
+	test_set_ring_case1();
+	test_set_ring_case2();
+	test_set_ring_case3();
+	test_set_ring_case4();
+	test_set_ring_case5();
+
 	//test_sphere_intersect_case1();
 	//test_sphere_normal_case1();
 
@@ -30,8 +57,8 @@ int		main()
 	//test_cylinder_intersect_case1();
 	//test_cylinder_normal_case1();
 
-	// test_plane_intersect_case1();
-	// test_plane_normal_case1();
+	//test_plane_intersect_case1();
+	//test_plane_normal_case1();
 
 	//test_rectangle_intersect_case1();
 	//test_rectangle_normal_case1();

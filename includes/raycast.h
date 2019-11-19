@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/11/19 17:20:12 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/19 23:43:32 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ int			set_sphere(t_sphere *sphere, t_vec3 cen, double radius);
 int			set_cone(t_cone *cone, t_arg_cone *arg);
 int			set_cyl(t_cyl *cyl, t_arg_cyl *arg);
 int			set_plane(t_plane *plane, t_vec3 normal, double d);
+int			set_rectangle(t_rectangle *rect, t_arg_rectangle *arg);
+int			set_box(t_box *box, t_arg_box *arg);
+int			set_triangle(t_triangle *triangle, t_arg_triangle *arg);
+int			set_pyramid(t_pyramid *pyramid, t_arg_pyramid *arg);
+int			set_ring(t_ring *ring, t_arg_ring *arg);
 
 /*
 ** Intersection functions

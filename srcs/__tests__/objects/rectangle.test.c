@@ -2,20 +2,18 @@
 
 static void	rectangle_case1(t_ol *ol)
 {
-	t_rectangle	*rect;
+	t_rectangle			*rect;
+	t_arg_rectangle		arg;
 
 	ol->intersect = &v_intersect_rectangle;
 	ol->get_normal = &normal_rectangle;
     ol->object = ft_memalloc(sizeof(t_rectangle));
 	rect = ol->object;
-	rect->p = (t_vec3){-1.0, 1.0, 1.0};
-	rect->a = (t_vec3){1.0, 0.0, 0.0};
-	rect->b = (t_vec3){0.0, 0.0, 1.0};
-	rect->norm_a = 2.0;
-	rect->norm_b = 2.0;
-	rect->normal = v3_cross(rect->a, rect->b);
-	rect->normal = v3_normalise(rect->normal);
-	rect->d = v3_dotpdt(rect->p, rect->normal);
+	arg.p = (t_vec3){-1.0, 1.0, 1.0};
+	arg.a = (t_vec3){2.0, 0.0, 0.0};
+	arg.b = (t_vec3){0.0, 0.0, 2.0};
+
+	set_rectangle(rect, &arg);
 }
 
 void		test_rectangle_intersect_case1(void)
@@ -60,20 +58,18 @@ void		test_rectangle_normal_case1(void)
 
 static void	rectangle_case2(t_ol *ol)
 {
-	t_rectangle	*rect;
+	t_rectangle			*rect;
+	t_arg_rectangle		arg;
 
 	ol->intersect = &v_intersect_rectangle;
 	ol->get_normal = &normal_rectangle;
     ol->object = ft_memalloc(sizeof(t_rectangle));
 	rect = ol->object;
-	rect->p = (t_vec3){-1.0, 1.0, 1.0};
-	rect->a = (t_vec3){1.0, -0.5, -0.5};
-	rect->b = (t_vec3){0.0, -0.5, 0.5};
-	rect->norm_a = 2.0;
-	rect->norm_b = 2.0;
-	rect->normal = v3_cross(rect->a, rect->b);
-	rect->normal = v3_normalise(rect->normal);
-	rect->d = v3_dotpdt(rect->p, rect->normal);
+	arg.p = (t_vec3){-1.0, 1.0, 1.0};
+	arg.a = (t_vec3){2.0, -1.0, -1.0};
+	arg.b = (t_vec3){0.0, -1.0, 1.0};
+
+	set_rectangle(rect, &arg);
 }
 
 void		test_rectangle_intersect_case2(void)
@@ -115,4 +111,3 @@ void		test_rectangle_normal_case2(void)
 	rectangle_case2(&ol);
 	render_normal_test(&mlxkit, &cam, &ol);
 }
-

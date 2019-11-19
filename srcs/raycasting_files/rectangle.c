@@ -41,3 +41,18 @@ t_vec3			normal_rectangle(t_ray ray, void *object)
 	else 
 		return (v3_scalar(rect->normal, -1));
 }
+
+int				set_rectangle(t_rectangle *rect, t_arg_rectangle *arg)
+{
+	if (v3_norm2(arg->a) == 0.0 || v3_norm2(arg->b) == 0 ||
+		ft_abs_double(v3_dotpdt(arg->a, arg->b)) > APPROX_0)
+		return (RT_FAIL);
+	rect->p = arg->p;
+	rect->a = v3_normalise(arg->a);
+	rect->b = v3_normalise(arg->b);
+	rect->normal = v3_cross(rect->a, rect->b);
+	rect->norm_a = v3_norm(arg->a);
+	rect->norm_b = v3_norm(arg->b);
+	rect->d = v3_dotpdt(rect->p, rect->normal);
+	return (RT_SUCCESS);
+}

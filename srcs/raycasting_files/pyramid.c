@@ -21,17 +21,17 @@ double			v_intersect_pyramid(t_ray ray, void *object)
 
 static void		set_ray_to_pyramid_coordinate(t_pyramid *pyramid, t_ray *ray)
 {
-	t_vec3		y_axe;
+	t_vec3		y_axis;
 	t_vec3		temp;
 
-	y_axe = v3_cross(pyramid->v, pyramid->u);
+	y_axis = v3_cross(pyramid->v, pyramid->u);
 	temp = v3_sub(ray->ori, pyramid->sides[0].a);
 	ray->ori.x = v3_dotpdt(pyramid->u, temp);
-	ray->ori.y = v3_dotpdt(y_axe, temp);
+	ray->ori.y = v3_dotpdt(y_axis, temp);
 	ray->ori.z = v3_dotpdt(pyramid->v, temp);
 	temp = ray->dir;
 	ray->dir.x = v3_dotpdt(pyramid->u, temp);
-	ray->dir.y = v3_dotpdt(y_axe, temp);
+	ray->dir.y = v3_dotpdt(y_axis, temp);
 	ray->dir.z = v3_dotpdt(pyramid->v, temp);
 }
 

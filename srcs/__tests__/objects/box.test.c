@@ -3,25 +3,21 @@
 static void	box_case1(t_ol *ol)
 {
 	t_box		*box;
-	t_vec3		a;
-	t_vec3		b;
-	t_vec3		c;
+	t_arg_box	arg;
 
 	ol->intersect = &v_intersect_box;
 	ol->get_normal = &normal_box;
     ol->object = ft_memalloc(sizeof(t_box));
 	box = ol->object;
-	box->vmin = (t_vec3){-1.0, 1.0, 1.0};
-	box->vmax = (t_vec3){2.0, 0.5, 1.0};
-	a = (t_vec3){1.0, 0.0, 1.0};
-	a = v3_normalise(a);
-	b = (t_vec3){0.0, 1.0, 0.0};
-	b = v3_normalise(b);
-	c = v3_cross(a, b);
-	c = v3_normalise(c);
-	ft_memcpy(&box->mat.arr[0], &a, sizeof(t_vec3));
-	ft_memcpy(&box->mat.arr[1], &b, sizeof(t_vec3));
-	ft_memcpy(&box->mat.arr[2], &c, sizeof(t_vec3));
+	arg.vmin = (t_vec3){-1.0, 1.0, 1.0};
+	arg.a = (t_vec3){2.0, 0.0, 2.0};
+	arg.b = (t_vec3){0.0, 0.5, 0.0};
+	arg.norm_c = 1.0;
+
+	test(
+		set_box(box, &arg) == RT_SUCCESS,
+		"set_box : return value"
+	);
 }
 
 void		test_box_intersect_case1(void)
@@ -67,25 +63,21 @@ void		test_box_normal_case1(void)
 static void	box_case2(t_ol *ol)
 {
 	t_box		*box;
-	t_vec3		a;
-	t_vec3		b;
-	t_vec3		c;
+	t_arg_box	arg;
 
 	ol->intersect = &v_intersect_box;
 	ol->get_normal = &normal_box;
     ol->object = ft_memalloc(sizeof(t_box));
 	box = ol->object;
-	box->vmin = (t_vec3){-1.0, 1.0, 1.0};
-	box->vmax = (t_vec3){2.0, 0.5, 1.0};
-	a = (t_vec3){1.0, -0.3, 1.0};
-	a = v3_normalise(a);
-	b = (t_vec3){0.0, 1.0, 0.3};
-	b = v3_normalise(b);
-	c = v3_cross(a, b);
-	c = v3_normalise(c);
-	ft_memcpy(&box->mat.arr[0], &a, sizeof(t_vec3));
-	ft_memcpy(&box->mat.arr[1], &b, sizeof(t_vec3));
-	ft_memcpy(&box->mat.arr[2], &c, sizeof(t_vec3));
+	arg.vmin = (t_vec3){-1.0, 1.0, 1.0};
+	arg.a = (t_vec3){2.0, -0.6, 2.0};
+	arg.b = (t_vec3){0.0, 0.5, 0.15};
+	arg.norm_c = 1.0;
+
+	test(
+		set_box(box, &arg) == RT_SUCCESS,
+		"set_box : return value"
+	);
 }
 
 void		test_box_intersect_case2(void)
@@ -131,25 +123,21 @@ void		test_box_normal_case2(void)
 static void	box_case3(t_ol *ol)
 {
 	t_box		*box;
-	t_vec3		a;
-	t_vec3		b;
-	t_vec3		c;
+	t_arg_box	arg;
 
 	ol->intersect = &v_intersect_box;
 	ol->get_normal = &normal_box;
     ol->object = ft_memalloc(sizeof(t_box));
 	box = ol->object;
-	box->vmin = (t_vec3){-1.0, 1.0, 5.0};
-	box->vmax = (t_vec3){2.0, 2.0, 1.0};
-	a = (t_vec3){1.0, 0.0, 0.0};
-	a = v3_normalise(a);
-	b = (t_vec3){0.0, -1.0, 0.0};
-	b = v3_normalise(b);
-	c = v3_cross(a, b);
-	c = v3_normalise(c);
-	ft_memcpy(&box->mat.arr[0], &a, sizeof(t_vec3));
-	ft_memcpy(&box->mat.arr[1], &b, sizeof(t_vec3));
-	ft_memcpy(&box->mat.arr[2], &c, sizeof(t_vec3));
+	arg.vmin = (t_vec3){-1.0, 1.0, 5.0};
+	arg.a = (t_vec3){2.0, 0.0, 0.0};
+	arg.b = (t_vec3){0.0, -2.0, 0.0};
+	arg.norm_c = 1.0;
+
+	test(
+		set_box(box, &arg) == RT_SUCCESS,
+		"set_box : return value"
+	);
 }
 
 void		test_box_intersect_case3(void)

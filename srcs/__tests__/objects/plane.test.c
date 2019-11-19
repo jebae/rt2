@@ -1,12 +1,26 @@
 #include "rt.test.h"
 
+static void	plane_case1(t_ol *ol)
+{
+	t_plane		*plane;
+	t_vec3		normal;
+	double		d;
+
+	ol->intersect = &v_intersect_pl;
+	ol->get_normal = &normal_plane;
+    ol->object = ft_memalloc(sizeof(t_plane));
+	plane = ol->object;
+    normal = (t_vec3){0.0, 1.0, 0.0};
+	d = -2;
+
+	set_plane(plane, normal, d);
+}
+
 void		test_plane_intersect_case1(void)
 {
 	t_mlxkit	mlxkit;
 	t_camera	cam;
-	t_ray		ray;
 	t_ol		ol;
-    t_plane    	*plane;
 
 	init_mlxkit(&mlxkit);
 	cam.campos = (t_vec3){0.0, 0.0, -1.0};
@@ -18,34 +32,15 @@ void		test_plane_intersect_case1(void)
 	cam.f_wdth = WIDTH / 384;
 	cam.f_hght = WIDTH / 384;
 
-    ol.object = ft_memalloc(sizeof(t_cone));
-    plane = ol.object;
-    plane->normal = (t_vec3){0.0, 1.0, 0.0};
-	plane->normal = v_normalise(plane->normal);
-	plane->d = -2;
-    ol.intersect = &v_intersect_pl;
-	for (int i=0; i < WIDTH; i++)
-	{
-		for (int j=0; j < WIDTH; j++)
-		{
-			ray = cast_ray(j, i, cam);
-			if (ol.intersect(ray, ol.object) != FAR)
-				mlxkit.img_buf[j + i * WIDTH] = 0xffffff;
-		}
-	}
-	mlx_put_image_to_window(mlxkit.p_mlx, mlxkit.p_win, mlxkit.p_img, 0, 0);
-	mlx_loop(mlxkit.p_mlx);
+	plane_case1(&ol);
+	render_intersect_test(&mlxkit, &cam, &ol);
 }
 
 void		test_plane_normal_case1(void)
 {
 	t_mlxkit	mlxkit;
 	t_camera	cam;
-	t_ray		ray;
 	t_ol		ol;
-    t_plane    	*plane;
-	t_vec3      n;
-    double      n_dot_l;
 
 	init_mlxkit(&mlxkit);
 	cam.campos = (t_vec3){0.0, 5.0, -1.0};
@@ -57,25 +52,6 @@ void		test_plane_normal_case1(void)
 	cam.f_wdth = WIDTH / 384;
 	cam.f_hght = WIDTH / 384;
 
-    ol.object = ft_memalloc(sizeof(t_plane));
-    plane = ol.object;
-    plane->normal = (t_vec3){0.0, 1.0, 0.0};
-	plane->normal = v_normalise(plane->normal);
-	plane->d = -2;
-    ol.intersect = &v_intersect_pl;
-	ol.get_normal = &normal_plane;
-	for (int i=0; i < WIDTH; i++)
-	{
-		for (int j=0; j < WIDTH; j++)
-		{
-			ray = cast_ray(j, i, cam);
-			if ((ray.t = ol.intersect(ray, ol.object)) == FAR)
-				continue ;
-			n = ol.get_normal(ray, ol.object);
-			n_dot_l = v_scal(v_mult(ray.dir, -1.0), n);
-			mlxkit.img_buf[j + i * WIDTH] = 0x0000ff * MAX(0.0, n_dot_l);
-		}
-	}
-	mlx_put_image_to_window(mlxkit.p_mlx, mlxkit.p_win, mlxkit.p_img, 0, 0);
-	mlx_loop(mlxkit.p_mlx);
+	plane_case1(&ol);
+	render_normal_test(&mlxkit, &cam, &ol);
 }

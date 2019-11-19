@@ -105,4 +105,31 @@ void			test_set_cyl_case3(void);
 void			test_set_plane_case1(void);
 void			test_set_plane_case2(void);
 
+void			test_set_rectangle_case1(void);
+void			test_set_rectangle_case2(void);
+void			test_set_rectangle_case3(void);
+void			test_set_rectangle_case4(void);
+
+void			test_set_box_case1(void);
+void			test_set_box_case2(void);
+void			test_set_box_case3(void);
+void			test_set_box_case4(void);
+
+void			test_set_triangle_case1(void);
+void			test_set_triangle_case2(void);
+void			test_set_triangle_case3(void);
+void			test_set_triangle_case4(void);
+
+void			test_set_pyramid_case1(void);
+void			test_set_pyramid_case2(void);
+void			test_set_pyramid_case3(void);
+void			test_set_pyramid_case4(void);
+void			test_set_pyramid_case5(void);
+
+void			test_set_ring_case1(void);
+void			test_set_ring_case2(void);
+void			test_set_ring_case3(void);
+void			test_set_ring_case4(void);
+void			test_set_ring_case5(void);
+
 #endif

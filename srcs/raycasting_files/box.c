@@ -76,19 +76,11 @@ t_vec3			normal_box(t_ray ray, void *object)
 	t_box		*box;
 
 	box = (t_box *)object;
-
-	// rotate ray
 	set_ray_to_box_coordinate(box, &ray);
-
-	// center = vmax / 2;
-	// cp = get point from ray - center
 	cp = v3_sub(find_point_from_ray(ray), v3_scalar(box->vmax, 0.5));
-
-	// n = cp / divider
 	n.x = cp.x / ft_abs_double(box->vmax.x);
 	n.y = cp.y / ft_abs_double(box->vmax.y);
 	n.z = cp.z / ft_abs_double(box->vmax.z);
-
 	pick = pick_max_normal(&n, &sign);
 	ft_memcpy(&n, box->mat.arr[pick], sizeof(t_vec3));
 	n = v3_scalar(n, sign);
