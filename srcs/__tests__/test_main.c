@@ -33,6 +33,13 @@ int		main()
 	//test_pyramid_intersect_case3();
 	//test_pyramid_normal_case1();
 	//test_pyramid_normal_case2();
-	test_pyramid_normal_case3();
+	//test_pyramid_normal_case3();
+
+	//test_ring_intersect_case1();
+	//test_ring_intersect_case2();
+	//test_ring_intersect_case3();
+	//test_ring_normal_case1();
+	//test_ring_normal_case2();
+	test_ring_normal_case3();
 	return (0);
 }

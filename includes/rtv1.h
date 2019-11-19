@@ -165,6 +165,15 @@ typedef struct		s_pyramid
 	double			norm_v;
 }					t_pyramid;
 
+typedef struct		s_ring
+{
+	t_vec3			center;
+	t_vec3			normal;
+	double			r1;
+	double			r2;
+	double			d;
+}					t_ring;
+
 typedef struct		s_mlx
 {
 	void			*mp;

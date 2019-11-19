@@ -21,8 +21,7 @@ double			v_intersect_rectangle(t_ray ray, void *object)
 	if (t == FAR)
 		return (FAR);
 	ray.t = t;
-	pp = find_point_from_ray(ray);
-	pp = v3_sub(pp, rect->p);
+	pp = v3_sub(find_point_from_ray(ray), rect->p);
 	length = v3_dotpdt(pp, rect->a);
 	if (length < 0.0 || length > rect->norm_a)
 		return (FAR);
@@ -36,7 +35,7 @@ t_vec3			normal_rectangle(t_ray ray, void *object)
 {
 	t_rectangle		*rect;
 
-	rect = object;
+	rect = (t_rectangle *)object;
 	if (v3_dotpdt(ray.dir, rect->normal) <= 0)
 		return (rect->normal);
 	else 
