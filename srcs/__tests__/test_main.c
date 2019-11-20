@@ -1,10 +1,13 @@
 #include "rt.test.h"
 
+
 int		main()
 {
 	/*
 	** set_object test
 	*/
+	render_img();
+	/*
 	test_set_sphere_case1();
 	test_set_sphere_case2();
 
@@ -47,6 +50,7 @@ int		main()
 	test_set_ring_case3();
 	test_set_ring_case4();
 	test_set_ring_case5();
+	*/
 
 	//test_sphere_intersect_case1();
 	//test_sphere_normal_case1();

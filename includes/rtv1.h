@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/11/19 23:35:22 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/20 17:15:12 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ typedef struct		s_ol
 	double			(*intersect)(t_ray ray, void *object);
 	t_vec3			(*get_normal)(t_ray ray, void *object);
 	struct s_ol		*next;
+	//char			*texture_filename;
 	// int				status;	
 	// t_vec3			rot_x;
 	// t_vec3			rot_y;

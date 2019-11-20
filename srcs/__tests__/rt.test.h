@@ -17,10 +17,10 @@
 
 typedef struct	s_mlxkit
 {
-	void		*p_win;
-	void		*p_mlx;
-	void		*p_img;
-	int			*img_buf;
+	void			*p_win;
+	void			*p_mlx;
+	void			*p_img;
+	unsigned int	*img_buf;
 }				t_mlxkit;
 
 void			init_mlxkit(t_mlxkit *mlxkit);
@@ -38,6 +38,8 @@ void			render_normal_test(
 );
 
 void			test(int res, const char *msg);
+
+void			render_img();
 
 /*
 ** object intersect normal test

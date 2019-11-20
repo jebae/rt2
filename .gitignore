@@ -7,3 +7,5 @@ dumbmain.c
 *.out
 *.dSYM
 test
+*.gch
+.DS_Store

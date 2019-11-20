@@ -1,4 +1,6 @@
 #include "rt.test.h"
+# define STB_IMAGE_IMPLEMENTATION
+# include "stb_image.h"
 
 int			mlxkit_key_press(int keycode, void *param)
 {
@@ -25,7 +27,7 @@ void		init_mlxkit(t_mlxkit *mlxkit)
 	mlxkit->p_mlx = mlx_init();
 	mlxkit->p_win = mlx_new_window(mlxkit->p_mlx, width, width, "RT");
 	mlxkit->p_img = mlx_new_image(mlxkit->p_mlx, width, width);
-	mlxkit->img_buf = (int *)mlx_get_data_addr(mlxkit->p_img, &bpp, &width, &endian);
+	mlxkit->img_buf = (unsigned int *)mlx_get_data_addr(mlxkit->p_img, &bpp, &width, &endian);
 	mlx_key_hook(mlxkit->p_win, &mlxkit_key_press, mlxkit);
 }
 
@@ -85,4 +87,36 @@ void		test(int res, const char *msg)
 		printf(KRED "[FAILED] " KNRM);
 		printf("%s\n", msg);
 	}
+}
+
+void		render_img()
+{
+	t_mlxkit		mlxkit;
+	unsigned int	*pixels;
+	unsigned int	value;
+	unsigned int	rgb;
+	int				width;
+	int				height;
+
+	init_mlxkit(&mlxkit);
+	pixels = (unsigned int *)stbi_load("./contents/Brick_image_texture.jpg", &width, &height,
+		NULL, STBI_rgb_alpha);
+	for (int i=0; i < WIDTH; i++)
+	{
+		for (int j=0; j < WIDTH; j++)
+		{
+			rgb = 0;
+			value = pixels[i * width + j];
+			rgb |= value & 0x000000ff;
+			rgb <<= 8;
+			value >>= 8;
+			rgb |= value & 0x000000ff;
+			rgb <<= 8;
+			value >>= 8;
+			rgb |= value & 0x000000ff;
+			mlxkit.img_buf[j + i * WIDTH] = rgb;
+		}
+	}
+	mlx_put_image_to_window(mlxkit.p_mlx, mlxkit.p_win, mlxkit.p_img, 0, 0);
+	mlx_loop(mlxkit.p_mlx);
 }

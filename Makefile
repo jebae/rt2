@@ -6,7 +6,7 @@
 #    By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 07:58:15 by mhernand          #+#    #+#              #
-#    Updated: 2019/11/19 16:40:21 by jebae            ###   ########.fr        #
+#    Updated: 2019/11/20 17:50:28 by jebae            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,8 +105,12 @@ $(L_TARG):
 	@make -C $(V_FOLD) all
 	@make -C $(M_FOLD)
 
+TEST_INC = $(INC) -I srcs/__tests__
+
+TEST_LIB = libft/libft.a libvector/libvector.a $(LIBMLX)
+
 test :
-	$(CC) $(CFLAGS) $(INC) -I srcs/__tests__ libft/libft.a libvector/libvector.a $(LIBMLX) srcs/handle/*.c srcs/raycasting_files/*.c  srcs/__tests__/*/*.c srcs/__tests__/*.c -o test
+	$(CC) $(CFLAGS) $(TEST_INC) $(TEST_LIB) srcs/handle/*.c srcs/raycasting_files/*.c srcs/__tests__/*/*.c srcs/__tests__/*.c -o test
 
 clean:
 	@make -C $(L_FOLD) clean
