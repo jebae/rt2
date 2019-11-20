@@ -6,7 +6,6 @@ int		main()
 	/*
 	** set_object test
 	*/
-	render_img();
 	/*
 	test_set_sphere_case1();
 	test_set_sphere_case2();
@@ -94,5 +93,7 @@ int		main()
 	//test_ring_normal_case1();
 	//test_ring_normal_case2();
 	//test_ring_normal_case3();
+
+	test_sphere_texture_mapping_case1();
 	return (0);
 }

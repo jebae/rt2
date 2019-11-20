@@ -37,9 +37,13 @@ void			render_normal_test(
 	t_ol *ol
 );
 
-void			test(int res, const char *msg);
+void			render_texture_mapping_test(
+	t_mlxkit *mlxkit,
+	t_camera *cam,
+	t_ol *ol
+);
 
-void			render_img();
+void			test(int res, const char *msg);
 
 /*
 ** object intersect normal test
@@ -133,5 +137,10 @@ void			test_set_ring_case2(void);
 void			test_set_ring_case3(void);
 void			test_set_ring_case4(void);
 void			test_set_ring_case5(void);
+
+/*
+** texture mapping test
+*/
+void			test_sphere_texture_mapping_case1(void);
 
 #endif

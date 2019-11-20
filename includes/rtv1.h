@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/11/20 17:15:12 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/20 21:52:58 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,16 +91,29 @@ typedef struct		s_ll
 	struct s_ll		*next;
 }					t_ll;
 
+typedef struct		s_texture
+{
+	int				width;
+	int				height;
+	unsigned int	*pixels;
+}					t_texture;
+
 typedef struct		s_ol
 {
 	void			*object;
 	int				specpower;
 	int				specvalue;
 	t_vec3			dif;
+	t_texture		texture;
+	t_mat3			axis_mat;
 	double			(*intersect)(t_ray ray, void *object);
 	t_vec3			(*get_normal)(t_ray ray, void *object);
+	t_vec2			(*uv_mapping)(
+		t_vec3 point,
+		t_mat3 *axis_mat,
+		void *object
+	);
 	struct s_ol		*next;
-	//char			*texture_filename;
 	// int				status;	
 	// t_vec3			rot_x;
 	// t_vec3			rot_y;
