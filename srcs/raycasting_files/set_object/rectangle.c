@@ -16,7 +16,7 @@ static void		set_axis(t_arg_rectangle *arg, t_mat3 *axis_mat)
 	ft_memcpy(axis_mat->arr[0], &v, sizeof(t_vec3));
 	v = v3_normalise(arg->b);
 	ft_memcpy(axis_mat->arr[2], &v, sizeof(t_vec3));
-	v = v3_cross(*(t_vec3 *)axis_mat->arr[2], *(t_vec3 *)axis_mat->arr[0]);
+	v = v3_cross(*(t_vec3 *)(axis_mat->arr[2]), *(t_vec3 *)(axis_mat->arr[0]));
 	ft_memcpy(axis_mat->arr[1], &v, sizeof(t_vec3));
 }
 
@@ -31,9 +31,9 @@ int				set_rectangle(t_ol *ol, t_arg_rectangle *arg)
 	rect->p = arg->p;
 	rect->norm_a = v3_norm(arg->a);
 	rect->norm_b = v3_norm(arg->b);
-	rect->a = (t_vec3 *)(ol->axis_mat.arr[0]);
-	rect->b = (t_vec3 *)(ol->axis_mat.arr[2]);
-	rect->normal = (t_vec3 *)(ol->axis_mat.arr[1]);
-	rect->d = v3_dotpdt(rect->p, *rect->normal);
+	rect->a = *(t_vec3 *)(ol->axis_mat.arr[0]);
+	rect->b = *(t_vec3 *)(ol->axis_mat.arr[2]);
+	rect->normal = *(t_vec3 *)(ol->axis_mat.arr[1]);
+	rect->d = v3_dotpdt(rect->p, rect->normal);
 	return (RT_SUCCESS);
 }

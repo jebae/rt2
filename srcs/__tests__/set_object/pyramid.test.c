@@ -4,10 +4,14 @@
 void		test_set_pyramid_case1(void)
 {
 	printf(KYEL "test_set_pyramid_case1\n" KNRM);
-	t_pyramid			pyramid;
+	t_ol				ol;
+	t_pyramid			*pyramid;
 	t_arg_pyramid		arg;
 	t_vec3				normalized_u;
 	t_vec3				normalized_v;
+
+	ol.object = ft_memalloc(sizeof(t_pyramid));
+	pyramid = (t_pyramid *)ol.object;
 
 	arg.a = (t_vec3){0.0, 0.0, 0.0};
 	arg.u = (t_vec3){1.5, 0.0, 0.0};
@@ -17,36 +21,38 @@ void		test_set_pyramid_case1(void)
 	normalized_v = v3_normalise(arg.v);
 
 	test(
-		set_pyramid(&pyramid, &arg) == RT_SUCCESS,
+		set_pyramid(&ol, &arg) == RT_SUCCESS,
 		"set_pyramid : return value"
 	);
 
 	test(
-		memcmp(&pyramid.u, &normalized_u, sizeof(t_vec3)) == 0,
-		"set_pyramid : pyramid.u"
+		memcmp(&pyramid->u, &normalized_u, sizeof(t_vec3)) == 0,
+		"set_pyramid : pyramid->u"
 	);
 
 	test(
-		memcmp(&pyramid.v, &normalized_v, sizeof(t_vec3)) == 0,
-		"set_pyramid : pyramid.v"
+		memcmp(&pyramid->v, &normalized_v, sizeof(t_vec3)) == 0,
+		"set_pyramid : pyramid->v"
 	);
 
 	test(
-		pyramid.norm_u = v3_norm(arg.u),
-		"set_pyramid : pyramid.norm_u"
+		pyramid->norm_u = v3_norm(arg.u),
+		"set_pyramid : pyramid->norm_u"
 	);
 
 	test(
-		pyramid.norm_v = v3_norm(arg.v),
-		"set_pyramid : pyramid.norm_v"
+		pyramid->norm_v = v3_norm(arg.v),
+		"set_pyramid : pyramid->norm_v"
 	);
+
+	free(pyramid);
 }
 
 // case u's norm is 0
 void		test_set_pyramid_case2(void)
 {
 	printf(KYEL "test_set_pyramid_case2\n" KNRM);
-	t_pyramid			pyramid;
+	t_ol				ol;
 	t_arg_pyramid		arg;
 
 	arg.a = (t_vec3){0.0, 0.0, 0.0};
@@ -55,7 +61,7 @@ void		test_set_pyramid_case2(void)
 	arg.height = 2.0;
 
 	test(
-		set_pyramid(&pyramid, &arg) == RT_FAIL,
+		set_pyramid(&ol, &arg) == RT_FAIL,
 		"set_pyramid : return value"
 	);
 }
@@ -64,7 +70,7 @@ void		test_set_pyramid_case2(void)
 void		test_set_pyramid_case3(void)
 {
 	printf(KYEL "test_set_pyramid_case3\n" KNRM);
-	t_pyramid			pyramid;
+	t_ol				ol;
 	t_arg_pyramid		arg;
 
 	arg.a = (t_vec3){0.0, 0.0, 0.0};
@@ -73,7 +79,7 @@ void		test_set_pyramid_case3(void)
 	arg.height = 2.0;
 
 	test(
-		set_pyramid(&pyramid, &arg) == RT_FAIL,
+		set_pyramid(&ol, &arg) == RT_FAIL,
 		"set_pyramid : return value"
 	);
 }
@@ -82,7 +88,7 @@ void		test_set_pyramid_case3(void)
 void		test_set_pyramid_case4(void)
 {
 	printf(KYEL "test_set_pyramid_case4\n" KNRM);
-	t_pyramid			pyramid;
+	t_ol				ol;
 	t_arg_pyramid		arg;
 
 	arg.a = (t_vec3){0.0, 0.0, 0.0};
@@ -91,7 +97,7 @@ void		test_set_pyramid_case4(void)
 	arg.height = 2.0;
 
 	test(
-		set_pyramid(&pyramid, &arg) == RT_FAIL,
+		set_pyramid(&ol, &arg) == RT_FAIL,
 		"set_pyramid : return value"
 	);
 }
@@ -100,7 +106,7 @@ void		test_set_pyramid_case4(void)
 void		test_set_pyramid_case5(void)
 {
 	printf(KYEL "test_set_pyramid_case5\n" KNRM);
-	t_pyramid			pyramid;
+	t_ol				ol;
 	t_arg_pyramid		arg;
 
 	arg.a = (t_vec3){0.0, 0.0, 0.0};
@@ -109,7 +115,7 @@ void		test_set_pyramid_case5(void)
 	arg.height = 0.0;
 
 	test(
-		set_pyramid(&pyramid, &arg) == RT_FAIL,
+		set_pyramid(&ol, &arg) == RT_FAIL,
 		"set_pyramid : return value"
 	);
 }

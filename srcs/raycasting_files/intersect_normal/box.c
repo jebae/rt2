@@ -29,8 +29,8 @@ static double	get_t(double *ray_ori, double *ray_dir, double *vmax)
 static void		set_ray_to_box_coordinate(t_box *box, t_ray *ray)
 {
 	ray->ori = v3_sub(ray->ori, box->vmin);
-	ray->ori = m_mult(box->mat, ray->ori);
-	ray->dir = m_mult(box->mat, ray->dir);
+	ray->ori = m_mult(box->axis_mat, ray->ori);
+	ray->dir = m_mult(box->axis_mat, ray->dir);
 }
 
 double			v_intersect_box(t_ray ray, void *object)
@@ -82,7 +82,7 @@ t_vec3			normal_box(t_ray ray, void *object)
 	n.y = cp.y / ft_abs_double(box->vmax.y);
 	n.z = cp.z / ft_abs_double(box->vmax.z);
 	pick = pick_max_normal(&n, &sign);
-	ft_memcpy(&n, box->mat.arr[pick], sizeof(t_vec3));
+	ft_memcpy(&n, box->axis_mat.arr[pick], sizeof(t_vec3));
 	n = v3_scalar(n, sign);
 	return (n);
 }

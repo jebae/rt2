@@ -2,20 +2,18 @@
 
 static void		pyramid_case1(t_ol *ol)
 {
-	t_pyramid		*pyramid;
 	t_arg_pyramid	arg;
 
 	ol->intersect = &v_intersect_pyramid;
 	ol->get_normal = &normal_pyramid;
     ol->object = ft_memalloc(sizeof(t_pyramid));
-	pyramid = (t_pyramid *)ol->object;
 	arg.a = (t_vec3){-0.5, 0.5, 0.7};
 	arg.u = (t_vec3){1.0, -0.5, 1.0};
 	arg.v = (t_vec3){-1.0, 0.0, 1.0};
 	arg.height = 1.0;
 
 	test(
-		set_pyramid(pyramid, &arg) == RT_SUCCESS,
+		set_pyramid(ol, &arg) == RT_SUCCESS,
 		"set_pyramid : return value"
 	);
 }
@@ -62,20 +60,18 @@ void			test_pyramid_normal_case1(void)
 
 static void		pyramid_case2(t_ol *ol)
 {
-	t_pyramid		*pyramid;
 	t_arg_pyramid	arg;
 
 	ol->intersect = &v_intersect_pyramid;
 	ol->get_normal = &normal_pyramid;
     ol->object = ft_memalloc(sizeof(t_pyramid));
-	pyramid = (t_pyramid *)ol->object;
 	arg.a = (t_vec3){-0.5, 1.5, 0.7};
 	arg.u = (t_vec3){1.0, 0.0, 0.0};
 	arg.v = (t_vec3){0.0, -0.3, 0.5};
 	arg.height = 1.0;
 
 	test(
-		set_pyramid(pyramid, &arg) == RT_SUCCESS,
+		set_pyramid(ol, &arg) == RT_SUCCESS,
 		"set_pyramid : return value"
 	);
 }
@@ -122,20 +118,18 @@ void			test_pyramid_normal_case2(void)
 
 static void		pyramid_case3(t_ol *ol)
 {
-	t_pyramid		*pyramid;
 	t_arg_pyramid	arg;
 
 	ol->intersect = &v_intersect_pyramid;
 	ol->get_normal = &normal_pyramid;
     ol->object = ft_memalloc(sizeof(t_pyramid));
-	pyramid = (t_pyramid *)ol->object;
 	arg.a = (t_vec3){-0.5, 1.0, 1.5};
 	arg.u = (t_vec3){1.0, 0.0, 0.0};
 	arg.v = (t_vec3){0.0, -1.0, 0.0};
 	arg.height = 1.0;
 
 	test(
-		set_pyramid(pyramid, &arg) == RT_SUCCESS,
+		set_pyramid(ol, &arg) == RT_SUCCESS,
 		"set_pyramid : return value"
 	);
 }

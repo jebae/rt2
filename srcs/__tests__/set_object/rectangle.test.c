@@ -33,18 +33,18 @@ void		test_set_rectangle_case1(void)
 	);
 
 	test(
-		memcmp(rect->a, &normalized_a, sizeof(t_vec3)) == 0,
-		"set_rectangle : x axis"
+		memcmp(&rect->a, &normalized_a, sizeof(t_vec3)) == 0,
+		"set_rectangle : a"
 	);
 
 	test(
-		memcmp(rect->b, &normalized_b, sizeof(t_vec3)) == 0,
-		"set_rectangle : z axis"
+		memcmp(&rect->b, &normalized_b, sizeof(t_vec3)) == 0,
+		"set_rectangle : b"
 	);
 
 	test(
-		memcmp(rect->normal, &normal, sizeof(t_vec3)) == 0,
-		"set_rectangle : y axis"
+		memcmp(&rect->normal, &normal, sizeof(t_vec3)) == 0,
+		"set_rectangle : normal"
 	);
 
 	test(

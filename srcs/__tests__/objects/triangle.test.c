@@ -2,19 +2,17 @@
 
 static void		triangle_case1(t_ol *ol)
 {
-	t_triangle		*triangle;
 	t_arg_triangle	arg;
 
 	ol->intersect = &v_intersect_triangle;
 	ol->get_normal = &normal_triangle;
     ol->object = ft_memalloc(sizeof(t_triangle));
-	triangle = (t_triangle *)ol->object;
 	arg.a = (t_vec3){0.0, 0.0, 0.0};
 	arg.ab = (t_vec3){0.5, 0.5, 1.5};
 	arg.ac = (t_vec3){-0.5, 0.5, 0.0};
 
 	test(
-		set_triangle(triangle, &arg) == RT_SUCCESS,
+		set_triangle(ol, &arg) == RT_SUCCESS,
 		"set_triangle : return value"
 	);
 }
@@ -61,19 +59,17 @@ void			test_triangle_normal_case1(void)
 
 static void		triangle_case2(t_ol *ol)
 {
-	t_triangle		*triangle;
 	t_arg_triangle	arg;
 
 	ol->intersect = &v_intersect_triangle;
 	ol->get_normal = &normal_triangle;
     ol->object = ft_memalloc(sizeof(t_triangle));
-	triangle = (t_triangle *)ol->object;
 	arg.a = (t_vec3){0.0, 0.0, 0.0};
 	arg.ab = (t_vec3){1.0, 0.0, 1.5};
 	arg.ac = (t_vec3){-0.5, 1.0, 0.0};
 
 	test(
-		set_triangle(triangle, &arg) == RT_SUCCESS,
+		set_triangle(ol, &arg) == RT_SUCCESS,
 		"set_triangle : return value"
 	);
 }

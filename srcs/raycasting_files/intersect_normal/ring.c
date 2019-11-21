@@ -38,16 +38,3 @@ t_vec3			normal_ring(t_ray ray, void *object)
 	else 
 		return (v3_scalar(ring->normal, -1));
 }
-
-int				set_ring(t_ring *ring, t_arg_ring *arg)
-{
-	if (arg->r1 < 0.0 || arg->r2 <= 0.0 || arg->r1 >= arg->r2 ||
-		ft_abs_double(v3_norm2(arg->normal)) < APPROX_0)
-		return (RT_FAIL);
-	ring->center = arg->center;
-	ring->normal = v3_normalise(arg->normal);
-	ring->r1 = arg->r1;
-	ring->r2 = arg->r2;
-	ring->d = v3_dotpdt(ring->center, ring->normal);
-	return (RT_SUCCESS);
-}

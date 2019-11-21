@@ -36,17 +36,3 @@ t_vec3			normal_triangle(t_ray ray, void *object)
 	else 
 		return (v3_scalar(triangle->normal, -1));
 }
-
-int				set_triangle(t_triangle *triangle, t_arg_triangle *arg)
-{
-	if (v3_norm2(arg->ab) == 0.0 || v3_norm2(arg->ac) == 0.0)
-		return (RT_FAIL);
-	triangle->normal = v3_cross(arg->ab, arg->ac);
-	if (ft_abs_double(v3_norm2(triangle->normal)) < APPROX_0)
-		return (RT_FAIL);
-	triangle->a = arg->a;
-	triangle->ab = arg->ab;
-	triangle->ac = arg->ac;
-	triangle->normal = v3_normalise(triangle->normal);
-	return (RT_SUCCESS);
-}

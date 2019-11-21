@@ -94,6 +94,6 @@ int		main()
 	//test_ring_normal_case2();
 	//test_ring_normal_case3();
 
-	//test_sphere_texture_mapping_case1();
+	test_sphere_texture_mapping_case1();
 	return (0);
 }

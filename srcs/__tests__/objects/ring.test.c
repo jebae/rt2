@@ -2,13 +2,11 @@
 
 static void	ring_case1(t_ol *ol)
 {
-	t_ring		*ring;
 	t_arg_ring	arg;
 
 	ol->intersect = &v_intersect_ring;
 	ol->get_normal = &normal_ring;
     ol->object = ft_memalloc(sizeof(t_ring));
-	ring = ol->object;
 
 	arg.center = (t_vec3){0.0, 0.0, 0.0};
 	arg.normal = v3_normalise((t_vec3){0.0, -1.0, -0.3});
@@ -16,7 +14,7 @@ static void	ring_case1(t_ol *ol)
 	arg.r2 = 0.5;
 
 	test(
-		set_ring(ring, &arg) == RT_SUCCESS,
+		set_ring(ol, &arg) == RT_SUCCESS,
 		"set_ring : return value"
 	);
 }
@@ -63,13 +61,11 @@ void		test_ring_normal_case1(void)
 
 static void	ring_case2(t_ol *ol)
 {
-	t_ring		*ring;
 	t_arg_ring	arg;
 
 	ol->intersect = &v_intersect_ring;
 	ol->get_normal = &normal_ring;
     ol->object = ft_memalloc(sizeof(t_ring));
-	ring = ol->object;
 
 	arg.center = (t_vec3){1.0, 0.5, 3.0};
 	arg.normal = v3_normalise((t_vec3){-0.5, -1.5, -0.1});
@@ -77,7 +73,7 @@ static void	ring_case2(t_ol *ol)
 	arg.r2 = 1.5;
 
 	test(
-		set_ring(ring, &arg) == RT_SUCCESS,
+		set_ring(ol, &arg) == RT_SUCCESS,
 		"set_ring : return value"
 	);
 }
@@ -124,13 +120,11 @@ void		test_ring_normal_case2(void)
 
 static void	ring_case3(t_ol *ol)
 {
-	t_ring		*ring;
 	t_arg_ring	arg;
 
 	ol->intersect = &v_intersect_ring;
 	ol->get_normal = &normal_ring;
     ol->object = ft_memalloc(sizeof(t_ring));
-	ring = ol->object;
 
 	arg.center = (t_vec3){1.0, 0.5, 3.0};
 	arg.normal = v3_normalise((t_vec3){-0.5, -1.5, -0.1});
@@ -138,7 +132,7 @@ static void	ring_case3(t_ol *ol)
 	arg.r2 = 1.5;
 
 	test(
-		set_ring(ring, &arg) == RT_SUCCESS,
+		set_ring(ol, &arg) == RT_SUCCESS,
 		"set_ring : return value"
 	);
 }
