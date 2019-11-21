@@ -21,7 +21,7 @@ t_vec2			sphere_uv_mapping(
 	sphere = (t_sphere *)object;
 	point = v3_sub(point, sphere->cen);
 	point = m_mult(*axis_mat, point);
-	uv.x = (1 / (2 * M_PI)) * atan(point.z / point.x);
-	uv.y = (1 / M_PI) * acos(point.y / sphere->radius);
+	uv.x = atan2(point.z, point.x) / (2.0 * M_PI);
+	uv.y = acos(point.y / sphere->radius) / M_PI;
 	return (uv);
 }
