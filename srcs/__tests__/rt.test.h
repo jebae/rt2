@@ -103,10 +103,12 @@ void			test_set_cone_case2(void);
 void			test_set_cone_case3(void);
 void			test_set_cone_case4(void);
 void			test_set_cone_case5(void);
+void			test_set_cone_case6(void);
 
 void			test_set_cyl_case1(void);
 void			test_set_cyl_case2(void);
 void			test_set_cyl_case3(void);
+void			test_set_cyl_case4(void);
 
 void			test_set_plane_case1(void);
 void			test_set_plane_case2(void);

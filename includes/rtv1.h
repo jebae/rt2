@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/11/20 21:52:58 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/21 18:19:13 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ typedef struct		s_cyl
 	t_vec3			cen;
 	t_vec3			axis;
 	double			radius;
+	double			height;
 }					t_cyl;
 
 typedef struct		s_plane
@@ -150,9 +151,9 @@ typedef struct		s_plane
 typedef struct		s_rectangle
 {
 	t_vec3			p;
-	t_vec3			a;
-	t_vec3			b;
-	t_vec3			normal;
+	t_vec3			*a;
+	t_vec3			*b;
+	t_vec3			*normal;
 	double			norm_a;
 	double			norm_b;
 	double			d;
@@ -206,6 +207,7 @@ typedef struct		s_arg_cyl
 	t_vec3			cen;
 	t_vec3			axis;
 	double			radius;
+	double			height;
 }					t_arg_cyl;
 
 typedef struct		s_arg_rectangle

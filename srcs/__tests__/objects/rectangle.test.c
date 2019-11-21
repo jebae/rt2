@@ -2,18 +2,16 @@
 
 static void	rectangle_case1(t_ol *ol)
 {
-	t_rectangle			*rect;
 	t_arg_rectangle		arg;
 
 	ol->intersect = &v_intersect_rectangle;
 	ol->get_normal = &normal_rectangle;
     ol->object = ft_memalloc(sizeof(t_rectangle));
-	rect = ol->object;
 	arg.p = (t_vec3){-1.0, 1.0, 1.0};
 	arg.a = (t_vec3){2.0, 0.0, 0.0};
 	arg.b = (t_vec3){0.0, 0.0, 2.0};
 
-	set_rectangle(rect, &arg);
+	set_rectangle(ol, &arg);
 }
 
 void		test_rectangle_intersect_case1(void)
@@ -58,18 +56,16 @@ void		test_rectangle_normal_case1(void)
 
 static void	rectangle_case2(t_ol *ol)
 {
-	t_rectangle			*rect;
 	t_arg_rectangle		arg;
 
 	ol->intersect = &v_intersect_rectangle;
 	ol->get_normal = &normal_rectangle;
     ol->object = ft_memalloc(sizeof(t_rectangle));
-	rect = ol->object;
 	arg.p = (t_vec3){-1.0, 1.0, 1.0};
 	arg.a = (t_vec3){2.0, -1.0, -1.0};
 	arg.b = (t_vec3){0.0, -1.0, 1.0};
 
-	set_rectangle(rect, &arg);
+	set_rectangle(ol, &arg);
 }
 
 void		test_rectangle_intersect_case2(void)

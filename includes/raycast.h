@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/11/20 21:58:27 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/21 17:33:43 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,18 @@ t_vec3		v_normalise(t_vec3 u);
 t_vec3		m_mult(t_mat3 m, t_vec3 v);
 
 /*
+** Axis
+*/
+void		pick_axis_from_plane(t_vec3 *normal, t_mat3 *axis_mat);
+
+/*
 ** Set object attributes from parser functions
 */
-int			set_sphere(t_sphere *sphere, t_vec3 cen, double radius);
-int			set_cone(t_cone *cone, t_arg_cone *arg);
-int			set_cyl(t_cyl *cyl, t_arg_cyl *arg);
-int			set_plane(t_plane *plane, t_vec3 normal, double d);
-int			set_rectangle(t_rectangle *rect, t_arg_rectangle *arg);
+int			set_sphere(t_ol *ol, t_vec3 cen, double radius);
+int			set_cone(t_ol *ol, t_arg_cone *arg);
+int			set_cyl(t_ol *ol, t_arg_cyl *arg);
+int			set_plane(t_ol *ol, t_vec3 normal, double d);
+int			set_rectangle(t_ol *ol, t_arg_rectangle *arg);
 int			set_box(t_box *box, t_arg_box *arg);
 int			set_triangle(t_triangle *triangle, t_arg_triangle *arg);
 int			set_pyramid(t_pyramid *pyramid, t_arg_pyramid *arg);

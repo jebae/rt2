@@ -2,17 +2,20 @@
 
 static void	cylinder_case1(t_ol *ol)
 {
-	t_cyl		*cyl;
 	t_arg_cyl	arg;
 
 	ol->intersect = &v_intersect_cy;
 	ol->get_normal = &normal_cylinder;
     ol->object = ft_memalloc(sizeof(t_cyl));
-	cyl = (t_cyl *)ol->object;
     arg.cen = (t_vec3){0.0, -1.0, 10.0};
     arg.axis = (t_vec3){1.0, 1.0, 0.0};
-	arg.radius = 1;
-	set_cyl(cyl, &arg);
+	arg.radius = 1.0;
+	arg.height = 1.0;
+
+	test(
+		set_cyl(ol, &arg) == RT_SUCCESS,
+		"set_cyl : return value"
+	);
 }
 
 void		test_cylinder_intersect_case1(void)

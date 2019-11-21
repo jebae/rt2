@@ -2,19 +2,17 @@
 
 static void	sphere_case1(t_ol *ol)
 {
-	t_sphere	*sphere;
 	t_vec3		center;
 	double		radius;
 
     ol->intersect = &v_intersect_sp2;
     ol->get_normal = &normal_sphere;
     ol->object = ft_memalloc(sizeof(t_sphere));
-	sphere = (t_sphere *)ol->object;
     center = (t_vec3){0.0, 0.0, 2.0};
     radius = 1.0;
 
 	test(
-		set_sphere(sphere, center, radius) == RT_SUCCESS,
+		set_sphere(ol, center, radius) == RT_SUCCESS,
 		"set_sphere : return value"
 	);
 }

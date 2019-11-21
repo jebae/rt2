@@ -2,17 +2,19 @@
 
 static void	cone_case1(t_ol *ol)
 {
-	t_cone		*cone;
 	t_arg_cone	arg;
 
 	ol->intersect = &v_intersect_co;
 	ol->get_normal = &normal_cone;
     ol->object = ft_memalloc(sizeof(t_cone));
-	cone = (t_cone *)ol->object;
     arg.cen = (t_vec3){0.0, -1.0, 2.0};
     arg.axis = (t_vec3){0.0, 1.0, 0.0};
 	arg.angle = 30;
-	set_cone(cone, &arg);
+
+	test(
+		set_cone(ol, &arg) == RT_SUCCESS,
+		"set_cone : return value"
+	);
 }
 
 void		test_cone_intersect_case1(void)

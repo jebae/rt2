@@ -2,18 +2,19 @@
 
 static void	plane_case1(t_ol *ol)
 {
-	t_plane		*plane;
 	t_vec3		normal;
 	double		d;
 
 	ol->intersect = &v_intersect_pl;
 	ol->get_normal = &normal_plane;
     ol->object = ft_memalloc(sizeof(t_plane));
-	plane = ol->object;
     normal = (t_vec3){0.0, 1.0, 0.0};
 	d = -2;
 
-	set_plane(plane, normal, d);
+	test(
+		set_plane(ol, normal, d) == RT_SUCCESS,
+		"set_plane : return value"
+	);
 }
 
 void		test_plane_intersect_case1(void)
