@@ -3,6 +3,9 @@
 
 # include "../minilibx_macos/mlx.h"
 # include "raycast.h"
+# include "unity.h"
+# include "unity.h"
+# include "unity_fixture.h"
 # include <stdio.h>
 
 # define KRED					"\x1B[31m"
@@ -95,8 +98,7 @@ void			test_ring_normal_case3(void);
 /*
 ** set_object test
 */
-void			test_set_sphere_case1(void);
-void			test_set_sphere_case2(void);
+void			test_set_sphere_should_valid(void);
 
 void			test_set_cone_case1(void);
 void			test_set_cone_case2(void);

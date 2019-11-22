@@ -1,11 +1,15 @@
 #include "rt.test.h"
 
-
 int		main()
 {
+	UNITY_BEGIN();
+	RUN_TEST_GROUP(set_sphere);
+	UNITY_END();
+	return (0);
 	/*
 	** set_object test
 	*/
+	/*
 	test_set_sphere_case1();
 	test_set_sphere_case2();
 
@@ -95,5 +99,6 @@ int		main()
 	//test_ring_normal_case3();
 
 	test_sphere_texture_mapping_case1();
+	*/
 	return (0);
 }

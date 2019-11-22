@@ -105,9 +105,9 @@ $(L_TARG):
 	@make -C $(V_FOLD) all
 	@make -C $(M_FOLD)
 
-TEST_INC = $(INC) -I srcs/__tests__
+TEST_INC = $(INC) -I srcs/__tests__ -I $(UNITY_PATH)/include
 
-TEST_LIB = libft/libft.a libvector/libvector.a $(LIBMLX)
+TEST_LIB = libft/libft.a libvector/libvector.a $(LIBMLX) $(UNITY_PATH)/lib/libunity.a
 
 TEST_SRC = srcs/handle/*.c\
 	srcs/raycasting_files/*.c\
@@ -116,7 +116,7 @@ TEST_SRC = srcs/handle/*.c\
 	srcs/__tests__/*.c\
 
 test :
-	$(CC) $(CFLAGS) $(TEST_INC) $(TEST_LIB) $(TEST_SRC) -o test
+	$(CC) -D UNITY_INCLUDE_CONFIG_H $(CFLAGS) $(TEST_INC) $(TEST_LIB) $(TEST_SRC) -o test
 
 clean:
 	@make -C $(L_FOLD) clean
