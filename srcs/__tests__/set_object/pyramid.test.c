@@ -1,18 +1,27 @@
 #include "rt.test.h"
 
-// case success
-void		test_set_pyramid_case1(void)
-{
-	printf(KYEL "test_set_pyramid_case1\n" KNRM);
-	t_ol				ol;
-	t_pyramid			*pyramid;
-	t_arg_pyramid		arg;
-	t_vec3				normalized_u;
-	t_vec3				normalized_v;
+static t_ol				ol;
+static t_pyramid		*pyramid;
+static int				res;
+static t_arg_pyramid	arg;
+static t_vec3			normalized_u;
+static t_vec3			normalized_v;
 
+TEST_GROUP(set_pyramid);
+
+TEST_SETUP(set_pyramid)
+{
 	ol.object = ft_memalloc(sizeof(t_pyramid));
 	pyramid = (t_pyramid *)ol.object;
+}
 
+TEST_TEAR_DOWN(set_pyramid)
+{
+	ft_memdel((void **)&pyramid);
+}
+
+TEST(set_pyramid, valid)
+{
 	arg.a = (t_vec3){0.0, 0.0, 0.0};
 	arg.u = (t_vec3){1.5, 0.0, 0.0};
 	arg.v = (t_vec3){0.0, 0.7, -1.0};
@@ -20,102 +29,65 @@ void		test_set_pyramid_case1(void)
 	normalized_u = v3_normalise(arg.u);
 	normalized_v = v3_normalise(arg.v);
 
-	test(
-		set_pyramid(&ol, &arg) == RT_SUCCESS,
-		"set_pyramid : return value"
-	);
-
-	test(
-		memcmp(&pyramid->u, &normalized_u, sizeof(t_vec3)) == 0,
-		"set_pyramid : pyramid->u"
-	);
-
-	test(
-		memcmp(&pyramid->v, &normalized_v, sizeof(t_vec3)) == 0,
-		"set_pyramid : pyramid->v"
-	);
-
-	test(
-		pyramid->norm_u = v3_norm(arg.u),
-		"set_pyramid : pyramid->norm_u"
-	);
-
-	test(
-		pyramid->norm_v = v3_norm(arg.v),
-		"set_pyramid : pyramid->norm_v"
-	);
-
-	free(pyramid);
+	res = set_pyramid(&ol, &arg);
+	TEST_ASSERT_EQUAL_INT_MESSAGE(RT_SUCCESS, res, "res");
+	TEST_ASSERT_EQUAL_MEMORY_MESSAGE(&normalized_u, &pyramid->u, sizeof(t_vec3), "u");
+	TEST_ASSERT_EQUAL_MEMORY_MESSAGE(&normalized_v, &pyramid->v, sizeof(t_vec3), "v");
+	TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(v3_norm(arg.u), pyramid->norm_u, "norm_u");
+	TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(v3_norm(arg.v), pyramid->norm_v, "norm_v");
+	TEST_ASSERT_EQUAL_INT_MESSAGE(&v_intersect_pyramid, ol.intersect, "intersect");
+	TEST_ASSERT_EQUAL_INT_MESSAGE(&normal_pyramid, ol.get_normal, "get_normal");
 }
 
-// case u's norm is 0
-void		test_set_pyramid_case2(void)
+TEST(set_pyramid, u_norm_is_0)
 {
-	printf(KYEL "test_set_pyramid_case2\n" KNRM);
-	t_ol				ol;
-	t_arg_pyramid		arg;
-
 	arg.a = (t_vec3){0.0, 0.0, 0.0};
 	arg.u = (t_vec3){0.0, 0.0, 0.0};
 	arg.v = (t_vec3){0.0, 0.7, -1.0};
 	arg.height = 2.0;
 
-	test(
-		set_pyramid(&ol, &arg) == RT_FAIL,
-		"set_pyramid : return value"
-	);
+	res = set_pyramid(&ol, &arg);
+	TEST_ASSERT_EQUAL_INT_MESSAGE(RT_FAIL, res, "res");
 }
 
-// case v's norm is 0
-void		test_set_pyramid_case3(void)
+TEST(set_pyramid, v_norm_is_0)
 {
-	printf(KYEL "test_set_pyramid_case3\n" KNRM);
-	t_ol				ol;
-	t_arg_pyramid		arg;
-
 	arg.a = (t_vec3){0.0, 0.0, 0.0};
 	arg.u = (t_vec3){1.0, 0.0, 0.0};
 	arg.v = (t_vec3){0.0, 0.0, 0.0};
 	arg.height = 2.0;
 
-	test(
-		set_pyramid(&ol, &arg) == RT_FAIL,
-		"set_pyramid : return value"
-	);
+	res = set_pyramid(&ol, &arg);
+	TEST_ASSERT_EQUAL_INT_MESSAGE(RT_FAIL, res, "res");
 }
 
-// case u, v is not orthogonal
-void		test_set_pyramid_case4(void)
+TEST(set_pyramid, u_v_is_not_orthogonal)
 {
-	printf(KYEL "test_set_pyramid_case4\n" KNRM);
-	t_ol				ol;
-	t_arg_pyramid		arg;
-
 	arg.a = (t_vec3){0.0, 0.0, 0.0};
 	arg.u = (t_vec3){1.0, 0.0, 0.0};
 	arg.v = (t_vec3){1.0, 1.0, 0.0};
 	arg.height = 2.0;
 
-	test(
-		set_pyramid(&ol, &arg) == RT_FAIL,
-		"set_pyramid : return value"
-	);
+	res = set_pyramid(&ol, &arg);
+	TEST_ASSERT_EQUAL_INT_MESSAGE(RT_FAIL, res, "res");
 }
 
-// case height <= 0
-void		test_set_pyramid_case5(void)
+TEST(set_pyramid, height_lte_0)
 {
-	printf(KYEL "test_set_pyramid_case5\n" KNRM);
-	t_ol				ol;
-	t_arg_pyramid		arg;
-
 	arg.a = (t_vec3){0.0, 0.0, 0.0};
 	arg.u = (t_vec3){1.0, 0.0, 0.0};
 	arg.v = (t_vec3){0.0, 1.0, 0.0};
 	arg.height = 0.0;
 
-	test(
-		set_pyramid(&ol, &arg) == RT_FAIL,
-		"set_pyramid : return value"
-	);
+	res = set_pyramid(&ol, &arg);
+	TEST_ASSERT_EQUAL_INT_MESSAGE(RT_FAIL, res, "res");
+}
+
+TEST_GROUP_RUNNER(set_pyramid)
+{
+	RUN_TEST_CASE(set_pyramid, valid);
+	RUN_TEST_CASE(set_pyramid, u_norm_is_0);
+	RUN_TEST_CASE(set_pyramid, v_norm_is_0);
+	RUN_TEST_CASE(set_pyramid, u_v_is_not_orthogonal);
+	RUN_TEST_CASE(set_pyramid, height_lte_0);
 }

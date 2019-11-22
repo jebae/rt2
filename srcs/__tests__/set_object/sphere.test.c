@@ -1,12 +1,13 @@
 #include "rt.test.h"
 
-TEST_GROUP(set_sphere);
-
-t_ol			ol;
-t_sphere		*sphere;
+static t_ol			ol;
+static t_sphere		*sphere;
+static int			res;
 static t_vec3		cen;
 static double		radius;
 static t_mat3		axis_mat;
+
+TEST_GROUP(set_sphere);
 
 TEST_SETUP(set_sphere)
 {
@@ -31,10 +32,14 @@ TEST(set_sphere, valid)
 		}
 	};
 
-	TEST_ASSERT_EQUAL_INT(RT_SUCCESS, set_sphere(&ol, cen, radius));
-	TEST_ASSERT_EQUAL_MEMORY(&cen, &sphere->cen, sizeof(t_vec3));
-	TEST_ASSERT_EQUAL_DOUBLE(radius, sphere->radius);
-	TEST_ASSERT_EQUAL_MEMORY(&axis_mat, &ol.axis_mat, sizeof(t_mat3));
+	res = set_sphere(&ol, cen, radius);
+	TEST_ASSERT_EQUAL_INT_MESSAGE(RT_SUCCESS, res, "res");
+	TEST_ASSERT_EQUAL_MEMORY_MESSAGE(&cen, &sphere->cen, sizeof(t_vec3), "cen");
+	TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(radius, sphere->radius, "radius");
+	TEST_ASSERT_EQUAL_MEMORY_MESSAGE(&axis_mat, &ol.axis_mat, sizeof(t_mat3), "axis_mat");
+	TEST_ASSERT_EQUAL_INT_MESSAGE(&v_intersect_sp2, ol.intersect, "intersect");
+	TEST_ASSERT_EQUAL_INT_MESSAGE(&normal_sphere, ol.get_normal, "get_normal");
+	TEST_ASSERT_EQUAL_INT_MESSAGE(&sphere_uv_mapping, ol.uv_mapping, "uv_mapping");
 }
 
 TEST(set_sphere, radius_is_0)
@@ -42,7 +47,8 @@ TEST(set_sphere, radius_is_0)
 	cen = (t_vec3){1.0, 0.0, 0.0};
 	radius = 0.0;
 
-	TEST_ASSERT_EQUAL_INT(RT_FAIL, set_sphere(&ol, cen, radius));
+	res = set_sphere(&ol, cen, radius);
+	TEST_ASSERT_EQUAL_INT_MESSAGE(RT_FAIL, res, "res");
 }
 
 TEST_GROUP_RUNNER(set_sphere)

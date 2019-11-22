@@ -14,6 +14,8 @@ int				set_cyl(t_ol *ol, t_arg_cyl *arg)
 
 	if (validate(arg) == RT_FAIL)
 		return (RT_FAIL);
+	ol->intersect = &v_intersect_cy;
+	ol->get_normal = &normal_cylinder;
 	cyl = (t_cyl *)ol->object;
 	cyl->cen = arg->cen;
 	cyl->axis = v3_normalise(arg->axis);

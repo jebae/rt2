@@ -26,121 +26,57 @@ typedef struct	s_mlxkit
 	unsigned int	*img_buf;
 }				t_mlxkit;
 
+/*
+** test utils
+*/
 void			init_mlxkit(t_mlxkit *mlxkit);
+void			clear_mlxkit(t_mlxkit *mlxkit);
 
+/*
+** render utils
+*/
+void			setup_scene(t_mlxkit *mlxkit, t_camera *cam);
 void			render_intersect_test(
 	t_mlxkit *mlxkit,
 	t_camera *cam,
 	t_ol *ol
 );
-
 void			render_normal_test(
 	t_mlxkit *mlxkit,
 	t_camera *cam,
 	t_ol *ol
 );
-
 void			render_texture_mapping_test(
 	t_mlxkit *mlxkit,
 	t_camera *cam,
-	t_ol *ol
+	t_ol *ol,
+	const char *texture_file_name
 );
 
 void			test(int res, const char *msg);
 
 /*
-** object intersect normal test
-** (render test)
+** setup object
 */
-void			test_sphere_intersect_case1(void);
-void			test_sphere_normal_case1(void);
-
-void			test_cylinder_intersect_case1(void);
-void			test_cylinder_normal_case1(void);
-
-void			test_cone_intersect_case1(void);
-void			test_cone_normal_case1(void);
-
-void			test_rectangle_intersect_case1(void);
-void			test_rectangle_intersect_case2(void);
-void			test_rectangle_normal_case1(void);
-void			test_rectangle_normal_case2(void);
-
-void			test_box_intersect_case1(void);
-void			test_box_intersect_case2(void);
-void			test_box_intersect_case3(void);
-void			test_box_normal_case1(void);
-void			test_box_normal_case2(void);
-void			test_box_normal_case3(void);
-
-void			test_plane_intersect_case1();
-void			test_plane_normal_case1();
-
-void			test_triangle_intersect_case1(void);
-void			test_triangle_intersect_case2(void);
-void			test_triangle_normal_case1(void);
-void			test_triangle_normal_case2(void);
-
-void			test_pyramid_intersect_case1(void);
-void			test_pyramid_intersect_case2(void);
-void			test_pyramid_intersect_case3(void);
-void			test_pyramid_normal_case1(void);
-void			test_pyramid_normal_case2(void);
-void			test_pyramid_normal_case3(void);
-
-void			test_ring_intersect_case1(void);
-void			test_ring_intersect_case2(void);
-void			test_ring_intersect_case3(void);
-void			test_ring_normal_case1(void);
-void			test_ring_normal_case2(void);
-void			test_ring_normal_case3(void);
+int				setup_object(
+	const char *obj,
+	const char *case_num,
+	t_ol *ol
+);
+int				setup_box(const char *cast_num,t_ol *ol);
+int				setup_cone(const char *cast_num, t_ol *ol);
+int				setup_cylinder(const char *cast_num, t_ol *ol);
+int				setup_plane(const char *cast_num, t_ol *ol);
+int				setup_pyramid(const char *cast_num, t_ol *ol);
+int				setup_rectangle(const char *cast_num, t_ol *ol);
+int				setup_ring(const char *cast_num, t_ol *ol);
+int				setup_sphere(const char *cast_num, t_ol *ol);
+int				setup_triangle(const char *cast_num, t_ol *ol);
 
 /*
-** set_object test
+** set_object
 */
-void			test_set_sphere_should_valid(void);
-
-void			test_set_cone_case1(void);
-void			test_set_cone_case2(void);
-void			test_set_cone_case3(void);
-void			test_set_cone_case4(void);
-void			test_set_cone_case5(void);
-void			test_set_cone_case6(void);
-
-void			test_set_cyl_case1(void);
-void			test_set_cyl_case2(void);
-void			test_set_cyl_case3(void);
-void			test_set_cyl_case4(void);
-
-void			test_set_plane_case1(void);
-void			test_set_plane_case2(void);
-
-void			test_set_rectangle_case1(void);
-void			test_set_rectangle_case2(void);
-void			test_set_rectangle_case3(void);
-void			test_set_rectangle_case4(void);
-
-void			test_set_box_case1(void);
-void			test_set_box_case2(void);
-void			test_set_box_case3(void);
-void			test_set_box_case4(void);
-
-void			test_set_triangle_case1(void);
-void			test_set_triangle_case2(void);
-void			test_set_triangle_case3(void);
-void			test_set_triangle_case4(void);
-
-void			test_set_pyramid_case1(void);
-void			test_set_pyramid_case2(void);
-void			test_set_pyramid_case3(void);
-void			test_set_pyramid_case4(void);
-void			test_set_pyramid_case5(void);
-
-void			test_set_ring_case1(void);
-void			test_set_ring_case2(void);
-void			test_set_ring_case3(void);
-void			test_set_ring_case4(void);
-void			test_set_ring_case5(void);
+void			test_set_object(void);
 
 /*
 ** texture mapping test

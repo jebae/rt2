@@ -24,6 +24,9 @@ int				set_sphere(t_ol *ol, t_vec3 cen, double radius)
 
 	if (validate(radius) == RT_FAIL)
 		return (RT_FAIL);
+	ol->intersect = &v_intersect_sp2;
+	ol->get_normal = &normal_sphere;
+    ol->uv_mapping = &sphere_uv_mapping;
 	sphere = (t_sphere *)ol->object;
 	sphere->cen = cen;
 	sphere->radius = radius;

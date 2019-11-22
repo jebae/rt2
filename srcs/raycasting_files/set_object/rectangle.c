@@ -26,6 +26,8 @@ int				set_rectangle(t_ol *ol, t_arg_rectangle *arg)
 
 	if (validate(arg) == RT_FAIL)
 		return (RT_FAIL);
+	ol->intersect = &v_intersect_rectangle;
+	ol->get_normal = &normal_rectangle;
 	rect = (t_rectangle *)ol->object;
 	set_axis(arg, &ol->axis_mat);
 	rect->p = arg->p;

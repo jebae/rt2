@@ -27,6 +27,8 @@ int				set_box(t_ol *ol, t_arg_box *arg)
 
 	if (validate(arg) == RT_FAIL)
 		return (RT_FAIL);
+	ol->intersect = &v_intersect_box;
+	ol->get_normal = &normal_box;
 	box = (t_box *)ol->object;
 	box->vmin = arg->vmin;
 	box->vmax.x = v3_norm(arg->a);

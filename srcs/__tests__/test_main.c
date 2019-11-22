@@ -1,104 +1,40 @@
 #include "rt.test.h"
 
-int		main()
+static t_mlxkit		mlxkit;
+static t_camera		cam;
+static t_ol			ol;
+
+void	render_test(
+	const char *obj,
+	const char *func,
+	const char *case_num,
+	const char *extra
+)
 {
-	UNITY_BEGIN();
-	RUN_TEST_GROUP(set_sphere);
-	UNITY_END();
-	return (0);
-	/*
-	** set_object test
-	*/
-	/*
-	test_set_sphere_case1();
-	test_set_sphere_case2();
+	int		res;
 
-	test_set_cone_case1();
-	test_set_cone_case2();
-	test_set_cone_case3();
-	test_set_cone_case4();
-	test_set_cone_case5();
-	test_set_cone_case6();
+	res = setup_object(obj, case_num, &ol);
+	if (res == RT_FAIL)
+		return ;
+	setup_scene(&mlxkit, &cam);
+	if (*func == 'i')
+		render_intersect_test(&mlxkit, &cam, &ol);
+	else if (*func == 'n')
+		render_normal_test(&mlxkit, &cam, &ol);
+	else if (*func == 't')
+		render_texture_mapping_test(&mlxkit, &cam, &ol, extra);
+}
 
-	test_set_cyl_case1();
-	test_set_cyl_case2();
-	test_set_cyl_case3();
-	test_set_cyl_case4();
-
-	test_set_plane_case1();
-	test_set_plane_case2();
-
-	test_set_rectangle_case1();
-	test_set_rectangle_case2();
-	test_set_rectangle_case3();
-	test_set_rectangle_case4();
-
-	test_set_box_case1();
-	test_set_box_case2();
-	test_set_box_case3();
-	test_set_box_case4();
-
-	test_set_triangle_case1();
-	test_set_triangle_case2();
-	test_set_triangle_case3();
-	test_set_triangle_case4();
-
-	test_set_pyramid_case1();
-	test_set_pyramid_case2();
-	test_set_pyramid_case3();
-	test_set_pyramid_case4();
-	test_set_pyramid_case5();
-
-	test_set_ring_case1();
-	test_set_ring_case2();
-	test_set_ring_case3();
-	test_set_ring_case4();
-	test_set_ring_case5();
-
-	//test_sphere_intersect_case1();
-	//test_sphere_normal_case1();
-
-	//test_cone_intersect_case1();
-	//test_cone_normal_case1();
-
-	//test_cylinder_intersect_case1();
-	//test_cylinder_normal_case1();
-
-	//test_plane_intersect_case1();
-	//test_plane_normal_case1();
-
-	//test_rectangle_intersect_case1();
-	//test_rectangle_normal_case1();
-	//test_rectangle_intersect_case2();
-	//test_rectangle_normal_case2();
-
-	//test_box_intersect_case1();
-	//test_box_intersect_case2();
-	//test_box_intersect_case3();
-	//test_box_normal_case1();
-	//test_box_normal_case2();
-	//test_box_normal_case3();
-
-	//test_triangle_intersect_case1();
-	//test_triangle_intersect_case2();
-	//test_triangle_normal_case1();
-	//test_triangle_normal_case2();
-
-	//test_pyramid_intersect_case1();
-	//test_pyramid_intersect_case2();
-	//test_pyramid_intersect_case3();
-	//test_pyramid_normal_case1();
-	//test_pyramid_normal_case2();
-	//test_pyramid_normal_case3();
-
-	//test_ring_intersect_case1();
-	//test_ring_intersect_case2();
-	//test_ring_intersect_case3();
-	//test_ring_normal_case1();
-	//test_ring_normal_case2();
-	//test_ring_normal_case3();
-
-	test_sphere_texture_mapping_case1();
-	*/
+int		main(int argc, char **argv)
+{
+	if (argc == 1)
+	{
+		UNITY_BEGIN();
+		test_set_object();
+		UNITY_END();
+		return (0);
+	}
+	if (argc >= 4)
+		render_test(argv[1], argv[2], argv[3], (argc >= 5) ? argv[4] : NULL);
 	return (0);
 }
