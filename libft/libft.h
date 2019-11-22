@@ -6,7 +6,7 @@
 /*   By: mhernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 19:55:00 by mhernand          #+#    #+#             */
-/*   Updated: 2019/11/16 17:06:29 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/22 23:08:48 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,10 @@ int					ft_iseven(int x);
 void				ft_strfree(char *str);
 double				ft_abs_double(double a);
 void				ft_swap_double(double *a, double *b);
+void				ft_extract_double(
+	double num,
+	short *exponent,
+	unsigned long long *mantissa
+);
+int					ft_is_inf(double num);
 #endif

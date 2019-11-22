@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/11/21 20:17:21 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/22 23:09:41 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,11 @@ t_vec3		get_normal(t_ray ray, t_ol *ol);
 ** UV mapping functions
 */
 t_vec2		sphere_uv_mapping(
+	t_vec3 point,
+	t_mat3 *axis_mat,
+	void *object
+);
+t_vec2		cyl_uv_mapping(
 	t_vec3 point,
 	t_mat3 *axis_mat,
 	void *object

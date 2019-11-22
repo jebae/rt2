@@ -34,6 +34,7 @@ TEST(set_cyl, valid)
 	TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(arg.radius, cyl->radius, "radius");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&v_intersect_cy, ol.intersect, "intersect");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&normal_cylinder, ol.get_normal, "get_normal");
+	TEST_ASSERT_EQUAL_INT_MESSAGE(&cyl_uv_mapping, ol.uv_mapping, "uv_mapping");
 }
 
 TEST(set_cyl, radius_lte_0)

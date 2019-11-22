@@ -4,8 +4,8 @@
 # include "../minilibx_macos/mlx.h"
 # include "raycast.h"
 # include "unity.h"
-# include "unity.h"
 # include "unity_fixture.h"
+# include <float.h>
 # include <stdio.h>
 
 # define KRED					"\x1B[31m"
