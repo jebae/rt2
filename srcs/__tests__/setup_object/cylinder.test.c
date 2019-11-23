@@ -7,7 +7,7 @@ static void		setup_case1(t_ol *ol)
     arg.cen = (t_vec3){-1.0, 0.0, 10.0};
     arg.axis = (t_vec3){1.0, 1.0, 0.0};
 	arg.radius = 0.5;
-	arg.height = 3.0;
+	arg.height = 10.0;
 
 	set_cyl(ol, &arg);
 }

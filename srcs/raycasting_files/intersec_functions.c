@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 14:08:14 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/11/15 16:55:12 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/23 15:28:31 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,6 @@ double	v_intersect_cy(t_ray ray, void *object)
 	double	c;
 	t_cyl	*cyl;
 
-	int MAX  = 5;
 
 	cyl = object;
 	v = v3_frompoints(cyl->cen, ray.ori); //to change
@@ -146,9 +145,9 @@ double	v_intersect_cy(t_ray ray, void *object)
 	//m = D|V*t + X|V
 	double m1 = v3_dotpdt(ray.dir, cyl->axis) * t1 + v3_dotpdt(v, cyl->axis);
 	double m2 = v3_dotpdt(ray.dir, cyl->axis) * t2 + v3_dotpdt(v, cyl->axis);
-	if (m1 > MAX || m1 < -MAX)
+	if (m1 > cyl->height || m1 < 0)
 		t1 = FAR;
-	if (m2 > MAX || m2 < -MAX)
+	if (m2 > cyl->height || m2 < 0)
 		t2 = FAR;
 	if (t1 <= 0 && t2 <= 0)
 		return (FAR);

@@ -4,25 +4,21 @@ static t_mlxkit		mlxkit;
 static t_camera		cam;
 static t_ol			ol;
 
-void	render_test(
-	const char *obj,
-	const char *func,
-	const char *case_num,
-	const char *extra
-)
+void	render_test(char **argv)
 {
 	int		res;
 
-	res = setup_object(obj, case_num, &ol);
+	res = setup_object(argv[1], argv[3], &ol);
 	if (res == RT_FAIL)
 		return ;
 	setup_scene(&mlxkit, &cam);
-	if (*func == 'i')
+	if (*(argv[2]) == 'i')
 		render_intersect_test(&mlxkit, &cam, &ol);
-	else if (*func == 'n')
+	else if (*(argv[2]) == 'n')
 		render_normal_test(&mlxkit, &cam, &ol);
-	else if (*func == 't')
-		render_texture_mapping_test(&mlxkit, &cam, &ol, extra);
+	else if (*(argv[2]) == 't')
+		render_texture_mapping_test(
+			&mlxkit, &cam, &ol, argv[4], argv[5]);
 }
 
 int		main(int argc, char **argv)
@@ -35,6 +31,6 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	if (argc >= 4)
-		render_test(argv[1], argv[2], argv[3], (argc >= 5) ? argv[4] : NULL);
+		render_test(argv);
 	return (0);
 }

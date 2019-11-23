@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/11/21 19:42:24 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/23 17:47:16 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 # define RT_SUCCESS	0
 # define RT_FAIL	1
 # define APPROX_0	1e-6
+# define TEXTURE_PATTERN_STRETCH	0
+# define TEXTURE_PATTERN_REPEAT		1
 
 typedef struct		s_mat3
 {
@@ -95,6 +97,7 @@ typedef struct		s_texture
 {
 	int				width;
 	int				height;
+	int				repeat;
 	unsigned int	*pixels;
 }					t_texture;
 
@@ -111,6 +114,7 @@ typedef struct		s_ol
 	t_vec2			(*uv_mapping)(
 		t_vec3 point,
 		t_mat3 *axis_mat,
+		t_texture *texture,
 		void *object
 	);
 	struct s_ol		*next;
@@ -132,6 +136,8 @@ typedef struct		s_cone
 	t_vec3			cen;
 	t_vec3			axis;
 	double			angle;
+	double			upper_height;
+	double			lower_height;
 }					t_cone;
 
 typedef struct		s_cyl
@@ -199,7 +205,9 @@ typedef struct		s_arg_cone
 {
 	t_vec3			cen;
 	t_vec3			axis;
-	double			angle;	
+	double			angle;
+	double			upper_height;
+	double			lower_height;
 }					t_arg_cone;
 
 typedef struct		s_arg_cyl

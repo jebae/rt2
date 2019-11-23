@@ -41,6 +41,7 @@ TEST(set_rectangle, valid)
 	TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(v3_dotpdt(arg.p, normal), rect->d, "d");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&v_intersect_rectangle, ol.intersect, "intersect");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&normal_rectangle, ol.get_normal, "get_normal");
+	TEST_ASSERT_EQUAL_INT_MESSAGE(&rectangle_uv_mapping, ol.uv_mapping, "uv_mapping");
 }
 
 TEST(set_rectangle, a_norm_is_0)

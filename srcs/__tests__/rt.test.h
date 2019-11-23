@@ -50,10 +50,23 @@ void			render_texture_mapping_test(
 	t_mlxkit *mlxkit,
 	t_camera *cam,
 	t_ol *ol,
-	const char *texture_file_name
+	const char *texture_file_name,
+	const char *repeat
 );
 
-void			test(int res, const char *msg);
+/*
+** texture utils
+*/
+void			set_texture(
+	const char *texture_file_name,
+	const char *repeat,
+	t_texture *texture
+);
+int				get_texture_pixel_color(
+	t_vec2 *uv,
+	t_texture *texture,
+	double n_dot_l
+);
 
 /*
 ** setup object
@@ -77,10 +90,5 @@ int				setup_triangle(const char *cast_num, t_ol *ol);
 ** set_object
 */
 void			test_set_object(void);
-
-/*
-** texture mapping test
-*/
-void			test_sphere_texture_mapping_case1(void);
 
 #endif
