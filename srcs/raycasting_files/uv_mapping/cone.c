@@ -7,7 +7,6 @@ t_vec2			cone_uv_mapping(
 	void *object
 )
 {
-	double		int_part;
 	double		height;
 	t_vec2		uv;
 	t_cone		*cone;
@@ -26,7 +25,5 @@ t_vec2			cone_uv_mapping(
 		uv.y = point.y / height * texels->repeat;
 	if (uv.y < 0.0)
 		uv.y = -uv.y;
-	uv.x = modf(uv.x, &int_part);
-	uv.y = modf(uv.y, &int_part);
 	return (uv);
 }

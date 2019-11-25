@@ -31,12 +31,3 @@ void		init_mlxkit(t_mlxkit *mlxkit)
 	mlxkit->img_buf = (unsigned int *)mlx_get_data_addr(mlxkit->p_img, &bpp, &width, &endian);
 	mlx_key_hook(mlxkit->p_win, &mlxkit_key_press, mlxkit);
 }
-
-void		test(int res, const char *msg)
-{
-	if (!res)
-	{
-		printf(KRED "[FAILED] " KNRM);
-		printf("%s\n", msg);
-	}
-}

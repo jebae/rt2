@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/11/23 18:05:23 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/25 16:50:14 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,18 @@ t_vec2		rectangle_uv_mapping(
 	t_mat3 *axis_mat,
 	t_texels *texels,
 	void *object
+);
+
+/*
+** Texel functions
+*/
+int				uv_to_texel_index(t_vec2 *uv, t_texels *texels);
+t_col			get_texel_color(t_vec2 *uv, t_texels *texels);
+t_vec3			get_bumped_normal(
+	t_vec2 *uv,
+	t_texels *texels,
+	t_vec3 *normal,
+	t_mat3 *axis_mat
 );
 
 /*

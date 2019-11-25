@@ -17,6 +17,12 @@
 # define MLX_ENDIAN             0
 # define KEY_ESC				53
 # define MAX(a, b) (((a) > (b)) ? (a) : (b))
+# define GRAY					(t_col){0xa0, 0xa0, 0xa0}
+# define BLUE					(t_col){0x11, 0x5d, 0xa8}
+# define RED					(t_col){0xf2, 0x00, 0x3c}
+# define BROWN					(t_col){0x65, 0x32, 0x21}
+
+t_col			COLOR_SAMPLES[4];
 
 typedef struct	s_mlxkit
 {
@@ -44,7 +50,8 @@ void			render_intersect_test(
 void			render_normal_test(
 	t_mlxkit *mlxkit,
 	t_camera *cam,
-	t_ol *ol
+	t_ol *ol,
+	const char *color
 );
 void			render_texture_mapping_test(
 	t_mlxkit *mlxkit,
@@ -52,6 +59,14 @@ void			render_texture_mapping_test(
 	t_ol *ol,
 	const char *texture_file_name,
 	const char *repeat
+);
+void			render_bump_mapping_test(
+	t_mlxkit *mlxkit,
+	t_camera *cam,
+	t_ol *ol,
+	const char *filename,
+	const char *repeat,
+	const char *color
 );
 
 /*
@@ -61,11 +76,6 @@ void			set_texels(
 	const char *filename,
 	const char *repeat,
 	t_texels *texture
-);
-int				get_texel_color(
-	t_vec2 *uv,
-	t_texels *texture,
-	double n_dot_l
 );
 
 /*

@@ -6,7 +6,7 @@
 #    By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 07:58:15 by mhernand          #+#    #+#              #
-#    Updated: 2019/11/22 22:51:16 by jebae            ###   ########.fr        #
+#    Updated: 2019/11/25 19:30:18 by jebae            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,7 +115,14 @@ TEST_SRC = srcs/handle/*.c\
 	srcs/__tests__/*/*.c\
 	srcs/__tests__/*.c\
 
-test :
+CONTENTS = contents
+
+$(CONTENTS) :
+	curl -L https://www.dropbox.com/sh/a85xtpsaokehu2y/AAAMvXC4yQKq0aAubntNgynFa?dl=1 -o $@.zip
+	unzip $@.zip -x / -d $@
+	rm -f $@.zip
+
+test : $(CONTENTS)
 	$(CC) -D UNITY_INCLUDE_CONFIG_H $(CFLAGS) $(TEST_INC) $(TEST_LIB) $(TEST_SRC) -o test
 
 clean:

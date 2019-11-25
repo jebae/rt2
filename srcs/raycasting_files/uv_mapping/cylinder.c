@@ -7,7 +7,6 @@ t_vec2			cyl_uv_mapping(
 	void *object
 )
 {
-	double		int_part;
 	t_vec2		uv;
 	t_cyl		*cyl;
 
@@ -20,7 +19,5 @@ t_vec2			cyl_uv_mapping(
 			* texels->repeat;
 	else
 		uv.y = point.y / cyl->height * texels->repeat;
-	uv.x = modf(uv.x, &int_part);
-	uv.y = modf(uv.y, &int_part);
 	return (uv);
 }

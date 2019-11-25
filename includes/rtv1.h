@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/11/23 17:47:16 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/25 16:17:56 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ typedef struct		s_ol
 	int				specvalue;
 	t_vec3			dif;
 	t_texels		texture;
+	t_texels		bump_map;
 	t_mat3			axis_mat;
 	double			(*intersect)(t_ray ray, void *object);
 	t_vec3			(*get_normal)(t_ray ray, void *object);

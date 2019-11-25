@@ -9,3 +9,5 @@ dumbmain.c
 test
 *.gch
 .DS_Store
+*.jpg
+*.png

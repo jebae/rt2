@@ -7,7 +7,6 @@ t_vec2			rectangle_uv_mapping(
 	void *object
 )
 {
-	double			int_part;
 	t_vec2			uv;
 	t_rectangle		*rect;
 
@@ -16,7 +15,5 @@ t_vec2			rectangle_uv_mapping(
 	point = m_mult(*axis_mat, point);
 	uv.x = point.x / rect->norm_a * texels->repeat;
 	uv.y = point.z / rect->norm_b * texels->repeat;
-	uv.x = modf(uv.x, &int_part);
-	uv.y = modf(uv.y, &int_part);
 	return (uv);
 }
