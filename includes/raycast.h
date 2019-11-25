@@ -109,25 +109,25 @@ t_vec3		get_normal(t_ray ray, t_ol *ol);
 t_vec2		sphere_uv_mapping(
 	t_vec3 point,
 	t_mat3 *axis_mat,
-	t_texture *texture,
+	t_texels *texels,
 	void *object
 );
 t_vec2		cyl_uv_mapping(
 	t_vec3 point,
 	t_mat3 *axis_mat,
-	t_texture *texture,
+	t_texels *texels,
 	void *object
 );
 t_vec2		cone_uv_mapping(
 	t_vec3 point,
 	t_mat3 *axis_mat,
-	t_texture *texture,
+	t_texels *texels,
 	void *object
 );
 t_vec2		rectangle_uv_mapping(
 	t_vec3 point,
 	t_mat3 *axis_mat,
-	t_texture *texture,
+	t_texels *texels,
 	void *object
 );
 

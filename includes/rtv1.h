@@ -35,8 +35,6 @@
 # define RT_SUCCESS	0
 # define RT_FAIL	1
 # define APPROX_0	1e-6
-# define TEXTURE_PATTERN_STRETCH	0
-# define TEXTURE_PATTERN_REPEAT		1
 
 typedef struct		s_mat3
 {
@@ -93,13 +91,13 @@ typedef struct		s_ll
 	struct s_ll		*next;
 }					t_ll;
 
-typedef struct		s_texture
+typedef struct		s_texels
 {
 	int				width;
 	int				height;
 	int				repeat;
-	unsigned int	*pixels;
-}					t_texture;
+	unsigned int	*buffer;
+}					t_texels;
 
 typedef struct		s_ol
 {
@@ -107,14 +105,14 @@ typedef struct		s_ol
 	int				specpower;
 	int				specvalue;
 	t_vec3			dif;
-	t_texture		texture;
+	t_texels		texture;
 	t_mat3			axis_mat;
 	double			(*intersect)(t_ray ray, void *object);
 	t_vec3			(*get_normal)(t_ray ray, void *object);
 	t_vec2			(*uv_mapping)(
 		t_vec3 point,
 		t_mat3 *axis_mat,
-		t_texture *texture,
+		t_texels *texels,
 		void *object
 	);
 	struct s_ol		*next;

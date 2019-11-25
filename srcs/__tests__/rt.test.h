@@ -57,14 +57,14 @@ void			render_texture_mapping_test(
 /*
 ** texture utils
 */
-void			set_texture(
-	const char *texture_file_name,
+void			set_texels(
+	const char *filename,
 	const char *repeat,
-	t_texture *texture
+	t_texels *texture
 );
-int				get_texture_pixel_color(
+int				get_texel_color(
 	t_vec2 *uv,
-	t_texture *texture,
+	t_texels *texture,
 	double n_dot_l
 );
 

@@ -66,7 +66,7 @@ void			render_texture_mapping_test(
 	t_mlxkit *mlxkit,
 	t_camera *cam,
 	t_ol *ol,
-	const char *texture_file_name,
+	const char *filename,
 	const char *repeat
 )
 {
@@ -75,10 +75,10 @@ void			render_texture_mapping_test(
 	t_vec2			uv;
 	t_vec3			n;
 	t_vec3			point;
-	t_texture		*texture;
+	t_texels		*texture;
 
 	texture = &ol->texture;
-	set_texture(texture_file_name, repeat, texture);
+	set_texels(filename, repeat, texture);
 	for (int i=0; i < WIDTH; i++)
 	{
 		for (int j=0; j < WIDTH; j++)
@@ -91,11 +91,11 @@ void			render_texture_mapping_test(
 			point = find_point_from_ray(ray);
 
 			uv = ol->uv_mapping(point, &ol->axis_mat, texture, ol->object);
-			mlxkit->img_buf[j + i * WIDTH] = get_texture_pixel_color(&uv, texture, n_dot_l);
+			mlxkit->img_buf[j + i * WIDTH] = get_texel_color(&uv, texture, n_dot_l);
 		}
 	}
 	mlx_put_image_to_window(mlxkit->p_mlx, mlxkit->p_win, mlxkit->p_img, 0, 0);
-	free(ol->texture.pixels);
+	free(ol->texture.buffer);
 	ft_memdel((void **)&ol->object);
 	mlx_loop(mlxkit->p_mlx);
 }

@@ -3,7 +3,7 @@
 t_vec2			cone_uv_mapping(
 	t_vec3 point,
 	t_mat3 *axis_mat,
-	t_texture *texture,
+	t_texels *texels,
 	void *object
 )
 {
@@ -18,12 +18,12 @@ t_vec2			cone_uv_mapping(
 	height = (cone->upper_height > cone->lower_height)
 		? cone->upper_height
 		: cone->lower_height;
-	uv.x = atan2(point.z, point.x) / (2 * M_PI) * texture->repeat;
+	uv.x = atan2(point.z, point.x) / (2 * M_PI) * texels->repeat;
 	if (ft_is_inf(height))
-		uv.y = point.y / (texture->height * 2.0 * M_PI / texture->width)
-			* texture->repeat;
+		uv.y = point.y / (texels->height * 2.0 * M_PI / texels->width)
+			* texels->repeat;
 	else
-		uv.y = point.y / height * texture->repeat;
+		uv.y = point.y / height * texels->repeat;
 	if (uv.y < 0.0)
 		uv.y = -uv.y;
 	uv.x = modf(uv.x, &int_part);

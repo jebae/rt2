@@ -27,21 +27,21 @@ static unsigned int		get_uint32_color(t_col *rgb)
 	return (color);
 }
 
-void					set_texture(
-	const char *texture_file_name,
+void					set_texels(
+	const char *filename,
 	const char *repeat,
-	t_texture *texture
+	t_texels *texels
 )
 {
-	texture->pixels = (unsigned int *)stbi_load(
-		texture_file_name, &texture->width, &texture->height,
+	texels->buffer = (unsigned int *)stbi_load(
+		filename, &texels->width, &texels->height,
 		NULL, STBI_rgb_alpha);
-	texture->repeat = atoi(repeat);
+	texels->repeat = atoi(repeat);
 }
 
-int						get_texture_pixel_color(
+int						get_texel_color(
 	t_vec2 *uv,
-	t_texture *texture,
+	t_texels *texels,
 	double n_dot_l
 )
 {
@@ -49,13 +49,13 @@ int						get_texture_pixel_color(
 	int		index;
 	t_col	rgb;
 
-	img_coord[0] = uv->x * (texture->width - 1);
-	img_coord[1] = uv->y * (texture->height - 1);
+	img_coord[0] = uv->x * (texels->width - 1);
+	img_coord[1] = uv->y * (texels->height - 1);
 
-	index = img_coord[0] + img_coord[1] * texture->width;
-	if (index < 0 || index >= texture->width * texture->height)
+	index = img_coord[0] + img_coord[1] * texels->width;
+	if (index < 0 || index >= texels->width * texels->height)
 		return (0);
-	rgb = get_rgb(texture->pixels[img_coord[0] + img_coord[1] * texture->width]);
+	rgb = get_rgb(texels->buffer[index]);
 	rgb.r *= MAX(0.0, n_dot_l);
 	rgb.g *= MAX(0.0, n_dot_l);
 	rgb.b *= MAX(0.0, n_dot_l);
