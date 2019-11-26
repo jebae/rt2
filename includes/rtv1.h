@@ -255,6 +255,14 @@ typedef struct		s_arg_ring
 	double			r2;
 }					t_arg_ring;
 
+typedef struct		s_arg_filter
+{
+	int					width;
+	int					height;
+	int					line_per_th;
+	const unsigned int	*buffer;
+}					t_arg_filter;
+
 typedef struct		s_mlx
 {
 	void			*mp;
