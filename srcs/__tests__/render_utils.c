@@ -28,7 +28,7 @@ static t_col*	select_color(const char *str)
 	return (COLOR_SAMPLES);
 }
 
-static unsigned int	rgb_to_uint32(t_col *rgb, double n_dot_l)
+static unsigned int	simple_shade(t_col *rgb, double n_dot_l)
 {
 	unsigned int	color;
 
@@ -58,9 +58,6 @@ void			render_intersect_test(
 				mlxkit->img_buf[j + i * WIDTH] = 0xffffff;
 		}
 	}
-	mlx_put_image_to_window(mlxkit->p_mlx, mlxkit->p_win, mlxkit->p_img, 0, 0);
-	ft_memdel((void **)&ol->object);
-	mlx_loop(mlxkit->p_mlx);
 }
 
 void			render_normal_test(
@@ -83,13 +80,10 @@ void			render_normal_test(
 				continue ;
 			n = ol->get_normal(ray, ol->object);
 			n_dot_l = v3_dotpdt(v3_scalar(ray.dir, -1.0), n);
-			mlxkit->img_buf[j + i * WIDTH] = rgb_to_uint32(
+			mlxkit->img_buf[j + i * WIDTH] = simple_shade(
 				select_color(color), n_dot_l);
 		}
 	}
-	mlx_put_image_to_window(mlxkit->p_mlx, mlxkit->p_win, mlxkit->p_img, 0, 0);
-	ft_memdel((void **)&ol->object);
-	mlx_loop(mlxkit->p_mlx);
 }
 
 void			render_texture_mapping_test(
@@ -123,13 +117,9 @@ void			render_texture_mapping_test(
 
 			uv = ol->uv_mapping(point, &ol->axis_mat, texture, ol->object);
 			texel_color = get_texel_color(&uv, texture);
-			mlxkit->img_buf[j + i * WIDTH] = rgb_to_uint32(&texel_color, n_dot_l);
+			mlxkit->img_buf[j + i * WIDTH] = simple_shade(&texel_color, n_dot_l);
 		}
 	}
-	mlx_put_image_to_window(mlxkit->p_mlx, mlxkit->p_win, mlxkit->p_img, 0, 0);
-	free(ol->texture.buffer);
-	ft_memdel((void **)&ol->object);
-	mlx_loop(mlxkit->p_mlx);
 }
 
 void			render_bump_mapping_test(
@@ -148,7 +138,7 @@ void			render_bump_mapping_test(
 	t_vec3			point;
 	t_texels		*bump_map;
 
-	bump_map = &ol->texture;
+	bump_map = &ol->bump_map;
 	set_texels(filename, repeat, bump_map);
 	for (int i=0; i < WIDTH; i++)
 	{
@@ -162,12 +152,8 @@ void			render_bump_mapping_test(
 			uv = ol->uv_mapping(point, &ol->axis_mat, bump_map, ol->object);
 			n = get_bumped_normal(&uv, bump_map, &n, &ol->axis_mat);
 			n_dot_l = v3_dotpdt(v3_scalar(ray.dir, -1.0), n);
-			mlxkit->img_buf[j + i * WIDTH] = rgb_to_uint32(
+			mlxkit->img_buf[j + i * WIDTH] = simple_shade(
 				select_color(color), n_dot_l);
 		}
 	}
-	mlx_put_image_to_window(mlxkit->p_mlx, mlxkit->p_win, mlxkit->p_img, 0, 0);
-	free(ol->bump_map.buffer);
-	ft_memdel((void **)&ol->object);
-	mlx_loop(mlxkit->p_mlx);
 }

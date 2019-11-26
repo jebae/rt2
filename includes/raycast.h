@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/11/25 16:50:14 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/26 18:52:50 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,25 @@ t_vec3			get_bumped_normal(
 	t_vec3 *normal,
 	t_mat3 *axis_mat
 );
+
+/*
+** Filter functions
+*/
+int				filter_color(
+	unsigned int *buffer,
+	int width,
+	int height,
+	void (*filter_func)(void *arg)
+);
+void			adjust_color(int *color);
+void			sephia_filter(void *arg_void);
+void			negative_filter(void *arg_void);
+
+/*
+** RGB functions
+*/
+t_col			uint32_to_rgb(unsigned int n);
+unsigned int	rgb_to_uint32(t_col *rgb);
 
 /*
 ** Object manipulation functions

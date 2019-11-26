@@ -6,10 +6,18 @@ static t_ol			ol;
 
 extern t_col	COLOR_SAMPLES[4];
 
-void	render_test(char **argv)
+void	init_ol(void)
+{
+	ol.texture.buffer = NULL;
+	ol.bump_map.buffer = NULL;
+}
+
+void	render_test(int argc, char **argv)
 {
 	int		res;
 
+	(void)argc;
+	init_ol();
 	res = setup_object(argv[1], argv[3], &ol);
 	if (res == RT_FAIL)
 		return ;
@@ -24,6 +32,14 @@ void	render_test(char **argv)
 	else if (*(argv[2]) == 'b')
 		render_bump_mapping_test(
 			&mlxkit, &cam, &ol, argv[4], argv[5], argv[6]);
+	set_filter(argv[argc - 1], mlxkit.img_buf, WIDTH, WIDTH);
+	mlx_put_image_to_window(mlxkit.p_mlx, mlxkit.p_win, mlxkit.p_img, 0, 0);
+	if (ol.texture.buffer)
+		free(ol.texture.buffer);
+	if (ol.bump_map.buffer)
+		free(ol.bump_map.buffer);
+	ft_memdel((void **)&ol.object);
+	mlx_loop(mlxkit.p_mlx);
 }
 
 int		main(int argc, char **argv)
@@ -36,10 +52,11 @@ int		main(int argc, char **argv)
 	{
 		UNITY_BEGIN();
 		test_set_object();
+		test_filter();
 		UNITY_END();
 		return (0);
 	}
 	if (argc >= 4)
-		render_test(argv);
+		render_test(argc, argv);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/11/25 16:17:56 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/26 17:28:07 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define RT_SUCCESS	0
 # define RT_FAIL	1
 # define APPROX_0	1e-6
+# define RT_MAX_THREAD	50
 
 typedef struct		s_mat3
 {
@@ -255,13 +256,23 @@ typedef struct		s_arg_ring
 	double			r2;
 }					t_arg_ring;
 
-typedef struct		s_arg_filter
+/*
+** filter
+*/
+typedef struct		s_filter_buffer_info
 {
 	int					width;
 	int					height;
 	int					line_per_th;
-	const unsigned int	*buffer;
-}					t_arg_filter;
+	int					line_rest;
+	unsigned int		*buffer;
+}					t_filter_buffer_info;
+
+typedef struct		s_arg_filter_th_job
+{
+	int					work_size;
+	unsigned int		*buffer;
+}					t_arg_filter_th_job;
 
 typedef struct		s_mlx
 {

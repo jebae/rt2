@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/26 12:32:44 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/09/26 13:15:23 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/11/26 17:50:20 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,28 @@ void		color_pixel(int x, int y, t_shader sh, t_env *e)
 	e->data[1 + x * (e->w.bpp / 8) + y * e->w.sl] = c.g;
 	e->data[2 + x * (e->w.bpp / 8) + y * e->w.sl] = c.r;
 	e->data[3 + x * (e->w.bpp / 8) + y * e->w.sl] = 0;
+}
+
+t_col		uint32_to_rgb(unsigned int n)
+{
+	t_col	rgb;
+
+	rgb.b = n & 0x000000ff;
+	n >>= 8;
+	rgb.g = n & 0x000000ff;
+	n >>= 8;
+	rgb.r = n & 0x000000ff;
+	return (rgb);
+}
+
+unsigned int	rgb_to_uint32(t_col *rgb)
+{
+	unsigned int	n;
+
+	n = rgb->r;
+	n <<= 8;
+	n += rgb->g;
+	n <<= 8;
+	n += rgb->b;
+	return (n);
 }

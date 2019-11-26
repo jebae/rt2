@@ -79,6 +79,16 @@ void			set_texels(
 );
 
 /*
+** filter utils
+*/
+void			set_filter(
+	const char *filter,
+	unsigned int *buffer,
+	int width,
+	int height
+);
+
+/*
 ** setup object
 */
 int				setup_object(
@@ -100,5 +110,6 @@ int				setup_triangle(const char *cast_num, t_ol *ol);
 ** set_object
 */
 void			test_set_object(void);
+void			test_filter(void);
 
 #endif

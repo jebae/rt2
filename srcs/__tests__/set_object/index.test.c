@@ -12,4 +12,3 @@ void		test_set_object(void)
 	RUN_TEST_GROUP(set_ring);
 	RUN_TEST_GROUP(set_triangle);
 }
-

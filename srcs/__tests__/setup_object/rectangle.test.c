@@ -22,7 +22,7 @@ static void		setup_case2(t_ol *ol)
 
 static void		setup_case3(t_ol *ol)
 {
-	arg.p = (t_vec3){-3.0, 3.0, 5.0};
+	arg.p = (t_vec3){-3.0, 3.0, 2.0};
 	arg.a = (t_vec3){6.0, 0.0, 0.0};
 	arg.b = (t_vec3){0.0, -6.0, 0.0};
 
