@@ -271,6 +271,7 @@ typedef struct		s_filter_buffer_info
 
 typedef struct		s_arg_filter_th_job
 {
+	int				width;
 	int				offset;
 	int				work_size;
 	unsigned int	*buf;

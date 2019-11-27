@@ -166,6 +166,11 @@ int				negative_filter(
 	int width,
 	int height
 );
+int				gaussian_blur_filter(
+	unsigned int *buffer,
+	int width,
+	int height
+);
 
 /*
 ** RGB functions
