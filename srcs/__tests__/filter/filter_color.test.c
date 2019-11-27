@@ -8,17 +8,20 @@ static int					width;
 static int					height;
 static int					size;
 static int					res;
+static t_filter_buffer_info	buf_info;
 
 static void		filter_func(void *arg_void)
 {
 	int						i;
+	int						until;
 	t_arg_filter_th_job		*arg;
 
 	arg = (t_arg_filter_th_job *)arg_void;
-	i = 0;
-	while (i < arg->work_size)
+	i = arg->offset;
+	until = i + arg->work_size;
+	while (i < until)
 	{
-		arg->buffer[i] = 0xff;
+		arg->buf[i] = 0xff;
 		i++;
 	}
 }
@@ -37,9 +40,10 @@ TEST(filter_color, case_one_line_per_thread)
 	width = 21;
 	height = 42;
 	size = width * height;
-	buffer = ft_memalloc(sizeof(unsigned int) * width * height);
+	buffer = ft_memalloc(sizeof(unsigned int) * size);
+	set_filter_buf_info(buffer, width, height, &buf_info);
 
-	res = filter_color(buffer, width, height, &filter_func);
+	res = filter_color(&buf_info, &filter_func);
 	TEST_ASSERT_EQUAL_INT_MESSAGE(RT_SUCCESS, res, "res");
 	for (int i=0; i < size; i++)
 		TEST_ASSERT_EQUAL_INT_MESSAGE(0xff, buffer[i], "buffer value");
@@ -50,9 +54,10 @@ TEST(filter_color, case_multi_line_per_thread)
 	width = 21;
 	height = 142;
 	size = width * height;
-	buffer = ft_memalloc(sizeof(unsigned int) * width * height);
+	buffer = ft_memalloc(sizeof(unsigned int) * size);
+	set_filter_buf_info(buffer, width, height, &buf_info);
 
-	res = filter_color(buffer, width, height, &filter_func);
+	res = filter_color(&buf_info, &filter_func);
 	TEST_ASSERT_EQUAL_INT_MESSAGE(RT_SUCCESS, res, "res");
 	for (int i=0; i < size; i++)
 		TEST_ASSERT_EQUAL_INT_MESSAGE(0xff, buffer[i], "buffer value");

@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/11/26 18:52:50 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/27 18:13:15 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,14 +147,25 @@ t_vec3			get_bumped_normal(
 ** Filter functions
 */
 int				filter_color(
-	unsigned int *buffer,
-	int width,
-	int height,
+	t_filter_buffer_info *buf_info,
 	void (*filter_func)(void *arg)
 );
-void			adjust_color(int *color);
-void			sephia_filter(void *arg_void);
-void			negative_filter(void *arg_void);
+void			set_filter_buf_info(
+	unsigned int *buffer,
+	int width,
+	int heght,
+	t_filter_buffer_info *buf_info
+);
+int				sephia_filter(
+	unsigned int *buffer,
+	int width,
+	int height
+);
+int				negative_filter(
+	unsigned int *buffer,
+	int width,
+	int height
+);
 
 /*
 ** RGB functions

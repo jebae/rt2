@@ -8,7 +8,11 @@ void	set_filter(
 )
 {
 	if (strcmp(filter, "sephia") == 0)
-		filter_color(buffer, width, height, &sephia_filter);
+		sephia_filter(buffer, width, height);
 	else if (strcmp(filter, "negative") == 0)
-		filter_color(buffer, width, height, &negative_filter);
+		negative_filter(buffer, width, height);
+	/*
+	else if (strcmp(filter, "gaussian") == 0)
+		negative_filter(buffer, width, height);
+	*/
 }
