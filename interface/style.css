@@ -1,3 +1,13 @@
+/* 
+COLOR PALETTTE:
+
+    moss green: #587850
+    pale green: #709078
+    light teal: #78b0a0
+    beige:      #f8d0b0
+
+*/
+
 html, body {
     height: 100%;
 }
@@ -26,23 +36,72 @@ body
 .the_form_container
 {
     background-color: lightyellow;
-    width: 30vw;
-    height: 30vw;
+    width: 50vw;
+    height: 40vw;
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 55%;
     transform: translate(-50%, -50%);
 }
 
-.objects
+.update_me
 {
+    padding-top: 2vw;
     text-align: center;
     /* margin-left: 50%; */
 }
 
-.object_options
+#object_options
 {
     background-color: dodgerblue;
+}
+
+#button_obj
+{
+    background-color: tan;
+}
+
+#chosen_shape
+{
+    border: 1px solid red;
+    font-family: 'Righteous', cursive;
+}
+
+#shape_chosen_text
+{
+    color: teal;
+}
+
+.output_object
+{
+    border: 1px solid red;
+    text-align: center;
+    margin-top: 3vw;
+}
+
+.cone_form
+{
+    margin-right: 7vw;
+}
+
+#txt_simple
+{
+    float: left;
+    padding-left: 15vw;
+}
+
+#input_simple
+{
+    border: 1px solid purple;
+    float: right;
+    padding-right: 10vw;
+}
+
+#input_complex
+{
+    border: 1px solid purple;
+    float: right;
+    margin-left: 1vw; 
 }
 
 .footer

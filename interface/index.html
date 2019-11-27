@@ -3,6 +3,7 @@
         <title>RT</title>
         <link rel="stylesheet" type="text/css" href="style.css">
         <link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
         <div class="header">
@@ -12,8 +13,8 @@
         </div>
         <div class="the_form_container">
             <form class="update_me">
-                <div class="objects">
-                    <select class="object_options">
+                <div class="objects" id="objects">
+                    <select id="object_options" name="dropdown_objects">
                         <option value=""> ---------------- </option>
                         <option value="sphere">SPHERE</option>
                         <option value="cone">CONE</option>
@@ -25,8 +26,24 @@
                         <option value="pyramid">PYRAMID</option>
                         <option value="ring">RING</option>
                     </select>
+                    <input id="button_obj" type="button" value="ADD!" onclick="select_object()">
                 </div>
             </form>
+            <div class="output_object" id="sphere">
+                <form class="sphere_form">
+
+                </form>
+            </div>
+            <div class="output_object" id="cone">
+                <h3>CONE PARAMETERS</h3>
+                <form class="cone_form">
+                    <span id="txt_simple">CENTER :</span><input id="input_complex" type="text" name="center" value="" placeholder="Enter X"><input id="input_complex" type="text" name="center" value="" placeholder="Enter Y"><input id="input_complex" type="text" name="center" value="" placeholder="Enter Z"><br/>
+                    <span id="txt_simple">AXIS :</span><input id="input_complex" type="text" name="axis" value="" placeholder="Enter X"><input id="input_complex" type="text" name="axis" value="" placeholder="Enter X"><input id="input_complex" type="text" name="axis" value="" placeholder="Enter X"><br/>
+                    <span id="txt_simple">ANGLE :</span><input id="input_simple" type="text" name="angle" value="" placeholder="Enter angle"><br/>
+                    <span id="txt_simple">UPPER HEIGHT :</span><input id="input_simple" type="text" name="upper_height" value="" placeholder="Enter upper height"><br/>
+                    <span id="txt_simple">LOWER HEIGHT :</span><input id="input_simple" type="text" name="lower_height" value="" placeholder="Enter lower height"><br/>
+                </form>
+            </div>
         </div>
         <div class="footer">
             <h5>
@@ -34,4 +51,24 @@
             </h5>
         </div>
     </body>
+    <script>
+        function select_object() {
+            var sel = document.getElementById('object_options');
+            var divsToHide = document.getElementsByClassName("objects");
+            for(var i = 0; i < divsToHide.length; i++){
+                for (var j = 0; j < divsToHide[i].childNodes.length; j++)
+                {
+                    if (divsToHide[i].childNodes[j] && divsToHide[i].childNodes[j].style)
+                    {
+                        divsToHide[i].childNodes[j].style.visibility = "hidden";
+                        divsToHide[i].childNodes[j].style.display = "none";
+                    }
+                }
+            }
+            var first = document.createElement("div");
+            first.setAttribute("id", "chosen_shape");
+            first.innerHTML = "You have chosen <span id=\"shape_chosen_text\">" + sel.value + "</span> !";
+            document.getElementById("objects").appendChild(first);
+        }
+        </script>
 </html>
