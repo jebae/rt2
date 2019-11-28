@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/11/27 19:08:38 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/28 18:40:22 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,9 +257,9 @@ typedef struct		s_arg_ring
 }					t_arg_ring;
 
 /*
-** filter
+** buffer
 */
-typedef struct		s_filter_buffer_info
+typedef struct		s_buffer_info
 {
 	int				width;
 	int				height;
@@ -267,15 +267,15 @@ typedef struct		s_filter_buffer_info
 	int				line_rest;
 	unsigned int	*buf;
 	unsigned int	*buf_copy;
-}					t_filter_buffer_info;
+}					t_buffer_info;
 
-typedef struct		s_arg_filter_th_job
+typedef struct		s_arg_buffer_th_job
 {
 	int				offset;
 	int				work_size;
 	unsigned int	*buf;
 	unsigned int	*buf_copy;
-}					t_arg_filter_th_job;
+}					t_arg_buffer_th_job;
 
 typedef struct		s_mlx
 {

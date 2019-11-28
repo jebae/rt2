@@ -40,9 +40,9 @@ int					sephia_filter(
 	int height
 )
 {
-	t_filter_buffer_info	buf_info;
+	t_buffer_info	buf_info;
 
 	buf_info.buf_copy = NULL;
-	set_filter_buf_info(buffer, width, height, &buf_info);
-	return (filter_color(&buf_info, &filter_func));
+	set_buffer_info(buffer, width, height, &buf_info);
+	return (for_each_pixel(&buf_info, &filter_func));
 }

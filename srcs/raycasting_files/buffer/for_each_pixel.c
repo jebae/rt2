@@ -1,10 +1,10 @@
 #include "raycast.h"
 
 static void		set_arg_th_job(
-	t_filter_buffer_info *buf_info,
+	t_buffer_info *buf_info,
 	int offset,
 	int work_size,
-	t_arg_filter_th_job *arg
+	t_arg_buffer_th_job *arg
 )
 {
 	arg->buf = buf_info->buf;
@@ -14,10 +14,10 @@ static void		set_arg_th_job(
 }
 
 static int		case_one_line_per_th(
-	t_filter_buffer_info *buf_info,
-	t_arg_filter_th_job *arg,
+	t_buffer_info *buf_info,
+	t_arg_buffer_th_job *arg,
 	pthread_t *tid,
-	void (*filter_func)(void *arg)
+	void *(*func)(void *arg)
 )
 {
 	int		i;
@@ -28,7 +28,7 @@ static int		case_one_line_per_th(
 	while (i < buf_info->height)
 	{
 		set_arg_th_job(buf_info, offset, buf_info->width, arg + i);
-		if (pthread_create(tid + i, NULL, (void *)filter_func, arg + i) != 0)
+		if (pthread_create(tid + i, NULL, func, arg + i) != 0)
 			return (RT_FAIL);
 		offset += buf_info->width;
 		i++;
@@ -37,10 +37,10 @@ static int		case_one_line_per_th(
 }
 
 static int		case_multi_line_per_th(
-	t_filter_buffer_info *buf_info,
-	t_arg_filter_th_job *arg,
+	t_buffer_info *buf_info,
+	t_arg_buffer_th_job *arg,
 	pthread_t *tid,
-	void (*filter_func)(void *arg)
+	void *(*func)(void *arg)
 )
 {
 	int		i;
@@ -53,7 +53,7 @@ static int		case_multi_line_per_th(
 	while (i < buf_info->line_rest)
 	{
 		set_arg_th_job(buf_info, offset, work_size, arg + i);
-		if (pthread_create(tid + i, NULL, (void *)filter_func, arg + i) != 0)
+		if (pthread_create(tid + i, NULL, func, arg + i) != 0)
 			return (RT_FAIL);
 		offset += work_size;
 		i++;
@@ -62,7 +62,7 @@ static int		case_multi_line_per_th(
 	while (i < RT_MAX_THREAD)
 	{
 		set_arg_th_job(buf_info, offset, work_size, arg + i);
-		if (pthread_create(tid + i, NULL, (void *)filter_func, arg + i) != 0)
+		if (pthread_create(tid + i, NULL, func, arg + i) != 0)
 			return (RT_FAIL);
 		offset += work_size;
 		i++;
@@ -70,25 +70,25 @@ static int		case_multi_line_per_th(
 	return (RT_SUCCESS);
 }
 
-int				filter_color(
-	t_filter_buffer_info *buf_info,
-	void (*filter_func)(void *arg)
+int				for_each_pixel(
+	t_buffer_info *buf_info,
+	void *(*func)(void *arg)
 )
 {
 	int						res;
 	int						num_thread;
-	t_arg_filter_th_job		arg[RT_MAX_THREAD];
+	t_arg_buffer_th_job		arg[RT_MAX_THREAD];
 	pthread_t				tid[RT_MAX_THREAD];
 
 	if (buf_info->line_per_th == 0)
 	{
 		num_thread = buf_info->height;
-		res = case_one_line_per_th(buf_info, arg, tid, filter_func);
+		res = case_one_line_per_th(buf_info, arg, tid, func);
 	}
 	else
 	{
 		num_thread = RT_MAX_THREAD;
-		res = case_multi_line_per_th(buf_info, arg, tid, filter_func);
+		res = case_multi_line_per_th(buf_info, arg, tid, func);
 	}
 	if (res == RT_FAIL)
 		return (RT_FAIL);
@@ -100,11 +100,11 @@ int				filter_color(
 	return (RT_SUCCESS);
 }
 
-void			set_filter_buf_info(
+void			set_buffer_info(
 	unsigned int *buffer,
 	int width,
 	int height,
-	t_filter_buffer_info *buf_info
+	t_buffer_info *buf_info
 )
 {
 	buf_info->buf = buffer;

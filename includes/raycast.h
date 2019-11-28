@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/11/27 18:13:15 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/28 18:44:20 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,11 +146,11 @@ t_vec3			get_bumped_normal(
 /*
 ** Filter functions
 */
-int				filter_color(
+int				for_each_pixel(
 	t_filter_buffer_info *buf_info,
 	void (*filter_func)(void *arg)
 );
-void			set_filter_buf_info(
+void			set_buffer_info(
 	unsigned int *buffer,
 	int width,
 	int heght,
