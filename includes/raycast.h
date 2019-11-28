@@ -144,12 +144,16 @@ t_vec3			get_bumped_normal(
 );
 
 /*
-** Filter functions
+** Buffer functions
 */
 int				for_each_pixel(
 	t_buffer_info *buf_info,
 	void *(*func)(void *arg)
 );
+
+/*
+** Filter functions
+*/
 void			set_buffer_info(
 	unsigned int *buffer,
 	int width,
@@ -171,6 +175,19 @@ int				gaussian_blur(
 	int width,
 	int height
 );
+
+/*
+** Translate functions
+*/
+void			sphere_translate(t_vec3 *v_translate, void *object);
+void			cone_translate(t_vec3 *v_translate, void *object);
+void			cyl_translate(t_vec3 *v_translate, void *object);
+void			plane_translate(t_vec3 *v_translate, void *object);
+void			rectangle_translate(t_vec3 *v_translate, void *object);
+void			box_translate(t_vec3 *v_translate, void *object);
+void			triangle_translate(t_vec3 *v_translate, void *object);
+void			pyramid_translate(t_vec3 *v_translate, void *object);
+void			ring_translate(t_vec3 *v_translate, void *object);
 
 /*
 ** RGB functions

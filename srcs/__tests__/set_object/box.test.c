@@ -47,6 +47,7 @@ TEST(set_box, valid)
 		&c, box->axis_mat.arr[2], sizeof(t_vec3), "axis_mat.arr[2]");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&v_intersect_box, ol.intersect, "intersect");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&normal_box, ol.get_normal, "get_normal");
+	TEST_ASSERT_EQUAL_INT_MESSAGE(&box_translate, ol.translate, "translate");
 }
 
 TEST(set_box, a_norm_is_0)

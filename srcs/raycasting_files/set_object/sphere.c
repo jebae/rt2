@@ -27,6 +27,7 @@ int				set_sphere(t_ol *ol, t_vec3 cen, double radius)
 	ol->intersect = &v_intersect_sp2;
 	ol->get_normal = &normal_sphere;
     ol->uv_mapping = &sphere_uv_mapping;
+    ol->translate = &sphere_translate;
 	sphere = (t_sphere *)ol->object;
 	sphere->cen = cen;
 	sphere->radius = radius;

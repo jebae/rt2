@@ -11,10 +11,19 @@ static void		setup_case1(t_ol *ol)
 	set_plane(ol, normal, d);
 }
 
+static void		setup_case2(t_ol *ol)
+{
+    normal = (t_vec3){0.0, 0.0, 1.0};
+	d = -2;
+
+	set_plane(ol, normal, d);
+}
+
 int				setup_plane(const char *cast_num, t_ol *ol)
 {
 	static void (*setup[])(t_ol *ol) = {
-		&setup_case1
+		&setup_case1,
+		&setup_case2
 	};
 
 	if (*cast_num - '0' > (int)(sizeof(setup) / sizeof(void *)))

@@ -37,6 +37,7 @@ TEST(set_pyramid, valid)
 	TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(v3_norm(arg.v), pyramid->norm_v, "norm_v");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&v_intersect_pyramid, ol.intersect, "intersect");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&normal_pyramid, ol.get_normal, "get_normal");
+	TEST_ASSERT_EQUAL_INT_MESSAGE(&pyramid_translate, ol.translate, "translate");
 }
 
 TEST(set_pyramid, u_norm_is_0)

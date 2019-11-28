@@ -47,6 +47,7 @@ TEST(set_cone, valid)
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&v_intersect_co, ol.intersect, "intersect");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&normal_cone, ol.get_normal, "get_normal");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&cone_uv_mapping, ol.uv_mapping, "uv_mapping");
+	TEST_ASSERT_EQUAL_INT_MESSAGE(&cone_translate, ol.translate, "translate");
 }
 
 TEST(set_cone, axis_is_parallel_to_world_x_axis)
@@ -76,6 +77,7 @@ TEST(set_cone, axis_is_parallel_to_world_x_axis)
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&v_intersect_co, ol.intersect, "intersect");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&normal_cone, ol.get_normal, "get_normal");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&cone_uv_mapping, ol.uv_mapping, "uv_mapping");
+	TEST_ASSERT_EQUAL_INT_MESSAGE(&cone_translate, ol.translate, "translate");
 }
 
 TEST(set_cone, axis_norm_is_0)

@@ -10,7 +10,7 @@ static void			adjust_color(t_col *rgb)
 		rgb->b = 0xff;
 }
 
-static void			filter_func(void *arg_void)
+static void			filter(void *arg_void)
 {
 	int						i;
 	int						until;
@@ -42,7 +42,7 @@ int					sephia_filter(
 {
 	t_buffer_info	buf_info;
 
-	buf_info.buf_copy = NULL;
+	buf_info.buf2 = NULL;
 	set_buffer_info(buffer, width, height, &buf_info);
-	return (for_each_pixel(&buf_info, (void *)&filter_func));
+	return (for_each_pixel(&buf_info, (void *)&filter));
 }

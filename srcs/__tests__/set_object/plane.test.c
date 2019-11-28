@@ -32,6 +32,7 @@ TEST(set_plane, valid)
 	TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(d, plane->d, "d");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&v_intersect_pl, ol.intersect, "intersect");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&normal_plane, ol.get_normal, "get_normal");
+	TEST_ASSERT_EQUAL_INT_MESSAGE(&plane_translate, ol.translate, "translate");
 }
 
 TEST(set_plane, normal_norm_is_0)

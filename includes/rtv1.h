@@ -32,10 +32,11 @@
 # define PLANE		2
 # define SPHERE		3
 # define RECTANGLE	5
-# define RT_SUCCESS	0
-# define RT_FAIL	1
-# define APPROX_0	1e-6
-# define RT_MAX_THREAD	50
+# define RT_SUCCESS			0
+# define RT_FAIL			1
+# define APPROX_0			1e-6
+# define RT_MAX_THREAD		50
+# define RT_FRAME_PER_SEC	16
 
 typedef struct		s_mat3
 {
@@ -103,9 +104,12 @@ typedef struct		s_texels
 typedef struct		s_ol
 {
 	void			*object;
+	int				has_velocity;
 	int				specpower;
 	int				specvalue;
+	double			init_speed;
 	t_vec3			dif;
+	t_vec3			v_translate;
 	t_texels		texture;
 	t_texels		bump_map;
 	t_mat3			axis_mat;
@@ -117,6 +121,7 @@ typedef struct		s_ol
 		t_texels *texels,
 		void *object
 	);
+	void			(*translate)(t_vec3 *v_translate, void *object);
 	struct s_ol		*next;
 	// int				status;	
 	// t_vec3			rot_x;
@@ -266,7 +271,7 @@ typedef struct		s_buffer_info
 	int				line_per_th;
 	int				line_rest;
 	unsigned int	*buf;
-	unsigned int	*buf_copy;
+	unsigned int	*buf2;
 }					t_buffer_info;
 
 typedef struct		s_arg_buffer_th_job
@@ -275,7 +280,7 @@ typedef struct		s_arg_buffer_th_job
 	int				offset;
 	int				work_size;
 	unsigned int	*buf;
-	unsigned int	*buf_copy;
+	unsigned int	*buf2;
 }					t_arg_buffer_th_job;
 
 typedef struct		s_mlx

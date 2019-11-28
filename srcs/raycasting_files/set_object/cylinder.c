@@ -17,6 +17,7 @@ int				set_cyl(t_ol *ol, t_arg_cyl *arg)
 	ol->intersect = &v_intersect_cy;
 	ol->get_normal = &normal_cylinder;
 	ol->uv_mapping = &cyl_uv_mapping;
+	ol->translate = &cyl_translate;
 	cyl = (t_cyl *)ol->object;
 	cyl->cen = arg->cen;
 	cyl->axis = v3_normalise(arg->axis);

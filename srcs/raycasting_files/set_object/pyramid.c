@@ -68,6 +68,7 @@ int				set_pyramid(t_ol *ol, t_arg_pyramid *arg)
 		return (RT_FAIL);
 	ol->intersect = &v_intersect_pyramid;
 	ol->get_normal = &normal_pyramid;
+	ol->translate = &pyramid_translate;
 	pyramid = (t_pyramid *)ol->object;
 	set_axis(arg, &ol->axis_mat);
 	pyramid->u = *(t_vec3 *)(ol->axis_mat.arr[0]);

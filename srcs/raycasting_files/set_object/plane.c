@@ -15,6 +15,7 @@ int				set_plane(t_ol *ol, t_vec3 normal, double d)
 		return (RT_FAIL);
 	ol->intersect = &v_intersect_pl;
 	ol->get_normal = &normal_plane;
+	ol->translate = &plane_translate;
 	plane = (t_plane *)ol->object;
 	plane->normal = v3_normalise(normal);
 	plane->d = d;

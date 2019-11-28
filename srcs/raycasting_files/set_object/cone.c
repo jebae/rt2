@@ -19,6 +19,7 @@ int				set_cone(t_ol *ol, t_arg_cone *arg)
 	ol->intersect = &v_intersect_co;
 	ol->get_normal = &normal_cone;
 	ol->uv_mapping = &cone_uv_mapping;
+	ol->translate = &cone_translate;
 	cone = (t_cone *)ol->object;
 	cone->cen = arg->cen;
 	cone->axis = v3_normalise(arg->axis);

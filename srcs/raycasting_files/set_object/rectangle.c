@@ -29,6 +29,7 @@ int				set_rectangle(t_ol *ol, t_arg_rectangle *arg)
 	ol->intersect = &v_intersect_rectangle;
 	ol->get_normal = &normal_rectangle;
 	ol->uv_mapping = &rectangle_uv_mapping;
+	ol->translate = &rectangle_translate;
 	rect = (t_rectangle *)ol->object;
 	set_axis(arg, &ol->axis_mat);
 	rect->p = arg->p;

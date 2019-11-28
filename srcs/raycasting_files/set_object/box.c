@@ -29,6 +29,7 @@ int				set_box(t_ol *ol, t_arg_box *arg)
 		return (RT_FAIL);
 	ol->intersect = &v_intersect_box;
 	ol->get_normal = &normal_box;
+	ol->translate = &box_translate;
 	box = (t_box *)ol->object;
 	box->vmin = arg->vmin;
 	box->vmax.x = v3_norm(arg->a);

@@ -53,6 +53,7 @@ int		main(int argc, char **argv)
 		UNITY_BEGIN();
 		test_set_object();
 		test_for_each_pixel();
+		RUN_TEST_GROUP(translate);
 		UNITY_END();
 		return (0);
 	}

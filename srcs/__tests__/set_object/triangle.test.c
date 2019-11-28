@@ -35,6 +35,7 @@ TEST(set_triangle, valid)
 	TEST_ASSERT_EQUAL_MEMORY_MESSAGE(&normal_expected, &triangle->normal, sizeof(t_vec3), "normal");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&v_intersect_triangle, ol.intersect, "intersect");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&normal_triangle, ol.get_normal, "get_normal");
+	TEST_ASSERT_EQUAL_INT_MESSAGE(&triangle_translate, ol.translate, "translate");
 }
 
 TEST(set_triangle, ab_norm_is_0)
