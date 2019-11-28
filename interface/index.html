@@ -14,8 +14,8 @@
         <div class="the_form_container">
             <form class="update_me">
                 <div class="objects" id="objects">
-                    <select id="object_options" name="dropdown_objects">
-                        <option value=""> ---------------- </option>
+                    <select id="object_options" class="objects_opt" name="dropdown_objects">
+                        <option value=""> -CHOOSE A SHAPE- </option>
                         <option value="sphere">SPHERE</option>
                         <option value="cone">CONE</option>
                         <option value="cylinder">CYLINDER</option>
@@ -26,23 +26,31 @@
                         <option value="pyramid">PYRAMID</option>
                         <option value="ring">RING</option>
                     </select>
-                    <input id="button_obj" type="button" value="ADD!" onclick="select_object()">
+                    <input class="buttons" id="button_obj" type="button" value="ADD !" onclick="select_object()">
                 </div>
             </form>
-            <div class="output_object" id="sphere">
+            <!-- <div class="output_object" id="sphere">
                 <form class="sphere_form">
 
                 </form>
-            </div>
-            <div class="output_object" id="cone">
-                <h3>CONE PARAMETERS</h3>
-                <form class="cone_form">
-                    <span id="txt_simple">CENTER :</span><input id="input_complex" type="text" name="center" value="" placeholder="Enter X"><input id="input_complex" type="text" name="center" value="" placeholder="Enter Y"><input id="input_complex" type="text" name="center" value="" placeholder="Enter Z"><br/>
-                    <span id="txt_simple">AXIS :</span><input id="input_complex" type="text" name="axis" value="" placeholder="Enter X"><input id="input_complex" type="text" name="axis" value="" placeholder="Enter X"><input id="input_complex" type="text" name="axis" value="" placeholder="Enter X"><br/>
+            </div> -->
+            <div class="output_object" id="button_cone">
+                <h3>CONE PARAMETERS</h3><br/>
+                <form class="cone_form"> <!-- action="/create_xml" method="POST"-->
+                    <!-- maxlength="4" (impose a limit ??) only numbers --> 
+                    <span id="txt_simple">CENTER :</span>
+                            <input id="input_complex" type="text" name="center" value="" placeholder="Enter X">
+                            <input id="input_complex" type="text" name="center" value="" placeholder="Enter Y">
+                            <input id="input_complex" type="text" name="center" value="" placeholder="Enter Z"><br/>
+                    <span id="txt_simple">AXIS :</span>
+                            <input id="input_complex" type="text" name="axis" value="" placeholder="Enter X">
+                            <input id="input_complex" type="text" name="axis" value="" placeholder="Enter Y">
+                            <input id="input_complex" type="text" name="axis" value="" placeholder="Enter z"><br/>
                     <span id="txt_simple">ANGLE :</span><input id="input_simple" type="text" name="angle" value="" placeholder="Enter angle"><br/>
                     <span id="txt_simple">UPPER HEIGHT :</span><input id="input_simple" type="text" name="upper_height" value="" placeholder="Enter upper height"><br/>
                     <span id="txt_simple">LOWER HEIGHT :</span><input id="input_simple" type="text" name="lower_height" value="" placeholder="Enter lower height"><br/>
-                </form>
+                </form><br/>
+                <input class="buttons" id="button_cone" type="button" value="ADD CONE !" onclick="submit_cone()"> <!-- need to remove onclick trigger and use action/post & express -->
             </div>
         </div>
         <div class="footer">
@@ -52,8 +60,46 @@
         </div>
     </body>
     <script>
-        function select_object() {
+        function add_shape_div()
+        {
             var sel = document.getElementById('object_options');
+            var first = document.createElement("div");
+            first.setAttribute("id", "chosen_shape");
+            first.innerHTML = "You have chosen <span id=\"shape_chosen_text\">" + sel.value + "</span> !";
+            document.getElementById("objects").appendChild(first);
+            return (sel.value);
+        }
+
+        function show_shape_form(selected)
+        {
+            console.log(selected);
+            console.log("I AM WORKING !");
+        }
+
+        function select_shape_form(selected)
+        {
+            if (selected.localeCompare("sphere") == 0)
+                show_shape_form(selected)
+            else if (selected.localeCompare("cone") == 0)
+                show_shape_form(selected)
+            else if (selected.localeCompare("cylinder") == 0)
+                show_shape_form(selected)
+            else if (selected.localeCompare("plane") == 0)
+                show_shape_form(selected)
+            else if (selected.localeCompare("rectangle") == 0)
+                show_shape_form(selected)
+            else if (selected.localeCompare("box") == 0)
+                show_shape_form(selected)
+            else if (selected.localeCompare("triangle") == 0)
+                show_shape_form(selected)
+            else if (selected.localeCompare("pyramid") == 0)
+                show_shape_form(selected)
+            else if (selected.localeCompare("ring") == 0)
+                show_shape_form(selected)
+        }
+
+        function select_object() 
+        {
             var divsToHide = document.getElementsByClassName("objects");
             for(var i = 0; i < divsToHide.length; i++){
                 for (var j = 0; j < divsToHide[i].childNodes.length; j++)
@@ -65,10 +111,8 @@
                     }
                 }
             }
-            var first = document.createElement("div");
-            first.setAttribute("id", "chosen_shape");
-            first.innerHTML = "You have chosen <span id=\"shape_chosen_text\">" + sel.value + "</span> !";
-            document.getElementById("objects").appendChild(first);
+            var selected = add_shape_div();
+            select_shape_form(selected);
         }
         </script>
 </html>
