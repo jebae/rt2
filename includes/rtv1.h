@@ -271,6 +271,7 @@ typedef struct		s_buffer_info
 
 typedef struct		s_arg_buffer_th_job
 {
+	int				width;
 	int				offset;
 	int				work_size;
 	unsigned int	*buf;

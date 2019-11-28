@@ -11,8 +11,6 @@ void	set_filter(
 		sephia_filter(buffer, width, height);
 	else if (strcmp(filter, "negative") == 0)
 		negative_filter(buffer, width, height);
-	/*
-	else if (strcmp(filter, "gaussian") == 0)
-		negative_filter(buffer, width, height);
-	*/
+	else if (strcmp(filter, "blur") == 0)
+		gaussian_blur_filter(buffer, width, height);
 }

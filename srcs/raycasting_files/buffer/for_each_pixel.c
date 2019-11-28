@@ -9,6 +9,7 @@ static void		set_arg_th_job(
 {
 	arg->buf = buf_info->buf;
 	arg->buf_copy = buf_info->buf_copy;
+	arg->width = buf_info->width;
 	arg->offset = offset;
 	arg->work_size = work_size;
 }
