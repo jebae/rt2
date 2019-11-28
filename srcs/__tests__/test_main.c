@@ -52,7 +52,7 @@ int		main(int argc, char **argv)
 	{
 		UNITY_BEGIN();
 		test_set_object();
-		test_filter();
+		test_for_each_pixel();
 		UNITY_END();
 		return (0);
 	}

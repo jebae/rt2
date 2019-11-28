@@ -110,6 +110,10 @@ int				setup_triangle(const char *cast_num, t_ol *ol);
 ** set_object
 */
 void			test_set_object(void);
-void			test_filter(void);
+
+/*
+** buffer
+*/
+void			test_for_each_pixel(void);
 
 #endif

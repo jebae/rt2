@@ -16,9 +16,9 @@ static void			filter_func(void *arg_void)
 	int						until;
 	t_col					rgb;
 	t_col					temp;
-	t_arg_filter_th_job		*arg;
+	t_arg_buffer_th_job		*arg;
 
-	arg = (t_arg_filter_th_job *)arg_void;
+	arg = (t_arg_buffer_th_job *)arg_void;
 	i = arg->offset;
 	until = i + arg->work_size;
 	while (i < until)
@@ -44,5 +44,5 @@ int					sephia_filter(
 
 	buf_info.buf_copy = NULL;
 	set_buffer_info(buffer, width, height, &buf_info);
-	return (for_each_pixel(&buf_info, &filter_func));
+	return (for_each_pixel(&buf_info, (void *)&filter_func));
 }

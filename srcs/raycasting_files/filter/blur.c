@@ -48,14 +48,14 @@ static t_col		convolution(unsigned int *buf, int width)
 	return (res);
 }
 
-static void			filter_func(void *arg_void)
+static void			blur_func(void *arg_void)
 {
 	int						i;
 	int						until;
 	t_col					rgb;
-	t_arg_filter_th_job		*arg;
+	t_arg_buffer_th_job		*arg;
 
-	arg = (t_arg_filter_th_job *)arg_void;
+	arg = (t_arg_buffer_th_job *)arg_void;
 	i = arg->offset;
 	until = i + arg->work_size;
 	while (i < until)
@@ -69,14 +69,14 @@ static void			filter_func(void *arg_void)
 	}
 }
 
-int					gaussian_blur_filter(
+int					gaussian_blur(
 	unsigned int *buffer,
 	int width,
 	int height
 )
 {
-	size_t					buf_size;
-	t_filter_buffer_info	buf_info;
+	size_t			buf_size;
+	t_buffer_info	buf_info;
 
 	if (width < 5 || height < 5)
 		return (RT_SUCCESS);
@@ -84,8 +84,8 @@ int					gaussian_blur_filter(
 	if ((buf_info.buf_copy = ft_memalloc(buf_size)) == NULL)
 		return (RT_FAIL);
 	ft_memcpy(buf_info.buf_copy, buffer, buf_size);
-	set_filter_buf_info(buffer, width, height - 4, &buf_info);
-	if (filter_color(&buf_info, &filter_func) == RT_FAIL)
+	set_buffer_info(buffer, width, height - 4, &buf_info);
+	if (for_each_pixel(&buf_info, (void *)&blur_func) == RT_FAIL)
 	{
 		ft_memdel((void **)&buf_info.buf_copy);
 		return (RT_FAIL);

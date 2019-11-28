@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/11/28 18:44:20 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/28 18:50:05 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,14 +147,14 @@ t_vec3			get_bumped_normal(
 ** Filter functions
 */
 int				for_each_pixel(
-	t_filter_buffer_info *buf_info,
-	void (*filter_func)(void *arg)
+	t_buffer_info *buf_info,
+	void *(*func)(void *arg)
 );
 void			set_buffer_info(
 	unsigned int *buffer,
 	int width,
 	int heght,
-	t_filter_buffer_info *buf_info
+	t_buffer_info *buf_info
 );
 int				sephia_filter(
 	unsigned int *buffer,
@@ -166,7 +166,7 @@ int				negative_filter(
 	int width,
 	int height
 );
-int				gaussian_blur_filter(
+int				gaussian_blur(
 	unsigned int *buffer,
 	int width,
 	int height
