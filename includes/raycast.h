@@ -177,6 +177,18 @@ int				gaussian_blur(
 );
 
 /*
+** Motion blur
+*/
+int				motion_blur(
+	t_ol *ol,
+	int num_objs,
+	size_t buf_size,
+	unsigned int *buffer,
+	t_camera *cam,
+	const char *color
+);
+
+/*
 ** Translate functions
 */
 void			sphere_translate(t_vec3 *v_translate, void *object);

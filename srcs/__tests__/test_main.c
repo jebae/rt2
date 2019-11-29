@@ -23,15 +23,17 @@ void	render_test(int argc, char **argv)
 		return ;
 	setup_scene(&mlxkit, &cam);
 	if (*(argv[2]) == 'i')
-		render_intersect_test(&mlxkit, &cam, &ol);
+		render_intersect_test(mlxkit.img_buf, &cam, &ol);
 	else if (*(argv[2]) == 'n')
-		render_normal_test(&mlxkit, &cam, &ol, argv[4]);
+		render_normal_test(mlxkit.img_buf, &cam, &ol, argv[4]);
 	else if (*(argv[2]) == 't')
 		render_texture_mapping_test(
-			&mlxkit, &cam, &ol, argv[4], argv[5]);
+			mlxkit.img_buf, &cam, &ol, argv[4], argv[5]);
 	else if (*(argv[2]) == 'b')
 		render_bump_mapping_test(
-			&mlxkit, &cam, &ol, argv[4], argv[5], argv[6]);
+			mlxkit.img_buf, &cam, &ol, argv[4], argv[5], argv[6]);
+	else if (*(argv[2]) == 'm')
+		render_motion_blur_test(mlxkit.img_buf, &cam, &ol, argv[4]);
 	set_filter(argv[argc - 1], mlxkit.img_buf, WIDTH, WIDTH);
 	mlx_put_image_to_window(mlxkit.p_mlx, mlxkit.p_win, mlxkit.p_img, 0, 0);
 	if (ol.texture.buffer)

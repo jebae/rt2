@@ -42,7 +42,7 @@ static unsigned int	simple_shade(t_col *rgb, double n_dot_l)
 }
 
 void			render_intersect_test(
-	t_mlxkit *mlxkit,
+	unsigned int *img_buf,
 	t_camera *cam,
 	t_ol *ol
 )
@@ -55,13 +55,13 @@ void			render_intersect_test(
 		{
 			ray = cast_ray(j, i, *cam);
 			if (ol->intersect(ray, ol->object) != FAR)
-				mlxkit->img_buf[j + i * WIDTH] = 0xffffff;
+				img_buf[j + i * WIDTH] = 0xffffff;
 		}
 	}
 }
 
 void			render_normal_test(
-	t_mlxkit *mlxkit,
+	unsigned int *img_buf,
 	t_camera *cam,
 	t_ol *ol,
 	const char *color
@@ -77,17 +77,20 @@ void			render_normal_test(
 		{
 			ray = cast_ray(j, i, *cam);
 			if ((ray.t = ol->intersect(ray, ol->object)) == FAR)
+			{
+				img_buf[j + i * WIDTH] = 0x00000000;
 				continue ;
+			}
 			n = ol->get_normal(ray, ol->object);
 			n_dot_l = v3_dotpdt(v3_scalar(ray.dir, -1.0), n);
-			mlxkit->img_buf[j + i * WIDTH] = simple_shade(
+			img_buf[j + i * WIDTH] = simple_shade(
 				select_color(color), n_dot_l);
 		}
 	}
 }
 
 void			render_texture_mapping_test(
-	t_mlxkit *mlxkit,
+	unsigned int *img_buf,
 	t_camera *cam,
 	t_ol *ol,
 	const char *filename,
@@ -110,20 +113,23 @@ void			render_texture_mapping_test(
 		{
 			ray = cast_ray(j, i, *cam);
 			if ((ray.t = ol->intersect(ray, ol->object)) == FAR)
+			{
+				img_buf[j + i * WIDTH] = 0x00000000;
 				continue ;
+			}
 			n = ol->get_normal(ray, ol->object);
 			n_dot_l = v3_dotpdt(v3_scalar(ray.dir, -1.0), n);
 			point = find_point_from_ray(ray);
 
 			uv = ol->uv_mapping(point, &ol->axis_mat, texture, ol->object);
 			texel_color = get_texel_color(&uv, texture);
-			mlxkit->img_buf[j + i * WIDTH] = simple_shade(&texel_color, n_dot_l);
+			img_buf[j + i * WIDTH] = simple_shade(&texel_color, n_dot_l);
 		}
 	}
 }
 
 void			render_bump_mapping_test(
-	t_mlxkit *mlxkit,
+	unsigned int *img_buf,
 	t_camera *cam,
 	t_ol *ol,
 	const char *filename,
@@ -146,14 +152,48 @@ void			render_bump_mapping_test(
 		{
 			ray = cast_ray(j, i, *cam);
 			if ((ray.t = ol->intersect(ray, ol->object)) == FAR)
+			{
+				img_buf[j + i * WIDTH] = 0x00000000;
 				continue ;
+			}
 			point = find_point_from_ray(ray);
 			n = ol->get_normal(ray, ol->object);
 			uv = ol->uv_mapping(point, &ol->axis_mat, bump_map, ol->object);
 			n = get_bumped_normal(&uv, bump_map, &n, &ol->axis_mat);
 			n_dot_l = v3_dotpdt(v3_scalar(ray.dir, -1.0), n);
-			mlxkit->img_buf[j + i * WIDTH] = simple_shade(
+			img_buf[j + i * WIDTH] = simple_shade(
 				select_color(color), n_dot_l);
 		}
 	}
+}
+
+void			render_motion_blur_test(
+	unsigned int *img_buf,
+	t_camera *cam,
+	t_ol *ol,
+	const char *color
+)
+{
+	t_ray			ray;
+	t_vec3			n;
+	double			n_dot_l;
+
+	for (int i=0; i < WIDTH; i++)
+	{
+		for (int j=0; j < WIDTH; j++)
+		{
+			ray = cast_ray(j, i, *cam);
+			if ((ray.t = ol->intersect(ray, ol->object)) == FAR)
+			{
+				img_buf[j + i * WIDTH] = 0x00000000;
+				continue ;
+			}
+			n = ol->get_normal(ray, ol->object);
+			n_dot_l = v3_dotpdt(v3_scalar(ray.dir, -1.0), n);
+			img_buf[j + i * WIDTH] = simple_shade(
+				select_color(color), n_dot_l);
+		}
+	}
+	motion_blur(ol, 1, sizeof(unsigned int) * WIDTH * WIDTH,
+		img_buf, cam, color);
 }

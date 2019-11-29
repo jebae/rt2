@@ -43,29 +43,35 @@ void			clear_mlxkit(t_mlxkit *mlxkit);
 */
 void			setup_scene(t_mlxkit *mlxkit, t_camera *cam);
 void			render_intersect_test(
-	t_mlxkit *mlxkit,
+	unsigned int *img_buf,
 	t_camera *cam,
 	t_ol *ol
 );
 void			render_normal_test(
-	t_mlxkit *mlxkit,
+	unsigned int *img_buf,
 	t_camera *cam,
 	t_ol *ol,
 	const char *color
 );
 void			render_texture_mapping_test(
-	t_mlxkit *mlxkit,
+	unsigned int *img_buf,
 	t_camera *cam,
 	t_ol *ol,
 	const char *texture_file_name,
 	const char *repeat
 );
 void			render_bump_mapping_test(
-	t_mlxkit *mlxkit,
+	unsigned int *img_buf,
 	t_camera *cam,
 	t_ol *ol,
 	const char *filename,
 	const char *repeat,
+	const char *color
+);
+void			render_motion_blur_test(
+	unsigned int *img_buf,
+	t_camera *cam,
+	t_ol *ol,
 	const char *color
 );
 

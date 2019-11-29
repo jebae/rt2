@@ -36,7 +36,7 @@
 # define RT_FAIL			1
 # define APPROX_0			1e-6
 # define RT_MAX_THREAD		50
-# define RT_FRAME_PER_SEC	16
+# define RT_FRAME_PER_SEC	4
 
 typedef struct		s_mat3
 {

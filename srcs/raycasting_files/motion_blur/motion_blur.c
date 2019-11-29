@@ -1,4 +1,4 @@
-#include "raycast.h"
+#include "rt.test.h" // need to be changed as raycast.h
 
 static int		handle_fail(unsigned int *buf2)
 {
@@ -6,15 +6,18 @@ static int		handle_fail(unsigned int *buf2)
 	return (RT_FAIL);
 }
 
-// need to fix
-// have to consider accumulated distance !!
-static void		translate_objs_at_time(t_ol *ol, size_t num_objs, double time)
+static void		translate_objs_at_time(
+	t_ol *ol,
+	int num_objs,
+	double dt,
+	double t
+)
 {
 	int			i;
 	double		to_mul;
 	t_vec3		v_translate;
 
-	to_mul = time * (1.0 - 0.5 * time);
+	to_mul = dt * (1.0 - t - (dt / 2.0));
 	i = 0;
 	while (i < num_objs)
 	{
@@ -32,21 +35,20 @@ static void		add_translated_scene(void *arg_void)
 {
 	int						i;
 	int						until;
-	t_col					rgb_buf;
-	t_col					rgb_buf2;
+	t_col					*rgb_buf;
+	t_col					rgb;
 	t_arg_buffer_th_job		*arg;
 
 	arg = (t_arg_buffer_th_job *)arg_void;
+	rgb_buf = (t_col *)arg->buf;
 	i = arg->offset;
 	until = i + arg->work_size;
 	while (i < until)
 	{
-		rgb_buf = uint32_to_rgb(arg->buf[i]);
-		rgb_buf2 = uint32_to_rgb(arg->buf2[i]);
-		rgb_buf.r += rgb_buf2.r;
-		rgb_buf.g += rgb_buf2.g;
-		rgb_buf.b += rgb_buf2.b;
-		arg->buf[i] = rgb_to_uint32(&rgb_buf);
+		rgb = uint32_to_rgb(arg->buf2[i]);
+		rgb_buf[i].r += rgb.r;
+		rgb_buf[i].g += rgb.g;
+		rgb_buf[i].b += rgb.b;
 		i++;
 	}
 }
@@ -55,7 +57,7 @@ static void		average(void *arg_void)
 {
 	int						i;
 	int						until;
-	t_col					rgb_buf;
+	t_col					rgb;
 	t_arg_buffer_th_job		*arg;
 
 	arg = (t_arg_buffer_th_job *)arg_void;
@@ -63,20 +65,22 @@ static void		average(void *arg_void)
 	until = i + arg->work_size;
 	while (i < until)
 	{
-		rgb_buf = uint32_to_rgb(arg->buf[i]);
-		rgb_buf.r /= RT_FRAME_PER_SEC + 1;
-		rgb_buf.g /= RT_FRAME_PER_SEC + 1;
-		rgb_buf.b /= RT_FRAME_PER_SEC + 1;
-		arg->buf[i] = rgb_to_uint32(&rgb_buf);
+		rgb = uint32_to_rgb(arg->buf[i]);
+		rgb.r /= RT_FRAME_PER_SEC + 1;
+		rgb.g /= RT_FRAME_PER_SEC + 1;
+		rgb.b /= RT_FRAME_PER_SEC + 1;
+		arg->buf[i] = rgb_to_uint32(&rgb);
 		i++;
 	}
 }
 
 int				motion_blur(
 	t_ol *ol,
-	size_t num_objs,
+	int num_objs,
 	size_t buf_size,
-	unsigned int *buf
+	unsigned int *buffer,
+	t_camera *cam,
+	const char *color
 )
 {
 	int				i;
@@ -85,23 +89,24 @@ int				motion_blur(
 
 	if ((buf_info.buf2 = ft_memalloc(buf_size)) == NULL)
 		return (RT_FAIL);
+	// width and height need to be changed by parameter
+	set_buffer_info(buffer, WIDTH, WIDTH, &buf_info);
 	dt = 1.0 / RT_FRAME_PER_SEC;
-	i = 1;
-	while (i <= RT_FRAME_PER_SEC)
+	i = 0;
+	while (i < RT_FRAME_PER_SEC)
 	{
-		translate_objs_at_time(ol, num_objs, dt * i);
+		translate_objs_at_time(ol, num_objs, dt, dt * i);
 
 		/*
 		** below code will be replaced with real raytrace
 		*/
-		
+		render_normal_test(buf_info.buf2, cam, ol, color);
 		if (for_each_pixel(&buf_info, (void *)&add_translated_scene) == RT_FAIL)
 			return (handle_fail(buf_info.buf2));
 		i++;
 	}
-	if (for_each_pixel(&buf_info, (void *)&add_translated_scene) == RT_FAIL)
+	if (for_each_pixel(&buf_info, (void *)&average) == RT_FAIL)
 		return (handle_fail(buf_info.buf2));
 	ft_memdel((void **)&buf_info.buf2);
 	return (RT_SUCCESS);
 }
-
