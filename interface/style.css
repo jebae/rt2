@@ -63,14 +63,19 @@ body
     padding-top: 5vw;
     text-align: center;
     /* border: 1px solid red; */
-
 }
 
+/* SHAPES CHOSEN TEXT */
 #chosen_shape
 {
     /* border: 1px solid red; */
     font-family: 'Righteous', cursive;
     font-size: 20px;
+}
+
+#selected_shape
+{
+    color: #2b580c;
 }
 
 #shape_chosen_text
@@ -104,10 +109,18 @@ body
     /* cursor: pointer; */
 }
 
+
+/* form parameters for shapes */
 .cone_form
 {
     margin-right: 11vw;
 }
+.box_form
+{
+    margin-right: 11vw;
+}
+
+
 
 #txt_simple
 {
@@ -137,10 +150,13 @@ body
     color: #2b580c;
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+::placeholder 
+{
     color: #709078;
 }
 
+
+/* FOOTER */
 .footer
 {
     position: fixed;

@@ -29,29 +29,25 @@
                     <input class="buttons" id="button_obj" type="button" value="ADD !" onclick="select_object()">
                 </div>
             </form>
-            <!-- <div class="output_object" id="sphere">
-                <form class="sphere_form">
-
-                </form>
-            </div> -->
-            <div class="output_object" id="button_cone">
-                <h3>CONE PARAMETERS</h3><br/>
-                <form class="cone_form"> <!-- action="/create_xml" method="POST"-->
-                    <!-- maxlength="4" (impose a limit ??) only numbers --> 
-                    <span id="txt_simple">CENTER :</span>
-                            <input id="input_complex" type="text" name="center" value="" placeholder="Enter X">
-                            <input id="input_complex" type="text" name="center" value="" placeholder="Enter Y">
-                            <input id="input_complex" type="text" name="center" value="" placeholder="Enter Z"><br/>
-                    <span id="txt_simple">AXIS :</span>
-                            <input id="input_complex" type="text" name="axis" value="" placeholder="Enter X">
-                            <input id="input_complex" type="text" name="axis" value="" placeholder="Enter Y">
-                            <input id="input_complex" type="text" name="axis" value="" placeholder="Enter z"><br/>
-                    <span id="txt_simple">ANGLE :</span><input id="input_simple" type="text" name="angle" value="" placeholder="Enter angle"><br/>
-                    <span id="txt_simple">UPPER HEIGHT :</span><input id="input_simple" type="text" name="upper_height" value="" placeholder="Enter upper height"><br/>
-                    <span id="txt_simple">LOWER HEIGHT :</span><input id="input_simple" type="text" name="lower_height" value="" placeholder="Enter lower height"><br/>
-                </form><br/>
-                <input class="buttons" id="button_cone" type="button" value="ADD CONE !" onclick="submit_cone()"> <!-- need to remove onclick trigger and use action/post & express -->
+            <div id="output_object" class="output_object">
             </div>
+            <!-- <div class="output_object" id="button_cone">
+                <h3>CONE PARAMETERS</h3><br/>
+                <form class="cone_form">
+                    <span id="txt_simple">CENTER :</span>
+                            <input id="input_complex" type="text" name="center" value="" placeholder="Enter X" maxlength="4">
+                            <input id="input_complex" type="text" name="center" value="" placeholder="Enter Y" maxlength="4">
+                            <input id="input_complex" type="text" name="center" value="" placeholder="Enter Z" maxlength="4"><br/>
+                    <span id="txt_simple">AXIS :</span>
+                            <input id="input_complex" type="text" name="axis" value="" placeholder="Enter X" maxlength="4">
+                            <input id="input_complex" type="text" name="axis" value="" placeholder="Enter Y" maxlength="4">
+                            <input id="input_complex" type="text" name="axis" value="" placeholder="Enter z" maxlength="4"><br/>
+                    <span id="txt_simple">ANGLE :</span><input id="input_simple" type="text" name="angle" value="" placeholder="Enter angle"><br/>
+                    <span id="txt_simple">UPPER HEIGHT :</span><input id="input_simple" type="text" name="upper_height" value="" placeholder="Enter upper height" maxlength="4"><br/>
+                    <span id="txt_simple">LOWER HEIGHT :</span><input id="input_simple" type="text" name="lower_height" value="" placeholder="Enter lower height" maxlength="4"><br/>
+                </form><br/>
+                <input class="buttons" id="button_cone" type="button" value="ADD CONE !" onclick="submit_cone()"> need to remove onclick trigger and use action/post & express
+            </div> -->
         </div>
         <div class="footer">
             <h5>
@@ -72,8 +68,35 @@
 
         function show_shape_form(selected)
         {
-            console.log(selected);
             console.log("I AM WORKING !");
+
+            const object_string = String(selected);
+            console.log(object_string);
+
+
+            var sel = document.getElementById('object_options');
+            var object = document.createElement("div");
+            object.setAttribute("class", "object_chosen");
+            object.setAttribute("id", "button_" + object_string);
+            object.innerHTML = "<h3>PLEASE FILL IN THE <span id=\"selected_shape\">" + object_string.toUpperCase() + "</span> PARAMETERS</h3><br/>";
+            var object_form = document.createElement("form");
+            object_form.setAttribute("class", object_string + "_form");
+            object_form.innerHTML = "<span id=\"txt_simple\">CENTER :</span>";
+            object_form.innerHTML = "<h3>CENTER :</h3>";
+            // object_form.innerHTML = "<input id=\"input_complex\" type=\"text\" name=\"center\" value=\"\" placeholder=\"Enter X\" maxlength=\"4\">"
+        //                 <input id="input_complex" type="text" name="center" value="" placeholder="Enter Y" maxlength="4">
+        //                 <input id="input_complex" type="text" name="center" value="" placeholder="Enter Z" maxlength="4"><br/>
+        //         <span id="txt_simple">AXIS :</span>
+        //                 <input id="input_complex" type="text" name="axis" value="" placeholder="Enter X" maxlength="4">
+        //                 <input id="input_complex" type="text" name="axis" value="" placeholder="Enter Y" maxlength="4">
+        //                 <input id="input_complex" type="text" name="axis" value="" placeholder="Enter z" maxlength="4"><br/>
+        //         <span id="txt_simple">ANGLE :</span><input id="input_simple" type="text" name="angle" value="" placeholder="Enter angle"><br/>
+        //         <span id="txt_simple">UPPER HEIGHT :</span><input id="input_simple" type="text" name="upper_height" value="" placeholder="Enter upper height" maxlength="4"><br/>
+        //         <span id="txt_simple">LOWER HEIGHT :</span><input id="input_simple" type="text" name="lower_height" value="" placeholder="Enter lower height" maxlength="4"><br/>
+            // object.innerHTML = "</form><br/>"
+        //     <input class="buttons" id="button_cone" type="button" value="ADD CONE !" onclick="submit_cone()"> <!-- need to remove onclick trigger and use action/post & express -->
+        document.getElementById("output_object").appendChild(object);
+
         }
 
         function select_shape_form(selected)
@@ -114,5 +137,5 @@
             var selected = add_shape_div();
             select_shape_form(selected);
         }
-        </script>
+    </script>
 </html>
