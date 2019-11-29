@@ -7,8 +7,7 @@ static void		set_arg_th_job(
 	t_arg_buffer_th_job *arg
 )
 {
-	arg->buf = buf_info->buf;
-	arg->buf_copy = buf_info->buf_copy;
+	ft_memcpy(arg->buf, buf_info->buf, sizeof(void *) * 2);
 	arg->width = buf_info->width;
 	arg->offset = offset;
 	arg->work_size = work_size;
@@ -102,13 +101,11 @@ int				for_each_pixel(
 }
 
 void			set_buffer_info(
-	unsigned int *buffer,
 	int width,
 	int height,
 	t_buffer_info *buf_info
 )
 {
-	buf_info->buf = buffer;
 	buf_info->width = width;
 	buf_info->height = height;
 	buf_info->line_per_th = height / RT_MAX_THREAD;

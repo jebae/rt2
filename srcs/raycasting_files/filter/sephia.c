@@ -23,13 +23,13 @@ static void			filter_func(void *arg_void)
 	until = i + arg->work_size;
 	while (i < until)
 	{
-		rgb = uint32_to_rgb(arg->buf[i]);
+		rgb = uint32_to_rgb(((unsigned int *)arg->buf[0])[i]);
 		temp = rgb;
 		rgb.r = 0.393 * temp.r + 0.769 * temp.g + 0.189 * temp.b;
 		rgb.g = 0.349 * temp.r + 0.686 * temp.g + 0.168 * temp.b;
 		rgb.b = 0.272 * temp.r + 0.534 * temp.g + 0.131 * temp.b;
 		adjust_color(&rgb);
-		arg->buf[i] = rgb_to_uint32(&rgb);
+		((unsigned int *)(arg->buf[0]))[i] = rgb_to_uint32(&rgb);
 		i++;
 	}
 }
@@ -42,7 +42,8 @@ int					sephia_filter(
 {
 	t_buffer_info	buf_info;
 
-	buf_info.buf_copy = NULL;
-	set_buffer_info(buffer, width, height, &buf_info);
+	buf_info.buf[0] = (void *)buffer;
+	buf_info.buf[1] = NULL;
+	set_buffer_info(width, height, &buf_info);
 	return (for_each_pixel(&buf_info, (void *)&filter_func));
 }
