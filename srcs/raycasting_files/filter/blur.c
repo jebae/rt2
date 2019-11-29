@@ -53,15 +53,17 @@ static void			blur(void *arg_void)
 	int						i;
 	int						until;
 	t_col					rgb;
+	unsigned int			*buf;
 	t_arg_buffer_th_job		*arg;
 
 	arg = (t_arg_buffer_th_job *)arg_void;
+	buf = (unsigned int *)(arg->buf[0]);
 	i = arg->offset;
 	until = i + arg->work_size;
 	while (i < until)
 	{
-		rgb = convolution(arg->buf2 + i, arg->width);
-		arg->buf[i + arg->width * 2 + 2] = rgb_to_uint32(&rgb);
+		rgb = convolution(((unsigned int *)arg->buf[1]) + i, arg->width);
+		buf[i + arg->width * 2 + 2] = rgb_to_uint32(&rgb);
 		if (i % arg->width >= arg->width - 5)
 			i += 5;
 		else
@@ -81,15 +83,16 @@ int					gaussian_blur(
 	if (width < 5 || height < 5)
 		return (RT_SUCCESS);
 	buf_size = sizeof(unsigned int) * width * height;
-	if ((buf_info.buf2 = ft_memalloc(buf_size)) == NULL)
+	if ((buf_info.buf[1] = ft_memalloc(buf_size)) == NULL)
 		return (RT_FAIL);
-	ft_memcpy(buf_info.buf2, buffer, buf_size);
-	set_buffer_info(buffer, width, height - 4, &buf_info);
-	if (for_each_pixel(&buf_info, (void *)&blur) == RT_FAIL)
+	ft_memcpy(buf_info.buf[1], buffer, buf_size);
+	buf_info.buf[0] = buffer;
+	set_buffer_info(width, height - 4, &buf_info);
+	if (for_each_pixel(&buf_info, (void *)&blur_func) == RT_FAIL)
 	{
-		ft_memdel((void **)&buf_info.buf2);
+		ft_memdel((void **)&buf_info.buf[1]);
 		return (RT_FAIL);
 	}
-	ft_memdel((void **)&buf_info.buf2);
+	ft_memdel((void **)&buf_info.buf[1]);
 	return (RT_SUCCESS);
 }

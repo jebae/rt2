@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/11/28 18:40:22 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/29 15:00:14 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -270,8 +270,7 @@ typedef struct		s_buffer_info
 	int				height;
 	int				line_per_th;
 	int				line_rest;
-	unsigned int	*buf;
-	unsigned int	*buf2;
+	void			*buf[2];
 }					t_buffer_info;
 
 typedef struct		s_arg_buffer_th_job
@@ -279,8 +278,7 @@ typedef struct		s_arg_buffer_th_job
 	int				width;
 	int				offset;
 	int				work_size;
-	unsigned int	*buf;
-	unsigned int	*buf2;
+	void			*buf[2];
 }					t_arg_buffer_th_job;
 
 typedef struct		s_mlx

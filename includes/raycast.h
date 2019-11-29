@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/11/28 18:50:05 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/29 14:37:17 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,9 +155,8 @@ int				for_each_pixel(
 ** Filter functions
 */
 void			set_buffer_info(
-	unsigned int *buffer,
 	int width,
-	int heght,
+	int height,
 	t_buffer_info *buf_info
 );
 int				sephia_filter(

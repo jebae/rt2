@@ -21,7 +21,7 @@ static void		func(void *arg_void)
 	until = i + arg->work_size;
 	while (i < until)
 	{
-		arg->buf[i] = 0xff;
+		((unsigned int *)arg->buf[0])[i] = 0xff;
 		i++;
 	}
 }
@@ -41,7 +41,8 @@ TEST(for_each_pixel, case_one_line_per_thread)
 	height = 42;
 	size = width * height;
 	buffer = ft_memalloc(sizeof(unsigned int) * size);
-	set_buffer_info(buffer, width, height, &buf_info);
+	set_buffer_info(width, height, &buf_info);
+	buf_info.buf[0] = buffer;
 
 	res = for_each_pixel(&buf_info, (void *)&func);
 	TEST_ASSERT_EQUAL_INT_MESSAGE(RT_SUCCESS, res, "res");
@@ -55,7 +56,8 @@ TEST(for_each_pixel, case_multi_line_per_thread)
 	height = 142;
 	size = width * height;
 	buffer = ft_memalloc(sizeof(unsigned int) * size);
-	set_buffer_info(buffer, width, height, &buf_info);
+	set_buffer_info(width, height, &buf_info);
+	buf_info.buf[0] = buffer;
 
 	res = for_each_pixel(&buf_info, (void *)&func);
 	TEST_ASSERT_EQUAL_INT_MESSAGE(RT_SUCCESS, res, "res");
