@@ -45,5 +45,5 @@ int					sephia_filter(
 	buf_info.buf[0] = (void *)buffer;
 	buf_info.buf[1] = NULL;
 	set_buffer_info(width, height, &buf_info);
-	return (for_each_pixel(&buf_info, (void *)&filter_func));
+	return (for_each_pixel(&buf_info, (void *)&filter));
 }

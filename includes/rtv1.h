@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/11/29 15:00:14 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/29 16:12:33 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define RT_FAIL			1
 # define APPROX_0			1e-6
 # define RT_MAX_THREAD		50
-# define RT_FRAME_PER_SEC	4
+# define RT_FRAME_PER_SEC	16
 
 typedef struct		s_mat3
 {

@@ -194,6 +194,5 @@ void			render_motion_blur_test(
 				select_color(color), n_dot_l);
 		}
 	}
-	motion_blur(ol, 1, sizeof(unsigned int) * WIDTH * WIDTH,
-		img_buf, cam, color);
+	motion_blur(ol, 1, WIDTH, WIDTH, img_buf, cam, color);
 }

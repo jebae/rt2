@@ -88,7 +88,7 @@ int					gaussian_blur(
 	ft_memcpy(buf_info.buf[1], buffer, buf_size);
 	buf_info.buf[0] = buffer;
 	set_buffer_info(width, height - 4, &buf_info);
-	if (for_each_pixel(&buf_info, (void *)&blur_func) == RT_FAIL)
+	if (for_each_pixel(&buf_info, (void *)&blur) == RT_FAIL)
 	{
 		ft_memdel((void **)&buf_info.buf[1]);
 		return (RT_FAIL);

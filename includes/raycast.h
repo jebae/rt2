@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/11/29 14:37:17 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/29 16:08:44 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,8 @@ int				gaussian_blur(
 int				motion_blur(
 	t_ol *ol,
 	int num_objs,
-	size_t buf_size,
+	int width,
+	int height,
 	unsigned int *buffer,
 	t_camera *cam,
 	const char *color
