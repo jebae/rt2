@@ -7,15 +7,15 @@ static t_vec2	get_bump(t_vec2 *uv, t_texels *texels)
 	t_vec2		bump;
 
 	index = uv_to_texel_index(uv, texels);
-	texel = texels->buffer[index] & 0x000000ff;
+	texel = texels->buffer[index] & 0xff;
 	if (index % texels->width == texels->width - 1)
 		bump.x = 0.0;
 	else
-		bump.x = (int)(texels->buffer[index + 1] & 0x000000ff) - texel;
+		bump.x = (int)(texels->buffer[index + 1] & 0xff) - texel;
 	if (index / texels->width == texels->width - 1)
 		bump.y = 0.0;
 	else
-		bump.y = (int)(texels->buffer[index + texels->width] & 0x000000ff)
+		bump.y = (int)(texels->buffer[index + texels->width] & 0xff)
 			- texel;
 	bump.x *= 0.02;
 	bump.y *= 0.02;
