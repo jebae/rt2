@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/11/29 17:30:34 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/30 16:11:11 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,18 @@ typedef struct		s_ring
 /*
 ** set_object args
 */
+typedef struct		s_arg_sphere
+{
+	double			radius;
+	t_vec3			cen;
+}					t_arg_sphere;
+
+typedef struct		s_arg_plane
+{
+	double			d;
+	t_vec3			normal;
+}					t_arg_plane;
+
 typedef struct		s_arg_cone
 {
 	t_vec3			cen;

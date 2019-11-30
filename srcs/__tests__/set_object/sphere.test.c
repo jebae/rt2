@@ -3,8 +3,7 @@
 static t_ol			ol;
 static t_sphere		*sphere;
 static int			res;
-static t_vec3		cen;
-static double		radius;
+static t_arg_sphere	arg;
 static t_mat3		axis_mat;
 
 TEST_GROUP(set_sphere);
@@ -22,8 +21,8 @@ TEST_TEAR_DOWN(set_sphere)
 
 TEST(set_sphere, valid)
 {
-	cen = (t_vec3){1.0, 0.0, 0.0};
-	radius = 1.0;
+	arg.cen = (t_vec3){1.0, 0.0, 0.0};
+	arg.radius = 1.0;
 	axis_mat = (t_mat3){
 		.arr = {
 			{-1.0, 0.0, 0.0},
@@ -32,10 +31,10 @@ TEST(set_sphere, valid)
 		}
 	};
 
-	res = set_sphere(&ol, cen, radius);
+	res = set_sphere(&ol, &arg);
 	TEST_ASSERT_EQUAL_INT_MESSAGE(RT_SUCCESS, res, "res");
-	TEST_ASSERT_EQUAL_MEMORY_MESSAGE(&cen, &sphere->cen, sizeof(t_vec3), "cen");
-	TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(radius, sphere->radius, "radius");
+	TEST_ASSERT_EQUAL_MEMORY_MESSAGE(&arg.cen, &sphere->cen, sizeof(t_vec3), "cen");
+	TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(arg.radius, sphere->radius, "radius");
 	TEST_ASSERT_EQUAL_MEMORY_MESSAGE(&axis_mat, &ol.axis_mat, sizeof(t_mat3), "axis_mat");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&v_intersect_sp2, ol.intersect, "intersect");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&normal_sphere, ol.get_normal, "get_normal");
@@ -45,10 +44,10 @@ TEST(set_sphere, valid)
 
 TEST(set_sphere, radius_is_0)
 {
-	cen = (t_vec3){1.0, 0.0, 0.0};
-	radius = 0.0;
+	arg.cen = (t_vec3){1.0, 0.0, 0.0};
+	arg.radius = 0.0;
 
-	res = set_sphere(&ol, cen, radius);
+	res = set_sphere(&ol, &arg);
 	TEST_ASSERT_EQUAL_INT_MESSAGE(RT_FAIL, res, "res");
 }
 

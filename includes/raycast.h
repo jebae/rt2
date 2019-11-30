@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/11/29 16:08:44 by jebae            ###   ########.fr       */
+/*   Updated: 2019/11/30 16:12:27 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ void		pick_axis_from_plane(t_vec3 *normal, t_mat3 *axis_mat);
 /*
 ** Set object attributes from parser functions
 */
-int			set_sphere(t_ol *ol, t_vec3 cen, double radius);
+int			set_sphere(t_ol *ol, t_arg_sphere *arg);
 int			set_cone(t_ol *ol, t_arg_cone *arg);
 int			set_cyl(t_ol *ol, t_arg_cyl *arg);
-int			set_plane(t_ol *ol, t_vec3 normal, double d);
+int			set_plane(t_ol *ol, t_arg_plane *arg);
 int			set_rectangle(t_ol *ol, t_arg_rectangle *arg);
 int			set_box(t_ol *ol, t_arg_box *arg);
 int			set_triangle(t_ol *ol, t_arg_triangle *arg);
