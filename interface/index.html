@@ -1,141 +1,136 @@
 <html>
-    <head>
-        <title>RT</title>
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
-    <body>
-        <div class="header">
-            <h3>
-                RT
-            </h3>
+  <head>
+    <title>RT</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Righteous&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <div class="header">
+      <h3>
+        RT
+      </h3>
+    </div>
+    <div class="the_form_container" id="the_form_container">
+      <form class="update_me">
+        <div class="objects" id="objects">
+          <select id="object_options" class="objects_opt" name="dropdown_objects">
+            <option value="NO SHAPE"> -CHOOSE A SHAPE- </option>
+            <option value="sphere">SPHERE</option>
+            <option value="cone">CONE</option>
+            <option value="cylinder">CYLINDER</option>
+            <option value="plane">PLANE</option>
+            <option value="rectangle">RECTANGLE</option>
+            <option value="box">BOX</option>
+            <option value="triangle">TRIANGLE</option>
+            <option value="pyramid">PYRAMID</option>
+            <option value="ring">RING</option>
+          </select>
+          <input class="buttons" id="button_obj" type="button" value="ADD !" onclick="select_object()"/>
         </div>
-        <div class="the_form_container">
-            <form class="update_me">
-                <div class="objects" id="objects">
-                    <select id="object_options" class="objects_opt" name="dropdown_objects">
-                        <option value=""> -CHOOSE A SHAPE- </option>
-                        <option value="sphere">SPHERE</option>
-                        <option value="cone">CONE</option>
-                        <option value="cylinder">CYLINDER</option>
-                        <option value="plane">PLANE</option>
-                        <option value="rectangle">RECTANGLE</option>
-                        <option value="box">BOX</option>
-                        <option value="triangle">TRIANGLE</option>
-                        <option value="pyramid">PYRAMID</option>
-                        <option value="ring">RING</option>
-                    </select>
-                    <input class="buttons" id="button_obj" type="button" value="ADD !" onclick="select_object()">
-                </div>
-            </form>
-            <div id="output_object" class="output_object">
-            </div>
-            <!-- <div class="output_object" id="button_cone">
-                <h3>CONE PARAMETERS</h3><br/>
-                <form class="cone_form">
-                    <span id="txt_simple">CENTER :</span>
-                            <input id="input_complex" type="text" name="center" value="" placeholder="Enter X" maxlength="4">
-                            <input id="input_complex" type="text" name="center" value="" placeholder="Enter Y" maxlength="4">
-                            <input id="input_complex" type="text" name="center" value="" placeholder="Enter Z" maxlength="4"><br/>
-                    <span id="txt_simple">AXIS :</span>
-                            <input id="input_complex" type="text" name="axis" value="" placeholder="Enter X" maxlength="4">
-                            <input id="input_complex" type="text" name="axis" value="" placeholder="Enter Y" maxlength="4">
-                            <input id="input_complex" type="text" name="axis" value="" placeholder="Enter z" maxlength="4"><br/>
-                    <span id="txt_simple">ANGLE :</span><input id="input_simple" type="text" name="angle" value="" placeholder="Enter angle"><br/>
-                    <span id="txt_simple">UPPER HEIGHT :</span><input id="input_simple" type="text" name="upper_height" value="" placeholder="Enter upper height" maxlength="4"><br/>
-                    <span id="txt_simple">LOWER HEIGHT :</span><input id="input_simple" type="text" name="lower_height" value="" placeholder="Enter lower height" maxlength="4"><br/>
-                </form><br/>
-                <input class="buttons" id="button_cone" type="button" value="ADD CONE !" onclick="submit_cone()"> need to remove onclick trigger and use action/post & express
-            </div> -->
-        </div>
-        <div class="footer">
-            <h5>
-                A project created by : Jeongmo Bae <i>(jebae)</i>, Samuel Boniface <i>(sabonifa)</i>, Madeleine Hernandez <i>(mhernand)</i>, and Alexandru Moraru <i>(almoraru)</i>.
-            </h5>
-        </div>
-    </body>
-    <script>
-        function add_shape_div()
-        {
-            var sel = document.getElementById('object_options');
-            var first = document.createElement("div");
-            first.setAttribute("id", "chosen_shape");
-            first.innerHTML = "You have chosen <span id=\"shape_chosen_text\">" + sel.value + "</span> !";
-            document.getElementById("objects").appendChild(first);
-            return (sel.value);
+      </form>
+      <div class="output_object" id="cone_object">
+        <h3>CONE PARAMETERS</h3><br>
+        <form class="cone_form">
+          <span id="txt_simple">CENTER :</span><input id="input_complex" type="text" name="center" value="" placeholder="Enter X" maxlength="4"/><input id="input_complex" type="text" name="center" value="" placeholder="Enter Y" maxlength="4"/><input id="input_complex" type="text" name="center" value="" placeholder="Enter Z" maxlength="4"/><br /><br />
+          <span id="txt_simple">AXIS :</span><input id="input_complex" type="text" name="axis" value="" placeholder="Enter X" maxlength="4"/><input id="input_complex" type="text" name="axis" value="" placeholder="Enter Y" maxlength="4"/><input id="input_complex" type="text" name="axis" value="" placeholder="Enter Z" maxlength="4"/><br /><br />
+          <span id="txt_simple">ANGLE :</span><input id="input_simple" type="text" name="angle" value="" placeholder="Enter angle"/><br /><br />
+          <span id="txt_simple">UPPER HEIGHT :</span><input id="input_simple" type="text" name="upper_height" value="" placeholder="Enter upper height" maxlength="4"/><br><br>
+          <span id="txt_simple">LOWER HEIGHT :</span><input id="input_simple" type="text" name="lower_height" value="" placeholder="Enter lower height" maxlength="4"/><br><br>
+          <span id="txt_simple">TRANSLATION :</span><input id="input_simple" type="text" name="translation" value="" placeholder="Enter translation" maxlength="4"/><br><br>
+          <span id="txt_simple">ROTATION :</span><input id="input_simple" type="text" name="rotation" value="" placeholder="Enter rotation" maxlength="4"/><br /><br />
+          </form><br /><br />
+          <input class="buttons" id="button_cone" type="button" value="ADD CONE !" onclick="submit_cone()"/>
+      </div>
+    </div>
+    <div class="footer">
+      <h5>
+        A project created by : Jeongmo Bae <i>(jebae)</i>, Samuel Boniface
+        <i>(sabonifa)</i>, Madeleine Hernandez <i>(mhernand)</i>, and Alexander
+        Moraru <i>(almoraru)</i>.
+      </h5>
+    </div>
+  </body>
+  <script>
+    function add_shape_div() {
+      // appends text to OBJECTS div that is the options in first part fo div.
+      // Returns the selected value.
+      var sel = document.getElementById("object_options");
+      var first = document.createElement("div");
+      first.setAttribute("id", "chosen_shape");
+      first.innerHTML =
+        'You have chosen <span id="shape_chosen_text">' +
+        sel.value +
+        "</span> !";
+      document.getElementById("objects").appendChild(first);
+      return sel.value;
+    }
+
+    function show_shape_form(selected)
+    {
+      // displays form for selected shape
+      var new_selected = selected + "_object";
+      const string = String(new_selected);
+      var show = document.getElementById(string);
+      show.style.display = 'block';
+    }
+
+    function select_shape_form(selected) {
+      console.log(selected);
+      // creates the div that will hold the form
+      const object_string = String(selected);
+      var object = document.createElement("div");
+      object.setAttribute("id", "object_chosen");
+
+      if (selected.localeCompare("NO SHAPE") == 0) {
+        object.setAttribute("class", "button_" + object_string);
+        object.innerHTML = '<h3>NOTHING WILL BE <span id="selected_shape">MODIFIED</span>!</h3><br/>';
+        document.getElementById("the_form_container").appendChild(object);
+      } else {
+        // object.setAttribute("class", "button_" + object_string);
+        // object.innerHTML = "<h3>PLEASE FILL IN THE <span id=\"selected_shape\">" + object_string.toUpperCase() + "</span> PARAMETERS</h3><br/>";
+        // document.getElementById("the_form_container").appendChild(object);
+        // show_shape_form(object_string, object)
+
+        if (selected.localeCompare("sphere") == 0)
+          show_shape_form(object_string);
+        else if (selected.localeCompare("cone") == 0)
+          show_shape_form(object_string);
+        else if (selected.localeCompare("cylinder") == 0)
+          show_shape_form(object_string);
+        else if (selected.localeCompare("plane") == 0)
+          show_shape_form(object_string);
+        else if (selected.localeCompare("rectangle") == 0)
+          show_shape_form(object_string);
+        else if (selected.localeCompare("box") == 0)
+          show_shape_form(object_string);
+        else if (selected.localeCompare("triangle") == 0)
+          show_shape_form(object_string);
+        else if (selected.localeCompare("pyramid") == 0)
+          show_shape_form(object_string);
+        else if (selected.localeCompare("ring") == 0)
+          show_shape_form(object_string);
+      }
+    }
+
+    function select_object() {
+      var divsToHide = document.getElementsByClassName("objects");
+      for (var i = 0; i < divsToHide.length; i++) {
+        for (var j = 0; j < divsToHide[i].childNodes.length; j++) {
+          if (
+            divsToHide[i].childNodes[j] &&
+            divsToHide[i].childNodes[j].style
+          ) {
+            divsToHide[i].childNodes[j].style.visibility = "hidden";
+            divsToHide[i].childNodes[j].style.display = "none";
+          }
         }
-
-        function show_shape_form(selected)
-        {
-            console.log("I AM WORKING !");
-
-            const object_string = String(selected);
-            console.log(object_string);
-
-
-            var sel = document.getElementById('object_options');
-            var object = document.createElement("div");
-            object.setAttribute("class", "object_chosen");
-            object.setAttribute("id", "button_" + object_string);
-            object.innerHTML = "<h3>PLEASE FILL IN THE <span id=\"selected_shape\">" + object_string.toUpperCase() + "</span> PARAMETERS</h3><br/>";
-            var object_form = document.createElement("form");
-            object_form.setAttribute("class", object_string + "_form");
-            object_form.innerHTML = "<span id=\"txt_simple\">CENTER :</span>";
-            object_form.innerHTML = "<h3>CENTER :</h3>";
-            // object_form.innerHTML = "<input id=\"input_complex\" type=\"text\" name=\"center\" value=\"\" placeholder=\"Enter X\" maxlength=\"4\">"
-        //                 <input id="input_complex" type="text" name="center" value="" placeholder="Enter Y" maxlength="4">
-        //                 <input id="input_complex" type="text" name="center" value="" placeholder="Enter Z" maxlength="4"><br/>
-        //         <span id="txt_simple">AXIS :</span>
-        //                 <input id="input_complex" type="text" name="axis" value="" placeholder="Enter X" maxlength="4">
-        //                 <input id="input_complex" type="text" name="axis" value="" placeholder="Enter Y" maxlength="4">
-        //                 <input id="input_complex" type="text" name="axis" value="" placeholder="Enter z" maxlength="4"><br/>
-        //         <span id="txt_simple">ANGLE :</span><input id="input_simple" type="text" name="angle" value="" placeholder="Enter angle"><br/>
-        //         <span id="txt_simple">UPPER HEIGHT :</span><input id="input_simple" type="text" name="upper_height" value="" placeholder="Enter upper height" maxlength="4"><br/>
-        //         <span id="txt_simple">LOWER HEIGHT :</span><input id="input_simple" type="text" name="lower_height" value="" placeholder="Enter lower height" maxlength="4"><br/>
-            // object.innerHTML = "</form><br/>"
-        //     <input class="buttons" id="button_cone" type="button" value="ADD CONE !" onclick="submit_cone()"> <!-- need to remove onclick trigger and use action/post & express -->
-        document.getElementById("output_object").appendChild(object);
-
-        }
-
-        function select_shape_form(selected)
-        {
-            if (selected.localeCompare("sphere") == 0)
-                show_shape_form(selected)
-            else if (selected.localeCompare("cone") == 0)
-                show_shape_form(selected)
-            else if (selected.localeCompare("cylinder") == 0)
-                show_shape_form(selected)
-            else if (selected.localeCompare("plane") == 0)
-                show_shape_form(selected)
-            else if (selected.localeCompare("rectangle") == 0)
-                show_shape_form(selected)
-            else if (selected.localeCompare("box") == 0)
-                show_shape_form(selected)
-            else if (selected.localeCompare("triangle") == 0)
-                show_shape_form(selected)
-            else if (selected.localeCompare("pyramid") == 0)
-                show_shape_form(selected)
-            else if (selected.localeCompare("ring") == 0)
-                show_shape_form(selected)
-        }
-
-        function select_object() 
-        {
-            var divsToHide = document.getElementsByClassName("objects");
-            for(var i = 0; i < divsToHide.length; i++){
-                for (var j = 0; j < divsToHide[i].childNodes.length; j++)
-                {
-                    if (divsToHide[i].childNodes[j] && divsToHide[i].childNodes[j].style)
-                    {
-                        divsToHide[i].childNodes[j].style.visibility = "hidden";
-                        divsToHide[i].childNodes[j].style.display = "none";
-                    }
-                }
-            }
-            var selected = add_shape_div();
-            select_shape_form(selected);
-        }
-    </script>
+      }
+      var selected = add_shape_div();
+      select_shape_form(selected);
+    }
+  </script>
 </html>
