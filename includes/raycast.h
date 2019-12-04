@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/12/04 21:44:04 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/04 22:32:45 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,11 @@ int			set_box(t_ol *ol, t_arg_box *arg);
 int			set_triangle(t_ol *ol, t_arg_triangle *arg);
 int			set_pyramid(t_ol *ol, t_arg_pyramid *arg);
 int			set_ring(t_ol *ol, t_arg_ring *arg);
+
+/*
+** Set light attributes from parser functions
+*/
+int			set_distant_light(t_ll *ll, t_arg_distant_light *arg);
 
 /*
 ** Intersection functions

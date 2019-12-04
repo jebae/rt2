@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/12/04 21:13:12 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/04 22:16:42 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,9 @@ typedef struct		s_ll
 	double			get_distance(t_vec3 *point, void *light);
 }					t_ll;
 
+/*
+** lights
+*/
 typedef struct		s_spherical_light
 {
 	t_vec3			pos;
@@ -105,6 +108,21 @@ typedef struct		s_distant_light
 	t_vec3			dir;
 	t_vec3			rot;
 }					t_distant_light;
+
+/*
+** set_light_args
+*/
+typedef struct		s_arg_distant_light
+{
+	t_vec3			dir;
+	t_vec3			rot;
+}					t_arg_distant_light;
+
+typedef struct		s_arg_spherical_light
+{
+	t_vec3			pos;
+	t_vec3			tra;
+}					t_arg_spherical_light;
 
 typedef struct		s_texels
 {
