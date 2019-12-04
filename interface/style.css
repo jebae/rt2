@@ -36,33 +36,36 @@ body {
 }
 
 .the_form_container   /* working here !!!!!!!!! */
- {
-  /* light green: #afa939
-    moss green: #587850
-    pale green: #709078 */
-  /* border: 1px solid green; */
+{
   background-color: #afa939;
   width: 50vw;
-  height: 40vw;
+  height: auto;
   position: absolute;
   left: 50%;
   top: 55%;
   transform: translate(-50%, -50%);
+  box-shadow: 0 7px 9px -6px #2b580c;
+  margin-bottom: 10vw;
 }
 
 #object_options {
   cursor: pointer;
+  color: #f8d0b0;
 }
 
 .update_me {
-  padding-top: 5vw;
   text-align: center;
-  border: 1px solid red;
+}
+
+.objects
+{
+  margin-top: 2vw;
+  margin-bottom: 2vw;
 }
 
 /* SHAPES CHOSEN TEXT */
-#chosen_shape {
-  /* border: 1px solid red; */
+#chosen_shape 
+{
   font-family: "Righteous", cursive;
   font-size: 20px;
 }
@@ -78,7 +81,7 @@ body {
 }
 
 .objects_opt /* for the select options ! */
- {
+{
   -webkit-appearance: none;
   background-color: #587850;
   outline: none;
@@ -94,11 +97,14 @@ body {
 /* generic style for each shape ! */
 .output_object {
   text-align: center;
-  margin-top: 4vw;
-  padding-bottom: 3vw;
+  margin-top: 3vw;
   color: #fdef96;
-  border: 1px solid blue;
+  border-top: 5px solid #f8d0b0;
   text-align: center;
+}
+
+.output_object h3 {
+  margin-top: 3vw;
 }
 
 .output_object form {
@@ -120,10 +126,6 @@ body {
   outline: none;
 }
 
-.span_input_complex {
-  margin-bottom: 50px !important;
-}
-
 #input_complex {
   outline: none;
   border: 1px none;
@@ -138,18 +140,59 @@ body {
   color: #709078;
 }
 
-#object_chosen {
-  border: 1px solid green;
-  text-align: center;
+#button_cone, #button_cylinder, #button_sphere, #button_rectangle
+{
+  margin-top: 2vw !important;
+  display: block;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-bottom: 2vw;
 }
 
+#button_box, #button_triangle, #button_pyramid, #button_ring
+{
+  margin-bottom: 2vw;
+}
+
+#object_chosen {
+  margin: none;
+  text-align: center;
+}
 
 /* ON / OFF OBJECTS */
 #cone_object
 {
   display: none;
 }
-
+#sphere_object
+{
+  display: none;
+}
+#rectangle_object
+{
+  display: none;
+}
+#cylinder_object
+{
+  display: none;
+}
+#ring_object
+{
+  display: none;
+}
+#pyramid_object
+{
+  display: none;
+}
+#triangle_object
+{
+  display: none;
+}
+#box_object
+{
+  display: none;
+}
 
 /* FOOTER */
 .footer {
@@ -178,10 +221,53 @@ body {
   border: none;
   line-height: 17px;
   padding: 8px 10px 8px 10px;
+  outline: none;
 }
 
 .buttons:hover {
   background: #fdef96;
   text-decoration: none;
   color: #587850;
+  outline: none;
+}
+
+/* TEXTURE IMAGES */
+img
+{
+  position: relative;
+  float: left;
+  width: 100px;
+  height: 100px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* TABLE */
+#main_textures
+{
+  position: relative;
+  display: none;
+  text-align: center;
+  /* margin: auto; */
+  color: #587850;
+  width: 100%;
+}
+
+#main_textures table  
+{
+  /* width: 100%; */
+  margin-left: 1vw;
+  padding-bottom: 15px
+}
+
+#main_textures td
+{
+  padding-left: 15px;
+  padding-bottom: 15px;
+}
+
+#main_texture table input[type=radio]
+{
+  margin-left: 0vw;
 }
