@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/11/30 16:11:11 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/04 21:13:12 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@
 # define APPROX_0			1e-6
 # define RT_MAX_THREAD		50
 # define RT_FRAME_PER_SEC	64
+# define RT_TRUE			1
+# define RT_FALSE			0
 
 typedef struct		s_mat3
 {
@@ -85,13 +87,24 @@ typedef struct		s_amb
 
 typedef struct		s_ll
 {
-	size_t			content_size;
-	t_vec3			pos;
+	//size_t			content_size;
+	void			*light;
 	t_vec3			its;
-	t_vec3			tra;
-	t_vec3			rot;
-	struct s_ll		*next;
+	t_vec3			get_dir(t_vec3 *point, void *light);
+	double			get_distance(t_vec3 *point, void *light);
 }					t_ll;
+
+typedef struct		s_spherical_light
+{
+	t_vec3			pos;
+	t_vec3			tra;
+}					t_spherical_light;
+
+typedef struct		s_distant_light
+{
+	t_vec3			dir;
+	t_vec3			rot;
+}					t_distant_light;
 
 typedef struct		s_texels
 {
@@ -129,6 +142,14 @@ typedef struct		s_ol
 	// t_vec3			rot_z;
 	// t_vec3			translation;
 }					t_ol;
+
+typedef struct		s_trace_record
+{
+	t_ray			ray;
+	t_vec3			normal;
+	t_vec3			point;
+	t_ol			*obj;
+}					t_trace_record;
 
 typedef struct 		s_sphere
 {
@@ -312,25 +333,24 @@ typedef struct		s_creecam
 
 typedef struct		s_env
 {
-	int	thread;
+	//int	thread;
 	char			*data;
 	int				k[300];
 	int				s_count;
 	int				cs;
 	int				x;
 	int				y;
+	int				y_min;
+	int				y_max;
+	int				num_lights;
+	int				num_objs;
 	t_parser		p;
 	t_mlx			w;
 	t_amb			amb;
 	t_camera		cam;
 	t_ll			*ll_lit;
 	t_ol			*ll_obj;
-	t_ll			*tp_l;
-	t_ol			*tp_o;
-	double			r;
 	t_creecam		cc;
-	int				y_min;
-	int				y_max;
 	void			**image;
 }					t_env;
 

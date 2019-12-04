@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/11/30 16:12:27 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/04 21:44:04 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,11 @@ t_vec3		find_point_from_ray(t_ray ray);
 /*
 ** Coloring functions
 */
-t_shader	compute_color(t_ray ray, t_ol *ol, t_ll *ll, t_env *e);
+t_shader	compute_color(t_trace_record *rec, t_ll *ll, t_env *e);
 void		color_pixel(int x, int y, t_shader sh, t_env *e);
 t_shader	init_shader(void);
 t_shader	shader_add(t_shader sh1, t_shader sh2);
-int			specular(t_ray ray, t_vec3 p, t_ol *ol, t_ll *ll);
+//int			specular(t_ray ray, t_vec3 p, t_ol *ol, t_ll *ll); deprecated
 t_col		color_add(t_col c1, t_col c2);
 
 /*
