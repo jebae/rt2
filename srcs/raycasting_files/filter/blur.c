@@ -51,19 +51,18 @@ static t_col		convolution(unsigned int *buf, int width)
 static void			blur(void *arg_void)
 {
 	int						i;
-	int						until;
 	t_col					rgb;
-	unsigned int			*buf;
+	unsigned int			*buf[2];
 	t_arg_buffer_th_job		*arg;
 
 	arg = (t_arg_buffer_th_job *)arg_void;
-	buf = (unsigned int *)(arg->buf[0]);
-	i = arg->offset;
-	until = i + arg->work_size;
-	while (i < until)
+	buf[0] = (unsigned int *)arg->buf[0] + arg->offset;
+	buf[1] = (unsigned int *)arg->buf[1] + arg->offset;
+	i = 0;
+	while (i < arg->work_size)
 	{
-		rgb = convolution(((unsigned int *)arg->buf[1]) + i, arg->width);
-		buf[i + arg->width * 2 + 2] = rgb_to_uint32(&rgb);
+		rgb = convolution(buf[1] + i, arg->width);
+		buf[0][i + arg->width * 2 + 2] = rgb_to_uint32(&rgb);
 		if (i % arg->width >= arg->width - 5)
 			i += 5;
 		else

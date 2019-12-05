@@ -1,6 +1,6 @@
 #include "rt.test.h"
 
-extern t_col	COLOR_SAMPLES[4];
+extern t_vec3	COLOR_SAMPLES[4];
 
 void			setup_scene(t_mlxkit *mlxkit, t_camera *cam)
 {
@@ -15,7 +15,7 @@ void			setup_scene(t_mlxkit *mlxkit, t_camera *cam)
 	cam->f_hght = WIDTH / 384;
 }
 
-static t_col*	select_color(const char *str)
+static t_vec3*	select_color(const char *str)
 {
 	if (strcmp(str, "gray") == 0)
 		return (COLOR_SAMPLES);
@@ -28,16 +28,16 @@ static t_col*	select_color(const char *str)
 	return (COLOR_SAMPLES);
 }
 
-static unsigned int	simple_shade(t_col *rgb, double n_dot_l)
+static unsigned int	simple_shade(t_vec3 *rgb, double n_dot_l)
 {
 	unsigned int	color;
 
 	n_dot_l = (n_dot_l < 0.0) ? 0.0 : n_dot_l;
-	color = rgb->r * n_dot_l;
+	color = rgb->x * n_dot_l;
 	color <<= 8;
-	color += rgb->g * n_dot_l;
+	color += rgb->y * n_dot_l;
 	color <<= 8;
-	color += rgb->b * n_dot_l;
+	color += rgb->z * n_dot_l;
 	return (color);
 }
 
@@ -53,7 +53,7 @@ void			render_intersect_test(
 	{
 		for (int j=0; j < WIDTH; j++)
 		{
-			ray = cast_ray(j, i, *cam);
+			ray = cast_ray(j, i, cam, WIDTH);
 			if (ol->intersect(ray, ol->object) != FAR)
 				img_buf[j + i * WIDTH] = 0xffffff;
 		}
@@ -75,7 +75,7 @@ void			render_normal_test(
 	{
 		for (int j=0; j < WIDTH; j++)
 		{
-			ray = cast_ray(j, i, *cam);
+			ray = cast_ray(j, i, cam, WIDTH);
 			if ((ray.t = ol->intersect(ray, ol->object)) == FAR)
 			{
 				img_buf[j + i * WIDTH] = 0x00000000;
@@ -103,7 +103,7 @@ void			render_texture_mapping_test(
 	t_vec3			n;
 	t_vec3			point;
 	t_texels		*texture;
-	t_col			texel_color;
+	t_vec3			texel_color;
 
 	texture = &ol->texture;
 	set_texels(filename, repeat, texture);
@@ -111,7 +111,7 @@ void			render_texture_mapping_test(
 	{
 		for (int j=0; j < WIDTH; j++)
 		{
-			ray = cast_ray(j, i, *cam);
+			ray = cast_ray(j, i, cam, WIDTH);
 			if ((ray.t = ol->intersect(ray, ol->object)) == FAR)
 			{
 				img_buf[j + i * WIDTH] = 0x00000000;
@@ -150,7 +150,7 @@ void			render_bump_mapping_test(
 	{
 		for (int j=0; j < WIDTH; j++)
 		{
-			ray = cast_ray(j, i, *cam);
+			ray = cast_ray(j, i, cam, WIDTH);
 			if ((ray.t = ol->intersect(ray, ol->object)) == FAR)
 			{
 				img_buf[j + i * WIDTH] = 0x00000000;
@@ -167,46 +167,23 @@ void			render_bump_mapping_test(
 	}
 }
 
-void			render_motion_blur_test(
-	unsigned int *img_buf,
-	t_camera *cam,
-	t_ol *ol,
-	const char *color
-)
+void			render_scene(int scene_num, int argc, char **argv)
 {
-	t_ray			ray;
-	t_vec3			n;
-	double			n_dot_l;
-
-	for (int i=0; i < WIDTH; i++)
-	{
-		for (int j=0; j < WIDTH; j++)
-		{
-			ray = cast_ray(j, i, *cam);
-			if ((ray.t = ol->intersect(ray, ol->object)) == FAR)
-			{
-				img_buf[j + i * WIDTH] = 0x00000000;
-				continue ;
-			}
-			n = ol->get_normal(ray, ol->object);
-			n_dot_l = v3_dotpdt(v3_scalar(ray.dir, -1.0), n);
-			img_buf[j + i * WIDTH] = simple_shade(
-				select_color(color), n_dot_l);
-		}
-	}
-	motion_blur(ol, 1, WIDTH, WIDTH, img_buf, cam, color);
-}
-
-void			render_scene(int scene_num)
-{
+	int			has_motion_blur = 0;
 	t_mlxkit	mlxkit;
 	t_env		e;
 
-	setup_scene(&mlxkit, &e.cam)
+	for (int i=3; i < argc; i++)
+	{
+		if (strcmp(argv[i], "motion") == 0)
+			has_motion_blur = 1;
+	}
+	setup_scene(&mlxkit, &e.cam);
+	init_scene(&e);
 	e.w.mp = mlxkit.p_mlx;
 	e.w.wp = mlxkit.p_win;
 	e.w.ip = mlxkit.p_img;
-	e.data = mlxkit.img_buf;
+	e.data = mlx_get_data_addr(e.w.ip, &e.w.bpp, &e.w.sl, &e.w.end);
 	switch (scene_num)
 	{
 		case 1:
@@ -215,7 +192,13 @@ void			render_scene(int scene_num)
 		default:
 			break ;
 	}
-	multi_thread(e);
-	mlx_put_image_to_window(e->w.mp, e->w.wp, e->w.ip, 0, 0);
+	if (has_motion_blur)
+		motion_blur(&e);
+	else
+		multi_thread(&e);
+	for (int i=3; i < argc; i++)
+		set_filter(argv[i], (unsigned int *)e.data, e.width, e.height);
+	mlx_put_image_to_window(e.w.mp, e.w.wp, e.w.ip, 0, 0);
+	clear_scene(&e);
 	mlx_loop(e.w.mp);
 }

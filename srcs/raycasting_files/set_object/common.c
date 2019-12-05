@@ -16,3 +16,15 @@ void		pick_axis_from_plane(t_vec3 *normal, t_mat3 *axis_mat)
 	ft_memcpy(axis_mat->arr[1], normal, sizeof(t_vec3));
 	ft_memcpy(axis_mat->arr[2], &z, sizeof(t_vec3));
 }
+
+void		init_ol(t_ol *ol)
+{
+	ol->object = NULL;
+	ol->texture.buffer = NULL;
+	ol->bump_map.buffer = NULL;
+	ol->intersect = NULL;
+	ol->get_normal = NULL;
+	ol->uv_mapping = NULL;
+	ol->translate = NULL;
+	ol->has_velocity = RT_FALSE;
+}

@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/12/04 22:16:42 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/05 18:00:36 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include <string.h>
 # include <fcntl.h>
 # include <assert.h>
-# define WIDTH		800
-# define HEIGHT 	800
+# define WIDTH		1000
+# define HEIGHT 	1000
 # define FAR		2000000.0
 # define ESC		53
 # define CONE		0
@@ -35,6 +35,7 @@
 # define RT_SUCCESS			0
 # define RT_FAIL			1
 # define APPROX_0			1e-6
+//# define RT_BIAS			1e-3
 # define RT_MAX_THREAD		50
 # define RT_FRAME_PER_SEC	64
 # define RT_TRUE			1
@@ -153,7 +154,7 @@ typedef struct		s_ol
 		void *object
 	);
 	void			(*translate)(t_vec3 *v_translate, void *object);
-	struct s_ol		*next;
+	//struct s_ol		*next;
 	// int				status;	
 	// t_vec3			rot_x;
 	// t_vec3			rot_y;
@@ -166,6 +167,7 @@ typedef struct		s_trace_record
 	t_ray			ray;
 	t_vec3			normal;
 	t_vec3			point;
+	t_vec3			color;
 	t_ol			*obj;
 }					t_trace_record;
 
@@ -353,9 +355,12 @@ typedef struct		s_env
 {
 	//int	thread;
 	char			*data;
+	int				width;
+	int				height;
+	int				num_pixels;
 	int				k[300];
 	int				s_count;
-	int				cs;
+	//int				cs;
 	int				x;
 	int				y;
 	int				y_min;

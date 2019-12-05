@@ -1,15 +1,15 @@
 #include "raycast.h"
 
-t_col			get_texel_color(t_vec2 *uv, t_texels *texels)
+t_vec3			get_texel_color(t_vec2 *uv, t_texels *texels)
 {
 	unsigned int	texel;
-	t_col			color;
+	t_vec3			color;
 
 	texel = texels->buffer[uv_to_texel_index(uv, texels)];
-	color.r = texel & 0x000000ff;
+	color.x = texel & 0x000000ff;
 	texel >>= 8;
-	color.g = texel & 0x000000ff;
+	color.y = texel & 0x000000ff;
 	texel >>= 8;
-	color.b = texel & 0x000000ff;
+	color.z = texel & 0x000000ff;
 	return (color);
 }

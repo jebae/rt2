@@ -7,112 +7,50 @@ static int		handle_fail(t_buffer_info *buf_info)
 	return (RT_FAIL);
 }
 
-static void		translate_objs_at_time(
-	t_ol *ol,
-	int num_objs,
-	double dt,
-	double t
-)
+static int		set_buffers(int num_pixels, t_buffer_info *buf_info)
 {
-	int			i;
-	double		to_mul;
-	t_vec3		v_translate;
-
-	to_mul = dt * (1.0 - t - (dt / 2.0));
-	i = 0;
-	while (i < num_objs)
-	{
-		if (ol[i].has_velocity)
-		{
-			v_translate = v3_scalar(
-				ol[i].v_translate, ol[i].init_speed * to_mul);
-			ol[i].translate(&v_translate, ol[i].object);
-		}
-		i++;
-	}
-}
-
-static void		add_translated_scene(void *arg_void)
-{
-	int						i;
-	int						until;
-	t_col					rgb;
-	t_col					*rgb_buf;
-	t_arg_buffer_th_job		*arg;
-
-	arg = (t_arg_buffer_th_job *)arg_void;
-	rgb_buf = (t_col *)arg->buf[1];
-	i = arg->offset;
-	until = i + arg->work_size;
-	while (i < until)
-	{
-		rgb = uint32_to_rgb(((unsigned int *)arg->buf[0])[i]);
-		rgb_buf[i].r += rgb.r;
-		rgb_buf[i].g += rgb.g;
-		rgb_buf[i].b += rgb.b;
-		i++;
-	}
+	buf_info->buf[0] = NULL;
+	buf_info->buf[1] = NULL;
+	if ((buf_info->buf[0] =
+		ft_memalloc(sizeof(unsigned int) * num_pixels)) == NULL)
+		return (RT_FAIL);
+	if ((buf_info->buf[1] = ft_memalloc(sizeof(t_col) * num_pixels)) == NULL)
+		return (RT_FAIL);
+	return (RT_SUCCESS);
 }
 
 static void		average(void *arg_void)
 {
 	int						i;
-	int						until;
-	unsigned int			*buf;
-	t_col					*rgb;
+	t_col					*rgb_buf;
+	unsigned int			*hex_color_buf;
 	t_arg_buffer_th_job		*arg;
 
 	arg = (t_arg_buffer_th_job *)arg_void;
-	buf = (unsigned int *)arg->buf[0];
-	i = arg->offset;
-	until = i + arg->work_size;
-	while (i < until)
+	hex_color_buf = (unsigned int *)arg->buf[0] + arg->offset;
+	rgb_buf = (t_col *)arg->buf[1] + arg->offset;
+	i = 0;
+	while (i < arg->work_size)
 	{
-		rgb = ((t_col *)arg->buf[1]) + i;
-		rgb->r /= RT_FRAME_PER_SEC;
-		rgb->g /= RT_FRAME_PER_SEC;
-		rgb->b /= RT_FRAME_PER_SEC;
-		buf[i] = rgb_to_uint32(rgb);
+		rgb_buf[i].r /= RT_FRAME_PER_SEC;
+		rgb_buf[i].g /= RT_FRAME_PER_SEC;
+		rgb_buf[i].b /= RT_FRAME_PER_SEC;
+		hex_color_buf[i] = rgb_to_uint32(rgb_buf + i);
 		i++;
 	}
 }
 
-int				motion_blur(
-	t_ol *ol,
-	int num_objs,
-	int width,
-	int height,
-	unsigned int *buffer,
-	t_camera *cam,
-	const char *color
-)
+int				motion_blur(t_env *e)
 {
-	int				i;
-	double			dt;
 	t_buffer_info	buf_info;
 
-	if ((buf_info.buf[0] =
-		ft_memalloc(sizeof(unsigned int) * width * height)) == NULL)
+	set_buffer_info(e->width, e->height, &buf_info);
+	if (set_buffers(e->num_pixels, &buf_info) == RT_FAIL)
 		return (handle_fail(&buf_info));
-	if ((buf_info.buf[1] = ft_memalloc(sizeof(t_col) * width * height)) == NULL)
-		return (RT_FAIL);
-	set_buffer_info(width, height, &buf_info);
-	dt = 1.0 / RT_FRAME_PER_SEC;
-	i = 0;
-	while (i < RT_FRAME_PER_SEC)
-	{
-		translate_objs_at_time(ol, num_objs, dt, dt * i);
-
-		/*
-		** below code will be replaced with real raytrace
-		*/
-		render_normal_test(buf_info.buf[0], cam, ol, color);
-		if (for_each_pixel(&buf_info, (void *)&add_translated_scene) == RT_FAIL)
-			return (handle_fail(&buf_info));
-		i++;
-	}
+	if (motion_blur_add_scenes(&buf_info, e) == RT_FAIL)
+		return (handle_fail(&buf_info));
 	ft_memdel((void **)&buf_info.buf[0]);
-	buf_info.buf[0] = (void *)buffer;
+	buf_info.buf[0] = (void *)e->data;
 	if (for_each_pixel(&buf_info, (void *)&average) == RT_FAIL)
 		return (handle_fail(&buf_info));
 	ft_memdel((void **)&buf_info.buf[1]);

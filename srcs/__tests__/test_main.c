@@ -4,20 +4,14 @@ static t_mlxkit		mlxkit;
 static t_camera		cam;
 static t_ol			ol;
 
-extern t_col	COLOR_SAMPLES[4];
-
-void	init_ol(void)
-{
-	ol.texture.buffer = NULL;
-	ol.bump_map.buffer = NULL;
-}
+extern t_vec3	COLOR_SAMPLES[4];
 
 void	render_test(int argc, char **argv)
 {
 	int		res;
 
 	(void)argc;
-	init_ol();
+	init_ol(&ol);
 	res = setup_object(argv[1], argv[3], &ol);
 	if (res == RT_FAIL)
 		return ;
@@ -32,8 +26,6 @@ void	render_test(int argc, char **argv)
 	else if (*(argv[2]) == 'b')
 		render_bump_mapping_test(
 			mlxkit.img_buf, &cam, &ol, argv[4], argv[5], argv[6]);
-	else if (*(argv[2]) == 'm')
-		render_motion_blur_test(mlxkit.img_buf, &cam, &ol, argv[4]);
 	set_filter(argv[argc - 1], mlxkit.img_buf, WIDTH, WIDTH);
 	mlx_put_image_to_window(mlxkit.p_mlx, mlxkit.p_win, mlxkit.p_img, 0, 0);
 	if (ol.texture.buffer)
@@ -60,11 +52,12 @@ int		main(int argc, char **argv)
 		RUN_TEST_GROUP(set_spherical_light);
 		RUN_TEST_GROUP(distant_light);
 		RUN_TEST_GROUP(spherical_light);
+		RUN_TEST_GROUP(set_trace_record);
 		UNITY_END();
 		return (0);
 	}
 	if (ft_strcmp(argv[1], "scene") == 0)
-		render_scene(atoi(argv[2]));
+		render_scene(atoi(argv[2]), argc, argv);
 	else if (argc >= 4)
 		render_test(argc, argv);
 	return (0);

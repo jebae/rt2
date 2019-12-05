@@ -31,7 +31,7 @@ TEST(distant_light, get_dir)
 TEST(distant_light, get_distance)
 {
 	distance = ll.get_distance(NULL, ll.light);
-	TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(INFINITY, distance, "get_distance");
+	TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(FAR, distance, "get_distance");
 }
 
 TEST_GROUP_RUNNER(distant_light)

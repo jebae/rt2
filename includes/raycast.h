@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/12/04 22:32:45 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/05 18:46:09 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 t_mlx		init(t_mlx *p);
 int			raycast(t_env *e);
-t_ray		cast_ray(int x, int y, t_camera cam);
+t_ray		cast_ray(int x, int y, t_camera *cam, int width);
 int			color(t_vec3 p, t_ol *ol, t_ll *ll);
 void    multi_thread(t_env *e);
 
@@ -45,8 +45,14 @@ t_vec3		v_normalise(t_vec3 u);
 t_vec3		m_mult(t_mat3 m, t_vec3 v);
 
 /*
-** Set light attributes from parser functions
+** Trace functions
 */
+void		set_trace_record(t_trace_record *rec);
+
+/*
+** Set light functions
+*/
+void		init_ll(t_ll *ll);
 int			set_distant_light(t_ll *ll, t_arg_distant_light *arg);
 int			set_spherical_light(t_ll *ll, t_arg_spherical_light *arg);
 
@@ -59,13 +65,10 @@ double		distant_light_distance(t_vec3 *point, void *light);
 double		spherical_light_distance(t_vec3 *point, void *light);
 
 /*
-** Axis
+** Set object functions
 */
+void		init_ol(t_ol *ol);
 void		pick_axis_from_plane(t_vec3 *normal, t_mat3 *axis_mat);
-
-/*
-** Set object attributes from parser functions
-*/
 int			set_sphere(t_ol *ol, t_arg_sphere *arg);
 int			set_cone(t_ol *ol, t_arg_cone *arg);
 int			set_cyl(t_ol *ol, t_arg_cyl *arg);
@@ -148,8 +151,9 @@ t_vec2		rectangle_uv_mapping(
 /*
 ** Texel functions
 */
+int				has_texel(t_ol *ol);
 int				uv_to_texel_index(t_vec2 *uv, t_texels *texels);
-t_col			get_texel_color(t_vec2 *uv, t_texels *texels);
+t_vec3			get_texel_color(t_vec2 *uv, t_texels *texels);
 t_vec3			get_bumped_normal(
 	t_vec2 *uv,
 	t_texels *texels,
@@ -192,15 +196,8 @@ int				gaussian_blur(
 /*
 ** Motion blur
 */
-int				motion_blur(
-	t_ol *ol,
-	int num_objs,
-	int width,
-	int height,
-	unsigned int *buffer,
-	t_camera *cam,
-	const char *color
-);
+int				motion_blur_add_scenes(t_buffer_info *buf_info, t_env *e);
+int				motion_blur(t_env *e);
 
 /*
 ** Translate functions

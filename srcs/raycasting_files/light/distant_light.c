@@ -13,5 +13,5 @@ double		distant_light_distance(t_vec3 *point, void *light)
 {
 	(void)point;
 	(void)light;
-	return (INFINITY);
+	return (FAR);
 }

@@ -5,17 +5,17 @@ double			to_vertex(int x, double f_width, int w_width)
 	return (x * f_width / w_width - (f_width / 2));
 }
 
-t_ray			cast_ray(int x, int y, t_camera cam)
+t_ray			cast_ray(int x, int y, t_camera *cam, int width)
 {
 	t_ray		ray;
 	t_vec3		up;
 	t_vec3		left;
 	t_vec3		forw;
 
-	ray.ori = cam.campos;
-	left = v3_scalar(cam.left, to_vertex(x, cam.f_wdth, WIDTH));
-	up = v3_scalar(cam.up, to_vertex(y, cam.f_wdth, WIDTH));
-	forw = v3_scalar (cam.forw, cam.focal_length);
+	ray.ori = cam->campos;
+	left = v3_scalar(cam->left, to_vertex(x, cam->f_wdth, width));
+	up = v3_scalar(cam->up, to_vertex(y, cam->f_wdth, width));
+	forw = v3_scalar (cam->forw, cam->focal_length);
 	left = v3_add(left, up);
 	left = v3_add(left, forw);
 	//ray.dir = v_normalise(left);
@@ -43,10 +43,7 @@ int				trace(t_env *e, t_trace_record *rec)
 	}
 	if (rec->ray.t == FAR)
 		return (RT_FALSE);
-	rec->point = find_point_from_ray(rec->ray);
-	rec->normal = rec->obj->get_normal(rec->ray, rec->obj->object);
-	// set color regarding texture_mapping
-	// set normal regarding bump_mapping
+	set_trace_record(rec);
 	return (RT_TRUE);
 }
 
@@ -69,12 +66,13 @@ int				raycast(t_env *e)
 {
 	t_trace_record	rec;
 
-	while (e->x < WIDTH)
+	e->x = 0;
+	while (e->x < e->width)
 	{
 		e->y = e->y_min;
 		while (e->y < e->y_max)
 		{
-			rec.ray = cast_ray(e->x, e->y, e->cam);
+			rec.ray = cast_ray(e->x, e->y, &e->cam, e->width);
 			if (trace(e, &rec))
 				calc_shade(e, &rec);
 			e->y++;

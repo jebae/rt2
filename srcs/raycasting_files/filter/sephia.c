@@ -13,23 +13,23 @@ static void			adjust_color(t_col *rgb)
 static void			filter(void *arg_void)
 {
 	int						i;
-	int						until;
 	t_col					rgb;
 	t_col					temp;
+	unsigned int			*buf;
 	t_arg_buffer_th_job		*arg;
 
 	arg = (t_arg_buffer_th_job *)arg_void;
-	i = arg->offset;
-	until = i + arg->work_size;
-	while (i < until)
+	buf = (unsigned int *)arg->buf[0] + arg->offset;
+	i = 0;
+	while (i < arg->work_size)
 	{
-		rgb = uint32_to_rgb(((unsigned int *)arg->buf[0])[i]);
+		rgb = uint32_to_rgb(buf[i]);
 		temp = rgb;
 		rgb.r = 0.393 * temp.r + 0.769 * temp.g + 0.189 * temp.b;
 		rgb.g = 0.349 * temp.r + 0.686 * temp.g + 0.168 * temp.b;
 		rgb.b = 0.272 * temp.r + 0.534 * temp.g + 0.131 * temp.b;
 		adjust_color(&rgb);
-		((unsigned int *)(arg->buf[0]))[i] = rgb_to_uint32(&rgb);
+		buf[i] = rgb_to_uint32(&rgb);
 		i++;
 	}
 }

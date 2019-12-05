@@ -3,16 +3,14 @@
 static void			filter(void *arg_void)
 {
 	int						i;
-	int						until;
 	t_col					rgb;
 	unsigned int			*buf;
 	t_arg_buffer_th_job		*arg;
 
 	arg = (t_arg_buffer_th_job *)arg_void;
-	buf = (unsigned int *)(arg->buf[0]);
-	i = arg->offset;
-	until = i + arg->work_size;
-	while (i < until)
+	buf = (unsigned int *)arg->buf[0] + arg->offset;
+	i = 0;
+	while (i < arg->work_size)
 	{
 		rgb = uint32_to_rgb(buf[i]);
 		rgb.r = 0xff - rgb.r;

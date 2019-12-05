@@ -12,8 +12,8 @@ void    multi_thread(t_env *e)
     while(i < MAX_THREAD)
     {
         ft_memcpy((void*)&env[i], (void*) e, sizeof(t_env));
-        env[i].y_min = i * WIDTH / MAX_THREAD;
-        env[i].y_max = (i + 1) * WIDTH / MAX_THREAD;
+        env[i].y_min = i * e->width / MAX_THREAD;
+        env[i].y_max = (i + 1) * e->width / MAX_THREAD;
 		//env[i].thread = i;
         // printf("ymin:%i\n",env[i].y_min);
         // printf("ymax:%i\n",env[i].y_max);
