@@ -45,6 +45,20 @@ t_vec3		v_normalise(t_vec3 u);
 t_vec3		m_mult(t_mat3 m, t_vec3 v);
 
 /*
+** Set light attributes from parser functions
+*/
+int			set_distant_light(t_ll *ll, t_arg_distant_light *arg);
+int			set_spherical_light(t_ll *ll, t_arg_spherical_light *arg);
+
+/*
+** Light
+*/
+t_vec3		distant_light_dir(t_vec3 *point, void *light);
+t_vec3		spherical_light_dir(t_vec3 *point, void *light);
+double		distant_light_distance(t_vec3 *point, void *light);
+double		spherical_light_distance(t_vec3 *point, void *light);
+
+/*
 ** Axis
 */
 void		pick_axis_from_plane(t_vec3 *normal, t_mat3 *axis_mat);
@@ -61,11 +75,6 @@ int			set_box(t_ol *ol, t_arg_box *arg);
 int			set_triangle(t_ol *ol, t_arg_triangle *arg);
 int			set_pyramid(t_ol *ol, t_arg_pyramid *arg);
 int			set_ring(t_ol *ol, t_arg_ring *arg);
-
-/*
-** Set light attributes from parser functions
-*/
-int			set_distant_light(t_ll *ll, t_arg_distant_light *arg);
 
 /*
 ** Intersection functions

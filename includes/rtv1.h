@@ -90,8 +90,8 @@ typedef struct		s_ll
 	//size_t			content_size;
 	void			*light;
 	t_vec3			its;
-	t_vec3			get_dir(t_vec3 *point, void *light);
-	double			get_distance(t_vec3 *point, void *light);
+	t_vec3			(*get_dir)(t_vec3 *point, void *light);
+	double			(*get_distance)(t_vec3 *point, void *light);
 }					t_ll;
 
 /*
@@ -366,8 +366,8 @@ typedef struct		s_env
 	t_mlx			w;
 	t_amb			amb;
 	t_camera		cam;
-	t_ll			*ll_lit;
-	t_ol			*ll_obj;
+	t_ll			ll_lit[5];
+	t_ol			ll_obj[20];
 	t_creecam		cc;
 	void			**image;
 }					t_env;

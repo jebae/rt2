@@ -4,6 +4,7 @@ static t_ll					ll;
 static t_distant_light		*dl;
 static t_arg_distant_light	arg;
 static t_vec3				expected_v;
+static int					res;
 
 TEST_GROUP(set_distant_light);
 
@@ -28,8 +29,8 @@ TEST(set_distant_light, valid)
 	TEST_ASSERT_EQUAL_INT_MESSAGE(RT_SUCCESS, res, "res");
 	TEST_ASSERT_EQUAL_MEMORY_MESSAGE(&expected_v, &dl->dir, sizeof(t_vec3), "dir");
 	TEST_ASSERT_EQUAL_MEMORY_MESSAGE(&arg.rot, &dl->rot, sizeof(t_vec3), "rot");
-	//TEST_ASSERT_EQUAL_INT_MESSAGE(&distant_light_dir, dl->get_dir, "get_dir");
-	//TEST_ASSERT_EQUAL_INT_MESSAGE(&distant_light_distant, dl->get_distant, "get_distant");
+	TEST_ASSERT_EQUAL_INT_MESSAGE(&distant_light_dir, ll.get_dir, "get_dir");
+	TEST_ASSERT_EQUAL_INT_MESSAGE(&distant_light_distance, ll.get_distance, "get_distant");
 }
 
 TEST(set_distant_light, dir_norm_is_0)

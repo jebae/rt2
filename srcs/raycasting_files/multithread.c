@@ -14,7 +14,7 @@ void    multi_thread(t_env *e)
         ft_memcpy((void*)&env[i], (void*) e, sizeof(t_env));
         env[i].y_min = i * WIDTH / MAX_THREAD;
         env[i].y_max = (i + 1) * WIDTH / MAX_THREAD;
-		env[i].thread = i;
+		//env[i].thread = i;
         // printf("ymin:%i\n",env[i].y_min);
         // printf("ymax:%i\n",env[i].y_max);
         pthread_create(&thread[i], NULL, (void*)raycast, &env[i]);

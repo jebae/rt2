@@ -22,6 +22,8 @@ t_col			diffuse_color(t_vec3 light_dir, t_trace_record *rec)
 	it = kd * v3_dotpdt(light_dir, rec->normal);
 	it = it < 0 ? 0 : it;
 	it = it > 1.0 ? 1.0 : it;
+
+	// ol->dif would be changed with rec->color (texture mapping support)
 	col.r = it * ol->dif.x;
 	col.g = it * ol->dif.y;
 	col.b = it * ol->dif.z;
@@ -62,7 +64,7 @@ double			send_shadow_ray(t_vec3 point, t_vec3 light_dir, t_env *e)
 	shadow_ray.dir = light_dir;
 	shadow_ray.t = FAR;
 	i = 0;
-	while (i < num_objs)
+	while (i < e->num_objs)
 	{
 		r = e->ll_obj[i].intersect(shadow_ray, e->ll_obj[i].object);
 		if (r > 0.00001 && r < shadow_ray.t)
@@ -75,7 +77,6 @@ double			send_shadow_ray(t_vec3 point, t_vec3 light_dir, t_env *e)
 t_shader		compute_color(t_trace_record *rec, t_ll *ll, t_env *e)
 {
 	t_shader	shader;
-	t_vec3		point;
 	t_vec3		light_dir;
 
 	light_dir = ll->get_dir(&rec->point, ll->light);

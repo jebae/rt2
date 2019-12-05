@@ -196,3 +196,26 @@ void			render_motion_blur_test(
 	}
 	motion_blur(ol, 1, WIDTH, WIDTH, img_buf, cam, color);
 }
+
+void			render_scene(int scene_num)
+{
+	t_mlxkit	mlxkit;
+	t_env		e;
+
+	setup_scene(&mlxkit, &e.cam)
+	e.w.mp = mlxkit.p_mlx;
+	e.w.wp = mlxkit.p_win;
+	e.w.ip = mlxkit.p_img;
+	e.data = mlxkit.img_buf;
+	switch (scene_num)
+	{
+		case 1:
+			set_scene1(&e);
+			break ;
+		default:
+			break ;
+	}
+	multi_thread(e);
+	mlx_put_image_to_window(e->w.mp, e->w.wp, e->w.ip, 0, 0);
+	mlx_loop(e.w.mp);
+}

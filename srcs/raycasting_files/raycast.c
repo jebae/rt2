@@ -18,7 +18,8 @@ t_ray			cast_ray(int x, int y, t_camera cam)
 	forw = v3_scalar (cam.forw, cam.focal_length);
 	left = v3_add(left, up);
 	left = v3_add(left, forw);
-	ray.dir = v_normalise(left);
+	//ray.dir = v_normalise(left);
+	ray.dir = v3_normalise(left);
 	ray.t = FAR;
 	return (ray);
 }
@@ -44,14 +45,18 @@ int				trace(t_env *e, t_trace_record *rec)
 		return (RT_FALSE);
 	rec->point = find_point_from_ray(rec->ray);
 	rec->normal = rec->obj->get_normal(rec->ray, rec->obj->object);
+	// set color regarding texture_mapping
+	// set normal regarding bump_mapping
 	return (RT_TRUE);
 }
 
 void			calc_shade(t_env *e, t_trace_record *rec)
 {
+	int			i;
 	t_shader	sh;
 
 	sh = init_shader();
+	i = 0;
 	while (i < e->num_lights)
 	{
 		sh = shader_add(sh, compute_color(rec, &(e->ll_lit[i]), e));

@@ -56,10 +56,16 @@ int		main(int argc, char **argv)
 		test_set_object();
 		test_for_each_pixel();
 		RUN_TEST_GROUP(translate);
+		RUN_TEST_GROUP(set_distant_light);
+		RUN_TEST_GROUP(set_spherical_light);
+		RUN_TEST_GROUP(distant_light);
+		RUN_TEST_GROUP(spherical_light);
 		UNITY_END();
 		return (0);
 	}
-	if (argc >= 4)
+	if (ft_strcmp(argv[1], "scene") == 0)
+		render_scene(atoi(argv[2]));
+	else if (argc >= 4)
 		render_test(argc, argv);
 	return (0);
 }

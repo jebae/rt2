@@ -74,6 +74,7 @@ void			render_motion_blur_test(
 	t_ol *ol,
 	const char *color
 );
+void			render_scene(int scene_num);
 
 /*
 ** texture utils
