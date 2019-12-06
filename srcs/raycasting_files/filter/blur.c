@@ -8,7 +8,7 @@ static t_col		horizontal_convolution(unsigned int *buf, int *coeffs)
 
 	ft_memset(&res, 0, sizeof(t_col));
 	i = 0;
-	while (i < 5)
+	while (i < 7)
 	{
 		rgb_pixel = uint32_to_rgb(buf[i]);
 		res.r += coeffs[i] * rgb_pixel.r;
@@ -21,30 +21,30 @@ static t_col		horizontal_convolution(unsigned int *buf, int *coeffs)
 
 static t_col		convolution(unsigned int *buf, int width)
 {
-	static int		coeffs[5] = {1, 4, 6, 4, 1};
+	static int		coeffs[7] = {1, 6, 15, 20, 15, 6, 1};
 	int				i;
-	t_col			conv[5];
+	t_col			conv[7];
 	t_col			res;
 
 	ft_memset(&res, 0, sizeof(t_col));
 	i = 0;
-	while (i < 5)
+	while (i < 7)
 	{
 		conv[i] = horizontal_convolution(buf, (int *)coeffs);
 		buf += width;
 		i++;
 	}
 	i = 0;
-	while (i < 5)
+	while (i < 7)
 	{
 		res.r += coeffs[i] * conv[i].r;
 		res.g += coeffs[i] * conv[i].g;
 		res.b += coeffs[i] * conv[i].b;
 		i++;
 	}
-	res.r /= 256;
-	res.g /= 256;
-	res.b /= 256;
+	res.r /= 4096;
+	res.g /= 4096;
+	res.b /= 4096;
 	return (res);
 }
 
@@ -62,9 +62,9 @@ static void			blur(void *arg_void)
 	while (i < arg->work_size)
 	{
 		rgb = convolution(buf[1] + i, arg->width);
-		buf[0][i + arg->width * 2 + 2] = rgb_to_uint32(&rgb);
-		if (i % arg->width >= arg->width - 5)
-			i += 5;
+		buf[0][i + arg->width * 3 + 3] = rgb_to_uint32(&rgb);
+		if (i % arg->width >= arg->width - 7)
+			i += 7;
 		else
 			i++;
 	}
@@ -79,14 +79,14 @@ int					gaussian_blur(
 	size_t			buf_size;
 	t_buffer_info	buf_info;
 
-	if (width < 5 || height < 5)
+	if (width < 7 || height < 7)
 		return (RT_SUCCESS);
 	buf_size = sizeof(unsigned int) * width * height;
 	if ((buf_info.buf[1] = ft_memalloc(buf_size)) == NULL)
 		return (RT_FAIL);
 	ft_memcpy(buf_info.buf[1], buffer, buf_size);
 	buf_info.buf[0] = buffer;
-	set_buffer_info(width, height - 4, &buf_info);
+	set_buffer_info(width, height - 6, &buf_info);
 	if (for_each_pixel(&buf_info, (void *)&blur) == RT_FAIL)
 	{
 		ft_memdel((void **)&buf_info.buf[1]);
