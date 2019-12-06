@@ -384,28 +384,21 @@ typedef struct		s_creecam
 
 typedef struct		s_env
 {
-	//int	thread;
 	char			*data;
 	int				width;
 	int				height;
 	int				num_pixels;
-	int				k[300];
-	int				s_count;
-	//int				cs;
 	int				x;
 	int				y;
 	int				y_min;
 	int				y_max;
 	int				num_lights;
 	int				num_objs;
-	t_parser		p;
 	t_mlx			w;
 	t_amb			amb;
 	t_camera		cam;
 	t_ll			ll_lit[5];
 	t_ol			ll_obj[20];
-	t_creecam		cc;
-	void			**image;
 }					t_env;
 
 #endif
