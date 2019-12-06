@@ -1,0 +1,36 @@
+#include "raycast.h"
+
+static int		validate(t_arg_sphere *arg)
+{
+	if (arg->radius <= 0.0)
+		return (RT_FAIL);
+	return (RT_SUCCESS);
+}
+
+static void		set_axis(t_mat3 *axis_mat)
+{
+	static double	axis[9] = {
+		-1.0, 0.0, 0.0,
+		0.0, -1.0, 0.0,
+		0.0, 0.0, -1.0
+	};
+
+	ft_memcpy(axis_mat, axis, sizeof(t_mat3));
+}
+
+int				set_sphere(t_ol *ol, t_arg_sphere *arg)
+{
+	t_sphere	*sphere;
+
+	if (validate(arg) == RT_FAIL)
+		return (RT_FAIL);
+	ol->intersect = &v_intersect_sp2;
+	ol->get_normal = &normal_sphere;
+    ol->uv_mapping = &sphere_uv_mapping;
+    ol->translate = &sphere_translate;
+	sphere = (t_sphere *)ol->object;
+	sphere->cen = arg->cen;
+	sphere->radius = arg->radius;
+	set_axis(&ol->axis_mat);
+	return (RT_SUCCESS);
+}

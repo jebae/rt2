@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/10/09 11:56:29 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/12/05 18:46:09 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 t_mlx		init(t_mlx *p);
 int			raycast(t_env *e);
+t_ray		cast_ray(int x, int y, t_camera *cam, int width);
 int			color(t_vec3 p, t_ol *ol, t_ll *ll);
 void    multi_thread(t_env *e);
 
@@ -39,13 +40,58 @@ t_vec3		v_cross(t_vec3 u, t_vec3 v);
 t_vec3		v_normalise(t_vec3 u);
 
 /*
+** Matrix operations
+*/
+t_vec3		m_mult(t_mat3 m, t_vec3 v);
+
+/*
+** Trace functions
+*/
+void		set_trace_record(t_trace_record *rec);
+
+/*
+** Set light functions
+*/
+void		init_ll(t_ll *ll);
+int			set_distant_light(t_ll *ll, t_arg_distant_light *arg);
+int			set_spherical_light(t_ll *ll, t_arg_spherical_light *arg);
+
+/*
+** Light
+*/
+t_vec3		distant_light_dir(t_vec3 *point, void *light);
+t_vec3		spherical_light_dir(t_vec3 *point, void *light);
+double		distant_light_distance(t_vec3 *point, void *light);
+double		spherical_light_distance(t_vec3 *point, void *light);
+
+/*
+** Set object functions
+*/
+void		init_ol(t_ol *ol);
+void		pick_axis_from_plane(t_vec3 *normal, t_mat3 *axis_mat);
+int			set_sphere(t_ol *ol, t_arg_sphere *arg);
+int			set_cone(t_ol *ol, t_arg_cone *arg);
+int			set_cyl(t_ol *ol, t_arg_cyl *arg);
+int			set_plane(t_ol *ol, t_arg_plane *arg);
+int			set_rectangle(t_ol *ol, t_arg_rectangle *arg);
+int			set_box(t_ol *ol, t_arg_box *arg);
+int			set_triangle(t_ol *ol, t_arg_triangle *arg);
+int			set_pyramid(t_ol *ol, t_arg_pyramid *arg);
+int			set_ring(t_ol *ol, t_arg_ring *arg);
+
+/*
 ** Intersection functions
 */
 double		v_intersect_sp(t_vec3 ray, t_ol *ol);
-double		v_intersect_pl(t_ray ray, t_ol *ol);
-double		v_intersect_cy(t_ray ray, t_ol *ol);
-double		v_intersect_co(t_ray ray, t_ol *ol);
-double		v_intersect_sp2(t_ray ray, t_ol *ol);
+double		v_intersect_pl(t_ray ray, void *object);
+double		v_intersect_cy(t_ray ray, void *object);
+double		v_intersect_co(t_ray ray, void *object);
+double		v_intersect_sp2(t_ray ray, void *object);
+double		v_intersect_rectangle(t_ray ray, void *object);
+double		v_intersect_box(t_ray ray, void *object);
+double		v_intersect_triangle(t_ray ray, void *object);
+double		v_intersect_pyramid(t_ray ray, void *object);
+double		v_intersect_ring(t_ray ray, void *object);
 double		intersection(t_ray ray, t_ol *ol);
 double		find_closest_intersection(double a, double b, double c);
 t_vec3		find_point_from_ray(t_ray ray);
@@ -53,20 +99,124 @@ t_vec3		find_point_from_ray(t_ray ray);
 /*
 ** Coloring functions
 */
-t_shader	compute_color(t_ray ray, t_ol *ol, t_ll *ll, t_env *e);
+t_shader	compute_color(t_trace_record *rec, t_ll *ll, t_env *e);
 void		color_pixel(int x, int y, t_shader sh, t_env *e);
 t_shader	init_shader(void);
 t_shader	shader_add(t_shader sh1, t_shader sh2);
-int			specular(t_ray ray, t_vec3 p, t_ol *ol, t_ll *ll);
+//int			specular(t_ray ray, t_vec3 p, t_ol *ol, t_ll *ll); deprecated
 t_col		color_add(t_col c1, t_col c2);
 
 /*
 ** Normal related functions
 */
-t_vec3		normal_sphere(t_ray ray, t_ol *ol);
-t_vec3		normal_cylinder(t_ray ray, t_ol *ol);
-t_vec3		normal_cone(t_ray ray, t_ol *ol);
+t_vec3		normal_sphere(t_ray ray, void *object);
+t_vec3		normal_cylinder(t_ray ray, void *object);
+t_vec3		normal_cone(t_ray ray, void *object);
+t_vec3	    normal_plane(t_ray ray, void *object);
+t_vec3		normal_rectangle(t_ray ray, void *object);
+t_vec3		normal_box(t_ray ray, void *object);
+t_vec3		normal_triangle(t_ray ray, void *object);
+t_vec3		normal_pyramid(t_ray ray, void *object);
+t_vec3		normal_ring(t_ray ray, void *object);
 t_vec3		get_normal(t_ray ray, t_ol *ol);
+
+/*
+** UV mapping functions
+*/
+t_vec2		sphere_uv_mapping(
+	t_vec3 point,
+	t_mat3 *axis_mat,
+	t_texels *texels,
+	void *object
+);
+t_vec2		cyl_uv_mapping(
+	t_vec3 point,
+	t_mat3 *axis_mat,
+	t_texels *texels,
+	void *object
+);
+t_vec2		cone_uv_mapping(
+	t_vec3 point,
+	t_mat3 *axis_mat,
+	t_texels *texels,
+	void *object
+);
+t_vec2		rectangle_uv_mapping(
+	t_vec3 point,
+	t_mat3 *axis_mat,
+	t_texels *texels,
+	void *object
+);
+
+/*
+** Texel functions
+*/
+int				has_texel(t_ol *ol);
+int				uv_to_texel_index(t_vec2 *uv, t_texels *texels);
+t_vec3			get_texel_color(t_vec2 *uv, t_texels *texels);
+t_vec3			get_bumped_normal(
+	t_vec2 *uv,
+	t_texels *texels,
+	t_vec3 *normal,
+	t_mat3 *axis_mat
+);
+
+/*
+** Buffer functions
+*/
+int				for_each_pixel(
+	t_buffer_info *buf_info,
+	void *(*func)(void *arg)
+);
+
+/*
+** Filter functions
+*/
+void			set_buffer_info(
+	int width,
+	int height,
+	t_buffer_info *buf_info
+);
+int				sephia_filter(
+	unsigned int *buffer,
+	int width,
+	int height
+);
+int				negative_filter(
+	unsigned int *buffer,
+	int width,
+	int height
+);
+int				gaussian_blur(
+	unsigned int *buffer,
+	int width,
+	int height
+);
+
+/*
+** Motion blur
+*/
+int				motion_blur_add_scenes(t_buffer_info *buf_info, t_env *e);
+int				motion_blur(t_env *e);
+
+/*
+** Translate functions
+*/
+void			sphere_translate(t_vec3 *v_translate, void *object);
+void			cone_translate(t_vec3 *v_translate, void *object);
+void			cyl_translate(t_vec3 *v_translate, void *object);
+void			plane_translate(t_vec3 *v_translate, void *object);
+void			rectangle_translate(t_vec3 *v_translate, void *object);
+void			box_translate(t_vec3 *v_translate, void *object);
+void			triangle_translate(t_vec3 *v_translate, void *object);
+void			pyramid_translate(t_vec3 *v_translate, void *object);
+void			ring_translate(t_vec3 *v_translate, void *object);
+
+/*
+** RGB functions
+*/
+t_col			uint32_to_rgb(unsigned int n);
+unsigned int	rgb_to_uint32(t_col *rgb);
 
 /*
 ** Object manipulation functions

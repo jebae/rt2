@@ -49,30 +49,30 @@ int			is_matrix_empty(t_vec3 x, t_vec3 y, t_vec3 z)
 	return (0);
 }
 
-t_ol		*apply_extra(t_ol *ll_obj)
-{
-	t_ol	*start;
+// t_ol		*apply_extra(t_ol *ll_obj)
+// {
+// 	t_ol	*start;
 
-	start = ll_obj;
-	while (ll_obj)
-	{
-		if (!(is_vector_empty(ll_obj->tra)))
-			ll_obj->cen = translation(ll_obj->cen, ll_obj->tra);
-		if (!is_matrix_empty(ll_obj->rot_x, ll_obj->rot_y, ll_obj->rot_z))
-		{
-			if (m3_det(ll_obj->rot_x, ll_obj->rot_y, ll_obj->rot_z) < 0.9\
-				&& m3_det(ll_obj->rot_x, ll_obj->rot_y, ll_obj->rot_z) > 1.1)
-			{
-				ft_putendl("A rotation matrix has poor arguments\
-						, it has been ignored");
-			}
-			else
-			{
-				ll_obj->dir = rotation(ll_obj->dir, ll_obj->rot_x,\
-				ll_obj->rot_y, ll_obj->rot_z);
-			}
-		}
-		ll_obj = ll_obj->next;
-	}
-	return (start);
-}
+// 	start = ll_obj;
+// 	while (ll_obj)
+// 	{
+// 		if (!(is_vector_empty(ll_obj->tra)))
+// 			ll_obj->cen = translation(ll_obj->cen, ll_obj->tra);
+// 		if (!is_matrix_empty(ll_obj->rot_x, ll_obj->rot_y, ll_obj->rot_z))
+// 		{
+// 			if (m3_det(ll_obj->rot_x, ll_obj->rot_y, ll_obj->rot_z) < 0.9\
+// 				&& m3_det(ll_obj->rot_x, ll_obj->rot_y, ll_obj->rot_z) > 1.1)
+// 			{
+// 				ft_putendl("A rotation matrix has poor arguments\
+// 						, it has been ignored");
+// 			}
+// 			else
+// 			{
+// 				ll_obj->dir = rotation(ll_obj->dir, ll_obj->rot_x,\
+// 				ll_obj->rot_y, ll_obj->rot_z);
+// 			}
+// 		}
+// 		ll_obj = ll_obj->next;
+// 	}
+// 	return (start);
+// }

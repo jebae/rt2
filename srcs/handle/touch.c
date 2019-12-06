@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:58:55 by mhernand          #+#    #+#             */
-/*   Updated: 2019/10/09 11:33:19 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/11/15 16:54:36 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int		key_release(int key, t_env *e)
 int		touch(t_env *e)
 {
 	if (e->k[ESC] == 1)
-		quit(e);
+		exit(0);
+		// quit(e);
 	return (0);
 }

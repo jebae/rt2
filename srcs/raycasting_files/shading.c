@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   shading.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/23 10:52:58 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/10/09 11:29:43 by mhernand         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "raycast.h"
 
 t_vec3			find_point_from_ray(t_ray ray)
@@ -22,85 +10,80 @@ t_vec3			find_point_from_ray(t_ray ray)
 	return (point);
 }
 
-t_col			diffuse_color(t_vec3 normal, t_vec3 light, t_ol *ol)
+t_col			diffuse_color(t_vec3 light_dir, t_trace_record *rec)
 {
 	t_col		col;
 	double		it;
 	double		kd;
-	t_vec3		n_light;
 
 	kd = 1;
-	n_light = v3_normalise(light);
-	it = kd * v3_dotpdt(n_light, normal);
+	it = kd * v3_dotpdt(light_dir, rec->normal);
 	it = it < 0 ? 0 : it;
 	it = it > 1.0 ? 1.0 : it;
-	col.r = it * ol->dif.x;
-	col.g = it * ol->dif.y;
-	col.b = it * ol->dif.z;
+
+	// ol->dif would be changed with rec->color (texture mapping support)
+	col.r = it * rec->color.x;
+	col.g = it * rec->color.y;
+	col.b = it * rec->color.z;
 	return (col);
 }
 
-t_col			specular_color(t_ray ray, t_vec3 normal, t_ol *ol, t_ll *ll)
+t_col			specular_color(t_vec3 light_dir, t_trace_record *rec, t_ll *ll)
 {
-	t_vec3		l;
 	double		tmp;
 	t_vec3		r;
 	t_vec3		v;
 	t_col		c;
+	t_ol		*ol;
 
-	v = v3_scalar(ray.dir, -1);
-	l = v3_frompoints(find_point_from_ray(ray), ll->pos); //to change
-	l = v3_normalise(l);
-	tmp = v3_dotpdt(normal, l);
+	ol = rec->obj;
+	v = v3_scalar(rec->ray.dir, -1);
+	tmp = v3_dotpdt(rec->normal, light_dir);
 	tmp = tmp < 0 ? 0 : tmp;
-	r = v3_scalar(normal, 2 * tmp);
-	r = v3_sub(r, l);
+	r = v3_scalar(rec->normal, 2 * tmp);
+	r = v3_sub(r, light_dir);
 	tmp = v3_dotpdt(r, v);
 	tmp = tmp < 0 ? 0 : tmp;
-	tmp = pow(tmp, ol->specpower);
-	c.r = tmp * ll->its.x * ol->specvalue / 100;
-	c.g = tmp * ll->its.y * ol->specvalue / 100;
-	c.b = tmp * ll->its.z * ol->specvalue / 100;
+	tmp = pow(tmp, ol->specpower) * ol->specvalue / 100;
+	c.r = tmp * ll->its.x;
+	c.g = tmp * ll->its.y;
+	c.b = tmp * ll->its.z;
 	return (c);
 }
 
-double			send_shadow_ray(t_vec3 point, t_vec3 light, t_ol *ol)
+double			send_shadow_ray(t_trace_record *rec, t_vec3 light_dir, t_env *e)
 {
-	t_ray		shadow_ray;
-	t_ol		*tp_o;
+	int			i;
 	double		r;
+	t_ray		shadow_ray;
 
 	r = 0;
-	shadow_ray.ori = point;
-	shadow_ray.dir = v3_scalar(light, 1);
-	shadow_ray.dir = v3_normalise(light);
-	shadow_ray.t = v3_norm(light);
-	tp_o = ol;
-	while (tp_o != NULL)
+	shadow_ray.ori = rec->point;
+	shadow_ray.dir = light_dir;
+	shadow_ray.t = FAR;
+	i = 0;
+	while (i < e->num_objs)
 	{
-		r = intersection(shadow_ray, tp_o);
-		if (r > 0.00001)
-			shadow_ray.t = r < shadow_ray.t ? r : shadow_ray.t;
-		tp_o = tp_o->next;
+		r = e->ll_obj[i].intersect(shadow_ray, e->ll_obj[i].object);
+		if (r > 0.00001 && r < shadow_ray.t)
+			shadow_ray.t = r;
+		i++;
 	}
 	return (shadow_ray.t);
 }
 
-t_shader		compute_color(t_ray ray, t_ol *ol, t_ll *ll, t_env *e)
+t_shader		compute_color(t_trace_record *rec, t_ll *ll, t_env *e)
 {
 	t_shader	shader;
-	t_vec3		point;
-	t_vec3		normal;
-	t_vec3		light;
+	t_vec3		light_dir;
 
-	point = find_point_from_ray(ray);
-	normal = get_normal(ray, ol);
-	light = v3_frompoints(point, ll->pos); //to change
+	(void)e;
+	light_dir = ll->get_dir(&rec->point, ll->light);
 	shader = init_shader();
-	if (send_shadow_ray(point, light, e->ll_obj) < v3_norm(light))
+	if (send_shadow_ray(rec, light_dir, e) <
+		ll->get_distance(&rec->point, ll->light))
 		return (shader);
-	light = v3_normalise(light);
-	shader.diff = color_add(shader.diff, diffuse_color(normal, light, ol));
-	shader.spec = color_add(shader.spec, specular_color(ray, normal, ol, ll));
+	shader.diff = color_add(shader.diff, diffuse_color(light_dir, rec));
+	shader.spec = color_add(shader.spec, specular_color(light_dir, rec, ll));
 	return (shader);
 }

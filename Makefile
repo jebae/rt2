@@ -6,7 +6,7 @@
 #    By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 07:58:15 by mhernand          #+#    #+#              #
-#    Updated: 2019/11/08 11:47:36 by sabonifa         ###   ########.fr        #
+#    Updated: 2019/11/29 16:34:03 by jebae            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,6 @@ SRCS = main.c\
 	raycasting_files/shading.c\
 	raycasting_files/vector_op.c\
 	raycasting_files/vector_op_2.c\
-	raycasting_files/object_manipulation.c\
 	raycasting_files/start_rtv1.c\
 	raycasting_files/matrix_check.c\
 	raycasting_files/multithread.c
@@ -73,7 +72,7 @@ L_FOLD = libft/
 
 L_TARG = libft
 
-V_FOLD = vectors/
+V_FOLD = libvector/
 
 V_TARG = libvector
 
@@ -106,6 +105,26 @@ $(L_TARG):
 	@make -C $(V_FOLD) all
 	@make -C $(M_FOLD)
 
+TEST_INC = $(INC) -I srcs/__tests__ -I $(UNITY_PATH)/include
+
+TEST_LIB = libft/libft.a libvector/libvector.a $(LIBMLX) $(UNITY_PATH)/lib/libunity.a
+
+TEST_SRC = srcs/handle/*.c\
+	srcs/raycasting_files/*.c\
+	srcs/raycasting_files/*/*.c\
+	srcs/__tests__/*/*.c\
+	srcs/__tests__/*.c\
+
+CONTENTS = contents
+
+$(CONTENTS) :
+	curl -L https://www.dropbox.com/sh/a85xtpsaokehu2y/AAAMvXC4yQKq0aAubntNgynFa?dl=1 -o $@.zip
+	unzip $@.zip -x / -d $@
+	rm -f $@.zip
+
+test : $(CONTENTS)
+	$(CC) -D UNITY_INCLUDE_CONFIG_H $(CFLAGS) $(TEST_INC) $(TEST_LIB) $(TEST_SRC) -o test
+
 clean:
 	@make -C $(L_FOLD) clean
 	@make -C $(V_FOLD) clean
@@ -122,4 +141,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean all libft
+.PHONY: all clean fclean all libft test
