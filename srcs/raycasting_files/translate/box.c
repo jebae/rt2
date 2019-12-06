@@ -1,4 +1,4 @@
-#include "raycast.h"
+#include "rt.h"
 
 void		box_translate(t_vec3 *v_translate, void *object)
 {

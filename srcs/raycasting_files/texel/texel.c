@@ -1,4 +1,4 @@
-#include "raycast.h"
+#include "rt.h"
 
 int		uv_to_texel_index(t_vec2 *uv, t_texels *texels)
 {

@@ -1,8 +1,8 @@
-#include "raycast.h"
+#include "rt.h"
 
 static int		validate(t_arg_distant_light *arg)
 {
-	if (v3_norm(arg->dir) < APPROX_0)
+	if (v3_norm(arg->dir) < RT_APPROX_0)
 		return (RT_FAIL);
 	return (RT_SUCCESS);
 }

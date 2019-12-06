@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycast.h"
+#include "rt.h"
 
 t_vec3	normal_sphere(t_ray ray, void *object)
 {

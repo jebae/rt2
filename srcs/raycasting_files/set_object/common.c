@@ -1,4 +1,4 @@
-#include "raycast.h"
+#include "rt.h"
 
 void		pick_axis_from_plane(t_vec3 *normal, t_mat3 *axis_mat)
 {
@@ -8,7 +8,7 @@ void		pick_axis_from_plane(t_vec3 *normal, t_mat3 *axis_mat)
 	t_vec3			z;
 
 	x = v3_cross(*normal, xw);
-	if (v3_norm2(x) < APPROX_0)
+	if (v3_norm2(x) < RT_APPROX_0)
 		x = v3_cross(*normal, yw);
 	x = v3_normalise(x);
 	z = v3_cross(x, *normal);
@@ -17,6 +17,7 @@ void		pick_axis_from_plane(t_vec3 *normal, t_mat3 *axis_mat)
 	ft_memcpy(axis_mat->arr[2], &z, sizeof(t_vec3));
 }
 
+// not using in production
 void		init_ol(t_ol *ol)
 {
 	ol->object = NULL;

@@ -43,25 +43,14 @@ int				main(int argc, char **argv)
 	t_parser	p;
 	t_env		e;
 	int			ret;
-	int			fd;
 
-	ft_bzero(&p, sizeof(p));
-	ft_bzero(&e, sizeof(e));
-	if (argc != 2)
-		errors(&e, 0);
-	fd = open(argv[1], O_RDWR);
-	if (fd < 0)
-		errors(&e, 1);
-	if ((ret = parser(&e, &p, fd)) != 0)
-		error(&e, &p, ret);
-	if (!(e.w.mp = mlx_init()) \
-			|| !(e.w.wp = mlx_new_window(e.w.mp, WIDTH, HEIGHT, "RTv1")))
-		errors(&e, 2);
-	if (!(e.w.ip = mlx_new_image(e.w.mp, WIDTH, HEIGHT)))
-		errors(&e, 2);
-	if (!(e.data = mlx_get_data_addr(e.w.ip, &e.w.bpp, &e.w.sl, &e.w.end)))
-		errors(&e, 2);
-	start_rtv1(&e);
-	mlx_loop(e.w.mp);
+	while (1)
+	{
+		parse(&p, argv[1]);
+		// function to copy data from "p" to "e"
+		// setup_camera -> save data to use in renderer
+		// if (difference of xml file)
+		//		multithread(e);
+	}
 	return (0);
 }
