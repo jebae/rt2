@@ -1,4 +1,4 @@
-#include "raycast.h"
+#include "rt.h"
 
 static double	get_plane_intersection_t(t_ray *ray, t_ring *ring)
 {

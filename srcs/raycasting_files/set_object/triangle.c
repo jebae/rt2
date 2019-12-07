@@ -1,13 +1,13 @@
-#include "raycast.h"
+#include "rt.h"
 
 static int		validate(t_arg_triangle *arg)
 {
 	t_vec3		v;
 
-	if (v3_norm2(arg->ab) < APPROX_0 || v3_norm2(arg->ac) < APPROX_0)
+	if (v3_norm2(arg->ab) < RT_APPROX_0 || v3_norm2(arg->ac) < RT_APPROX_0)
 		return (RT_FAIL);
 	v = v3_cross(arg->ab, arg->ac);
-	if (v3_norm2(v) < APPROX_0)
+	if (v3_norm2(v) < RT_APPROX_0)
 		return (RT_FAIL);
 	return (RT_SUCCESS);
 }

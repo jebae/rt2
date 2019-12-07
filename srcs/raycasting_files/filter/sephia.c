@@ -1,4 +1,4 @@
-#include "raycast.h"
+#include "rt.h"
 
 static void			adjust_color(t_col *rgb)
 {

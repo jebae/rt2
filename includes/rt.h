@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/05 17:29:11 by jebae             #+#    #+#             */
-/*   Updated: 2019/04/07 16:45:24 by jebae            ###   ########.fr       */
+/*   Created: 2019/07/25 12:13:39 by mhernand          #+#    #+#             */
+/*   Updated: 2019/12/06 19:18:30 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef RT_H
+# define RT_H
 
-void	ft_memdel(void **ap)
-{
-	if (ap == NULL || *ap == NULL)
-		return ;
-	free(*ap);
-	*ap = NULL;
-}
+# include "raycast.h"
+# include "parse.h"
+
+int					quit(t_env *e);
+int					main(int argc, char **argv);
+
+#endif

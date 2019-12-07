@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycast.h"
+#include "rt.h"
 
 t_vec3		translation(t_vec3 pos, t_vec3 trans)
 {

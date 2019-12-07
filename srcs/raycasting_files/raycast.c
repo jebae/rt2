@@ -1,4 +1,4 @@
-#include "raycast.h"
+#include "rt.h"
 
 double			to_vertex(int x, double f_width, int w_width)
 {

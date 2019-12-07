@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "rtv1.h"
-#include "raycast.h"
+#include "rt.h"
 
 t_env	*setup_camera(t_env *e)
 {

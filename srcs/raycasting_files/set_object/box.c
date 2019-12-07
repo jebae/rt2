@@ -1,10 +1,10 @@
-#include "raycast.h"
+#include "rt.h"
 
 static int		validate(t_arg_box *arg)
 {
-	if (v3_norm2(arg->a) < APPROX_0 || v3_norm2(arg->b) < APPROX_0 ||
-		ft_abs_double(v3_dotpdt(arg->a, arg->b)) > APPROX_0 ||
-		arg->norm_c < APPROX_0)
+	if (v3_norm2(arg->a) < RT_APPROX_0 || v3_norm2(arg->b) < RT_APPROX_0 ||
+		ft_abs_double(v3_dotpdt(arg->a, arg->b)) > RT_APPROX_0 ||
+		arg->norm_c < RT_APPROX_0)
 		return (RT_FAIL);
 	return (RT_SUCCESS);
 }

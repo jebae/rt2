@@ -1,4 +1,4 @@
-#include "raycast.h"
+#include "rt.h"
 
 static int		validate(t_arg_sphere *arg)
 {

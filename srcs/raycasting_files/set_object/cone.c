@@ -1,11 +1,11 @@
-#include "raycast.h"
+#include "rt.h"
 
 static int		validate(t_arg_cone *arg)
 {
 	if (arg->angle <= 0.0 || arg->angle >= 90 ||
-		v3_norm2(arg->axis) < APPROX_0 ||
+		v3_norm2(arg->axis) < RT_APPROX_0 ||
 		arg->upper_height < 0.0 || arg->lower_height < 0.0 ||
-		(arg->upper_height < APPROX_0 && arg->lower_height < APPROX_0))
+		(arg->upper_height < RT_APPROX_0 && arg->lower_height < RT_APPROX_0))
 		return (RT_FAIL);
 	return (RT_SUCCESS);
 }

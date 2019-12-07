@@ -1,4 +1,4 @@
-#include "raycast.h"
+#include "rt.h"
 
 void			set_trace_record(t_trace_record *rec)
 {

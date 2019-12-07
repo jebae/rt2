@@ -1,4 +1,4 @@
-#include "raycast.h"
+#include "rt.h"
 
 static t_vec2	get_bump(t_vec2 *uv, t_texels *texels)
 {

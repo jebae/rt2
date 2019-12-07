@@ -1,4 +1,4 @@
-#include "raycast.h"
+#include "rt.h"
 
 static double	get_t(double *ray_ori, double *ray_dir, double *vmax)
 {

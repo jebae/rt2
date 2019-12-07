@@ -1,4 +1,4 @@
-#include "raycast.h"
+#include "rt.h"
 
 t_vec3			get_texel_color(t_vec2 *uv, t_texels *texels)
 {

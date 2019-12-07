@@ -1,4 +1,4 @@
-#include "raycast.h"
+#include "rt.h"
 
 t_vec2			cyl_uv_mapping(
 	t_vec3 point,

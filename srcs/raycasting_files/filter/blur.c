@@ -1,4 +1,4 @@
-#include "raycast.h"
+#include "rt.h"
 
 static t_col		horizontal_convolution(unsigned int *buf, int *coeffs)
 {
