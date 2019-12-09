@@ -1,4 +1,4 @@
-#include "raycast.h"
+#include "rt.h"
 
 t_vec3			find_point_from_ray(t_ray ray)
 {

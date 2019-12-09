@@ -1,4 +1,4 @@
-#include "raycast.h"
+#include "rt.h"
 
 static void		set_arg_th_job(
 	t_buffer_info *buf_info,

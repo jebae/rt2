@@ -1,10 +1,10 @@
-#include "raycast.h"
+#include "rt.h"
 
 static int		validate(t_arg_pyramid *arg)
 {
-	if (v3_norm2(arg->u) < APPROX_0 || v3_norm2(arg->v) < APPROX_0 ||
-		ft_abs_double(v3_dotpdt(arg->u, arg->v)) > APPROX_0 ||
-		arg->height < APPROX_0)
+	if (v3_norm2(arg->u) < RT_APPROX_0 || v3_norm2(arg->v) < RT_APPROX_0 ||
+		ft_abs_double(v3_dotpdt(arg->u, arg->v)) > RT_APPROX_0 ||
+		arg->height < RT_APPROX_0)
 		return (RT_FAIL);
 	return (RT_SUCCESS);
 }

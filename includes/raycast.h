@@ -6,38 +6,20 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/12/05 18:46:09 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/06 19:18:34 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYCAST_H
 # define RAYCAST_H
-# include <mlx.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <math.h>
-# include <pthread.h>
-# include "rtv1.h"
-# include "rtv1_parser.h"
-#include <stdio.h>
+
+# include "rt_struct.h"
 
 t_mlx		init(t_mlx *p);
 int			raycast(t_env *e);
 t_ray		cast_ray(int x, int y, t_camera *cam, int width);
 int			color(t_vec3 p, t_ol *ol, t_ll *ll);
 void    multi_thread(t_env *e);
-
-/*
-** Vector operations
-*/
-t_vec3		create_pt(double x, double y, double z);
-t_vec3		v3_frompoints(t_vec3 ori, t_vec3 dest);
-t_vec3		v_add(t_vec3 u, t_vec3 v, char c);
-t_vec3		v_mult(t_vec3 u, double k);
-double		v_scal(t_vec3 u, t_vec3 v);
-double		v_norm(t_vec3 u);
-t_vec3		v_cross(t_vec3 u, t_vec3 v);
-t_vec3		v_normalise(t_vec3 u);
 
 /*
 ** Matrix operations
@@ -52,7 +34,7 @@ void		set_trace_record(t_trace_record *rec);
 /*
 ** Set light functions
 */
-void		init_ll(t_ll *ll);
+void		init_ll(t_ll *ll); // not using in production
 int			set_distant_light(t_ll *ll, t_arg_distant_light *arg);
 int			set_spherical_light(t_ll *ll, t_arg_spherical_light *arg);
 
@@ -67,7 +49,7 @@ double		spherical_light_distance(t_vec3 *point, void *light);
 /*
 ** Set object functions
 */
-void		init_ol(t_ol *ol);
+void		init_ol(t_ol *ol); // not using in production
 void		pick_axis_from_plane(t_vec3 *normal, t_mat3 *axis_mat);
 int			set_sphere(t_ol *ol, t_arg_sphere *arg);
 int			set_cone(t_ol *ol, t_arg_cone *arg);

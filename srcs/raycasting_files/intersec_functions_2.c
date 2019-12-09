@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycast.h"
+#include "rt.h"
 
 double	find_closest_intersection(double a, double b, double c)
 {

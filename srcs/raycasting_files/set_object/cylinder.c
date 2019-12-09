@@ -1,8 +1,8 @@
-#include "raycast.h"
+#include "rt.h"
 
 static int		validate(t_arg_cyl *arg)
 {
-	if (arg->radius <= 0 || v3_norm2(arg->axis) < APPROX_0 ||
+	if (arg->radius <= 0 || v3_norm2(arg->axis) < RT_APPROX_0 ||
 		arg->height <= 0)
 		return (RT_FAIL);
 	return (RT_SUCCESS);

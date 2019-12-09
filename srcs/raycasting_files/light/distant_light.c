@@ -1,4 +1,4 @@
-#include "raycast.h"
+#include "rt.h"
 
 t_vec3		distant_light_dir(t_vec3 *point, void *light)
 {

@@ -1,4 +1,4 @@
-#include "raycast.h"
+#include "rt.h"
 
 t_vec3		m_mult(t_mat3 m, t_vec3 v)
 {

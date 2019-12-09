@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycast.h"
+#include "rt.h"
 
 t_vec3		create_pt(double x, double y, double z)
 {

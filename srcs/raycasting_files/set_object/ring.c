@@ -1,9 +1,9 @@
-#include "raycast.h"
+#include "rt.h"
 
 static int		validate(t_arg_ring *arg)
 {
-	if (arg->r1 < 0.0 || arg->r2 < APPROX_0 || arg->r1 >= arg->r2 ||
-		v3_norm2(arg->normal) < APPROX_0)
+	if (arg->r1 < 0.0 || arg->r2 < RT_APPROX_0 || arg->r1 >= arg->r2 ||
+		v3_norm2(arg->normal) < RT_APPROX_0)
 		return (RT_FAIL);
 	return (RT_SUCCESS);
 }

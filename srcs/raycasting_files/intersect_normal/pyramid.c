@@ -1,4 +1,4 @@
-#include "raycast.h"
+#include "rt.h"
 
 double			v_intersect_pyramid(t_ray ray, void *object)
 {
