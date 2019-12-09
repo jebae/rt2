@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 12:01:39 by mhernand          #+#    #+#             */
-/*   Updated: 2019/11/12 14:05:06 by sabonifa         ###   ########.fr       */
+/*   Updated: 2019/12/09 17:05:01 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ t_vec3		rotation(t_vec3 axis, t_vec3 rotx, t_vec3 roty, t_vec3 rotz)
 {
 	t_vec3	new;
 
-	rotx = v_mult(rotx, 0.01);
-	roty = v_mult(roty, 0.01);
-	rotz = v_mult(rotz, 0.01);
+	rotx = v3_scalar(rotx, 0.01);
+	roty = v3_scalar(roty, 0.01);
+	rotz = v3_scalar(rotz, 0.01);
 	new.x = rotx.x * axis.x + roty.x * axis.y + rotz.x * axis.z;
 	new.y = rotx.y * axis.x + roty.y * axis.y + rotz.y * axis.z;
 	new.z = rotx.z * axis.x + roty.z * axis.y + rotz.z * axis.z;

@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/12/06 19:18:34 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/09 18:01:24 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,44 +144,6 @@ t_vec3			get_bumped_normal(
 );
 
 /*
-** Buffer functions
-*/
-int				for_each_pixel(
-	t_buffer_info *buf_info,
-	void *(*func)(void *arg)
-);
-
-/*
-** Filter functions
-*/
-void			set_buffer_info(
-	int width,
-	int height,
-	t_buffer_info *buf_info
-);
-int				sephia_filter(
-	unsigned int *buffer,
-	int width,
-	int height
-);
-int				negative_filter(
-	unsigned int *buffer,
-	int width,
-	int height
-);
-int				gaussian_blur(
-	unsigned int *buffer,
-	int width,
-	int height
-);
-
-/*
-** Motion blur
-*/
-int				motion_blur_add_scenes(t_buffer_info *buf_info, t_env *e);
-int				motion_blur(t_env *e);
-
-/*
 ** Translate functions
 */
 void			sphere_translate(t_vec3 *v_translate, void *object);
@@ -193,6 +155,12 @@ void			box_translate(t_vec3 *v_translate, void *object);
 void			triangle_translate(t_vec3 *v_translate, void *object);
 void			pyramid_translate(t_vec3 *v_translate, void *object);
 void			ring_translate(t_vec3 *v_translate, void *object);
+
+/*
+** Cel shading functions
+*/
+double			round_n_dot_l(double n_dot_l);
+int				cel_shading(t_env *e);
 
 /*
 ** RGB functions

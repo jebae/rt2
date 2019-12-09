@@ -12,62 +12,27 @@
 # include <sys/types.h>
 # include "libft.h"
 # include "libvector.h"
+# include "libimg.h"
 /*
 # include <complex.h>
 # include <assert.h>
 */
 #include <stdio.h> // test only
 
-# define WIDTH		1000
-# define HEIGHT 	1000
-# define FAR		2000000.0
-# define ESC		53
-# define RT_SUCCESS			0
-# define RT_FAIL			1
-# define RT_APPROX_0		1e-6
-# define RT_MAX_THREAD		50
-# define RT_FRAME_PER_SEC	64
-# define RT_TRUE			1
-# define RT_FALSE			0
-
-/*
-** Parser struct
-*/
-typedef struct	s_mem
-{
-	void	*m;
-	size_t	usize;
-	size_t	tsize;
-}				t_mem;
-
-typedef struct	s_str
-{
-	char		*buf;
-	char		*line;
-	char		*number;
-	char		*sub_number;
-	char		*word;
-	char		*word2;
-	char		*time;
-	int			op_cl;
-}				t_str;
-
-typedef struct	s_parse
-{
-	t_mem		mem;
-	t_camera	cam;
-	t_ol		*ob;
-	t_ll		*li;
-	t_str		str;
-	struct stat	att;
-	unsigned int	flag;
-	unsigned int	number;
-	int			ret;
-	int			line;
-	int			index;
-	int			l_ind;
-	int			fd;
-}				t_parse;
+# define WIDTH						1000
+# define HEIGHT 					1000
+# define FAR						2000000.0
+# define ESC						53
+# define RT_SUCCESS					0
+# define RT_FAIL					1
+# define RT_APPROX_0				1e-6
+# define RT_MAX_THREAD				50
+# define RT_TRUE					1
+# define RT_FALSE					0
+# define RT_ENV_MASK_CEL_SHADING	1 << 0
+# define RT_ENV_MASK_NO_SHADOW		1 << 1
+# define RT_ENV_MASK_NO_SPECULAR	1 << 2
+# define RT_ENV_MASK_ROUND_N_DOT_L	1 << 3
 
 /*
 ** Renderer struct
@@ -394,11 +359,51 @@ typedef struct		s_env
 	int				y_max;
 	int				num_lights;
 	int				num_objs;
+	int				mask;
 	t_mlx			w;
 	t_amb			amb;
 	t_camera		cam;
 	t_ll			ll_lit[5];
 	t_ol			ll_obj[20];
 }					t_env;
+
+/*
+** Parser struct
+*/
+typedef struct	s_mem
+{
+	void	*m;
+	size_t	usize;
+	size_t	tsize;
+}				t_mem;
+
+typedef struct	s_str
+{
+	char		*buf;
+	char		*line;
+	char		*number;
+	char		*sub_number;
+	char		*word;
+	char		*word2;
+	char		*time;
+	int			op_cl;
+}				t_str;
+
+typedef struct	s_parse
+{
+	t_mem		mem;
+	t_camera	cam;
+	t_ol		*ob;
+	t_ll		*li;
+	t_str		str;
+	struct stat	att;
+	unsigned int	flag;
+	unsigned int	number;
+	int			ret;
+	int			line;
+	int			index;
+	int			l_ind;
+	int			fd;
+}				t_parse;
 
 #endif

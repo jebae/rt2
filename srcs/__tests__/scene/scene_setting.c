@@ -7,6 +7,7 @@ void		init_scene(t_env *e)
 	e->num_pixels = e->width * e->height;
 	e->num_objs = 0;
 	e->num_lights = 0;
+	e->mask = 0;
 	for (int i=0; i < 20; i++)
 		init_ol(e->ll_obj + i);
 	for (int i=0; i < 5; i++)

@@ -120,9 +120,4 @@ int				setup_triangle(const char *cast_num, t_ol *ol);
 */
 void			test_set_object(void);
 
-/*
-** buffer
-*/
-void			test_for_each_pixel(void);
-
 #endif

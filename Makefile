@@ -6,7 +6,7 @@
 #    By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 07:58:15 by mhernand          #+#    #+#              #
-#    Updated: 2019/11/29 16:34:03 by jebae            ###   ########.fr        #
+#    Updated: 2019/12/09 17:23:23 by jebae            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = rtv1
 
 CFLAGS = -Wall -Werror -Wextra -Ofast #-fsanitize=address
 
-INC = -I includes/
+INC = -I includes/ -I libft/ -I libvector/ -I parser/includes/ -I libimg/includes/
 
 CC = gcc
 
@@ -24,28 +24,6 @@ OBJ_DIR = objects
 
 SRCS = main.c\
 	handle/touch.c\
-	parser_files/parser.c\
-	parser_files/verify_specs_setup.c\
-	parser_files/spec_reset.c\
-	parser_files/verify_shapes.c\
-	parser_files/verify_onearg.c\
-	parser_files/verify_threeargs.c\
-	parser_files/verify_uniform_args.c\
-	parser_files/verify_obj_voc.c\
-	parser_files/verify_obj_voc_checker.c\
-	parser_files/verify_spec_voc.c\
-	parser_files/debugger.c\
-	parser_files/debugger_two.c\
-	parser_files/debugger_three.c\
-	parser_files/verify_oneargs_partwo.c\
-	parser_files/verify_threeargs_partwo.c\
-	parser_files/verify_threeargs_parthree.c\
-	parser_files/verify_threeargs_partfour.c\
-	parser_files/verify_threeargs_partfive.c\
-	parser_files/globals_and_set_vocab.c\
-	parser_files/verify_shapes_two.c\
-	parser_files/create_links.c\
-	parser_files/last_checks.c\
 	raycasting_files/color_op.c\
 	raycasting_files/get_normal.c\
 	raycasting_files/intersec_functions.c\
@@ -107,7 +85,7 @@ $(L_TARG):
 
 TEST_INC = $(INC) -I srcs/__tests__ -I $(UNITY_PATH)/include
 
-TEST_LIB = libft/libft.a libvector/libvector.a $(LIBMLX) $(UNITY_PATH)/lib/libunity.a
+TEST_LIB = libft/libft.a libvector/libvector.a $(LIBMLX) $(UNITY_PATH)/lib/libunity.a libimg/libimg.a
 
 TEST_SRC = srcs/handle/*.c\
 	srcs/raycasting_files/*.c\

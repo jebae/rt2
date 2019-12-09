@@ -169,17 +169,16 @@ void			render_bump_mapping_test(
 
 void			render_scene(int scene_num, int argc, char **argv)
 {
-	int			has_motion_blur = 0;
 	t_mlxkit	mlxkit;
 	t_env		e;
 
-	for (int i=3; i < argc; i++)
-	{
-		if (strcmp(argv[i], "motion") == 0)
-			has_motion_blur = 1;
-	}
 	setup_scene(&mlxkit, &e.cam);
 	init_scene(&e);
+	for (int i=1; i < argc; i++)
+	{
+		if (strcmp(argv[i], "cel") == 0)
+			e.mask |= RT_ENV_MASK_CEL_SHADING;
+	}
 	e.w.mp = mlxkit.p_mlx;
 	e.w.wp = mlxkit.p_win;
 	e.w.ip = mlxkit.p_img;
@@ -192,8 +191,8 @@ void			render_scene(int scene_num, int argc, char **argv)
 		default:
 			break ;
 	}
-	if (has_motion_blur)
-		motion_blur(&e);
+	if (e.mask & RT_ENV_MASK_CEL_SHADING)
+		cel_shading(&e);
 	else
 		multi_thread(&e);
 	for (int i=3; i < argc; i++)

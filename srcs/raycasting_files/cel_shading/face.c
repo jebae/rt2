@@ -1,6 +1,6 @@
 #include "raycast.h"
 
-double		cel_shade_manipulate(double n_dot_l)
+double		round_n_dot_l(double n_dot_l)
 {
 	static double		cos_60 = 0.5;
 	static double		cos_75 = 0.25881904510252074;

@@ -46,13 +46,13 @@ int		main(int argc, char **argv)
 	{
 		UNITY_BEGIN();
 		test_set_object();
-		test_for_each_pixel();
 		RUN_TEST_GROUP(translate);
 		RUN_TEST_GROUP(set_distant_light);
 		RUN_TEST_GROUP(set_spherical_light);
 		RUN_TEST_GROUP(distant_light);
 		RUN_TEST_GROUP(spherical_light);
 		RUN_TEST_GROUP(set_trace_record);
+		RUN_TEST_GROUP(round_n_dot_l);
 		UNITY_END();
 		return (0);
 	}
