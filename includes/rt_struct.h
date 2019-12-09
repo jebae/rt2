@@ -19,8 +19,8 @@
 */
 #include <stdio.h> // test only
 
-# define WIDTH						1000
-# define HEIGHT 					1000
+# define WIDTH						800
+# define HEIGHT 					600
 # define FAR						2000000.0
 # define ESC						53
 # define RT_SUCCESS					0
@@ -349,7 +349,6 @@ typedef struct		s_creecam
 
 typedef struct		s_env
 {
-	char			*data;
 	int				width;
 	int				height;
 	int				num_pixels;
@@ -360,6 +359,8 @@ typedef struct		s_env
 	int				num_lights;
 	int				num_objs;
 	int				mask;
+	char			*data;
+	char			*img_buf;
 	t_mlx			w;
 	t_amb			amb;
 	t_camera		cam;

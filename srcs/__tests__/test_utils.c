@@ -26,8 +26,8 @@ void		init_mlxkit(t_mlxkit *mlxkit)
 	endian = MLX_ENDIAN;
 	width = WIDTH;
 	mlxkit->p_mlx = mlx_init();
-	mlxkit->p_win = mlx_new_window(mlxkit->p_mlx, width, width, "RT");
-	mlxkit->p_img = mlx_new_image(mlxkit->p_mlx, width, width);
+	mlxkit->p_win = mlx_new_window(mlxkit->p_mlx, width, HEIGHT, "RT");
+	mlxkit->p_img = mlx_new_image(mlxkit->p_mlx, width, HEIGHT);
 	mlxkit->img_buf = (unsigned int *)mlx_get_data_addr(mlxkit->p_img, &bpp, &width, &endian);
 	mlx_key_hook(mlxkit->p_win, &mlxkit_key_press, mlxkit);
 }

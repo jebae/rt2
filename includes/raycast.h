@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/12/09 18:01:24 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/09 22:10:16 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 t_mlx		init(t_mlx *p);
 int			raycast(t_env *e);
-t_ray		cast_ray(int x, int y, t_camera *cam, int width);
+t_ray		cast_ray(int x, int y, t_env *e);
 int			color(t_vec3 p, t_ol *ol, t_ll *ll);
 void    multi_thread(t_env *e);
 
@@ -161,6 +161,16 @@ void			ring_translate(t_vec3 *v_translate, void *object);
 */
 double			round_n_dot_l(double n_dot_l);
 int				cel_shading(t_env *e);
+
+/*
+** Anti-aliasing functions
+*/
+int				anti_aliasing(
+	unsigned int *after,
+	unsigned int *before,
+	int width,
+	int height
+);
 
 /*
 ** RGB functions

@@ -2,7 +2,12 @@
 
 extern t_vec3	COLOR_SAMPLES[4];
 
-void			setup_scene(t_mlxkit *mlxkit, t_camera *cam)
+void			setup_scene(
+	t_mlxkit *mlxkit,
+	t_camera *cam,
+	int width,
+	int height
+)
 {
 	init_mlxkit(mlxkit);
 	cam->campos = (t_vec3){0.0, 0.0, -1.0};
@@ -11,8 +16,8 @@ void			setup_scene(t_mlxkit *mlxkit, t_camera *cam)
 	cam->up = (t_vec3){0.0, 1.0, 0.0};
 	cam->forw = (t_vec3){0.0, 0.0, 1.0};
 	cam->focal_length = 1.0;
-	cam->f_wdth = WIDTH / 384;
-	cam->f_hght = WIDTH / 384;
+	cam->f_wdth = width / 384;
+	cam->f_hght = height / 384;
 }
 
 static t_vec3*	select_color(const char *str)
@@ -43,7 +48,7 @@ static unsigned int	simple_shade(t_vec3 *rgb, double n_dot_l)
 
 void			render_intersect_test(
 	unsigned int *img_buf,
-	t_camera *cam,
+	t_env *e,
 	t_ol *ol
 )
 {
@@ -51,9 +56,9 @@ void			render_intersect_test(
 
 	for (int i=0; i < WIDTH; i++)
 	{
-		for (int j=0; j < WIDTH; j++)
+		for (int j=0; j < HEIGHT; j++)
 		{
-			ray = cast_ray(j, i, cam, WIDTH);
+			ray = cast_ray(j, i, e);
 			if (ol->intersect(ray, ol->object) != FAR)
 				img_buf[j + i * WIDTH] = 0xffffff;
 		}
@@ -62,7 +67,7 @@ void			render_intersect_test(
 
 void			render_normal_test(
 	unsigned int *img_buf,
-	t_camera *cam,
+	t_env *e,
 	t_ol *ol,
 	const char *color
 )
@@ -75,7 +80,7 @@ void			render_normal_test(
 	{
 		for (int j=0; j < WIDTH; j++)
 		{
-			ray = cast_ray(j, i, cam, WIDTH);
+			ray = cast_ray(j, i, e);
 			if ((ray.t = ol->intersect(ray, ol->object)) == FAR)
 			{
 				img_buf[j + i * WIDTH] = 0x00000000;
@@ -91,7 +96,7 @@ void			render_normal_test(
 
 void			render_texture_mapping_test(
 	unsigned int *img_buf,
-	t_camera *cam,
+	t_env *e,
 	t_ol *ol,
 	const char *filename,
 	const char *repeat
@@ -111,7 +116,7 @@ void			render_texture_mapping_test(
 	{
 		for (int j=0; j < WIDTH; j++)
 		{
-			ray = cast_ray(j, i, cam, WIDTH);
+			ray = cast_ray(j, i, e);
 			if ((ray.t = ol->intersect(ray, ol->object)) == FAR)
 			{
 				img_buf[j + i * WIDTH] = 0x00000000;
@@ -130,7 +135,7 @@ void			render_texture_mapping_test(
 
 void			render_bump_mapping_test(
 	unsigned int *img_buf,
-	t_camera *cam,
+	t_env *e,
 	t_ol *ol,
 	const char *filename,
 	const char *repeat,
@@ -150,7 +155,7 @@ void			render_bump_mapping_test(
 	{
 		for (int j=0; j < WIDTH; j++)
 		{
-			ray = cast_ray(j, i, cam, WIDTH);
+			ray = cast_ray(j, i, e);
 			if ((ray.t = ol->intersect(ray, ol->object)) == FAR)
 			{
 				img_buf[j + i * WIDTH] = 0x00000000;
@@ -172,9 +177,9 @@ void			render_scene(int scene_num, int argc, char **argv)
 	t_mlxkit	mlxkit;
 	t_env		e;
 
-	setup_scene(&mlxkit, &e.cam);
 	init_scene(&e);
-	for (int i=1; i < argc; i++)
+	setup_scene(&mlxkit, &e.cam, e.width, e.height);
+	for (int i=3; i < argc; i++)
 	{
 		if (strcmp(argv[i], "cel") == 0)
 			e.mask |= RT_ENV_MASK_CEL_SHADING;
@@ -182,7 +187,7 @@ void			render_scene(int scene_num, int argc, char **argv)
 	e.w.mp = mlxkit.p_mlx;
 	e.w.wp = mlxkit.p_win;
 	e.w.ip = mlxkit.p_img;
-	e.data = mlx_get_data_addr(e.w.ip, &e.w.bpp, &e.w.sl, &e.w.end);
+	e.img_buf = mlx_get_data_addr(e.w.ip, &e.w.bpp, &e.w.sl, &e.w.end);
 	switch (scene_num)
 	{
 		case 1:
@@ -195,8 +200,10 @@ void			render_scene(int scene_num, int argc, char **argv)
 		cel_shading(&e);
 	else
 		multi_thread(&e);
+	//ft_memcpy(e.img_buf, e.data, sizeof(unsigned int) * e.num_pixels);
+	anti_aliasing((unsigned int *)e.img_buf, (unsigned int *)e.data, e.width / 2, e.height / 2);
 	for (int i=3; i < argc; i++)
-		set_filter(argv[i], (unsigned int *)e.data, e.width, e.height);
+		set_filter(argv[i], (unsigned int *)e.img_buf, e.width / 2, e.height / 2);
 	mlx_put_image_to_window(e.w.mp, e.w.wp, e.w.ip, 0, 0);
 	clear_scene(&e);
 	mlx_loop(e.w.mp);
