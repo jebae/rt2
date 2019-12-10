@@ -173,12 +173,6 @@ int				anti_aliasing(
 );
 
 /*
-** RGB functions
-*/
-t_col			uint32_to_rgb(unsigned int n);
-unsigned int	rgb_to_uint32(t_col *rgb);
-
-/*
 ** Object manipulation functions
 */
 t_vec3		translation(t_vec3 pos, t_vec3 trans);

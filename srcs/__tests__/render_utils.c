@@ -187,7 +187,8 @@ void			render_scene(int scene_num, int argc, char **argv)
 	e.w.mp = mlxkit.p_mlx;
 	e.w.wp = mlxkit.p_win;
 	e.w.ip = mlxkit.p_img;
-	e.img_buf = mlx_get_data_addr(e.w.ip, &e.w.bpp, &e.w.sl, &e.w.end);
+	//e.img_buf = mlx_get_data_addr(e.w.ip, &e.w.bpp, &e.w.sl, &e.w.end);
+	e.img_buf = (char *)mlxkit.img_buf;
 	switch (scene_num)
 	{
 		case 1:
@@ -200,7 +201,6 @@ void			render_scene(int scene_num, int argc, char **argv)
 		cel_shading(&e);
 	else
 		multi_thread(&e);
-	//ft_memcpy(e.img_buf, e.data, sizeof(unsigned int) * e.num_pixels);
 	anti_aliasing((unsigned int *)e.img_buf, (unsigned int *)e.data, e.width / 2, e.height / 2);
 	for (int i=3; i < argc; i++)
 		set_filter(argv[i], (unsigned int *)e.img_buf, e.width / 2, e.height / 2);

@@ -1,21 +1,28 @@
 #include "rt.h"
 
-/*
 static unsigned int		average_hex(unsigned int *p, int width)
 {
+	int				i;
 	unsigned int	hex;
+	t_im_rgb		rgb[4];
 
-	(void)width;
-	hex = *p;
-	hex = ((*p & 0x000000ff) + (*(p + 1) & 0x000000ff) +
-		(*(p + width) & 0x000000ff) + (*(p + width + 1) & 0x000000ff)) / 4;
-	hex += ((*p & 0x0000ff00) + (*(p + 1) & 0x0000ff00) +
-		(*(p + width) & 0x0000ff00) + (*(p + width + 1) & 0x0000ff00)) / 4;
-	hex += ((*p & 0x00ff0000) + (*(p + 1) & 0x00ff0000) +
-		(*(p + width) & 0x00ff0000) + (*(p + width + 1) & 0x00ff0000)) / 4;
+	rgb[0] = im_hex2rgb(*p);
+	rgb[1] = im_hex2rgb(*(p + 1));
+	rgb[2] = im_hex2rgb(*(p + width));
+	rgb[3] = im_hex2rgb(*(p + width + 1));
+	hex = 0;
+	i = 0;
+	while (i < 2)
+	{
+		hex += (rgb[0].arr[i] + rgb[1].arr[i] +
+			rgb[2].arr[i] + rgb[3].arr[i]) / 4;
+		hex <<= 8;
+		i++;
+	}
+	hex += (rgb[0].arr[i] + rgb[1].arr[i] +
+		rgb[2].arr[i] + rgb[3].arr[i]) / 4;
 	return (hex);
 }
-*/
 
 static void				average(void *arg_void)
 {
@@ -30,8 +37,7 @@ static void				average(void *arg_void)
 	i = 0;
 	while (i < arg->worksize)
 	{
-		//after[i] = average_hex(before + (i % arg->width) * 2, arg->width * 2);
-		after[i] = *(before + (i % arg->width) * 2);
+		after[i] = average_hex(before + (i % arg->width) * 2, arg->width * 2);
 		if (i % arg->width == arg->width - 1)
 			before += arg->width * 4;
 		i++;

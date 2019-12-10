@@ -4,8 +4,8 @@ void		init_scene(t_env *e)
 {
 	e->width = WIDTH * 2;
 	e->height = HEIGHT * 2;
-	e->data = ft_memalloc(sizeof(unsigned int) * e->width * e->height);
 	e->num_pixels = e->width * e->height;
+	e->data = ft_memalloc(sizeof(unsigned int) * e->num_pixels);
 	e->num_objs = 0;
 	e->num_lights = 0;
 	e->mask = 0;
