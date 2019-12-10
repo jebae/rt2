@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/12/06 19:18:34 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/09 22:10:16 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 t_mlx		init(t_mlx *p);
 int			raycast(t_env *e);
-t_ray		cast_ray(int x, int y, t_camera *cam, int width);
+t_ray		cast_ray(int x, int y, t_env *e);
 int			color(t_vec3 p, t_ol *ol, t_ll *ll);
 void    multi_thread(t_env *e);
 
@@ -144,44 +144,6 @@ t_vec3			get_bumped_normal(
 );
 
 /*
-** Buffer functions
-*/
-int				for_each_pixel(
-	t_buffer_info *buf_info,
-	void *(*func)(void *arg)
-);
-
-/*
-** Filter functions
-*/
-void			set_buffer_info(
-	int width,
-	int height,
-	t_buffer_info *buf_info
-);
-int				sephia_filter(
-	unsigned int *buffer,
-	int width,
-	int height
-);
-int				negative_filter(
-	unsigned int *buffer,
-	int width,
-	int height
-);
-int				gaussian_blur(
-	unsigned int *buffer,
-	int width,
-	int height
-);
-
-/*
-** Motion blur
-*/
-int				motion_blur_add_scenes(t_buffer_info *buf_info, t_env *e);
-int				motion_blur(t_env *e);
-
-/*
 ** Translate functions
 */
 void			sphere_translate(t_vec3 *v_translate, void *object);
@@ -195,10 +157,20 @@ void			pyramid_translate(t_vec3 *v_translate, void *object);
 void			ring_translate(t_vec3 *v_translate, void *object);
 
 /*
-** RGB functions
+** Cel shading functions
 */
-t_col			uint32_to_rgb(unsigned int n);
-unsigned int	rgb_to_uint32(t_col *rgb);
+double			round_n_dot_l(double n_dot_l);
+int				cel_shading(t_env *e);
+
+/*
+** Anti-aliasing functions
+*/
+int				anti_aliasing(
+	unsigned int *after,
+	unsigned int *before,
+	int width,
+	int height
+);
 
 /*
 ** Object manipulation functions

@@ -6,7 +6,7 @@ static t_vec3		velocity;
 static void		setup_case1(t_ol *ol)
 {
 	velocity = (t_vec3){-1.0, 1.0, 0.0};
-    arg.cen = (t_vec3){0.0, 0.0, 2.0};
+    arg.cen = (t_vec3){0.0, -1.0, 2.0};
     arg.radius = 1.0;
 
 	ol->has_velocity = 1;

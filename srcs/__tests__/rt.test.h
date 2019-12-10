@@ -42,28 +42,33 @@ void			clear_mlxkit(t_mlxkit *mlxkit);
 /*
 ** render utils
 */
-void			setup_scene(t_mlxkit *mlxkit, t_camera *cam);
+void			setup_scene(
+	t_mlxkit *mlxkit,
+	t_camera *cam,
+	int width,
+	int height
+);
 void			render_intersect_test(
 	unsigned int *img_buf,
-	t_camera *cam,
+	t_env *e,
 	t_ol *ol
 );
 void			render_normal_test(
 	unsigned int *img_buf,
-	t_camera *cam,
+	t_env *e,
 	t_ol *ol,
 	const char *color
 );
 void			render_texture_mapping_test(
 	unsigned int *img_buf,
-	t_camera *cam,
+	t_env *e,
 	t_ol *ol,
 	const char *texture_file_name,
 	const char *repeat
 );
 void			render_bump_mapping_test(
 	unsigned int *img_buf,
-	t_camera *cam,
+	t_env *e,
 	t_ol *ol,
 	const char *filename,
 	const char *repeat,
@@ -119,10 +124,5 @@ int				setup_triangle(const char *cast_num, t_ol *ol);
 ** set_object
 */
 void			test_set_object(void);
-
-/*
-** buffer
-*/
-void			test_for_each_pixel(void);
 
 #endif

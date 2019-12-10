@@ -49,37 +49,22 @@ t_shader	shader_add(t_shader sh1, t_shader sh2)
 
 void		color_pixel(int x, int y, t_shader sh, t_env *e)
 {
-	t_col	c;
+	t_col			c;
+	unsigned int	*hex;
 
 	c = sh.diff;
 	c = color_add(sh.diff, sh.spec);
 	c = color_add(c, e->amb.col);
+	hex = (unsigned int *)e->data + y * e->width + x;
+	*hex = c.r;
+	*hex <<= 8;
+	*hex += c.g;
+	*hex <<= 8;
+	*hex += c.b;
+	/*
 	e->data[0 + x * (e->w.bpp / 8) + y * e->w.sl] = c.b;
 	e->data[1 + x * (e->w.bpp / 8) + y * e->w.sl] = c.g;
 	e->data[2 + x * (e->w.bpp / 8) + y * e->w.sl] = c.r;
 	e->data[3 + x * (e->w.bpp / 8) + y * e->w.sl] = 0;
-}
-
-t_col		uint32_to_rgb(unsigned int n)
-{
-	t_col	rgb;
-
-	rgb.b = n & 0x000000ff;
-	n >>= 8;
-	rgb.g = n & 0x000000ff;
-	n >>= 8;
-	rgb.r = n & 0x000000ff;
-	return (rgb);
-}
-
-unsigned int	rgb_to_uint32(t_col *rgb)
-{
-	unsigned int	n;
-
-	n = rgb->r;
-	n <<= 8;
-	n += rgb->g;
-	n <<= 8;
-	n += rgb->b;
-	return (n);
+	*/
 }

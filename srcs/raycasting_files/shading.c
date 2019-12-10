@@ -10,18 +10,23 @@ t_vec3			find_point_from_ray(t_ray ray)
 	return (point);
 }
 
-t_col			diffuse_color(t_vec3 light_dir, t_trace_record *rec)
+t_col			diffuse_color(
+	t_vec3 light_dir,
+	t_trace_record *rec,
+	int round_n_dot_l_bit
+)
 {
 	t_col		col;
 	double		it;
 	double		kd;
 
 	kd = 1;
-	it = kd * v3_dotpdt(light_dir, rec->normal);
+	it = v3_dotpdt(light_dir, rec->normal);
+	if (round_n_dot_l_bit)
+		it = round_n_dot_l(it);
+	it *= kd;
 	it = it < 0 ? 0 : it;
 	it = it > 1.0 ? 1.0 : it;
-
-	// ol->dif would be changed with rec->color (texture mapping support)
 	col.r = it * rec->color.x;
 	col.g = it * rec->color.y;
 	col.b = it * rec->color.z;
@@ -80,10 +85,13 @@ t_shader		compute_color(t_trace_record *rec, t_ll *ll, t_env *e)
 	(void)e;
 	light_dir = ll->get_dir(&rec->point, ll->light);
 	shader = init_shader();
-	if (send_shadow_ray(rec, light_dir, e) <
+	if (!(e->mask & RT_ENV_MASK_NO_SHADOW) &&
+		send_shadow_ray(rec, light_dir, e) <
 		ll->get_distance(&rec->point, ll->light))
 		return (shader);
-	shader.diff = color_add(shader.diff, diffuse_color(light_dir, rec));
-	shader.spec = color_add(shader.spec, specular_color(light_dir, rec, ll));
+	shader.diff = color_add(shader.diff,
+		diffuse_color(light_dir, rec, e->mask & RT_ENV_MASK_ROUND_N_DOT_L));
+	if (!(e->mask & RT_ENV_MASK_NO_SPECULAR))
+		shader.spec = color_add(shader.spec, specular_color(light_dir, rec, ll));
 	return (shader);
 }

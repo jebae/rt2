@@ -1,13 +1,13 @@
 #include "rt.test.h"
 
 static t_mlxkit		mlxkit;
-static t_camera		cam;
 static t_ol			ol;
 
 extern t_vec3	COLOR_SAMPLES[4];
 
 void	render_test(int argc, char **argv)
 {
+	t_env	e;
 	int		res;
 
 	(void)argc;
@@ -15,18 +15,20 @@ void	render_test(int argc, char **argv)
 	res = setup_object(argv[1], argv[3], &ol);
 	if (res == RT_FAIL)
 		return ;
-	setup_scene(&mlxkit, &cam);
+	e.width = WIDTH;
+	e.height = HEIGHT;
+	setup_scene(&mlxkit, &e.cam, e.width, e.height);
 	if (*(argv[2]) == 'i')
-		render_intersect_test(mlxkit.img_buf, &cam, &ol);
+		render_intersect_test(mlxkit.img_buf, &e, &ol);
 	else if (*(argv[2]) == 'n')
-		render_normal_test(mlxkit.img_buf, &cam, &ol, argv[4]);
+		render_normal_test(mlxkit.img_buf, &e, &ol, argv[4]);
 	else if (*(argv[2]) == 't')
 		render_texture_mapping_test(
-			mlxkit.img_buf, &cam, &ol, argv[4], argv[5]);
+			mlxkit.img_buf, &e, &ol, argv[4], argv[5]);
 	else if (*(argv[2]) == 'b')
 		render_bump_mapping_test(
-			mlxkit.img_buf, &cam, &ol, argv[4], argv[5], argv[6]);
-	set_filter(argv[argc - 1], mlxkit.img_buf, WIDTH, WIDTH);
+			mlxkit.img_buf, &e, &ol, argv[4], argv[5], argv[6]);
+	set_filter(argv[argc - 1], mlxkit.img_buf, e.width, e.height);
 	mlx_put_image_to_window(mlxkit.p_mlx, mlxkit.p_win, mlxkit.p_img, 0, 0);
 	if (ol.texture.buffer)
 		free(ol.texture.buffer);
@@ -46,13 +48,13 @@ int		main(int argc, char **argv)
 	{
 		UNITY_BEGIN();
 		test_set_object();
-		test_for_each_pixel();
 		RUN_TEST_GROUP(translate);
 		RUN_TEST_GROUP(set_distant_light);
 		RUN_TEST_GROUP(set_spherical_light);
 		RUN_TEST_GROUP(distant_light);
 		RUN_TEST_GROUP(spherical_light);
 		RUN_TEST_GROUP(set_trace_record);
+		RUN_TEST_GROUP(round_n_dot_l);
 		UNITY_END();
 		return (0);
 	}

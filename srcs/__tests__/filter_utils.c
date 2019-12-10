@@ -8,9 +8,11 @@ void	set_filter(
 )
 {
 	if (strcmp(filter, "sephia") == 0)
-		sephia_filter(buffer, width, height);
+		im_sephia(buffer, width, height);
 	else if (strcmp(filter, "negative") == 0)
-		negative_filter(buffer, width, height);
+		im_negative(buffer, width, height);
 	else if (strcmp(filter, "blur") == 0)
-		gaussian_blur(buffer, width, height);
+		im_gaussian_blur(buffer, width, height);
+	else if (strcmp(filter, "gray") == 0)
+		im_gray_scale(buffer, width, height);
 }
