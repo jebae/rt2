@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/26 12:32:44 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/12/05 15:11:11 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/10 15:19:13 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,7 @@ void		color_pixel(int x, int y, t_shader sh, t_env *e)
 	t_col			c;
 	unsigned int	*hex;
 
-	c = sh.diff;
-	c = color_add(sh.diff, sh.spec);
-	c = color_add(c, e->amb.col);
+	c = color_add(sh.amb, color_add(sh.diff, sh.spec));
 	hex = (unsigned int *)e->data + y * e->width + x;
 	*hex = c.r;
 	*hex <<= 8;

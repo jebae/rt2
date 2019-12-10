@@ -1,5 +1,15 @@
 #include "rt.h"
 
+t_vec3			find_point_from_ray(t_ray ray)
+{
+	t_vec3		point;
+
+	point.x = ray.ori.x + ray.dir.x * ray.t;
+	point.y = ray.ori.y + ray.dir.y * ray.t;
+	point.z = ray.ori.z + ray.dir.z * ray.t;
+	return (point);
+}
+
 void			set_trace_record(t_trace_record *rec)
 {
 	t_vec2		uv;

@@ -19,8 +19,8 @@
 */
 #include <stdio.h> // test only
 
-# define WIDTH						800
-# define HEIGHT 					600
+# define WIDTH						1600
+# define HEIGHT 					1200
 # define FAR						2000000.0
 # define ESC						53
 # define RT_SUCCESS					0
@@ -58,6 +58,7 @@ typedef struct		s_col
 
 typedef struct		s_shader
 {
+	t_col			amb;
 	t_col			diff;
 	t_col			spec;
 }					t_shader;
@@ -75,12 +76,6 @@ typedef struct		s_camera
 	double			f_wdth;
 	double			f_hght;
 }					t_camera;
-
-typedef struct		s_amb
-{
-	t_col			col;
-	int				specpower;
-}					t_amb;
 
 typedef struct		s_ll
 {
@@ -135,7 +130,6 @@ typedef struct		s_ol
 	int				specpower;
 	int				specvalue;
 	t_vec3			dif;
-	//t_vec3			v_translate;
 	t_texels		texture;
 	t_texels		bump_map;
 	t_mat3			axis_mat;
@@ -360,7 +354,7 @@ typedef struct		s_env
 	char			*data;
 	char			*img_buf;
 	t_mlx			w;
-	t_amb			amb;
+	t_vec3			amb;
 	t_camera		cam;
 	t_ll			ll_lit[5];
 	t_ol			ll_obj[20];

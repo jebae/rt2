@@ -1,15 +1,5 @@
 #include "rt.h"
 
-t_vec3			find_point_from_ray(t_ray ray)
-{
-	t_vec3		point;
-
-	point.x = ray.ori.x + ray.dir.x * ray.t;
-	point.y = ray.ori.y + ray.dir.y * ray.t;
-	point.z = ray.ori.z + ray.dir.z * ray.t;
-	return (point);
-}
-
 t_col			diffuse_color(
 	t_vec3 light_dir,
 	t_trace_record *rec,
@@ -82,16 +72,14 @@ t_shader		compute_color(t_trace_record *rec, t_ll *ll, t_env *e)
 	t_shader	shader;
 	t_vec3		light_dir;
 
-	(void)e;
 	light_dir = ll->get_dir(&rec->point, ll->light);
 	shader = init_shader();
 	if (!(e->mask & RT_ENV_MASK_NO_SHADOW) &&
 		send_shadow_ray(rec, light_dir, e) <
 		ll->get_distance(&rec->point, ll->light))
 		return (shader);
-	shader.diff = color_add(shader.diff,
-		diffuse_color(light_dir, rec, e->mask & RT_ENV_MASK_ROUND_N_DOT_L));
+	shader.diff = diffuse_color(light_dir, rec, e->mask & RT_ENV_MASK_ROUND_N_DOT_L);
 	if (!(e->mask & RT_ENV_MASK_NO_SPECULAR))
-		shader.spec = color_add(shader.spec, specular_color(light_dir, rec, ll));
+		shader.spec = specular_color(light_dir, rec, ll);
 	return (shader);
 }

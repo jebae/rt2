@@ -60,6 +60,9 @@ void			calc_shade(t_env *e, t_trace_record *rec)
 		sh = shader_add(sh, compute_color(rec, &(e->ll_lit[i]), e));
 		i++;
 	}
+	sh.amb.r = rec->color.x * e->amb.x;
+	sh.amb.g = rec->color.y * e->amb.y;
+	sh.amb.b = rec->color.z * e->amb.z;
 	color_pixel(e->x, e->y, sh, e);
 }
 
