@@ -132,12 +132,10 @@ typedef struct		s_texels
 typedef struct		s_ol
 {
 	void			*object;
-	int				has_velocity;
 	int				specpower;
 	int				specvalue;
-	double			init_speed;
 	t_vec3			dif;
-	t_vec3			v_translate;
+	//t_vec3			v_translate;
 	t_texels		texture;
 	t_texels		bump_map;
 	t_mat3			axis_mat;

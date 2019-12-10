@@ -27,5 +27,4 @@ void		init_ol(t_ol *ol)
 	ol->get_normal = NULL;
 	ol->uv_mapping = NULL;
 	ol->translate = NULL;
-	ol->has_velocity = RT_FALSE;
 }

@@ -1,17 +1,12 @@
 #include "rt.test.h"
 
 static t_arg_plane	arg;
-static t_vec3		velocity;
 
 static void		setup_case1(t_ol *ol)
 {
-	velocity = (t_vec3){-1.0, -1.0, 0.2};
     arg.normal = (t_vec3){0.0, 1.0, 0.0};
 	arg.d = -2;
 
-	ol->has_velocity = 1;
-	ol->v_translate = v3_normalise(velocity);
-	ol->init_speed = 2.0 * v3_norm(velocity);
 	set_plane(ol, &arg);
 }
 

@@ -1,18 +1,13 @@
 #include "rt.test.h"
 
 t_arg_triangle		arg;
-static t_vec3		velocity;
 
 static void		setup_case1(t_ol *ol)
 {
-	velocity = (t_vec3){1.0, -0.4, 0.3};
 	arg.a = (t_vec3){0.0, 0.0, 0.0};
 	arg.ab = (t_vec3){0.5, 0.5, 1.5};
 	arg.ac = (t_vec3){-0.5, 0.5, 0.0};
 
-	ol->has_velocity = 1;
-	ol->v_translate = v3_normalise(velocity);
-	ol->init_speed = 0.5 * v3_norm(velocity);
 	set_triangle(ol, &arg);
 }
 
