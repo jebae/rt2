@@ -29,6 +29,8 @@
 # define RT_MAX_THREAD				50
 # define RT_TRUE					1
 # define RT_FALSE					0
+# define RT_BIAS					1e-3f
+# define RT_MAX_TRACE_DEPTH			5
 # define RT_ENV_MASK_CEL_SHADING	1 << 0
 # define RT_ENV_MASK_NO_SHADOW		1 << 1
 # define RT_ENV_MASK_NO_SPECULAR	1 << 2
@@ -129,6 +131,8 @@ typedef struct		s_ol
 	void			*object;
 	int				specpower;
 	int				specvalue;
+	double			reflectivity;
+	double			transparency;
 	t_vec3			dif;
 	t_texels		texture;
 	t_texels		bump_map;
@@ -152,11 +156,13 @@ typedef struct		s_ol
 
 typedef struct		s_trace_record
 {
-	t_ray			ray;
-	t_vec3			normal;
-	t_vec3			point;
-	t_vec3			color;
-	t_ol			*obj;
+	int						depth;
+	t_ray					ray;
+	t_vec3					normal;
+	t_vec3					point;
+	t_vec3					color;
+	t_ol					*obj;
+	struct s_trace_record	*prev;
 }					t_trace_record;
 
 typedef struct 		s_sphere

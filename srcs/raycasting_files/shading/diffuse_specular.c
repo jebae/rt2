@@ -53,11 +53,13 @@ t_col			diffuse_specular(
 	t_env *e
 )
 {
-	t_shader	shader;
+	t_col		diffuse;
+	t_col		specular;
 
-	shader = init_shader();
-	shader.diff = diffuse_color(light_dir, rec, e->mask & RT_ENV_MASK_ROUND_N_DOT_L);
+	ft_bzero(&specular, sizeof(t_col));
+	diffuse = diffuse_color(
+		light_dir, rec, e->mask & RT_ENV_MASK_ROUND_N_DOT_L);
 	if (!(e->mask & RT_ENV_MASK_NO_SPECULAR))
-		shader.spec = specular_color(light_dir, rec, ll);
-	return (color_add(shader.diff, shader.spec));
+		specular = specular_color(light_dir, rec, ll);
+	return (color_add(diffuse, specular));
 }

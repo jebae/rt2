@@ -35,9 +35,13 @@ int				raytrace(t_env *e)
 		while (e->y < e->y_max)
 		{
 			rec.ray = cast_ray(e->x, e->y, e);
+			rec.depth = 0;
 			if (intersect(e, &rec))
 			{
-				sh = get_shade(e, &rec);
+				sh.r = e->amb.x * rec.color.x;
+				sh.g = e->amb.y * rec.color.y;
+				sh.b = e->amb.z * rec.color.z;
+				sh = color_add(sh, calc_shade(e, &rec, 1.0));
 				color_pixel(e->x, e->y, sh, e);
 			}
 			e->y++;

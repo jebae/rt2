@@ -6,7 +6,7 @@
 #    By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 07:58:15 by mhernand          #+#    #+#              #
-#    Updated: 2019/12/09 17:23:23 by jebae            ###   ########.fr        #
+#    Updated: 2019/12/10 18:44:01 by jebae            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,7 +101,7 @@ $(CONTENTS) :
 	rm -f $@.zip
 
 test : $(CONTENTS)
-	$(CC) -D UNITY_INCLUDE_CONFIG_H $(CFLAGS) $(TEST_INC) $(TEST_LIB) $(TEST_SRC) -o test
+	$(CC) -fsanitize=address -D UNITY_MEMORY_OVERRIDES_H_ -D UNITY_INCLUDE_CONFIG_H $(CFLAGS) $(TEST_INC) $(TEST_LIB) $(TEST_SRC) -o test
 
 clean:
 	@make -C $(L_FOLD) clean

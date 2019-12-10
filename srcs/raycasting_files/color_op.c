@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/26 12:32:44 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/12/10 16:41:59 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/10 17:45:23 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_col		color_add(t_col c1, t_col c2)
 	return (c);
 }
 
+/*
 t_shader	init_shader(void)
 {
 	t_shader	shader;
@@ -40,6 +41,15 @@ t_shader	shader_add(t_shader sh1, t_shader sh2)
 	s.diff = color_add(sh1.diff, sh2.diff);
 	s.spec = color_add(sh1.spec, sh2.spec);
 	return (s);
+}
+*/
+
+t_col		color_scalar(t_col c, double scalar)
+{
+	c.r *= scalar;
+	c.g *= scalar;
+	c.b *= scalar;
+	return (c);
 }
 
 void		color_pixel(int x, int y, t_col sh, t_env *e)

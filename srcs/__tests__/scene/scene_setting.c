@@ -10,22 +10,24 @@ void		init_scene(t_env *e)
 	e->num_lights = 0;
 	e->mask = 0;
 	for (int i=0; i < 20; i++)
-		init_ol(e->ll_obj + i);
+		ft_bzero(e->ll_obj + i, sizeof(t_ol));
 	for (int i=0; i < 5; i++)
-		init_ll(e->ll_lit + i);
+		ft_bzero(e->ll_lit + i, sizeof(t_ll));
 }
 
 void		clear_scene(t_env *e)
 {
 	t_ol	*ol;
 
-	ft_memdel((void **)e->data);
+	ft_memdel((void **)&e->data);
 	for (int i=0; i < e->num_objs; i++)
 	{
 		ol = e->ll_obj + i;
 		ft_memdel((void **)&ol->object);
-		free(ol->texture.buffer);
-		free(ol->bump_map.buffer);
+		if (ol->texture.buffer)
+			ft_memdel((void **)&ol->texture.buffer);
+		if (ol->bump_map.buffer)
+			ft_memdel((void **)&ol->bump_map.buffer);
 	}
 	for (int i=0; i < 5; i++)
 		ft_memdel((void **)&e->ll_lit[i].light);
