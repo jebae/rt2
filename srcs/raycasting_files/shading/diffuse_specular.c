@@ -1,6 +1,6 @@
 #include "rt.h"
 
-t_col			diffuse_color(
+static t_col	diffuse_color(
 	t_vec3 light_dir,
 	t_trace_record *rec,
 	int round_n_dot_l_bit
@@ -23,7 +23,7 @@ t_col			diffuse_color(
 	return (col);
 }
 
-t_col			specular_color(t_vec3 light_dir, t_trace_record *rec, t_ll *ll)
+static t_col	specular_color(t_vec3 light_dir, t_trace_record *rec, t_ll *ll)
 {
 	double		tmp;
 	t_vec3		r;
@@ -46,40 +46,18 @@ t_col			specular_color(t_vec3 light_dir, t_trace_record *rec, t_ll *ll)
 	return (c);
 }
 
-double			send_shadow_ray(t_trace_record *rec, t_vec3 light_dir, t_env *e)
-{
-	int			i;
-	double		r;
-	t_ray		shadow_ray;
-
-	r = 0;
-	shadow_ray.ori = rec->point;
-	shadow_ray.dir = light_dir;
-	shadow_ray.t = FAR;
-	i = 0;
-	while (i < e->num_objs)
-	{
-		r = e->ll_obj[i].intersect(shadow_ray, e->ll_obj[i].object);
-		if (r > 0.00001 && r < shadow_ray.t)
-			shadow_ray.t = r;
-		i++;
-	}
-	return (shadow_ray.t);
-}
-
-t_shader		compute_color(t_trace_record *rec, t_ll *ll, t_env *e)
+t_col			diffuse_specular(
+	t_vec3 light_dir,
+	t_ll *ll,
+	t_trace_record *rec,
+	t_env *e
+)
 {
 	t_shader	shader;
-	t_vec3		light_dir;
 
-	light_dir = ll->get_dir(&rec->point, ll->light);
 	shader = init_shader();
-	if (!(e->mask & RT_ENV_MASK_NO_SHADOW) &&
-		send_shadow_ray(rec, light_dir, e) <
-		ll->get_distance(&rec->point, ll->light))
-		return (shader);
 	shader.diff = diffuse_color(light_dir, rec, e->mask & RT_ENV_MASK_ROUND_N_DOT_L);
 	if (!(e->mask & RT_ENV_MASK_NO_SPECULAR))
 		shader.spec = specular_color(light_dir, rec, ll);
-	return (shader);
+	return (color_add(shader.diff, shader.spec));
 }

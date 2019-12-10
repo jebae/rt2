@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/12/09 22:10:16 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/10 16:39:08 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,21 @@ t_vec3		m_mult(t_mat3 m, t_vec3 v);
 /*
 ** Trace functions
 */
+int			raytrace(t_env *e);
 void		set_trace_record(t_trace_record *rec);
+int			intersect(t_env *e, t_trace_record *rec);
+
+/*
+** Shading functions
+*/
+t_col		diffuse_specular(
+	t_vec3 light_dir,
+	t_ll *ll,
+	t_trace_record *rec,
+	t_env *e
+);
+t_col		get_shade(t_env *e, t_trace_record *rec);
+double		send_shadow_ray(t_trace_record *rec, t_vec3 light_dir, t_env *e);
 
 /*
 ** Set light functions
@@ -81,10 +95,10 @@ t_vec3		find_point_from_ray(t_ray ray);
 /*
 ** Coloring functions
 */
-t_shader	compute_color(t_trace_record *rec, t_ll *ll, t_env *e);
-void		color_pixel(int x, int y, t_shader sh, t_env *e);
+t_col		compute_color(t_trace_record *rec, t_ll *ll, t_env *e);
+void		color_pixel(int x, int y, t_col sh, t_env *e);
 t_shader	init_shader(void);
-t_shader	shader_add(t_shader sh1, t_shader sh2);
+//t_shader	shader_add(t_shader sh1, t_shader sh2);
 //int			specular(t_ray ray, t_vec3 p, t_ol *ol, t_ll *ll); deprecated
 t_col		color_add(t_col c1, t_col c2);
 

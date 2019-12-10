@@ -71,6 +71,7 @@ static void		set_lights(t_ll *ll, int *num_lights)
 	t_arg_distant_light	arg_dl;
 
 	ll->light = ft_memalloc(sizeof(t_distant_light));
+	ll->its = (t_vec3){30, 30, 30};
 	arg_dl.dir = (t_vec3){0.5, -1.0, -1.0};
 	set_distant_light(ll, &arg_dl);
 	(*num_lights)++;

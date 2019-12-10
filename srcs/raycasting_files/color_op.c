@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/26 12:32:44 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/12/10 15:19:13 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/10 16:41:59 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,7 @@ t_shader	init_shader(void)
 {
 	t_shader	shader;
 
-	shader.diff.r = 0;
-	shader.diff.g = 0;
-	shader.diff.b = 0;
-	shader.spec.r = 0;
-	shader.spec.g = 0;
-	shader.spec.b = 0;
+	ft_bzero(&shader, sizeof(t_shader));
 	return (shader);
 }
 
@@ -47,18 +42,16 @@ t_shader	shader_add(t_shader sh1, t_shader sh2)
 	return (s);
 }
 
-void		color_pixel(int x, int y, t_shader sh, t_env *e)
+void		color_pixel(int x, int y, t_col sh, t_env *e)
 {
-	t_col			c;
-	unsigned int	*hex;
+	unsigned int	*pixel;
 
-	c = color_add(sh.amb, color_add(sh.diff, sh.spec));
-	hex = (unsigned int *)e->data + y * e->width + x;
-	*hex = c.r;
-	*hex <<= 8;
-	*hex += c.g;
-	*hex <<= 8;
-	*hex += c.b;
+	pixel = (unsigned int *)e->data + y * e->width + x;
+	*pixel = sh.r;
+	*pixel <<= 8;
+	*pixel += sh.g;
+	*pixel <<= 8;
+	*pixel += sh.b;
 	/*
 	e->data[0 + x * (e->w.bpp / 8) + y * e->w.sl] = c.b;
 	e->data[1 + x * (e->w.bpp / 8) + y * e->w.sl] = c.g;

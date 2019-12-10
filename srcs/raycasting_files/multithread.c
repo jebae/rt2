@@ -17,7 +17,7 @@ void    multi_thread(t_env *e)
 		//env[i].thread = i;
         // printf("ymin:%i\n",env[i].y_min);
         // printf("ymax:%i\n",env[i].y_max);
-        pthread_create(&thread[i], NULL, (void*)raycast, &env[i]);
+        pthread_create(&thread[i], NULL, (void*)raytrace, &env[i]);
         i++;
     }
     while (i--)
