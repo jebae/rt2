@@ -116,7 +116,7 @@ body {
   padding-left: 13vw;
 }
 
-#input_simple {
+.i_smpl {
   border: 1px none;
   float: right;
   padding-right: 10vw;
@@ -126,7 +126,7 @@ body {
   outline: none;
 }
 
-#input_complex {
+.i_cmplx {
   outline: none;
   border: 1px none;
   float: right;

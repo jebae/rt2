@@ -2,10 +2,7 @@
   <head>
     <title>RT</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Righteous&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
@@ -33,98 +30,155 @@
       <div class="output_object" id="sphere_object">
         <h3>SPHERE PARAMETERS</h3><br>
         <form class="sphere_form">
-          <span id="txt_simple">CENTER :</span><input id="input_complex" type="text" name="center" value="" placeholder="Enter X" maxlength="4"/><input id="input_complex" type="text" name="center" value="" placeholder="Enter Y" maxlength="4"/><input id="input_complex" type="text" name="center" value="" placeholder="Enter Z" maxlength="4"/><br /><br />
-          <span id="txt_simple">RADIUS :</span><input id="input_simple" type="text" name="radius" value="" placeholder="Enter radius" maxlength="4"/><br><br>
-          <span id="txt_simple">TRANSLATION :</span><input id="input_simple" type="text" name="translation" value="" placeholder="Enter translation" maxlength="4"/><br><br>
-          <span id="txt_simple">ROTATION :</span><input id="input_simple" type="text" name="rotation" value="" placeholder="Enter rotation" maxlength="4"/><br /><br />
-        </form><br />
+          <span id="txt_simple">CENTER :</span>
+            <input class="i_cmplx" id="sph_cen_z" type="text" name="center_z" placeholder="Enter Z" maxlength="4">
+            <input class="i_cmplx" id="sph_cen_y" type="text" name="center_y" placeholder="Enter Y" maxlength="4"/>
+            <input class="i_cmplx" id="sph_cen_x" type="text" name="center_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+          <span id="txt_simple">RADIUS :</span><input class="i_smpl" id="sph_rad" type="text" name="radius" placeholder="Enter radius" maxlength="4"/><br><br>
+          <span id="txt_simple">TRANSLATION :</span><input class="i_smpl" id="sph_tra" type="text" name="translation" placeholder="Enter translation" maxlength="4"/><br><br>
+          <span id="txt_simple">ROTATION :</span><input class="i_smpl" id="sph_rot" type="text" name="rotation" placeholder="Enter rotation" maxlength="4"/><br/><br/>
+        </form><br/>
       </div>
       <div class="output_object" id="cone_object">
         <h3>CONE PARAMETERS</h3><br>
         <form class="cone_form">
-          <span id="txt_simple">CENTER :</span><input id="input_complex" type="text" name="center" value="" placeholder="Enter X" maxlength="4"/><input id="input_complex" type="text" name="center" value="" placeholder="Enter Y" maxlength="4"/><input id="input_complex" type="text" name="center" value="" placeholder="Enter Z" maxlength="4"/><br /><br />
-          <span id="txt_simple">AXIS :</span><input id="input_complex" type="text" name="axis" value="" placeholder="Enter X" maxlength="4"/><input id="input_complex" type="text" name="axis" value="" placeholder="Enter Y" maxlength="4"/><input id="input_complex" type="text" name="axis" value="" placeholder="Enter Z" maxlength="4"/><br /><br />
-          <span id="txt_simple">ANGLE :</span><input id="input_simple" type="text" name="angle" value="" placeholder="Enter angle"/><br /><br />
-          <span id="txt_simple">UPPER HEIGHT :</span><input id="input_simple" type="text" name="upper_height" value="" placeholder="Enter upper height" maxlength="4"/><br><br>
-          <span id="txt_simple">LOWER HEIGHT :</span><input id="input_simple" type="text" name="lower_height" value="" placeholder="Enter lower height" maxlength="4"/><br><br>
-          <span id="txt_simple">TRANSLATION :</span><input id="input_simple" type="text" name="translation" value="" placeholder="Enter translation" maxlength="4"/><br><br>
-          <span id="txt_simple">ROTATION :</span><input id="input_simple" type="text" name="rotation" value="" placeholder="Enter rotation" maxlength="4"/><br /><br />
-        </form><br />
+          <span id="txt_simple">CENTER :</span>
+            <input class="i_cmplx" id="con_cen_z" type="text" name="center_z" placeholder="Enter Z" maxlength="4"/>
+            <input class="i_cmplx" id="con_cen_y" type="text" name="center_y" placeholder="Enter Y" maxlength="4"/>
+            <input class="i_cmplx" id="con_cen_x" type="text" name="center_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+          <span id="txt_simple">AXIS :</span>
+            <input class="i_cmplx" id="con_axis_z" type="text" name="axis_z" placeholder="Enter Z" maxlength="4"/>
+            <input class="i_cmplx" id="con_axis_y" type="text" name="axis_y" placeholder="Enter Y" maxlength="4"/>
+            <input class="i_cmplx" id="con_axis_x" type="text" name="axis_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+          <span id="txt_simple">ANGLE :</span><input class="i_smpl" id="con_ang" type="text" name="angle" placeholder="Enter angle"/><br/><br/>
+          <span id="txt_simple">UPPER HEIGHT :</span><input class="i_smpl" id="con_uheight" type="text" name="upper_height" placeholder="Enter upper height" maxlength="4"/><br><br>
+          <span id="txt_simple">LOWER HEIGHT :</span><input class="i_smpl" id="con_lheight" type="text" name="lower_height" placeholder="Enter lower height" maxlength="4"/><br><br>
+          <span id="txt_simple">TRANSLATION :</span><input class="i_smpl" id="con_tra" type="text" name="translation" placeholder="Enter translation" maxlength="4"/><br><br>
+          <span id="txt_simple">ROTATION :</span><input class="i_smpl" id="con_rot" type="text" name="rotation" placeholder="Enter rotation" maxlength="4"/><br/><br/>
+        </form><br/>
       </div>
       <div class="output_object" id="cylinder_object">
         <h3>CYLINDER PARAMETERS</h3><br>
         <form class="cylinder_form">
-          <span id="txt_simple">CENTER :</span><input id="input_complex" type="text" name="center" value="" placeholder="Enter X" maxlength="4"/><input id="input_complex" type="text" name="center" value="" placeholder="Enter Y" maxlength="4"/><input id="input_complex" type="text" name="center" value="" placeholder="Enter Z" maxlength="4"/><br /><br />
-          <span id="txt_simple">AXIS :</span><input id="input_complex" type="text" name="axis" value="" placeholder="Enter X" maxlength="4"/><input id="input_complex" type="text" name="axis" value="" placeholder="Enter Y" maxlength="4"/><input id="input_complex" type="text" name="axis" value="" placeholder="Enter Z" maxlength="4"/><br /><br />
-          <span id="txt_simple">RADIUS :</span><input id="input_simple" type="text" name="radius" value="" placeholder="Enter radius" maxlength="4"/><br><br>
-          <span id="txt_simple">HEIGHT :</span><input id="input_simple" type="text" name="height" value="" placeholder="Enter height" maxlength="4"/><br><br>
-          <span id="txt_simple">TRANSLATION :</span><input id="input_simple" type="text" name="translation" value="" placeholder="Enter translation" maxlength="4"/><br><br>
-          <span id="txt_simple">ROTATION :</span><input id="input_simple" type="text" name="rotation" value="" placeholder="Enter rotation" maxlength="4"/><br /><br />
-        </form><br />
+          <span id="txt_simple">CENTER :</span>
+            <input class="i_cmplx" id="cyn_cen_z" type="text" name="center_z" placeholder="Enter Z" maxlength="4"/>
+            <input class="i_cmplx" id="cyn_cen_y" type="text" name="center_y" placeholder="Enter Y" maxlength="4"/>
+            <input class="i_cmplx" id="cyn_cen_x" type="text" name="center_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+          <span id="txt_simple">AXIS :</span>
+            <input class="i_cmplx" id="cyn_axis_z" type="text" name="axis_z" placeholder="Enter Z" maxlength="4"/>
+            <input class="i_cmplx" id="cyn_axis_y" type="text" name="axis_y" placeholder="Enter Y" maxlength="4"/>
+            <input class="i_cmplx" id="cyn_axis_x" type="text" name="axis_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+          <span id="txt_simple">RADIUS :</span><input class="i_smpl" id="cyn_rad" type="text" name="radius" placeholder="Enter radius" maxlength="4"/><br><br>
+          <span id="txt_simple">HEIGHT :</span><input class="i_smpl" id="cyn_height" type="text" name="height" placeholder="Enter height" maxlength="4"/><br><br>
+          <span id="txt_simple">TRANSLATION :</span><input class="i_smpl" id="cyn_tra" type="text" name="translation" placeholder="Enter translation" maxlength="4"/><br><br>
+          <span id="txt_simple">ROTATION :</span><input class="i_smpl" id="cyn_rot" type="text" name="rotation" placeholder="Enter rotation" maxlength="4"/><br/><br/>
+        </form><br/>
       </div>
       <div class="output_object" id="rectangle_object">
         <h3>RECTANGLE PARAMETERS</h3><br>
         <form class="rectangle_form">
-          <span id="txt_simple">STARTING POINT :</span><input id="input_complex" type="text" name="s_point" value="" placeholder="Enter X" maxlength="4"/><input id="input_complex" type="text" name="center" value="" placeholder="Enter Y" maxlength="4"/><input id="input_complex" type="text" name="center" value="" placeholder="Enter Z" maxlength="4"/><br /><br />
-          <span id="txt_simple">VECTOR A :</span><input id="input_complex" type="text" name="vector_a" value="" placeholder="Enter X" maxlength="4"/><input id="input_complex" type="text" name="vector_a" value="" placeholder="Enter Y" maxlength="4"/><input id="input_complex" type="text" name="vector_a" value="" placeholder="Enter Z" maxlength="4"/><br /><br />
-          <span id="txt_simple">VECTOR B :</span><input id="input_complex" type="text" name="vector_b" value="" placeholder="Enter X" maxlength="4"/><input id="input_complex" type="text" name="vector_b" value="" placeholder="Enter Y" maxlength="4"/><input id="input_complex" type="text" name="vector_b" value="" placeholder="Enter Z" maxlength="4"/><br /><br />
-          <span id="txt_simple">TRANSLATION :</span><input id="input_simple" type="text" name="translation" value="" placeholder="Enter translation" maxlength="4"/><br><br>
-          <span id="txt_simple">ROTATION :</span><input id="input_simple" type="text" name="rotation" value="" placeholder="Enter rotation" maxlength="4"/><br /><br />
-        </form><br />
+          <span id="txt_simple">STARTING POINT :</span>
+            <input class="i_cmplx" id="rec_point_z" type="text" name="s_point_z" placeholder="Enter Z" maxlength="4"/>
+            <input class="i_cmplx" id="rec_point_y" type="text" name="s_point_y" placeholder="Enter Y" maxlength="4"/>
+            <input class="i_cmplx" id="rec_point_x" type="text" name="s_point_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+          <span id="txt_simple">VECTOR A :</span>
+            <input class="i_cmplx" id="rec_vecA_z" type="text" name="vector_a_z" placeholder="Enter Z" maxlength="4"/>
+            <input class="i_cmplx" id="rec_vecA_y" type="text" name="vector_a_y" placeholder="Enter Y" maxlength="4"/>
+            <input class="i_cmplx" id="rec_vecA_x" type="text" name="vector_a_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+          <span id="txt_simple">VECTOR B :</span>
+            <input class="i_cmplx" id="rec_vecB_z" type="text" name="vector_b_z" placeholder="Enter Z" maxlength="4"/>
+            <input class="i_cmplx" id="rec_vecB_y" type="text" name="vector_b_y" placeholder="Enter Y" maxlength="4"/>
+            <input class="i_cmplx" id="rec_vecB_x" type="text" name="vector_b_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+          <span id="txt_simple">TRANSLATION :</span><input class="i_smpl" id="rec_tra" type="text" name="translation" placeholder="Enter translation" maxlength="4"/><br><br>
+          <span id="txt_simple">ROTATION :</span><input class="i_smpl" id="rec_rot" type="text" name="rotation" placeholder="Enter rotation" maxlength="4"/><br/><br/>
+        </form><br/>
       </div>
       <div class="output_object" id="ring_object">
         <h3>RING PARAMETERS</h3><br>
         <form class="ring_form">
-          <span id="txt_simple">CENTER :</span><input id="input_complex" type="text" name="center" value="" placeholder="Enter X" maxlength="4"/><input id="input_complex" type="text" name="center" value="" placeholder="Enter Y" maxlength="4"/><input id="input_complex" type="text" name="center" value="" placeholder="Enter Z" maxlength="4"/><br /><br />
-          <span id="txt_simple">NORMAL :</span><input id="input_complex" type="text" name="normal" value="" placeholder="Enter X" maxlength="4"/><input id="input_complex" type="text" name="normal" value="" placeholder="Enter Y" maxlength="4"/><input id="input_complex" type="text" name="normal" value="" placeholder="Enter Z" maxlength="4"/><br /><br />
-          <span id="txt_simple">INNER RADIUS :</span><input id="input_complex" type="text" name="in_radius" value="" placeholder="Enter X" maxlength="4"/><input id="input_complex" type="text" name="in_radius" value="" placeholder="Enter Y" maxlength="4"/><input id="input_complex" type="text" name="in_radius" value="" placeholder="Enter Z" maxlength="4"/><br /><br />
-          <span id="txt_simple">OUTER RADIUS :</span><input id="input_complex" type="text" name="out_radius" value="" placeholder="Enter X" maxlength="4"/><input id="input_complex" type="text" name="out_radius" value="" placeholder="Enter Y" maxlength="4"/><input id="input_complex" type="text" name="out_radius" value="" placeholder="Enter Z" maxlength="4"/><br /><br />
-          <span id="txt_simple">TRANSLATION :</span><input id="input_simple" type="text" name="translation" value="" placeholder="Enter translation" maxlength="4"/><br><br>
-          <span id="txt_simple">ROTATION :</span><input id="input_simple" type="text" name="rotation" value="" placeholder="Enter rotation" maxlength="4"/><br /><br />
-        </form><br /><br />
-        <input class="buttons" id="button_ring" type="button" value="ADD RING !" onclick="submit_ring()"/>
+          <span id="txt_simple">CENTER :</span>
+            <input class="i_cmplx" id="ring_cen_z" type="text" name="center_z" placeholder="Enter Z" maxlength="4"/>
+            <input class="i_cmplx" id="ring_cen_y" type="text" name="center_y" placeholder="Enter Y" maxlength="4"/>
+            <input class="i_cmplx" id="ring_cen_x" type="text" name="center_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+          <span id="txt_simple">NORMAL :</span>
+            <input class="i_cmplx" id="ring_nor_z" type="text" name="normal_z" placeholder="Enter Z" maxlength="4"/>
+            <input class="i_cmplx" id="ring_nor_y" type="text" name="normal_y" placeholder="Enter Y" maxlength="4"/>
+            <input class="i_cmplx" id="ring_nor_x" type="text" name="normal_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+          <span id="txt_simple">INNER RADIUS :</span><input class="i_smpl" id="ring_inn_rad" type="text" name="in_radius" placeholder="Enter inner radius" maxlength="4"/><br><br>
+          <span id="txt_simple">OUTER RADIUS :</span><input class="i_smpl" id="ring_out_rad" type="text" name="out_radius" placeholder="Enter outer radius" maxlength="4"/><br><br>
+          <span id="txt_simple">TRANSLATION :</span><input class="i_smpl" id="ring_tra" type="text" name="translation" placeholder="Enter translation" maxlength="4"/><br><br>
+          <span id="txt_simple">ROTATION :</span><input class="i_smpl" id="ring_rot" type="text" name="rotation" placeholder="Enter rotation" maxlength="4"/><br/><br/>
+        </form><br/><br/>
+        <input class="buttons" id="button_ring" type="button" value="ADD RING !" onclick="create_xml('ring')"/>
       </div>
       <div class="output_object" id="box_object">
           <h3>BOX PARAMETERS</h3><br>
           <form class="box_form">
-            <span id="txt_simple">STARTING POINT :</span><input id="input_complex" type="text" name="s_point" value="" placeholder="Enter X" maxlength="4"/><input id="input_complex" type="text" name="center" value="" placeholder="Enter Y" maxlength="4"/><input id="input_complex" type="text" name="center" value="" placeholder="Enter Z" maxlength="4"/><br /><br />
-            <span id="txt_simple">VECTOR A :</span><input id="input_complex" type="text" name="vector_a" value="" placeholder="Enter X" maxlength="4"/><input id="input_complex" type="text" name="vector_a" value="" placeholder="Enter Y" maxlength="4"/><input id="input_complex" type="text" name="vector_a" value="" placeholder="Enter Z" maxlength="4"/><br /><br />
-            <span id="txt_simple">VECTOR B :</span><input id="input_complex" type="text" name="vector_b" value="" placeholder="Enter X" maxlength="4"/><input id="input_complex" type="text" name="vector_b" value="" placeholder="Enter Y" maxlength="4"/><input id="input_complex" type="text" name="vector_b" value="" placeholder="Enter Z" maxlength="4"/><br /><br />
-            <span id="txt_simple">LENGTH OF C :</span><input id="input_simple" type="text" name="len_c" value="" placeholder="Enter translation" maxlength="4"/><br><br>
-            <span id="txt_simple">TRANSLATION :</span><input id="input_simple" type="text" name="translation" value="" placeholder="Enter translation" maxlength="4"/><br><br>
-            <span id="txt_simple">ROTATION :</span><input id="input_simple" type="text" name="rotation" value="" placeholder="Enter rotation" maxlength="4"/><br /><br />
-          </form><br /><br />
-          <input class="buttons" id="button_box" type="button" value="ADD BOX !" onclick="submit_box()"/>
+            <span id="txt_simple">STARTING POINT :</span>
+              <input class="i_cmplx" id="box_point_z" type="text" name="s_point_z" placeholder="Enter Z" maxlength="4"/>
+              <input class="i_cmplx" id="box_point_y" type="text" name="s_point_y" placeholder="Enter Y" maxlength="4"/>
+              <input class="i_cmplx" id="box_point_x" type="text" name="s_point_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+            <span id="txt_simple">VECTOR A :</span>
+              <input class="i_cmplx" id="box_vecA_z" type="text" name="vector_a_z" placeholder="Enter Z" maxlength="4"/>
+              <input class="i_cmplx" id="box_vecA_y" type="text" name="vector_a_y" placeholder="Enter Y" maxlength="4"/>
+              <input class="i_cmplx" id="box_vecA_x" type="text" name="vector_a_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+            <span id="txt_simple">VECTOR B :</span>
+              <input class="i_cmplx" id="box_vecB_z" type="text" name="vector_b_z" placeholder="Enter Z" maxlength="4"/>
+              <input class="i_cmplx" id="box_vecB_y" type="text" name="vector_b_y" placeholder="Enter Y" maxlength="4"/>
+              <input class="i_cmplx" id="box_vecB_x" type="text" name="vector_b_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+            <span id="txt_simple">LENGTH OF C :</span><input class="i_smpl" id="box_lenC" type="text" name="len_c" placeholder="Enter translation" maxlength="4"/><br><br>
+            <span id="txt_simple">TRANSLATION :</span><input class="i_smpl" id="box_tra" type="text" name="translation" placeholder="Enter translation" maxlength="4"/><br><br>
+            <span id="txt_simple">ROTATION :</span><input class="i_smpl" id="box_rot" type="text" name="rotation" placeholder="Enter rotation" maxlength="4"/><br/><br/>
+          </form><br/><br/>
+          <input class="buttons" id="button_box" type="button" value="ADD BOX !" onclick="create_xml('box')"/>
       </div>
       <div class="output_object" id="pyramid_object">
           <h3>PYRAMID PARAMETERS</h3><br>
           <form class="pyramid_form">
-            <span id="txt_simple">STARTING POINT :</span><input id="input_complex" type="text" name="s_point" value="" placeholder="Enter X" maxlength="4"/><input id="input_complex" type="text" name="center" value="" placeholder="Enter Y" maxlength="4"/><input id="input_complex" type="text" name="center" value="" placeholder="Enter Z" maxlength="4"/><br /><br />
-            <span id="txt_simple">VECTOR U (EDGE ONE):</span><input id="input_complex" type="text" name="vector_u" value="" placeholder="Enter X" maxlength="4"/><input id="input_complex" type="text" name="vector_u" value="" placeholder="Enter Y" maxlength="4"/><input id="input_complex" type="text" name="vector_u" value="" placeholder="Enter Z" maxlength="4"/><br /><br />
-            <span id="txt_simple">VECTOR V (EDGE TWO):</span><input id="input_complex" type="text" name="vector_v" value="" placeholder="Enter X" maxlength="4"/><input id="input_complex" type="text" name="vector_v" value="" placeholder="Enter Y" maxlength="4"/><input id="input_complex" type="text" name="vector_v" value="" placeholder="Enter Z" maxlength="4"/><br /><br />
-            <span id="txt_simple">HEIGHT :</span><input id="input_simple" type="text" name="height" value="" placeholder="Enter height" maxlength="4"/><br><br>
-            <span id="txt_simple">TRANSLATION :</span><input id="input_simple" type="text" name="translation" value="" placeholder="Enter translation" maxlength="4"/><br><br>
-            <span id="txt_simple">ROTATION :</span><input id="input_simple" type="text" name="rotation" value="" placeholder="Enter rotation" maxlength="4"/><br /><br />
-          </form><br /><br />
-          <input class="buttons" id="button_pyramid" type="button" value="ADD PYRAMID !" onclick="submit_pyramid()"/>
+            <span id="txt_simple">STARTING POINT :</span>
+              <input class="i_cmplx" id="pyr_sp_z" type="text" name="s_point_z" placeholder="Enter Z" maxlength="4"/>
+              <input class="i_cmplx" id="pyr_sp_y" type="text" name="s_point_y" placeholder="Enter Y" maxlength="4"/>
+              <input class="i_cmplx" id="pyr_sp_x" type="text" name="s_point_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+            <span id="txt_simple">VECTOR U (EDGE ONE):</span>
+              <input class="i_cmplx" id="pyr_vecU_z" type="text" name="vector_u_z" placeholder="Enter Z" maxlength="4"/>
+              <input class="i_cmplx" id="pyr_vecU_y" type="text" name="vector_u_y" placeholder="Enter Y" maxlength="4"/>
+              <input class="i_cmplx" id="pyr_vecU_x" type="text" name="vector_u_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+            <span id="txt_simple">VECTOR V (EDGE TWO):</span>
+              <input class="i_cmplx" id="pyr_vecV_z" type="text" name="vector_v_z" placeholder="Enter Z" maxlength="4"/>
+              <input class="i_cmplx" id="pyr_vecV_y" type="text" name="vector_v_y" placeholder="Enter Y" maxlength="4"/>
+              <input class="i_cmplx" id="pyr_vecV_x" type="text" name="vector_v_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+            <span id="txt_simple">HEIGHT :</span><input class="i_smpl" id="pyr_height" type="text" name="height" placeholder="Enter height" maxlength="4"/><br><br>
+            <span id="txt_simple">TRANSLATION :</span><input class="i_smpl" id="pyr_tra" type="text" name="translation" placeholder="Enter translation" maxlength="4"/><br><br>
+            <span id="txt_simple">ROTATION :</span><input class="i_smpl" id="pyr_rot" type="text" name="rotation" placeholder="Enter rotation" maxlength="4"/><br/><br/>
+          </form><br/><br/>
+          <input class="buttons" id="button_pyramid" type="button" value="ADD PYRAMID !" onclick="create_xml('pyramid')"/>
       </div>
       <div class="output_object" id="triangle_object">
           <h3>TRIANGLE PARAMETERS</h3><br>
           <form class="triangle_form">
-            <span id="txt_simple">STARTING POINT :</span><input id="input_complex" type="text" name="s_point" value="" placeholder="Enter X" maxlength="4"/><input id="input_complex" type="text" name="center" value="" placeholder="Enter Y" maxlength="4"/><input id="input_complex" type="text" name="center" value="" placeholder="Enter Z" maxlength="4"/><br /><br />
-            <span id="txt_simple">VECTOR AB (CORNER ONE):</span><input id="input_complex" type="text" name="vector_ab" value="" placeholder="Enter X" maxlength="4"/><input id="input_complex" type="text" name="vector_ab" value="" placeholder="Enter Y" maxlength="4"/><input id="input_complex" type="text" name="vector_ab" value="" placeholder="Enter Z" maxlength="4"/><br /><br />
-            <span id="txt_simple">VECTOR AC (CORNER TWO):</span><input id="input_complex" type="text" name="vector_ac" value="" placeholder="Enter X" maxlength="4"/><input id="input_complex" type="text" name="vector_ac" value="" placeholder="Enter Y" maxlength="4"/><input id="input_complex" type="text" name="vector_ac" value="" placeholder="Enter Z" maxlength="4"/><br /><br />
-            <span id="txt_simple">TRANSLATION :</span><input id="input_simple" type="text" name="translation" value="" placeholder="Enter translation" maxlength="4"/><br><br>
-            <span id="txt_simple">ROTATION :</span><input id="input_simple" type="text" name="rotation" value="" placeholder="Enter rotation" maxlength="4"/><br /><br />
-          </form><br /><br />
-          <input class="buttons" id="button_triangle" type="button" value="ADD TRIANGLE !" onclick="submit_triangle()"/>
+            <span id="txt_simple">STARTING POINT :</span>
+              <input class="i_cmplx" id="tri_point_z" type="text" name="s_point_z" placeholder="Enter Z" maxlength="4"/>
+              <input class="i_cmplx" id="tri_point_y" type="text" name="s_point_y" placeholder="Enter Y" maxlength="4"/>
+              <input class="i_cmplx" id="tri_point_x" type="text" name="s_point_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+            <span id="txt_simple">VECTOR AB (CORNER ONE):</span>
+              <input class="i_cmplx" id="tri_vec_ab_z" type="text" name="vector_ab_z" placeholder="Enter Z" maxlength="4"/>
+              <input class="i_cmplx" id="tri_vec_ab_y" type="text" name="vector_ab_y" placeholder="Enter Y" maxlength="4"/>
+              <input class="i_cmplx" id="tri_vec_ab_x" type="text" name="vector_ab_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+            <span id="txt_simple">VECTOR AC (CORNER TWO):</span>
+              <input class="i_cmplx" id="tri_vec_ac_z" type="text" name="vector_ac_z" placeholder="Enter Z" maxlength="4"/>
+              <input class="i_cmplx" id="tri_vec_ac_y" type="text" name="vector_ac_y" placeholder="Enter Y" maxlength="4"/>
+              <input class="i_cmplx" id="tri_vec_ac_x" type="text" name="vector_ac_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+            <span id="txt_simple">TRANSLATION :</span><input class="i_smpl" type="text" id="tri_tra" name="translation" placeholder="Enter translation" maxlength="4"/><br><br>
+            <span id="txt_simple">ROTATION :</span><input class="i_smpl" type="text" id="tri_rot"  name="rotation" placeholder="Enter rotation" maxlength="4"/><br/><br/>
+          </form><br/><br/>
+          <input class="buttons" id="button_triangle" type="button" value="ADD TRIANGLE !" onclick="create_xml('triangle')"/>
       </div>
       <div class="main_textures" id="main_textures">
           <h3>CHOOSE A TEXTURE</h3><br>
           <form>
             <table class="texture_table" id="texture_table">
               <tr>
-                <td class="textures" id="ball"></tdclass>
+                <td class="textures" id="ball">
                   <img id="ball" name="ball" src="textures/basketball.jpg"/>
                 </td>
                 <td class="textures" id="brick">
@@ -152,7 +206,7 @@
                 </td>
                 <td style="text-align:center">
                     <input type="radio" name="radio-207" value="checker">
-                </td>
+                </td> 
                 <td style="text-align:center">
                     <input type="radio" name="radio-207" value="concrete">
                 </td>
@@ -248,14 +302,237 @@
         </div>
     </div>
     <div class="footer">
-      <h5>
-        A project created by : Jeongmo Bae <i>(jebae)</i>, Samuel Boniface
-        <i>(sabonifa)</i>, Madeleine Hernandez <i>(mhernand)</i>, and Alexandru
-        Moraru <i>(almoraru)</i>.
-      </h5>
+      <h5> A project created by : Jeongmo Bae <i>(jebae)</i>, Samuel Boniface <i>(sabonifa)</i>, Madeleine Hernandez <i>(mhernand)</i>, and Alexandru Moraru <i>(almoraru)</i>.</h5>
     </div>
   </body>
   <script>
+    function create_xml(shape)
+    {
+      // PYRAMID
+      if (shape.localeCompare("pyramid") == 0)
+      { 
+        var pyr_sp_z = document.getElementById('pyr_sp_z').value;
+        var pyr_sp_y = document.getElementById('pyr_sp_y').value;
+        var pyr_sp_x = document.getElementById('pyr_sp_x').value;
+        var pyr_vecU_z = document.getElementById('pyr_vecU_z').value;
+        var pyr_vecU_y = document.getElementById('pyr_vecU_y').value;
+        var pyr_vecU_x = document.getElementById('pyr_vecU_x').value;
+        var pyr_vecV_z = document.getElementById('pyr_vecV_z').value;
+        var pyr_vecV_y = document.getElementById('pyr_vecV_y').value;
+        var pyr_vecV_x = document.getElementById('pyr_vecV_x').value;
+        var pyr_height = document.getElementById('pyr_height').value;
+        var pyr_tra = document.getElementById('pyr_tra').value;
+        var pyr_rot = document.getElementById('pyr_rot').value;
+
+        var point = "<point> " + pyr_sp_x + ", " + pyr_sp_y + ", " + pyr_sp_z + " </point>";
+        var vecU = "<vector_u> " + pyr_vecU_x + ", " + pyr_vecU_y + ", " + pyr_vecU_z + " </vector_a>";
+        var vecV = "<vector_v> " + pyr_vecV_x + ", " + pyr_vecV_y + ", " + pyr_vecV_z + " </vector_b>";
+        var height = "<height> " + pyr_height + " </height>";
+        var tra = "<translate> " + pyr_tra + " </translate>";
+        var rot = "<rotate> " + pyr_rot + " </rotate>";
+        console.log(point);
+        console.log(vecU);
+        console.log(vecV);
+        console.log(height);
+        console.log(tra);
+        console.log(rot);
+      }
+
+      // BOX
+      if (shape.localeCompare("box") == 0)
+      {   
+        var box_point_z = document.getElementById('box_point_z').value;
+        var box_point_y = document.getElementById('box_point_y').value;
+        var box_point_x = document.getElementById('box_point_x').value;
+        var box_vecA_z = document.getElementById('box_vecA_z').value;
+        var box_vecA_y = document.getElementById('box_vecA_y').value;
+        var box_vecA_x = document.getElementById('box_vecA_x').value;
+        var box_vecB_z = document.getElementById('box_vecB_z').value;
+        var box_vecB_y = document.getElementById('box_vecB_y').value;
+        var box_vecB_x = document.getElementById('box_vecB_x').value;
+        var box_lenC = document.getElementById('box_lenC').value;
+        var box_tra = document.getElementById('box_tra').value;
+        var box_rot = document.getElementById('box_rot').value;
+
+        var point = "<point> " + box_point_x + ", " + box_point_y + ", " + box_point_z + " </point>";
+        var vecA = "<vector_a> " + box_vecA_x + ", " + box_vecA_y + ", " + box_vecA_z + " </vector_a>";
+        var vecB = "<vector_b> " + box_vecB_x + ", " + box_vecB_y + ", " + box_vecB_z + " </vector_b>";
+        var lenC = "<length_c> " + box_lenC + " </length_c>";
+        var tra = "<translate> " + box_tra + " </translate>";
+        var rot = "<rotate> " + box_rot + " </rotate>";
+        console.log(point);
+        console.log(vecA);
+        console.log(vecB);
+        console.log(lenC);
+        console.log(tra);
+        console.log(rot);
+      }
+
+      // RING
+      if (shape.localeCompare("ring") == 0)
+      {   
+        var ring_cen_z = document.getElementById('ring_cen_z').value;
+        var ring_cen_y = document.getElementById('ring_cen_y').value;
+        var ring_cen_x = document.getElementById('ring_cen_x').value;
+        var ring_nor_z = document.getElementById('ring_nor_z').value;
+        var ring_nor_y = document.getElementById('ring_nor_y').value;
+        var ring_nor_x = document.getElementById('ring_nor_x').value;
+        var ring_inn_rad = document.getElementById('ring_inn_rad').value;
+        var ring_out_rad = document.getElementById('ring_out_rad').value;
+        var ring_tra = document.getElementById('ring_tra').value;
+        var ring_rot = document.getElementById('ring_rot').value;
+
+        var center = "<center> " + ring_cen_x + ", " + ring_cen_y + ", " + ring_cen_z + " </center>";
+        var normal = "<normal> " + ring_nor_x + ", " + ring_nor_y + ", " + ring_nor_z + " </normal>";
+        var radius_in = "<outer_radius> " + ring_out_rad + " </outer_radius>";
+        var radius_out = "<inner_radius> " + ring_inn_rad + " </inner_radius>";
+        var tra = "<translate> " + ring_tra + " </translate>";
+        var rot = "<rotate> " + ring_rot + " </rotate>";
+        console.log(center);
+        console.log(normal);
+        console.log(radius_in);
+        console.log(radius_out);
+        console.log(tra);
+        console.log(rot);
+      }
+
+      // RECTANGLE
+      if (shape.localeCompare("rectangle") == 0)
+      {    
+        var rec_point_z = document.getElementById('rec_point_z').value;
+        var rec_point_y = document.getElementById('rec_point_y').value;
+        var rec_point_x = document.getElementById('rec_point_x').value;
+        var rec_vecA_z = document.getElementById('rec_vecA_z').value;
+        var rec_vecA_y = document.getElementById('rec_vecA_y').value;
+        var rec_vecA_x = document.getElementById('rec_vecA_x').value;
+        var rec_vecB_z = document.getElementById('rec_vecB_z').value;
+        var rec_vecB_y = document.getElementById('rec_vecB_y').value;
+        var rec_vecB_x = document.getElementById('rec_vecB_x').value;
+        var rec_tra = document.getElementById('rec_tra').value;
+        var rec_rot = document.getElementById('rec_rot').value;
+        
+        var point = "<point> " + rec_point_x + ", " + rec_point_y + ", " + rec_point_z + " </point>";
+        var vecA = "<vector_a> " + rec_vecA_x + ", " + rec_vecA_y + ", " + rec_vecA_z + " </vector_a>";
+        var vecB = "<vector_b> " + rec_vecB_x + ", " + rec_vecB_y + ", " + rec_vecB_z + " </vector_b>";
+        var tra = "<translate> " + rec_tra + " </translate>";
+        var rot = "<rotate> " + rec_rot + " </rotate>";
+        console.log(point);
+        console.log(vecA);
+        console.log(vecB);
+        console.log(tra);
+        console.log(rot);
+      }
+
+      // SPHERE
+      if (shape.localeCompare("sphere") == 0)
+      {    
+        var sph_cen_z = document.getElementById('sph_cen_z').value; 
+        var sph_cen_y = document.getElementById('sph_cen_y').value;
+        var sph_cen_x = document.getElementById('sph_cen_x').value;
+        var sph_rad = document.getElementById('sph_rad').value;
+        var sph_tra = document.getElementById('sph_tra').value;
+        var sph_rot = document.getElementById('sph_rot').value;
+
+        var center = "<center> " + sph_cen_x + ", " + sph_cen_y + ", " + sph_cen_z + " </center>";
+        var radius = "<radius> " + sph_rad + " </radius>";
+        var tra = "<translate> " + sph_tra + " </translate>";
+        var rot = "<rotate> " + sph_rot + " </rotate>";
+        console.log(center);
+        console.log(radius);
+        console.log(tra);
+        console.log(rot);
+      }
+
+      // CONE
+      if (shape.localeCompare("cone") == 0)
+      {    
+        var con_cen_z = document.getElementById('con_cen_z').value;
+        var con_cen_y = document.getElementById('con_cen_y').value;
+        var con_cen_x = document.getElementById('con_cen_x').value;
+        var con_axis_z = document.getElementById('con_axis_z').value;
+        var con_axis_y = document.getElementById('con_axis_y').value;
+        var con_axis_x = document.getElementById('con_axis_x').value;
+        var con_ang = document.getElementById('con_ang').value;
+        var con_uheight = document.getElementById('con_uheight').value;
+        var con_lheight = document.getElementById('con_lheight').value;
+        var con_tra = document.getElementById('con_tra').value;
+        var con_rot = document.getElementById('con_rot').value;
+
+        var center = "<center> " + con_cen_x + ", " + con_cen_y + ", " + con_cen_z + " </center>";
+        var axis = "<axis> " + con_axis_x + ", " + con_axis_y + ", " + con_axis_z + " </axis>";
+        var angle = "<angle> " + con_ang + " </angle>";
+        var l_height = "<lower_height> " + con_lheight + " </lower_height>";
+        var u_height = "<upper_height> " + con_uheight + " </upper_height>";
+        var tra = "<translate> " + con_tra + " </translate>";
+        var rot = "<rotate> " + con_rot + " </rotate>";
+        console.log(center);
+        console.log(axis);
+        console.log(angle);
+        console.log(l_height);
+        console.log(u_height);
+        console.log(tra);
+        console.log(rot);        
+      }
+
+      // CYLINDER
+      if (shape.localeCompare("cylinder") == 0)
+      {    
+        var cyn_cen_z = document.getElementById('cyn_cen_z').value;
+        var cyn_cen_y = document.getElementById('cyn_cen_y').value;
+        var cyn_cen_x = document.getElementById('cyn_cen_x').value;
+        var cyn_axis_z = document.getElementById('cyn_axis_z').value;
+        var cyn_axis_y = document.getElementById('cyn_axis_y').value;
+        var cyn_axis_x = document.getElementById('cyn_axis_x').value;
+        var cyn_rad = document.getElementById('cyn_rad').value;
+        var cyn_height = document.getElementById('cyn_height').value;
+        var cyn_tra = document.getElementById('cyn_tra').value;
+        var cyn_rot = document.getElementById('cyn_rot').value;
+
+        var center = "<center> " + cyn_cen_x + ", " + cyn_cen_y + ", " + cyn_cen_z + " </center>";
+        var axis = "<axis> " + cyn_axis_x + ", " + cyn_axis_y + ", " + cyn_axis_z + " </axis>";
+        var rad = "<radius> " + cyn_rad + " </radius>";
+        var height = "<height> " + cyn_height + " </height>";
+        var tra = "<translate> " + cyn_tra + " </translate>";
+        var rot = "<rotate> " + cyn_rot + " </rotate>";
+        console.log(center);
+        console.log(axis);
+        console.log(rad);
+        console.log(height);
+        console.log(tra);
+        console.log(rot);
+      }
+
+      // TRIANGLE
+      if (shape.localeCompare("triangle") == 0)
+      {
+        var tri_point_x = document.getElementById('tri_point_x').value;
+        var tri_point_y = document.getElementById('tri_point_y').value;
+        var tri_point_z = document.getElementById('tri_point_z').value;
+        var tri_vec_ab_z = document.getElementById('tri_vec_ab_z').value;
+        var tri_vec_ab_y = document.getElementById('tri_vec_ab_y').value;
+        var tri_vec_ab_x = document.getElementById('tri_vec_ab_x').value;
+        var tri_vec_ac_z = document.getElementById('tri_vec_ac_z').value;
+        var tri_vec_ac_y = document.getElementById('tri_vec_ac_y').value;
+        var tri_vec_ac_x = document.getElementById('tri_vec_ac_x').value;
+        var tri_tra = document.getElementById('tri_tra').value;
+        var tri_rot = document.getElementById('tri_rot').value;
+
+        var point = "<center> " + tri_point_x + ", " + tri_point_y + ", " + tri_point_z + " </center>";
+        var vec_ab = "<vector_ab> " + tri_vec_ab_x + ", " + tri_vec_ab_y + ", " + tri_vec_ab_z + " </vector_ab>";
+        var vec_ac = "<center_ac> " + tri_vec_ac_x + ", " + tri_vec_ac_y + ", " + tri_vec_ac_z + " </vector_ac>";
+        var tra = "<translate> " + tri_tra + " </translate>";
+        var rot = "<rotate> " + tri_rot + " </rotate>";
+        console.log(point);
+        console.log(vec_ab);
+        console.log(vec_ac);
+        console.log(tra);
+        console.log(rot);
+      }
+
+      console.log("i am the output ---->", shape);
+      // document.location.reload(true);
+    }
+
     function add_shape_div() {
       // appends text to OBJECTS div that is the options in first part fo div.
       // Returns the selected value.
@@ -283,26 +560,20 @@
       {
         var textures = document.getElementById("main_textures");
         textures.style.display = 'block';
-
         var button = document.createElement("input");
         button.setAttribute("class", "buttons");
         button.setAttribute("id", "button_" + selected);
         button.setAttribute("type", "button");
+        button.onclick = () => create_xml(selected);
         button.setAttribute("value", "ADD " + selected.toUpperCase() + " !");
-        // button.se // NEED TO ADD FUNCTION TO BUTTON !
         document.getElementById("the_form_container").appendChild(button);
-
-        console.log("HELLO YOU !");
       }
-      
-      // create button here for cone, cyn, rect, and sphere
-      // <input class="buttons" id="button_rectangle" type="button" value="ADD RECTANGLE !" onclick="submit_rectangle()"/>
-
     }
 
-    function select_shape_form(selected) {
-      console.log(selected);
+    function select_shape_form(selected) 
+    {
       // creates the div that will hold the form
+      // console.log(selected);
       const object_string = String(selected);
       var object = document.createElement("div");
       object.setAttribute("id", "object_chosen");
@@ -315,12 +586,6 @@
       } 
       else 
       {
-        // NEEDS TO BE FIXED !!!!!!
-        // object.setAttribute("class", "button_" + object_string);
-        // object.innerHTML = "<h3>PLEASE FILL IN THE <span id=\"selected_shape\">" + object_string.toUpperCase() + "</span> PARAMETERS</h3><br/>";
-        // var parent = document.getElementById("the_form_container")
-        // parent.appendChild(object);
-
         if (selected.localeCompare("sphere") == 0)
           show_shape_form(object_string);
         else if (selected.localeCompare("cone") == 0)
@@ -342,7 +607,9 @@
       }
     }
 
-    function select_object() {
+    function select_object() 
+    {
+      // hides the select drop down bar 
       var divsToHide = document.getElementsByClassName("objects");
       for (var i = 0; i < divsToHide.length; i++) {
         for (var j = 0; j < divsToHide[i].childNodes.length; j++) {
