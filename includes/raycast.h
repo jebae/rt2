@@ -55,6 +55,12 @@ t_col		refraction_shade(
 	t_trace_record *prev,
 	double coeff
 );
+double		get_transmittance(
+	t_trace_record *rec,
+	t_vec3 light_dir,
+	double light_dist,
+	t_env *e
+);
 
 /*
 ** Set light functions

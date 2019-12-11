@@ -1,22 +1,36 @@
 #include "rt.h"
 
-double			send_shadow_ray(t_trace_record *rec, t_vec3 light_dir, t_env *e)
+static t_ray	get_shadow_ray(t_trace_record *rec, t_vec3 light_dir)
+{
+	t_ray	ray;
+
+	ray.ori = v3_add(rec->point, v3_scalar(rec->normal, RT_BIAS));
+	ray.dir = light_dir;
+	ray.t = FAR;
+	return (ray);
+}
+
+double			get_transmittance(
+	t_trace_record *rec,
+	t_vec3 light_dir,
+	double light_dist,
+	t_env *e
+)
 {
 	int			i;
-	double		r;
-	t_ray		shadow_ray;
+	double		transmittance;
+	double		t;
+	t_ray		ray;
 
-	r = 0;
-	shadow_ray.ori = rec->point;
-	shadow_ray.dir = light_dir;
-	shadow_ray.t = FAR;
+	ray = get_shadow_ray(rec, light_dir);
+	transmittance = 1.0;
 	i = 0;
 	while (i < e->num_objs)
 	{
-		r = e->ll_obj[i].intersect(shadow_ray, e->ll_obj[i].object);
-		if (r > 0.00001 && r < shadow_ray.t)
-			shadow_ray.t = r;
+		t = e->ll_obj[i].intersect(ray, e->ll_obj[i].object);
+		if (t > 0.0 && t < light_dist)
+			transmittance *= e->ll_obj[i].transparency;
 		i++;
 	}
-	return (shadow_ray.t);
+	return (transmittance);
 }

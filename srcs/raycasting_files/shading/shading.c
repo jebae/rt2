@@ -3,26 +3,25 @@
 static t_col	shade_per_lights(t_env *e, t_trace_record *rec)
 {
 	int			i;
+	double		light_dist;
 	t_vec3		light_dir;
-	t_col		sh;
+	t_col		sh[2];
 	t_ll		*ll;
 
 	i = 0;
-	ft_bzero(&sh, sizeof(t_col));
+	ft_bzero(&sh[0], sizeof(t_col));
 	while (i < e->num_lights)
 	{
 		ll = &e->ll_lit[i];
 		light_dir = ll->get_dir(&rec->point, ll->light);
-		/*
-		if (!(e->mask & RT_ENV_MASK_NO_SHADOW) &&
-			send_shadow_ray(rec, light_dir, e) <
-			ll->get_distance(&rec->point, ll->light))
-			return ((t_col){0, 0, 0}); // need to get real shadow color
-		*/
-		sh = color_add(sh, diffuse_specular(light_dir, ll, rec, e));
+		light_dist = ll->get_distance(&rec->point, ll->light);
+		sh[1] = diffuse_specular(light_dir, ll, rec, e);
+		sh[1] = color_scalar(sh[1],
+			get_transmittance(rec, light_dir, light_dist, e));
+		sh[0] = color_add(sh[0], sh[1]);
 		i++;
 	}
-	return (sh);
+	return (sh[0]);
 }
 
 t_col			calc_shade(t_env *e, t_trace_record *rec, double coeff)
