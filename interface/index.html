@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   </head>
   <body>
     <div class="header">
@@ -17,253 +18,260 @@
             <option value="sphere">SPHERE</option>
             <option value="cone">CONE</option>
             <option value="cylinder">CYLINDER</option>
-            <option value="plane">PLANE</option>
             <option value="rectangle">RECTANGLE</option>
-            <option value="box">BOX</option>
-            <option value="triangle">TRIANGLE</option>
-            <option value="pyramid">PYRAMID</option>
             <option value="ring">RING</option>
+            <option value="box">BOX</option>
+            <option value="pyramid">PYRAMID</option>
+            <option value="triangle">TRIANGLE</option>
+            <option value="plane">PLANE</option>
           </select>
           <input class="buttons" id="button_obj" type="button" value="ADD !" onclick="select_object()"/>
         </div>
       </form>
-      <div class="output_object" id="sphere_object">
+      <div class="output_object" id="sphere_object"> <!-- 1 -->
         <h3>SPHERE PARAMETERS</h3><br>
         <form class="sphere_form">
           <span id="txt_simple">CENTER :</span>
-            <input class="i_cmplx" id="sph_cen_z" type="text" name="center_z" placeholder="Enter Z" maxlength="4">
-            <input class="i_cmplx" id="sph_cen_y" type="text" name="center_y" placeholder="Enter Y" maxlength="4"/>
-            <input class="i_cmplx" id="sph_cen_x" type="text" name="center_x" placeholder="Enter X" maxlength="4"/><br/><br/>
-          <span id="txt_simple">RADIUS :</span><input class="i_smpl" id="sph_rad" type="text" name="radius" placeholder="Enter radius" maxlength="4"/><br><br>
-          <span id="txt_simple">TRANSLATION :</span><input class="i_smpl" id="sph_tra" type="text" name="translation" placeholder="Enter translation" maxlength="4"/><br><br>
-          <span id="txt_simple">ROTATION :</span><input class="i_smpl" id="sph_rot" type="text" name="rotation" placeholder="Enter rotation" maxlength="4"/><br/><br/>
+            <input class="i_cmplx" id="sph_cen_z" type="text" name="center_s" placeholder="Enter Z" maxlength="6">
+            <input class="i_cmplx" id="sph_cen_y" type="text" name="center_s" placeholder="Enter Y" maxlength="6"/>
+            <input class="i_cmplx" id="sph_cen_x" type="text" name="center_s" placeholder="Enter X" maxlength="6"/><br/><br/>
+          <span id="txt_simple">RADIUS :</span><input class="i_smpl" id="sph_rad" type="text" name="radius" placeholder="Enter radius" maxlength="6"/><br><br>
+          <span id="txt_simple">IOR :</span><input class="i_smpl" id="ior" type="text" name="ior" placeholder="Enter ior" maxlength="6"/><br><br>
+          <span id="txt_simple">COLOR :</span>
+            <input class="i_cmplx" id="color_b" type="text" name="color_b" placeholder="Enter B" maxlength="6"/>
+            <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
+            <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
+          <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
         </form><br/>
       </div>
-      <div class="output_object" id="cone_object">
+      <div class="output_object" id="cone_object"> <!-- 2 -->
         <h3>CONE PARAMETERS</h3><br>
         <form class="cone_form">
           <span id="txt_simple">CENTER :</span>
-            <input class="i_cmplx" id="con_cen_z" type="text" name="center_z" placeholder="Enter Z" maxlength="4"/>
-            <input class="i_cmplx" id="con_cen_y" type="text" name="center_y" placeholder="Enter Y" maxlength="4"/>
-            <input class="i_cmplx" id="con_cen_x" type="text" name="center_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+            <input class="i_cmplx" id="con_cen_z" type="text" name="center_c" placeholder="Enter Z" maxlength="6"/>
+            <input class="i_cmplx" id="con_cen_y" type="text" name="center_c" placeholder="Enter Y" maxlength="6"/>
+            <input class="i_cmplx" id="con_cen_x" type="text" name="center_c" placeholder="Enter X" maxlength="6"/><br/><br/>
           <span id="txt_simple">AXIS :</span>
-            <input class="i_cmplx" id="con_axis_z" type="text" name="axis_z" placeholder="Enter Z" maxlength="4"/>
-            <input class="i_cmplx" id="con_axis_y" type="text" name="axis_y" placeholder="Enter Y" maxlength="4"/>
-            <input class="i_cmplx" id="con_axis_x" type="text" name="axis_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+            <input class="i_cmplx" id="con_axis_z" type="text" name="axis_c" placeholder="Enter Z" maxlength="6"/>
+            <input class="i_cmplx" id="con_axis_y" type="text" name="axis_c" placeholder="Enter Y" maxlength="6"/>
+            <input class="i_cmplx" id="con_axis_x" type="text" name="axis_c" placeholder="Enter X" maxlength="6"/><br/><br/>
           <span id="txt_simple">ANGLE :</span><input class="i_smpl" id="con_ang" type="text" name="angle" placeholder="Enter angle"/><br/><br/>
-          <span id="txt_simple">UPPER HEIGHT :</span><input class="i_smpl" id="con_uheight" type="text" name="upper_height" placeholder="Enter upper height" maxlength="4"/><br><br>
-          <span id="txt_simple">LOWER HEIGHT :</span><input class="i_smpl" id="con_lheight" type="text" name="lower_height" placeholder="Enter lower height" maxlength="4"/><br><br>
-          <span id="txt_simple">TRANSLATION :</span><input class="i_smpl" id="con_tra" type="text" name="translation" placeholder="Enter translation" maxlength="4"/><br><br>
-          <span id="txt_simple">ROTATION :</span><input class="i_smpl" id="con_rot" type="text" name="rotation" placeholder="Enter rotation" maxlength="4"/><br/><br/>
+          <span id="txt_simple">UPPER HEIGHT :</span><input class="i_smpl" id="con_uheight" type="text" name="upper_height" placeholder="Enter upper height" maxlength="6"/><br><br>
+          <span id="txt_simple">LOWER HEIGHT :</span><input class="i_smpl" id="con_lheight" type="text" name="lower_height" placeholder="Enter lower height" maxlength="6"/><br><br>
+          <span id="txt_simple">IOR :</span><input class="i_smpl" id="ior" type="text" name="ior" placeholder="Enter ior" maxlength="6"/><br><br>
+          <span id="txt_simple">COLOR :</span>
+            <input class="i_cmplx" id="color_b" type="text" name="color_b" placeholder="Enter B" maxlength="6"/>
+            <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
+            <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
+          <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
         </form><br/>
       </div>
-      <div class="output_object" id="cylinder_object">
+      <div class="output_object" id="cylinder_object"> <!-- 3 -->
         <h3>CYLINDER PARAMETERS</h3><br>
         <form class="cylinder_form">
           <span id="txt_simple">CENTER :</span>
-            <input class="i_cmplx" id="cyn_cen_z" type="text" name="center_z" placeholder="Enter Z" maxlength="4"/>
-            <input class="i_cmplx" id="cyn_cen_y" type="text" name="center_y" placeholder="Enter Y" maxlength="4"/>
-            <input class="i_cmplx" id="cyn_cen_x" type="text" name="center_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+            <input class="i_cmplx" id="cyn_cen_z" type="text" name="center_y" placeholder="Enter Z" maxlength="6"/>
+            <input class="i_cmplx" id="cyn_cen_y" type="text" name="center_y" placeholder="Enter Y" maxlength="6"/>
+            <input class="i_cmplx" id="cyn_cen_x" type="text" name="center_y" placeholder="Enter X" maxlength="6"/><br/><br/>
           <span id="txt_simple">AXIS :</span>
-            <input class="i_cmplx" id="cyn_axis_z" type="text" name="axis_z" placeholder="Enter Z" maxlength="4"/>
-            <input class="i_cmplx" id="cyn_axis_y" type="text" name="axis_y" placeholder="Enter Y" maxlength="4"/>
-            <input class="i_cmplx" id="cyn_axis_x" type="text" name="axis_x" placeholder="Enter X" maxlength="4"/><br/><br/>
-          <span id="txt_simple">RADIUS :</span><input class="i_smpl" id="cyn_rad" type="text" name="radius" placeholder="Enter radius" maxlength="4"/><br><br>
-          <span id="txt_simple">HEIGHT :</span><input class="i_smpl" id="cyn_height" type="text" name="height" placeholder="Enter height" maxlength="4"/><br><br>
-          <span id="txt_simple">TRANSLATION :</span><input class="i_smpl" id="cyn_tra" type="text" name="translation" placeholder="Enter translation" maxlength="4"/><br><br>
-          <span id="txt_simple">ROTATION :</span><input class="i_smpl" id="cyn_rot" type="text" name="rotation" placeholder="Enter rotation" maxlength="4"/><br/><br/>
+            <input class="i_cmplx" id="cyn_axis_z" type="text" name="axis_y" placeholder="Enter Z" maxlength="6"/>
+            <input class="i_cmplx" id="cyn_axis_y" type="text" name="axis_y" placeholder="Enter Y" maxlength="6"/>
+            <input class="i_cmplx" id="cyn_axis_x" type="text" name="axis_y" placeholder="Enter X" maxlength="6"/><br/><br/>
+          <span id="txt_simple">RADIUS :</span><input class="i_smpl" id="cyn_rad" type="text" name="radius" placeholder="Enter radius" maxlength="6"/><br><br>
+          <span id="txt_simple">HEIGHT :</span><input class="i_smpl" id="cyn_height" type="text" name="height" placeholder="Enter height" maxlength="6"/><br><br>
+          <span id="txt_simple">IOR :</span><input class="i_smpl" id="ior" type="text" name="ior" placeholder="Enter ior" maxlength="6"/><br><br>
+          <span id="txt_simple">COLOR :</span>
+            <input class="i_cmplx" id="color_b" type="text" name="color_b" placeholder="Enter B" maxlength="6"/>
+            <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
+            <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
+          <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
         </form><br/>
       </div>
-      <div class="output_object" id="rectangle_object">
+      <div class="output_object" id="rectangle_object"> <!-- 4 --->
         <h3>RECTANGLE PARAMETERS</h3><br>
         <form class="rectangle_form">
           <span id="txt_simple">STARTING POINT :</span>
-            <input class="i_cmplx" id="rec_point_z" type="text" name="s_point_z" placeholder="Enter Z" maxlength="4"/>
-            <input class="i_cmplx" id="rec_point_y" type="text" name="s_point_y" placeholder="Enter Y" maxlength="4"/>
-            <input class="i_cmplx" id="rec_point_x" type="text" name="s_point_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+            <input class="i_cmplx" id="rec_point_z" type="text" name="rec_point" placeholder="Enter Z" maxlength="6"/>
+            <input class="i_cmplx" id="rec_point_y" type="text" name="rec_point" placeholder="Enter Y" maxlength="6"/>
+            <input class="i_cmplx" id="rec_point_x" type="text" name="rec_point" placeholder="Enter X" maxlength="6"/><br/><br/>
           <span id="txt_simple">VECTOR A :</span>
-            <input class="i_cmplx" id="rec_vecA_z" type="text" name="vector_a_z" placeholder="Enter Z" maxlength="4"/>
-            <input class="i_cmplx" id="rec_vecA_y" type="text" name="vector_a_y" placeholder="Enter Y" maxlength="4"/>
-            <input class="i_cmplx" id="rec_vecA_x" type="text" name="vector_a_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+            <input class="i_cmplx" id="rec_vecA_z" type="text" name="rec_vector_a" placeholder="Enter Z" maxlength="6"/>
+            <input class="i_cmplx" id="rec_vecA_y" type="text" name="rec_vector_a" placeholder="Enter Y" maxlength="6"/>
+            <input class="i_cmplx" id="rec_vecA_x" type="text" name="rec_vector_a" placeholder="Enter X" maxlength="6"/><br/><br/>
           <span id="txt_simple">VECTOR B :</span>
-            <input class="i_cmplx" id="rec_vecB_z" type="text" name="vector_b_z" placeholder="Enter Z" maxlength="4"/>
-            <input class="i_cmplx" id="rec_vecB_y" type="text" name="vector_b_y" placeholder="Enter Y" maxlength="4"/>
-            <input class="i_cmplx" id="rec_vecB_x" type="text" name="vector_b_x" placeholder="Enter X" maxlength="4"/><br/><br/>
-          <span id="txt_simple">TRANSLATION :</span><input class="i_smpl" id="rec_tra" type="text" name="translation" placeholder="Enter translation" maxlength="4"/><br><br>
-          <span id="txt_simple">ROTATION :</span><input class="i_smpl" id="rec_rot" type="text" name="rotation" placeholder="Enter rotation" maxlength="4"/><br/><br/>
+            <input class="i_cmplx" id="rec_vecB_z" type="text" name="rec_vector_b" placeholder="Enter Z" maxlength="6"/>
+            <input class="i_cmplx" id="rec_vecB_y" type="text" name="rec_vector_b" placeholder="Enter Y" maxlength="6"/>
+            <input class="i_cmplx" id="rec_vecB_x" type="text" name="rec_vector_b" placeholder="Enter X" maxlength="6"/><br/><br/>
+            <span id="txt_simple">IOR :</span><input class="i_smpl" id="ior" type="text" name="ior" placeholder="Enter ior" maxlength="6"/><br><br>
+            <span id="txt_simple">COLOR :</span>
+              <input class="i_cmplx" id="color_b" type="text" name="color_b" placeholder="Enter B" maxlength="6"/>
+              <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
+              <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
+            <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
         </form><br/>
       </div>
-      <div class="output_object" id="ring_object">
+      <div class="output_object" id="ring_object"> <!-- 5 -->
         <h3>RING PARAMETERS</h3><br>
         <form class="ring_form">
           <span id="txt_simple">CENTER :</span>
-            <input class="i_cmplx" id="ring_cen_z" type="text" name="center_z" placeholder="Enter Z" maxlength="4"/>
-            <input class="i_cmplx" id="ring_cen_y" type="text" name="center_y" placeholder="Enter Y" maxlength="4"/>
-            <input class="i_cmplx" id="ring_cen_x" type="text" name="center_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+            <input class="i_cmplx" id="ring_cen_z" type="text" name="center_r" placeholder="Enter Z" maxlength="6"/>
+            <input class="i_cmplx" id="ring_cen_y" type="text" name="center_r" placeholder="Enter Y" maxlength="6"/>
+            <input class="i_cmplx" id="ring_cen_x" type="text" name="center_r" placeholder="Enter X" maxlength="6"/><br/><br/>
           <span id="txt_simple">NORMAL :</span>
-            <input class="i_cmplx" id="ring_nor_z" type="text" name="normal_z" placeholder="Enter Z" maxlength="4"/>
-            <input class="i_cmplx" id="ring_nor_y" type="text" name="normal_y" placeholder="Enter Y" maxlength="4"/>
-            <input class="i_cmplx" id="ring_nor_x" type="text" name="normal_x" placeholder="Enter X" maxlength="4"/><br/><br/>
-          <span id="txt_simple">INNER RADIUS :</span><input class="i_smpl" id="ring_inn_rad" type="text" name="in_radius" placeholder="Enter inner radius" maxlength="4"/><br><br>
-          <span id="txt_simple">OUTER RADIUS :</span><input class="i_smpl" id="ring_out_rad" type="text" name="out_radius" placeholder="Enter outer radius" maxlength="4"/><br><br>
-          <span id="txt_simple">TRANSLATION :</span><input class="i_smpl" id="ring_tra" type="text" name="translation" placeholder="Enter translation" maxlength="4"/><br><br>
-          <span id="txt_simple">ROTATION :</span><input class="i_smpl" id="ring_rot" type="text" name="rotation" placeholder="Enter rotation" maxlength="4"/><br/><br/>
+            <input class="i_cmplx" id="ring_nor_z" type="text" name="ri_normal" placeholder="Enter Z" maxlength="6"/>
+            <input class="i_cmplx" id="ring_nor_y" type="text" name="ri_normal" placeholder="Enter Y" maxlength="6"/>
+            <input class="i_cmplx" id="ring_nor_x" type="text" name="ri_normal" placeholder="Enter X" maxlength="6"/><br/><br/>
+          <span id="txt_simple">INNER RADIUS :</span><input class="i_smpl" id="ring_inn_rad" type="text" name="in_radius" placeholder="Enter inner radius" maxlength="6"/><br><br>
+          <span id="txt_simple">OUTER RADIUS :</span><input class="i_smpl" id="ring_out_rad" type="text" name="out_radius" placeholder="Enter outer radius" maxlength="6"/><br><br>
+          <span id="txt_simple">IOR :</span><input class="i_smpl" id="ior" type="text" name="ior" placeholder="Enter ior" maxlength="6"/><br><br>
+          <span id="txt_simple">COLOR :</span>
+            <input class="i_cmplx" id="color_b" type="text" name="color_b" placeholder="Enter B" maxlength="6"/>
+            <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
+            <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
+          <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
         </form><br/><br/>
         <input class="buttons" id="button_ring" type="button" value="ADD RING !" onclick="create_xml('ring')"/>
       </div>
-      <div class="output_object" id="box_object">
+      <div class="output_object" id="box_object"> <!-- 6 -->
           <h3>BOX PARAMETERS</h3><br>
           <form class="box_form">
             <span id="txt_simple">STARTING POINT :</span>
-              <input class="i_cmplx" id="box_point_z" type="text" name="s_point_z" placeholder="Enter Z" maxlength="4"/>
-              <input class="i_cmplx" id="box_point_y" type="text" name="s_point_y" placeholder="Enter Y" maxlength="4"/>
-              <input class="i_cmplx" id="box_point_x" type="text" name="s_point_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+              <input class="i_cmplx" id="box_point_z" type="text" name="box_point" placeholder="Enter Z" maxlength="6"/>
+              <input class="i_cmplx" id="box_point_y" type="text" name="box_point" placeholder="Enter Y" maxlength="6"/>
+              <input class="i_cmplx" id="box_point_x" type="text" name="box_point" placeholder="Enter X" maxlength="6"/><br/><br/>
             <span id="txt_simple">VECTOR A :</span>
-              <input class="i_cmplx" id="box_vecA_z" type="text" name="vector_a_z" placeholder="Enter Z" maxlength="4"/>
-              <input class="i_cmplx" id="box_vecA_y" type="text" name="vector_a_y" placeholder="Enter Y" maxlength="4"/>
-              <input class="i_cmplx" id="box_vecA_x" type="text" name="vector_a_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+              <input class="i_cmplx" id="box_vecA_z" type="text" name="box_vector_a" placeholder="Enter Z" maxlength="6"/>
+              <input class="i_cmplx" id="box_vecA_y" type="text" name="box_vector_a" placeholder="Enter Y" maxlength="6"/>
+              <input class="i_cmplx" id="box_vecA_x" type="text" name="box_vector_a" placeholder="Enter X" maxlength="6"/><br/><br/>
             <span id="txt_simple">VECTOR B :</span>
-              <input class="i_cmplx" id="box_vecB_z" type="text" name="vector_b_z" placeholder="Enter Z" maxlength="4"/>
-              <input class="i_cmplx" id="box_vecB_y" type="text" name="vector_b_y" placeholder="Enter Y" maxlength="4"/>
-              <input class="i_cmplx" id="box_vecB_x" type="text" name="vector_b_x" placeholder="Enter X" maxlength="4"/><br/><br/>
-            <span id="txt_simple">LENGTH OF C :</span><input class="i_smpl" id="box_lenC" type="text" name="len_c" placeholder="Enter translation" maxlength="4"/><br><br>
-            <span id="txt_simple">TRANSLATION :</span><input class="i_smpl" id="box_tra" type="text" name="translation" placeholder="Enter translation" maxlength="4"/><br><br>
-            <span id="txt_simple">ROTATION :</span><input class="i_smpl" id="box_rot" type="text" name="rotation" placeholder="Enter rotation" maxlength="4"/><br/><br/>
+              <input class="i_cmplx" id="box_vecB_z" type="text" name="box_vector_b" placeholder="Enter Z" maxlength="6"/>
+              <input class="i_cmplx" id="box_vecB_y" type="text" name="box_vector_b" placeholder="Enter Y" maxlength="6"/>
+              <input class="i_cmplx" id="box_vecB_x" type="text" name="box_vector_b" placeholder="Enter X" maxlength="6"/><br/><br/>
+            <span id="txt_simple">LENGTH OF C :</span><input class="i_smpl" id="box_lenC" type="text" name="len_c" placeholder="Enter translation" maxlength="6"/><br><br>
+            <span id="txt_simple">IOR :</span><input class="i_smpl" id="ior" type="text" name="ior" placeholder="Enter ior" maxlength="6"/><br><br>
+            <span id="txt_simple">COLOR :</span>
+              <input class="i_cmplx" id="color_b" type="text" name="color_b" placeholder="Enter B" maxlength="6"/>
+              <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
+              <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
+            <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
           </form><br/><br/>
           <input class="buttons" id="button_box" type="button" value="ADD BOX !" onclick="create_xml('box')"/>
       </div>
-      <div class="output_object" id="pyramid_object">
+      <div class="output_object" id="pyramid_object"> <!-- 7 -->
           <h3>PYRAMID PARAMETERS</h3><br>
           <form class="pyramid_form">
             <span id="txt_simple">STARTING POINT :</span>
-              <input class="i_cmplx" id="pyr_sp_z" type="text" name="s_point_z" placeholder="Enter Z" maxlength="4"/>
-              <input class="i_cmplx" id="pyr_sp_y" type="text" name="s_point_y" placeholder="Enter Y" maxlength="4"/>
-              <input class="i_cmplx" id="pyr_sp_x" type="text" name="s_point_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+              <input class="i_cmplx" id="pyr_sp_z" type="text" name="py_point" placeholder="Enter Z" maxlength="6"/>
+              <input class="i_cmplx" id="pyr_sp_y" type="text" name="py_point" placeholder="Enter Y" maxlength="6"/>
+              <input class="i_cmplx" id="pyr_sp_x" type="text" name="py_point" placeholder="Enter X" maxlength="6"/><br/><br/>
             <span id="txt_simple">VECTOR U (EDGE ONE):</span>
-              <input class="i_cmplx" id="pyr_vecU_z" type="text" name="vector_u_z" placeholder="Enter Z" maxlength="4"/>
-              <input class="i_cmplx" id="pyr_vecU_y" type="text" name="vector_u_y" placeholder="Enter Y" maxlength="4"/>
-              <input class="i_cmplx" id="pyr_vecU_x" type="text" name="vector_u_x" placeholder="Enter X" maxlength="4"/><br/><br/>
+              <input class="i_cmplx" id="pyr_vecU_z" type="text" name="vector_u" placeholder="Enter Z" maxlength="6"/>
+              <input class="i_cmplx" id="pyr_vecU_y" type="text" name="vector_u" placeholder="Enter Y" maxlength="6"/>
+              <input class="i_cmplx" id="pyr_vecU_x" type="text" name="vector_u" placeholder="Enter X" maxlength="6"/><br/><br/>
             <span id="txt_simple">VECTOR V (EDGE TWO):</span>
-              <input class="i_cmplx" id="pyr_vecV_z" type="text" name="vector_v_z" placeholder="Enter Z" maxlength="4"/>
-              <input class="i_cmplx" id="pyr_vecV_y" type="text" name="vector_v_y" placeholder="Enter Y" maxlength="4"/>
-              <input class="i_cmplx" id="pyr_vecV_x" type="text" name="vector_v_x" placeholder="Enter X" maxlength="4"/><br/><br/>
-            <span id="txt_simple">HEIGHT :</span><input class="i_smpl" id="pyr_height" type="text" name="height" placeholder="Enter height" maxlength="4"/><br><br>
-            <span id="txt_simple">TRANSLATION :</span><input class="i_smpl" id="pyr_tra" type="text" name="translation" placeholder="Enter translation" maxlength="4"/><br><br>
-            <span id="txt_simple">ROTATION :</span><input class="i_smpl" id="pyr_rot" type="text" name="rotation" placeholder="Enter rotation" maxlength="4"/><br/><br/>
+              <input class="i_cmplx" id="pyr_vecV_z" type="text" name="vector_v" placeholder="Enter Z" maxlength="6"/>
+              <input class="i_cmplx" id="pyr_vecV_y" type="text" name="vector_v" placeholder="Enter Y" maxlength="6"/>
+              <input class="i_cmplx" id="pyr_vecV_x" type="text" name="vector_v" placeholder="Enter X" maxlength="6"/><br/><br/>
+            <span id="txt_simple">HEIGHT :</span><input class="i_smpl" id="pyr_height" type="text" name="height" placeholder="Enter height" maxlength="6"/><br><br>
+            <span id="txt_simple">IOR :</span><input class="i_smpl" id="ior" type="text" name="ior" placeholder="Enter ior" maxlength="6"/><br><br>
+            <span id="txt_simple">COLOR :</span>
+              <input class="i_cmplx" id="color_b" type="text" name="color_b" placeholder="Enter B" maxlength="6"/>
+              <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
+              <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
+            <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
           </form><br/><br/>
           <input class="buttons" id="button_pyramid" type="button" value="ADD PYRAMID !" onclick="create_xml('pyramid')"/>
       </div>
-      <div class="output_object" id="triangle_object">
+      <div class="output_object" id="triangle_object"> <!-- 8 -->
           <h3>TRIANGLE PARAMETERS</h3><br>
           <form class="triangle_form">
             <span id="txt_simple">STARTING POINT :</span>
-              <input class="i_cmplx" id="tri_point_z" type="text" name="s_point_z" placeholder="Enter Z" maxlength="4"/>
-              <input class="i_cmplx" id="tri_point_y" type="text" name="s_point_y" placeholder="Enter Y" maxlength="4"/>
-              <input class="i_cmplx" id="tri_point_x" type="text" name="s_point_x" placeholder="Enter X" maxlength="4"/><br/><br/>
-            <span id="txt_simple">VECTOR AB (CORNER ONE):</span>
-              <input class="i_cmplx" id="tri_vec_ab_z" type="text" name="vector_ab_z" placeholder="Enter Z" maxlength="4"/>
-              <input class="i_cmplx" id="tri_vec_ab_y" type="text" name="vector_ab_y" placeholder="Enter Y" maxlength="4"/>
-              <input class="i_cmplx" id="tri_vec_ab_x" type="text" name="vector_ab_x" placeholder="Enter X" maxlength="4"/><br/><br/>
-            <span id="txt_simple">VECTOR AC (CORNER TWO):</span>
-              <input class="i_cmplx" id="tri_vec_ac_z" type="text" name="vector_ac_z" placeholder="Enter Z" maxlength="4"/>
-              <input class="i_cmplx" id="tri_vec_ac_y" type="text" name="vector_ac_y" placeholder="Enter Y" maxlength="4"/>
-              <input class="i_cmplx" id="tri_vec_ac_x" type="text" name="vector_ac_x" placeholder="Enter X" maxlength="4"/><br/><br/>
-            <span id="txt_simple">TRANSLATION :</span><input class="i_smpl" type="text" id="tri_tra" name="translation" placeholder="Enter translation" maxlength="4"/><br><br>
-            <span id="txt_simple">ROTATION :</span><input class="i_smpl" type="text" id="tri_rot"  name="rotation" placeholder="Enter rotation" maxlength="4"/><br/><br/>
+              <input class="i_cmplx" id="tri_point_z" type="text" name="tr_point" placeholder="Enter Z" maxlength="6"/>
+              <input class="i_cmplx" id="tri_point_y" type="text" name="tr_point" placeholder="Enter Y" maxlength="6"/>
+              <input class="i_cmplx" id="tri_point_x" type="text" name="tr_point" placeholder="Enter X" maxlength="6"/><br/><br/>
+            <span id="txt_simple">CORNER ONE VECTOR:</span>
+              <input class="i_cmplx" id="tri_vec_ab_z" type="text" name="vector_ab" placeholder="Enter Z" maxlength="6"/>
+              <input class="i_cmplx" id="tri_vec_ab_y" type="text" name="vector_ab" placeholder="Enter Y" maxlength="6"/>
+              <input class="i_cmplx" id="tri_vec_ab_x" type="text" name="vector_ab" placeholder="Enter X" maxlength="6"/><br/><br/>
+            <span id="txt_simple">CORNER TWO VECTOR:</span>
+              <input class="i_cmplx" id="tri_vec_ac_z" type="text" name="vector_ac" placeholder="Enter Z" maxlength="6"/>
+              <input class="i_cmplx" id="tri_vec_ac_y" type="text" name="vector_ac" placeholder="Enter Y" maxlength="6"/>
+              <input class="i_cmplx" id="tri_vec_ac_x" type="text" name="vector_ac" placeholder="Enter X" maxlength="6"/><br/><br/>
+              <span id="txt_simple">IOR :</span><input class="i_smpl" id="ior" type="text" name="ior" placeholder="Enter ior" maxlength="6"/><br><br>
+              <span id="txt_simple">COLOR :</span>
+                <input class="i_cmplx" id="color_b" type="text" name="color_b" placeholder="Enter B" maxlength="6"/>
+                <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
+                <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
+              <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
           </form><br/><br/>
           <input class="buttons" id="button_triangle" type="button" value="ADD TRIANGLE !" onclick="create_xml('triangle')"/>
       </div>
+      <div class="output_object" id="plane_object"> <!-- 9 -->
+        <h3>PLANE PARAMETERS</h3><br>
+        <form class="plane_form">
+            <span id="txt_simple">NORMAL :</span>
+            <input class="i_cmplx" id="pla_nor_z" type="text" name="pla_normal" placeholder="Enter Z" maxlength="6"/>
+            <input class="i_cmplx" id="pla_nor_y" type="text" name="pla_normal" placeholder="Enter Y" maxlength="6"/>
+            <input class="i_cmplx" id="pla_nor_x" type="text" name="pla_normal" placeholder="Enter X" maxlength="6"/><br/><br/>
+            <span id="txt_simple">LENGTH OF C :</span><input class="i_smpl" id="pla_len_c" type="text" name="pla_len_c" placeholder="Enter translation" maxlength="6"/><br><br>
+            <span id="txt_simple">IOR :</span><input class="i_smpl" id="ior" type="text" name="ior" placeholder="Enter ior" maxlength="6"/><br><br>
+            <span id="txt_simple">COLOR :</span>
+              <input class="i_cmplx" id="color_b" type="text" name="color_b" placeholder="Enter B" maxlength="6"/>
+              <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
+              <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
+            <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
+        </form><br/><br/>
+        <input class="buttons" id="button_plane" type="button" value="ADD PLANE !" onclick="create_xml('plane')"/>
+    </div>
       <div class="main_textures" id="main_textures">
-          <h3>CHOOSE A TEXTURE</h3><br>
-          <form>
+          <h3>CHOOSE A TEXTURE FOR MAPPING</h3><br>
+          <form id="mapping"> 
             <table class="texture_table" id="texture_table">
               <tr>
-                <td class="textures" id="ball">
-                  <img id="ball" name="ball" src="textures/basketball.jpg"/>
-                </td>
-                <td class="textures" id="brick">
-                  <img id="brick" name="brick" src="textures/brick_bump.jpg"/>
+                <td class="textures" id="basketball">
+                  <img id="basketball" name="basketball" src="textures/basketball.jpg"/>
                 </td>
                 <td class="textures" id="checker">
                     <img id="checker" name="checker" src="textures/checker.jpg"/>
                 </td>
-                <td class="textures" id="concrete">
-                    <img id="concrete" name="concrete" src="textures/concrete_bump.png"/>
-                </td>
-                <td class="textures" id="disk">
-                  <img id="disk" name="disk" src="textures/disk_bump.jpg"/>
-                </td>
-                <td class="textures" id="water1">
-                    <img id="water1" name="water1" src="textures/water_bump.jpg"/>
-                </td>
-              </tr>
-              <tr>
-                <td style="text-align:center">
-                    <input type="radio" name="radio-207" value="ball">
-                </td>
-                <td style="text-align:center">
-                    <input type="radio" name="radio-207" value="brick">
-                </td>
-                <td style="text-align:center">
-                    <input type="radio" name="radio-207" value="checker">
-                </td> 
-                <td style="text-align:center">
-                    <input type="radio" name="radio-207" value="concrete">
-                </td>
-                <td style="text-align:center">
-                    <input type="radio" name="radio-207" value="disk">
-                </td>
-                <td style="text-align:center">
-                    <input type="radio" name="radio-207" value="water1">
-                </td>
-              </tr>
-              <tr>
                 <td class="textures" id="earth">
                     <img id="earth" name="earth" src="textures/earth.jpg"/>
                 </td>
-                <td class="textures" id="earth2">
-                    <img id="earth2" name="earth2" src="textures/earth_bump.jpg"/>
-                </td>
-                <td class="textures" id="fossil">
-                    <img id="fossil" name="fossil" src="textures/fossil_bump.jpg"/>
-                </td>
-                <td class="textures" id="jupiter">
-                  <img id="jupiter" name="jupiter" src="textures/jupiter.jpg"/>
-                </td>
-                <td class="textures" id="leather">
-                    <img id="leather" name="leather" src="textures/leather_bump.jpg"/>
-                </td>
-                <td class="textures" id="water2">
-                    <img id="water2" name="water2" src="textures/water_bump2.jpg"/>
-                </td>
               </tr>
               <tr>
+                <td style="text-align:center">
+                    <input type="radio" name="radio-207" value="basketball">
+                </td>
+                <td style="text-align:center">
+                    <input type="radio" name="radio-207" value="checker">
+                </td>
                 <td style="text-align:center">
                     <input type="radio" name="radio-207" value="earth">
                 </td>
-                <td style="text-align:center">
-                    <input type="radio" name="radio-207" value="earth2">
-                </td>
-                <td style="text-align:center">
-                    <input type="radio" name="radio-207" value="fossil">
-                </td>
-                <td style="text-align:center">
-                    <input type="radio" name="radio-207" value="jupiter">
-                </td>
-                <td style="text-align:center">
-                    <input type="radio" name="radio-207" value="leather">
-                </td>
-                <td style="text-align:center">
-                    <input type="radio" name="radio-207" value="water2">
-                </td>
               </tr>
               <tr>
+                <td class="textures" id="jupiter">
+                  <img id="jupiter" name="jupiter" src="textures/jupiter.jpg"/>
+                </td>
                 <td class="textures" id="moon">
                     <img id="moon" name="moon" src="textures/moon.jpg"/>
                 </td>
                 <td class="textures" id="paper">
                   <img id="paper" name="paper" src="textures/paper.jpg"/>
                 </td>
+              </tr>
+              <tr>
+                <td style="text-align:center">
+                    <input type="radio" name="radio-207" value="jupiter">
+                </td>
+                <td style="text-align:center">
+                    <input type="radio" name="radio-207" value="moon">
+                </td>
+                <td style="text-align:center">
+                    <input type="radio" name="radio-207" value="paper">
+                </td>
+              </tr>
+              <tr>
                 <td class="textures" id="skyline">
                     <img id="skyline" name="skyline" src="textures/skyline.jpg"/>
                 </td>
@@ -273,17 +281,8 @@
                 <td class="textures" id="tabaco">
                     <img id="tabaco" name="tabaco" src="textures/tabaco.jpg"/>
                 </td>
-                <td class="textures" id="water3">
-                    <img id="water3" name="water3" src="textures/water_bump3.jpg"/>
-                </td>
               </tr>
               <tr>
-                <td style="text-align:center">
-                    <input type="radio" name="radio-207" value="moon">
-                </td>
-                <td style="text-align:center">
-                    <input type="radio" name="radio-207" value="paper">
-                </td>
                 <td style="text-align:center">
                     <input type="radio" name="radio-207" value="skyline">
                 </td>
@@ -293,10 +292,78 @@
                 <td style="text-align:center">
                     <input type="radio" name="radio-207" value="tabaco">
                 </td>
-                <td style="text-align:center">
-                    <input type="radio" name="radio-207" value="water3">
-                </td>
               </tr>
+            </table>
+          </form>
+          <h3>CHOOSE A TEXTURE FOR BUMPING</h3><br>
+          <form id="bumping">
+            <table class="bump_table" id="texture_table">
+                <tr>
+                    <td class="textures" id="brick">
+                        <img id="brick" name="brick" src="textures/brick_bump.jpg"/>
+                    </td>
+                    <td class="textures" id="concrete">
+                        <img id="concrete" name="concrete" src="textures/concrete_bump.jpg"/>
+                    </td>
+                    <td class="textures" id="disk">
+                        <img id="disk" name="disk" src="textures/disk_bump.jpg"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:center">
+                        <input type="radio" name="radio-208" value="brick_bump">
+                    </td>
+                    <td style="text-align:center">
+                        <input type="radio" name="radio-208" value="concrete_bump">
+                    </td>
+                    <td style="text-align:center">
+                        <input type="radio" name="radio-208" value="disk_bump">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="textures" id="water1">
+                        <img id="water1" name="water1" src="textures/water_bump.jpg"/>
+                    </td>
+                    <td class="textures" id="earth2">
+                        <img id="earth2" name="earth2" src="textures/earth_bump.jpg"/>
+                    </td>
+                    <td class="textures" id="fossil">
+                        <img id="fossil" name="fossil" src="textures/fossil_bump.jpg"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:center">
+                        <input type="radio" name="radio-208" value="water_bump">
+                    </td>
+                    <td style="text-align:center">
+                        <input type="radio" name="radio-208" value="earth_bump">
+                    </td>
+                    <td style="text-align:center">
+                        <input type="radio" name="radio-208" value="fossil_bump">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="textures" id="water3">
+                        <img id="water3" name="water3" src="textures/water_bump3.jpg"/>
+                    </td>
+                            <td class="textures" id="leather">
+                        <img id="leather" name="leather" src="textures/leather_bump.jpg"/>
+                    </td>
+                    <td class="textures" id="water2">
+                        <img id="water2" name="water2" src="textures/water_bump2.jpg"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:center">
+                        <input type="radio" name="radio-208" value="water_bump3">
+                    </td>
+                    <td style="text-align:center">
+                        <input type="radio" name="radio-208" value="leather_bump">
+                    </td>
+                    <td style="text-align:center">
+                        <input type="radio" name="radio-208" value="water_bump2">
+                    </td>
+                </tr>
             </table>
           </form>
         </div>
@@ -306,236 +373,255 @@
     </div>
   </body>
   <script>
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    console.log(w);
+    console.log(h);
+
+    function check_val(val)
+    {
+      return ((val == '') ? "0" : val);
+    }
+
+    function check_multi_val(vals)
+    {
+      var final = [3];
+
+      final[0] = (vals[0].value == '') ? "0" : vals[0].value;
+      final[1] = (vals[1].value == '') ? "0" : vals[1].value;
+      final[2] = (vals[2].value == '') ? "0" : vals[2].value;
+      return (final);
+    }
+
+    function get_sph_att(tmp)
+    {
+      var sph_cen = check_multi_val(document.getElementsByName('center_s')); 
+      var sph_rad = check_val(document.getElementById('sph_rad').value);
+
+      tmp = "\t\t\t<center> " + sph_cen[2] + ", " + sph_cen[1] + ", " + sph_cen[0] + " </center>\n";
+      tmp += "\t\t\t<radius> " + sph_rad + " </radius>\n";
+      return (tmp);
+    }
+
+    function get_con_att(tmp)
+    {
+      var con_cen = check_multi_val(document.getElementsByName('center_c'));
+      var con_axis = check_multi_val(document.getElementsByName('axis_c'));
+      var con_ang = check_val(document.getElementById('con_ang').value);
+      var con_uheight = check_val(document.getElementById('con_uheight').value);
+      var con_lheight = check_val(document.getElementById('con_lheight').value);
+
+      tmp = "\t\t\t<center> " + con_cen[2] + ", " + con_cen[1] + ", " + con_cen[0] + " </center>\n";
+      tmp += "\t\t\t<axis> " + con_axis[2] + ", " + con_axis[1] + ", " + con_axis[0] + " </axis>\n";
+      tmp += "\t\t\t<angle> " + con_ang + " </angle>\n";
+      tmp += "\t\t\t<lower_height> " + con_lheight + " </lower_height>\n";
+      tmp += "\t\t\t<upper_height> " + con_uheight + " </upper_height>\n";
+      return (tmp);
+    }
+
+    function get_cyn_att(tmp)
+    {
+      var cyn_cen = check_multi_val(document.getElementsByName('center_y'));
+      var cyn_axis = check_multi_val(document.getElementsByName('axis_y'));
+      var cyn_rad = check_val(document.getElementById('cyn_rad').value);
+      var cyn_height = check_val(document.getElementById('cyn_height').value);
+
+      tmp = "\t\t\t<center> " + cyn_cen[2] + ", " + cyn_cen[1] + ", " + cyn_cen[0] + " </center>\n";
+      tmp += "\t\t\t<axis> " + cyn_axis[2] + ", " + cyn_axis[1] + ", " + cyn_axis[0] + " </axis>\n";
+      tmp += "\t\t\t<radius> " + cyn_rad + " </radius>\n";
+      tmp += "\t\t\t<height> " + cyn_height + " </height>\n";
+      return (tmp);
+    }
+
+    function get_rec_att(tmp)
+    {
+      var point = check_multi_val(document.getElementsByName('rec_point'));
+      var vecA = check_multi_val(document.getElementsByName('rec_vector_a'));
+      var vecB = check_multi_val(document.getElementsByName('rec_vector_b'));
+      
+      tmp = "\t\t\t<point> " + point[2] + ", " + point[1] + ", " + point[0] + " </point>\n";
+      tmp += "\t\t\t<vector_a> " + vecA[2] + ", " + vecA[1] + ", " + vecA[0] + " </vector_a>\n";
+      tmp += "\t\t\t<vector_b> " + vecB[2] + ", " + vecB[1] + ", " + vecB[0] + " </vector_b>\n";
+      return(tmp);
+    }
+
+    function get_rin_att(tmp)
+    {
+      var ring_cen = check_multi_val(document.getElementsByName('center_r'));
+      var ring_nor = check_multi_val(document.getElementsByName('ri_normal'));
+      var ring_inn_rad = check_val(document.getElementById('ring_inn_rad').value);
+      var ring_out_rad = check_val(document.getElementById('ring_out_rad').value);
+
+      tmp = "\t\t\t<center> " + ring_cen[2] + ", " + ring_cen[1] + ", " + ring_cen[0] + " </center>\n";
+      tmp += "\t\t\t<normal> " + ring_nor[2] + ", " + ring_nor[1] + ", " + ring_nor[0] + " </normal>\n";
+      tmp += "\t\t\t<outer_radius> " + ring_out_rad + " </outer_radius>\n";
+      tmp += "\t\t\t<inner_radius> " + ring_inn_rad + " </inner_radius>\n";
+      return(tmp);
+    }
+
+    function get_box_att(tmp)
+    {
+      var box_point = check_multi_val(document.getElementsByName('box_point'));
+      var box_vec_a = check_multi_val(document.getElementsByName('box_vector_a'));
+      var box_vec_b = check_multi_val(document.getElementsByName('box_vector_b'));
+      var box_lenC = check_val(document.getElementById('box_lenC').value);
+
+      tmp = "\t\t\t<point> " + box_point[2] + ", " + box_point[1] + ", " + box_point[0] + " </point>\n";
+      tmp += "\t\t\t<vector_a> " + box_vec_a[2] + ", " + box_vec_a[1] + ", " + box_vec_a[0] + " </vector_a>\n";
+      tmp += "\t\t\t<vector_b> " + box_vec_b[2] + ", " + box_vec_b[1] + ", " + box_vec_b[0] + " </vector_b>\n";
+      tmp += "\t\t\t<length_c> " + box_lenC + " </length_c>\n";
+      return(tmp);
+    }
+
+    function get_pyr_att(tmp)
+    {
+      var pyr_point = check_multi_val(document.getElementsByName('py_point'));
+      var pyr_vecV = check_multi_val(document.getElementsByName('vector_u'));
+      var pyr_vecU = check_multi_val(document.getElementsByName('vector_v'));
+      var pyr_height = check_val(document.getElementById('pyr_height').value);
+
+      tmp = "\t\t\t<point> " + pyr_point[2] + ", " + pyr_point[1] + ", " + pyr_point[0] + " </point>\n";
+      tmp += "\t\t\t<vector_u> " + pyr_vecV[2] + ", " + pyr_vecV[1]  + ", " + pyr_vecV[0]  + " </vector_a>\n";
+      tmp += "\t\t\t<vector_v> " + pyr_vecU[2] + ", " + pyr_vecU[1] + ", " + pyr_vecU[0] + " </vector_b>\n";
+      tmp += "\t\t\t<height> " + pyr_height + " </height>\n";
+      return(tmp);
+    }
+
+    function get_tri_att(tmp)
+    {
+      var tri_point = check_multi_val(document.getElementsByName('tr_point'));
+      var tri_vecAB = check_multi_val(document.getElementsByName('vector_ab'));
+      var tri_vecAC = check_multi_val(document.getElementsByName('vector_ac'));
+
+      tmp = "\t\t\t<center> " + tri_point[2] + ", " + tri_point[1] + ", " + tri_point[0] + " </center>\n";
+      tmp += "\t\t\t<vector_ab> " + tri_vecAB[2] + ", " + tri_vecAB[1] + ", " + tri_vecAB[0] + " </vector_ab>\n";
+      tmp += "\t\t\t<center_ac> " + tri_vecAC[2] + ", " + tri_vecAC[1] + ", " + tri_vecAC[0] + " </vector_ac>\n";
+      return(tmp);
+    }
+
+    function get_pla_att(tmp)
+    {
+      var pla_normal = check_multi_val(document.getElementsByName('pla_normal'));
+      var pla_lenC = check_val(document.getElementById('pla_len_c'));
+
+      tmp = "\t\t\t<center> " + pla_normal[2] + ", " + pla_normal[1] + ", " + pla_normal[0] + " </center>\n";
+      tmp += "\t\t\t<length_c> " + pla_lenC.value + " </length_c>\n";
+      return (tmp);
+    }
+
+    function get_parallel_attributes(shape_num)
+    {
+      var tmp;
+      var ior = document.getElementsByName('ior');
+      var color_r = document.getElementsByName('color_r');
+      var color_g = document.getElementsByName('color_g');
+      var color_b = document.getElementsByName('color_b');
+      var transparency = document.getElementsByName('transparency');
+
+      tmp = "\t\t\t<ior> " + check_val(ior[shape_num].value) + " </ior>\n";
+      tmp += "\t\t\t<color> " + check_val(color_r[shape_num].value) + ", " + check_val(color_g[shape_num].value) + ", " + check_val(color_b[shape_num].value) + " </color>\n";
+      tmp += "\t\t\t<transparency> " + check_val(transparency[shape_num].value) + " </transparency>\n";
+      return (tmp);
+    }
+    
+    function get_mapping()
+    {
+      var mapped = $('input[name=radio-207]:checked', '#mapping').val();
+      if (mapped != null)
+        return ("\t\t\t<texture_mapping> " + mapped + ".jpg </texture_mapping>\n");
+      else
+        return (0);
+    }
+
+    function get_bumping()
+    {
+      var bumped = $('input[name=radio-208]:checked', '#bumping').val();
+      if (bumped != null)
+        return ("\t\t\t<texture_bumping> " + bumped + ".jpg </texture_bumping>\n");
+      else
+        return (0);
+    }
+
+    function close_shape(shape)
+    {
+       return ("\t\t</" + shape + ">\n");
+    }
+
     function create_xml(shape)
     {
-      // PYRAMID
-      if (shape.localeCompare("pyramid") == 0)
-      { 
-        var pyr_sp_z = document.getElementById('pyr_sp_z').value;
-        var pyr_sp_y = document.getElementById('pyr_sp_y').value;
-        var pyr_sp_x = document.getElementById('pyr_sp_x').value;
-        var pyr_vecU_z = document.getElementById('pyr_vecU_z').value;
-        var pyr_vecU_y = document.getElementById('pyr_vecU_y').value;
-        var pyr_vecU_x = document.getElementById('pyr_vecU_x').value;
-        var pyr_vecV_z = document.getElementById('pyr_vecV_z').value;
-        var pyr_vecV_y = document.getElementById('pyr_vecV_y').value;
-        var pyr_vecV_x = document.getElementById('pyr_vecV_x').value;
-        var pyr_height = document.getElementById('pyr_height').value;
-        var pyr_tra = document.getElementById('pyr_tra').value;
-        var pyr_rot = document.getElementById('pyr_rot').value;
+      var xml_shape = "\t\t<" + shape + ">\n";
+      var shape_num = 0;
+      var tmp;
 
-        var point = "<point> " + pyr_sp_x + ", " + pyr_sp_y + ", " + pyr_sp_z + " </point>";
-        var vecU = "<vector_u> " + pyr_vecU_x + ", " + pyr_vecU_y + ", " + pyr_vecU_z + " </vector_a>";
-        var vecV = "<vector_v> " + pyr_vecV_x + ", " + pyr_vecV_y + ", " + pyr_vecV_z + " </vector_b>";
-        var height = "<height> " + pyr_height + " </height>";
-        var tra = "<translate> " + pyr_tra + " </translate>";
-        var rot = "<rotate> " + pyr_rot + " </rotate>";
-        console.log(point);
-        console.log(vecU);
-        console.log(vecV);
-        console.log(height);
-        console.log(tra);
-        console.log(rot);
-      }
-
-      // BOX
-      if (shape.localeCompare("box") == 0)
-      {   
-        var box_point_z = document.getElementById('box_point_z').value;
-        var box_point_y = document.getElementById('box_point_y').value;
-        var box_point_x = document.getElementById('box_point_x').value;
-        var box_vecA_z = document.getElementById('box_vecA_z').value;
-        var box_vecA_y = document.getElementById('box_vecA_y').value;
-        var box_vecA_x = document.getElementById('box_vecA_x').value;
-        var box_vecB_z = document.getElementById('box_vecB_z').value;
-        var box_vecB_y = document.getElementById('box_vecB_y').value;
-        var box_vecB_x = document.getElementById('box_vecB_x').value;
-        var box_lenC = document.getElementById('box_lenC').value;
-        var box_tra = document.getElementById('box_tra').value;
-        var box_rot = document.getElementById('box_rot').value;
-
-        var point = "<point> " + box_point_x + ", " + box_point_y + ", " + box_point_z + " </point>";
-        var vecA = "<vector_a> " + box_vecA_x + ", " + box_vecA_y + ", " + box_vecA_z + " </vector_a>";
-        var vecB = "<vector_b> " + box_vecB_x + ", " + box_vecB_y + ", " + box_vecB_z + " </vector_b>";
-        var lenC = "<length_c> " + box_lenC + " </length_c>";
-        var tra = "<translate> " + box_tra + " </translate>";
-        var rot = "<rotate> " + box_rot + " </rotate>";
-        console.log(point);
-        console.log(vecA);
-        console.log(vecB);
-        console.log(lenC);
-        console.log(tra);
-        console.log(rot);
-      }
-
-      // RING
-      if (shape.localeCompare("ring") == 0)
-      {   
-        var ring_cen_z = document.getElementById('ring_cen_z').value;
-        var ring_cen_y = document.getElementById('ring_cen_y').value;
-        var ring_cen_x = document.getElementById('ring_cen_x').value;
-        var ring_nor_z = document.getElementById('ring_nor_z').value;
-        var ring_nor_y = document.getElementById('ring_nor_y').value;
-        var ring_nor_x = document.getElementById('ring_nor_x').value;
-        var ring_inn_rad = document.getElementById('ring_inn_rad').value;
-        var ring_out_rad = document.getElementById('ring_out_rad').value;
-        var ring_tra = document.getElementById('ring_tra').value;
-        var ring_rot = document.getElementById('ring_rot').value;
-
-        var center = "<center> " + ring_cen_x + ", " + ring_cen_y + ", " + ring_cen_z + " </center>";
-        var normal = "<normal> " + ring_nor_x + ", " + ring_nor_y + ", " + ring_nor_z + " </normal>";
-        var radius_in = "<outer_radius> " + ring_out_rad + " </outer_radius>";
-        var radius_out = "<inner_radius> " + ring_inn_rad + " </inner_radius>";
-        var tra = "<translate> " + ring_tra + " </translate>";
-        var rot = "<rotate> " + ring_rot + " </rotate>";
-        console.log(center);
-        console.log(normal);
-        console.log(radius_in);
-        console.log(radius_out);
-        console.log(tra);
-        console.log(rot);
-      }
-
-      // RECTANGLE
-      if (shape.localeCompare("rectangle") == 0)
-      {    
-        var rec_point_z = document.getElementById('rec_point_z').value;
-        var rec_point_y = document.getElementById('rec_point_y').value;
-        var rec_point_x = document.getElementById('rec_point_x').value;
-        var rec_vecA_z = document.getElementById('rec_vecA_z').value;
-        var rec_vecA_y = document.getElementById('rec_vecA_y').value;
-        var rec_vecA_x = document.getElementById('rec_vecA_x').value;
-        var rec_vecB_z = document.getElementById('rec_vecB_z').value;
-        var rec_vecB_y = document.getElementById('rec_vecB_y').value;
-        var rec_vecB_x = document.getElementById('rec_vecB_x').value;
-        var rec_tra = document.getElementById('rec_tra').value;
-        var rec_rot = document.getElementById('rec_rot').value;
-        
-        var point = "<point> " + rec_point_x + ", " + rec_point_y + ", " + rec_point_z + " </point>";
-        var vecA = "<vector_a> " + rec_vecA_x + ", " + rec_vecA_y + ", " + rec_vecA_z + " </vector_a>";
-        var vecB = "<vector_b> " + rec_vecB_x + ", " + rec_vecB_y + ", " + rec_vecB_z + " </vector_b>";
-        var tra = "<translate> " + rec_tra + " </translate>";
-        var rot = "<rotate> " + rec_rot + " </rotate>";
-        console.log(point);
-        console.log(vecA);
-        console.log(vecB);
-        console.log(tra);
-        console.log(rot);
-      }
-
-      // SPHERE
       if (shape.localeCompare("sphere") == 0)
-      {    
-        var sph_cen_z = document.getElementById('sph_cen_z').value; 
-        var sph_cen_y = document.getElementById('sph_cen_y').value;
-        var sph_cen_x = document.getElementById('sph_cen_x').value;
-        var sph_rad = document.getElementById('sph_rad').value;
-        var sph_tra = document.getElementById('sph_tra').value;
-        var sph_rot = document.getElementById('sph_rot').value;
-
-        var center = "<center> " + sph_cen_x + ", " + sph_cen_y + ", " + sph_cen_z + " </center>";
-        var radius = "<radius> " + sph_rad + " </radius>";
-        var tra = "<translate> " + sph_tra + " </translate>";
-        var rot = "<rotate> " + sph_rot + " </rotate>";
-        console.log(center);
-        console.log(radius);
-        console.log(tra);
-        console.log(rot);
-      }
-
-      // CONE
+        xml_shape += get_sph_att(tmp);
       if (shape.localeCompare("cone") == 0)
-      {    
-        var con_cen_z = document.getElementById('con_cen_z').value;
-        var con_cen_y = document.getElementById('con_cen_y').value;
-        var con_cen_x = document.getElementById('con_cen_x').value;
-        var con_axis_z = document.getElementById('con_axis_z').value;
-        var con_axis_y = document.getElementById('con_axis_y').value;
-        var con_axis_x = document.getElementById('con_axis_x').value;
-        var con_ang = document.getElementById('con_ang').value;
-        var con_uheight = document.getElementById('con_uheight').value;
-        var con_lheight = document.getElementById('con_lheight').value;
-        var con_tra = document.getElementById('con_tra').value;
-        var con_rot = document.getElementById('con_rot').value;
-
-        var center = "<center> " + con_cen_x + ", " + con_cen_y + ", " + con_cen_z + " </center>";
-        var axis = "<axis> " + con_axis_x + ", " + con_axis_y + ", " + con_axis_z + " </axis>";
-        var angle = "<angle> " + con_ang + " </angle>";
-        var l_height = "<lower_height> " + con_lheight + " </lower_height>";
-        var u_height = "<upper_height> " + con_uheight + " </upper_height>";
-        var tra = "<translate> " + con_tra + " </translate>";
-        var rot = "<rotate> " + con_rot + " </rotate>";
-        console.log(center);
-        console.log(axis);
-        console.log(angle);
-        console.log(l_height);
-        console.log(u_height);
-        console.log(tra);
-        console.log(rot);        
+      {
+        shape_num = 1;
+        xml_shape += get_con_att(tmp);
       }
-
-      // CYLINDER
       if (shape.localeCompare("cylinder") == 0)
-      {    
-        var cyn_cen_z = document.getElementById('cyn_cen_z').value;
-        var cyn_cen_y = document.getElementById('cyn_cen_y').value;
-        var cyn_cen_x = document.getElementById('cyn_cen_x').value;
-        var cyn_axis_z = document.getElementById('cyn_axis_z').value;
-        var cyn_axis_y = document.getElementById('cyn_axis_y').value;
-        var cyn_axis_x = document.getElementById('cyn_axis_x').value;
-        var cyn_rad = document.getElementById('cyn_rad').value;
-        var cyn_height = document.getElementById('cyn_height').value;
-        var cyn_tra = document.getElementById('cyn_tra').value;
-        var cyn_rot = document.getElementById('cyn_rot').value;
-
-        var center = "<center> " + cyn_cen_x + ", " + cyn_cen_y + ", " + cyn_cen_z + " </center>";
-        var axis = "<axis> " + cyn_axis_x + ", " + cyn_axis_y + ", " + cyn_axis_z + " </axis>";
-        var rad = "<radius> " + cyn_rad + " </radius>";
-        var height = "<height> " + cyn_height + " </height>";
-        var tra = "<translate> " + cyn_tra + " </translate>";
-        var rot = "<rotate> " + cyn_rot + " </rotate>";
-        console.log(center);
-        console.log(axis);
-        console.log(rad);
-        console.log(height);
-        console.log(tra);
-        console.log(rot);
+      {
+        shape_num = 2;
+        xml_shape += get_cyn_att(tmp);
       }
-
-      // TRIANGLE
+      if (shape.localeCompare("rectangle") == 0)
+      {
+        shape_num = 3;
+        xml_shape += get_rec_att(tmp);
+      }
+      if (shape.localeCompare("ring") == 0)
+      {
+        shape_num = 4;
+        xml_shape += get_rin_att(tmp);
+      }
+      if (shape.localeCompare("box") == 0)
+      {
+        shape_num = 5;
+        xml_shape += get_box_att(tmp);
+      }
+      if (shape.localeCompare("pyramid") == 0)
+      {
+        shape_num = 6;
+        xml_shape += get_pyr_att(tmp);
+      }
       if (shape.localeCompare("triangle") == 0)
       {
-        var tri_point_x = document.getElementById('tri_point_x').value;
-        var tri_point_y = document.getElementById('tri_point_y').value;
-        var tri_point_z = document.getElementById('tri_point_z').value;
-        var tri_vec_ab_z = document.getElementById('tri_vec_ab_z').value;
-        var tri_vec_ab_y = document.getElementById('tri_vec_ab_y').value;
-        var tri_vec_ab_x = document.getElementById('tri_vec_ab_x').value;
-        var tri_vec_ac_z = document.getElementById('tri_vec_ac_z').value;
-        var tri_vec_ac_y = document.getElementById('tri_vec_ac_y').value;
-        var tri_vec_ac_x = document.getElementById('tri_vec_ac_x').value;
-        var tri_tra = document.getElementById('tri_tra').value;
-        var tri_rot = document.getElementById('tri_rot').value;
-
-        var point = "<center> " + tri_point_x + ", " + tri_point_y + ", " + tri_point_z + " </center>";
-        var vec_ab = "<vector_ab> " + tri_vec_ab_x + ", " + tri_vec_ab_y + ", " + tri_vec_ab_z + " </vector_ab>";
-        var vec_ac = "<center_ac> " + tri_vec_ac_x + ", " + tri_vec_ac_y + ", " + tri_vec_ac_z + " </vector_ac>";
-        var tra = "<translate> " + tri_tra + " </translate>";
-        var rot = "<rotate> " + tri_rot + " </rotate>";
-        console.log(point);
-        console.log(vec_ab);
-        console.log(vec_ac);
-        console.log(tra);
-        console.log(rot);
+        shape_num = 7;
+        xml_shape += get_tri_att(tmp);
+      }
+      if (shape.localeCompare("plane") == 0)
+      {
+        shape_num = 8;
+        xml_shape += get_pla_att(tmp);
       }
 
-      console.log("i am the output ---->", shape);
+      // attributes in every shape
+      xml_shape += get_parallel_attributes(shape_num);
+
+      // adding texture
+      if ((shape.localeCompare("sphere") == 0) || (shape.localeCompare("cone") == 0)
+        || (shape.localeCompare("rectangle") == 0) || (shape.localeCompare("cylinder") == 0))
+      {
+        var temp_map = get_mapping();
+        if (temp_map != 0)
+          xml_shape += temp_map;
+
+        var temp_bump = get_bumping();
+        if (temp_bump != 0)
+          xml_shape += temp_bump;
+      }
+
+      xml_shape += close_shape(shape);
+      console.log("i am the output ---->\n\n", xml_shape);
+      // writing to file here
+
+      // this reload file !
       // document.location.reload(true);
     }
 
     function add_shape_div() {
-      // appends text to OBJECTS div that is the options in first part fo div.
-      // Returns the selected value.
+      // appends text to OBJECTS div that is the options in first part fo div, Returns the selected value.
       var sel = document.getElementById("object_options");
       var first = document.createElement("div");
       first.setAttribute("id", "chosen_shape");
@@ -573,7 +659,6 @@
     function select_shape_form(selected) 
     {
       // creates the div that will hold the form
-      // console.log(selected);
       const object_string = String(selected);
       var object = document.createElement("div");
       object.setAttribute("id", "object_chosen");

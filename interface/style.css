@@ -11,8 +11,8 @@ COLOR PALETTTE:
     LIGHT YEL   #fdef96
 */
 
-html,
-body {
+html, body 
+{
   height: 100%;
 }
 
@@ -35,17 +35,18 @@ body {
   font-size: 3vw;
 }
 
-.the_form_container   /* working here !!!!!!!!! */
+.the_form_container
 {
   background-color: #afa939;
-  width: 50vw;
+  width: 60%;
   height: auto;
-  position: absolute;
-  left: 50%;
-  top: 55%;
-  transform: translate(-50%, -50%);
+  position: relative;
+  left: 20%;
   box-shadow: 0 7px 9px -6px #2b580c;
-  margin-bottom: 10vw;
+  margin-bottom: 15vw;
+  top: 2%;
+  padding-top: 1%;
+  padding-bottom: 1%;
 }
 
 #object_options {
@@ -150,7 +151,7 @@ body {
   margin-bottom: 2vw;
 }
 
-#button_box, #button_triangle, #button_pyramid, #button_ring
+#button_box, #button_triangle, #button_pyramid, #button_ring, #button_plane
 {
   margin-bottom: 2vw;
 }
@@ -190,6 +191,10 @@ body {
   display: none;
 }
 #box_object
+{
+  display: none;
+}
+#plane_object
 {
   display: none;
 }
@@ -244,30 +249,27 @@ img
 }
 
 /* TABLE */
+table {
+  margin: 0 auto;
+}
 #main_textures
 {
-  position: relative;
   display: none;
   text-align: center;
-  /* margin: auto; */
   color: #587850;
-  width: 100%;
-}
-
-#main_textures table  
-{
-  /* width: 100%; */
-  margin-left: 1vw;
-  padding-bottom: 15px
 }
 
 #main_textures td
 {
-  padding-left: 15px;
-  padding-bottom: 15px;
+  padding: 0 20px 4px 20px;
 }
 
 #main_texture table input[type=radio]
 {
   margin-left: 0vw;
 }
+
+/* @media
+{
+  min-height:;
+} */
