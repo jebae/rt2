@@ -85,7 +85,7 @@ $(L_TARG):
 
 TEST_INC = $(INC) -I srcs/__tests__ -I $(UNITY_PATH)/include
 
-TEST_LIB = libft/libft.a libvector/libvector.a $(LIBMLX) $(UNITY_PATH)/lib/libunity.a libimg/libimg.a
+TEST_LIB = -L ./libft -lft -L ./libvector -lvector $(LIBMLX) -L $(UNITY_PATH)/lib -lunity -L ./libimg -limg
 
 TEST_SRC = srcs/handle/*.c\
 	srcs/raycasting_files/*.c\

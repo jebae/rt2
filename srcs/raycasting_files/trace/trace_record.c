@@ -34,3 +34,11 @@ void			set_trace_record(t_trace_record *rec)
 			&uv, &obj->bump_map, &rec->normal, &obj->axis_mat);
 	}
 }
+
+void			set_origin_trace_record(t_env *e, t_trace_record *rec)
+{
+	rec->ray = cast_ray(e->x, e->y, e);
+	rec->ray.ior = 1.0;
+	rec->depth = 0;
+	rec->prev = NULL;
+}

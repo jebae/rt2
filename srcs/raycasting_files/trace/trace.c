@@ -34,8 +34,7 @@ int				raytrace(t_env *e)
 		e->y = e->y_min;
 		while (e->y < e->y_max)
 		{
-			rec.ray = cast_ray(e->x, e->y, e);
-			rec.depth = 0;
+			set_origin_trace_record(e, &rec);
 			if (intersect(e, &rec))
 			{
 				sh.r = e->amb.x * rec.color.x;

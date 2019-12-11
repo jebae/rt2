@@ -30,6 +30,7 @@ t_vec3		m_mult(t_mat3 m, t_vec3 v);
 ** Trace functions
 */
 int			raytrace(t_env *e);
+void		set_origin_trace_record(t_env *e, t_trace_record *rec);
 void		set_trace_record(t_trace_record *rec);
 int			intersect(t_env *e, t_trace_record *rec);
 
@@ -44,7 +45,16 @@ t_col		diffuse_specular(
 );
 t_col		calc_shade(t_env *e, t_trace_record *rec, double coeff);
 double		send_shadow_ray(t_trace_record *rec, t_vec3 light_dir, t_env *e);
-t_col		reflection_shade(t_env *e, t_trace_record *prev, double coeff);
+t_col		reflection_shade(
+	t_env *e,
+	t_trace_record *prev,
+	double coeff
+);
+t_col		refraction_shade(
+	t_env *e,
+	t_trace_record *prev,
+	double coeff
+);
 
 /*
 ** Set light functions

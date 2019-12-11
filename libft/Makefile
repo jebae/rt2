@@ -31,7 +31,7 @@ SRCS = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c \
 	 ft_strtrim.c ft_putchar.c ft_putnbr_fd.c \
 	 ft_strclen.c get_next_line.c ft_delsplit.c ft_charfreq.c ft_countstrings.c\
 	 ft_iseven.c ft_strfree.c ft_swap_double.c ft_abs_double.c\
-	 ft_is_inf.c ft_extract_double.c\
+	 ft_is_inf.c ft_extract_double.c ft_is_nan.c\
 
 OBJECTS = $(SRCS:.c=.o)
 

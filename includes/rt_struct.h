@@ -19,8 +19,8 @@
 */
 #include <stdio.h> // test only
 
-# define WIDTH						1600
-# define HEIGHT 					1200
+# define WIDTH						800
+# define HEIGHT 					600
 # define FAR						2000000.0
 # define ESC						53
 # define RT_SUCCESS					0
@@ -31,6 +31,18 @@
 # define RT_FALSE					0
 # define RT_BIAS					1e-3f
 # define RT_MAX_TRACE_DEPTH			5
+
+/*
+** ray type
+*/
+# define RT_RAY_TYPE_NONE			0
+# define RT_RAY_TYPE_ORIGIN			1
+# define RT_RAY_TYPE_REFLECTION		2
+# define RT_RAY_TYPE_REFRACTION		3
+
+/*
+** t_env bit mask
+*/
 # define RT_ENV_MASK_CEL_SHADING	1 << 0
 # define RT_ENV_MASK_NO_SHADOW		1 << 1
 # define RT_ENV_MASK_NO_SPECULAR	1 << 2
@@ -46,9 +58,11 @@ typedef struct		s_mat3
 
 typedef struct		s_ray
 {
+	int				type;
 	t_vec3			ori;
 	t_vec3			dir;
 	double			t;
+	double			ior;
 }					t_ray;
 
 typedef struct		s_col
@@ -133,6 +147,7 @@ typedef struct		s_ol
 	int				specvalue;
 	double			reflectivity;
 	double			transparency;
+	double			ior;
 	t_vec3			dif;
 	t_texels		texture;
 	t_texels		bump_map;

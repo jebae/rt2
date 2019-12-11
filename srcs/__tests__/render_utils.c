@@ -54,7 +54,7 @@ void			render_intersect_test(
 {
 	t_ray		ray;
 
-	for (int i=0; i < WIDTH; i++)
+	for (int i=0; i < HEIGHT; i++)
 	{
 		for (int j=0; j < HEIGHT; j++)
 		{
@@ -76,7 +76,7 @@ void			render_normal_test(
 	t_vec3		n;
 	double		n_dot_l;
 
-	for (int i=0; i < WIDTH; i++)
+	for (int i=0; i < HEIGHT; i++)
 	{
 		for (int j=0; j < WIDTH; j++)
 		{
@@ -112,7 +112,7 @@ void			render_texture_mapping_test(
 
 	texture = &ol->texture;
 	set_texels(filename, repeat, texture);
-	for (int i=0; i < WIDTH; i++)
+	for (int i=0; i < HEIGHT; i++)
 	{
 		for (int j=0; j < WIDTH; j++)
 		{
@@ -151,7 +151,7 @@ void			render_bump_mapping_test(
 
 	bump_map = &ol->bump_map;
 	set_texels(filename, repeat, bump_map);
-	for (int i=0; i < WIDTH; i++)
+	for (int i=0; i < HEIGHT; i++)
 	{
 		for (int j=0; j < WIDTH; j++)
 		{

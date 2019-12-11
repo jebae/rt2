@@ -83,4 +83,5 @@ void				ft_extract_double(
 	unsigned long long *mantissa
 );
 int					ft_is_inf(double num);
+int					ft_is_nan(double num);
 #endif

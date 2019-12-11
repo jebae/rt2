@@ -5,6 +5,11 @@ int		uv_to_texel_index(t_vec2 *uv, t_texels *texels)
 	int		img_coord[2];
 	double	int_part;
 
+	if (ft_is_nan(uv->x))
+		uv->x = 1.0;
+	else
+	if (ft_is_nan(uv->y))
+		uv->y = 1.0;
 	uv->x = modf(uv->x, &int_part);
 	uv->y = modf(uv->y, &int_part);
 	img_coord[0] = uv->x * (texels->width - 1);

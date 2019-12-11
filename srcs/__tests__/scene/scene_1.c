@@ -13,6 +13,7 @@ static void		add_earth(t_ol *ol, int *num_objs)
 	ol->specvalue = 650;
 	ol->reflectivity = 0.0;
 	ol->transparency = 0.0;
+	ol->ior = 1.5;
 
 	// set
     arg.cen = (t_vec3){0.0, -1.0, 4.0};
@@ -34,6 +35,7 @@ static void		add_moon(t_ol *ol, int *num_objs)
 	ol->specvalue = 650;
 	ol->reflectivity = 0.0;
 	ol->transparency = 0.0;
+	ol->ior = 1.5;
 
 	// set
     arg.cen = (t_vec3){2.0, -1.0, 1.0};
@@ -53,8 +55,9 @@ static void		add_floor(t_ol *ol, int *num_objs)
 	set_texels("./contents/water_bump2.jpg", "6", &ol->bump_map);
 	ol->specpower = 15;
 	ol->specvalue = 650;
-	ol->reflectivity = 0.3;
-	ol->transparency = 0.0;
+	ol->reflectivity = 0.0;
+	ol->transparency = 0.8;
+	ol->ior = 1.5;
 	ol->dif = (t_vec3){41, 109, 152};
 
 	// set
@@ -77,13 +80,39 @@ static void		add_mirror(t_ol *ol, int *num_objs)
 	ol->specvalue = 650;
 	ol->reflectivity = 0.9;
 	ol->transparency = 0.0;
+	ol->ior = 1.5;
 	ol->dif = (t_vec3){255, 255, 255};
 
 	// set
 	arg.p = (t_vec3){-12.0, -5.0, 10.0};
-	arg.a = (t_vec3){-2.0, 0.0, -15.0};
+	arg.a = (t_vec3){-5.0, 0.0, -15.0};
 	arg.b = (t_vec3){0.0, 10.0, 0.0};
 	set_rectangle(ol, &arg);
+	(*num_objs)++;
+}
+
+static void		add_tabaco(t_ol *ol, int *num_objs)
+{
+	t_arg_cyl		arg;
+
+	ol = ol + *num_objs;
+	ol->object = ft_memalloc(sizeof(t_cyl));
+
+	// texture and color
+	set_texels("./contents/tabaco.jpg", "1", &ol->texture);
+	ol->specpower = 15;
+	ol->specvalue = 650;
+	ol->reflectivity = 0.0;
+	ol->transparency = 0.0;
+	ol->ior = 1.5;
+	ol->dif = (t_vec3){255, 255, 255};
+
+	// set
+    arg.cen = (t_vec3){1.0, 0.0, 5.0};
+    arg.axis = (t_vec3){-1.0, 1.0, 0.0};
+	arg.radius = 1.0;
+	arg.height = 10.0;
+	set_cyl(ol, &arg);
 	(*num_objs)++;
 }
 
@@ -93,6 +122,7 @@ static void		set_objects(t_ol *ol, int *num_objs)
 	add_moon(ol, num_objs);
 	add_floor(ol, num_objs);
 	add_mirror(ol, num_objs);
+	add_tabaco(ol, num_objs);
 }
 
 static void		set_lights(t_ll *ll, int *num_lights)

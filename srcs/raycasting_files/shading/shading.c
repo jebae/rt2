@@ -13,10 +13,12 @@ static t_col	shade_per_lights(t_env *e, t_trace_record *rec)
 	{
 		ll = &e->ll_lit[i];
 		light_dir = ll->get_dir(&rec->point, ll->light);
+		/*
 		if (!(e->mask & RT_ENV_MASK_NO_SHADOW) &&
 			send_shadow_ray(rec, light_dir, e) <
 			ll->get_distance(&rec->point, ll->light))
 			return ((t_col){0, 0, 0}); // need to get real shadow color
+		*/
 		sh = color_add(sh, diffuse_specular(light_dir, ll, rec, e));
 		i++;
 	}
@@ -32,6 +34,6 @@ t_col			calc_shade(t_env *e, t_trace_record *rec, double coeff)
 	sh = color_scalar(shade_per_lights(e, rec),
 		coeff * (1.0 - rec->obj->reflectivity) * (1.0 - rec->obj->transparency));
 	sh = color_add(sh, reflection_shade(e, rec, coeff));
-	// refraction
+	sh = color_add(sh, refraction_shade(e, rec, coeff));
 	return (sh);
 }
