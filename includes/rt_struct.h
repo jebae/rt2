@@ -19,8 +19,8 @@
 */
 #include <stdio.h> // test only
 
-# define WIDTH						800
-# define HEIGHT 					600
+# define WIDTH						1600
+# define HEIGHT 					1200
 # define FAR						2000000.0
 # define ESC						53
 # define RT_SUCCESS					0
@@ -47,6 +47,10 @@
 # define RT_ENV_MASK_NO_SHADOW		1 << 1
 # define RT_ENV_MASK_NO_SPECULAR	1 << 2
 # define RT_ENV_MASK_ROUND_N_DOT_L	1 << 3
+# define RT_ENV_MASK_SEPHIA			1 << 4
+# define RT_ENV_MASK_NEGATIVE		1 << 5
+# define RT_ENV_MASK_GRAY_SCALE		1 << 6
+# define RT_ENV_MASK_GAUSSIAN_BLUR	1 << 7
 
 /*
 ** Renderer struct
@@ -161,6 +165,7 @@ typedef struct		s_ol
 		void *object
 	);
 	void			(*translate)(t_vec3 *v_translate, void *object);
+	void			(*rotate)(t_vec4 *q, t_mat3 *axis_mat, void *object);
 	//struct s_ol		*next;
 	// int				status;	
 	// t_vec3			rot_x;

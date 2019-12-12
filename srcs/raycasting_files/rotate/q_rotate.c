@@ -1,6 +1,6 @@
 #include "rt.h"
 
-t_vec4		rotate_q(t_vec4 *n, float theta)
+t_vec4		rotate_q(t_vec3 *n, float theta)
 {
 	t_vec4		q;
 	double		s;
@@ -13,14 +13,13 @@ t_vec4		rotate_q(t_vec4 *n, float theta)
 	return (q);
 }
 
-t_vec4		rotate(t_vec4 *q, t_vec4 *v, t_vec4 *q_i)
+t_vec3		rotate(t_vec4 *q, t_vec3 *v, t_vec4 *q_i)
 {
-	t_vec4	res;
+	t_vec4		res;
 
-	v->w = 0.0;
-	res = q_mul_q(q, v);
+	ft_memcpy(&res, v, sizeof(t_vec3));
+	res.w = 0.0;
+	res = q_mul_q(q, &res);
 	res = q_mul_q(&res, q_i);
-	v->w = 1.0;
-	res.w = 1.0;
-	return (res);
+	return ((t_vec3){res.x, res.y, res.z});
 }

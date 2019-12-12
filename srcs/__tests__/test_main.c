@@ -48,7 +48,7 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	if (ft_strcmp(argv[1], "scene") == 0)
-		render_scene(atoi(argv[2]), argc, argv);
+		render_scene(argv[2], argc, argv);
 	else if (argc >= 4)
 		render_test(argc, argv);
 	return (0);

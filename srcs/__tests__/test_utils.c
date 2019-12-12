@@ -10,13 +10,14 @@ void		clear_mlxkit(t_mlxkit *mlxkit)
 
 static void	rotate_obj(t_env *e, double theta)
 {
-	t_ol	*obj;
-	t_vec4	axis;
+	t_vec4		q[2];
+	t_ol		*obj;
 
-	axis = e->cam.camdir;
+	q[0] = rotate_q(&e->cam.camdir, theta);
+	q[1] = inverse_q(&q[0]);
 	obj = e->ll_obj;
-	obj->rotate(&axis, theta, &ol->axis_mat, ol->object);
-	// need to rerender
+	obj->rotate(q, &obj->axis_mat, obj->object);
+	render(e);
 }
 
 int			mlxkit_key_press(int keycode, void *param)
@@ -27,6 +28,8 @@ int			mlxkit_key_press(int keycode, void *param)
 		clear_mlxkit(mlxkit);
 	else if (keycode == KEY_COMMA)
 		rotate_obj(mlxkit->e, DEGREE_1 * 10.0);
+	else if (keycode == KEY_POINT)
+		rotate_obj(mlxkit->e, -DEGREE_1 * 10.0);
     return (0);
 }
 

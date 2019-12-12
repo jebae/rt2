@@ -18,7 +18,7 @@
 # define MLX_ENDIAN             0
 # define KEY_ESC				53
 # define KEY_COMMA				43
-# define KEY_POINT				43
+# define KEY_POINT				47
 # define MAX(a, b) (((a) > (b)) ? (a) : (b))
 # define GRAY					(t_vec3){0xa0, 0xa0, 0xa0}
 # define BLUE					(t_vec3){0x11, 0x5d, 0xa8}
@@ -72,14 +72,16 @@ void			render_bump_mapping_test(
 	const char *repeat,
 	const char *color
 );
-void			render_scene(int scene_num, int argc, char **argv);
+void			render_scene(char *title, int argc, char **argv);
 
 /*
 ** scene
 */
 void			setup_scene(t_env *e);
 void			clear_scene(t_env *e);
-void			set_scene1(t_env *e);
+void			set_scene_1(t_env *e);
+void			set_scene_sphere(t_env *e);
+void			set_scene_box(t_env *e);
 
 /*
 ** texture utils

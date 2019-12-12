@@ -154,7 +154,7 @@ void			render_bump_mapping_test(
 	}
 }
 
-void			render_scene(int scene_num, int argc, char **argv)
+void			render_scene(char *title, int argc, char **argv)
 {
 	t_mlxkit	mlxkit;
 	t_env		e;
@@ -164,21 +164,24 @@ void			render_scene(int scene_num, int argc, char **argv)
 	{
 		if (strcmp(argv[i], "cel") == 0)
 			e.mask |= RT_ENV_MASK_CEL_SHADING;
+		if (strcmp(argv[i], "sephia") == 0)
+			e.mask |= RT_ENV_MASK_SEPHIA;
+		if (strcmp(argv[i], "negative") == 0)
+			e.mask |= RT_ENV_MASK_NEGATIVE;
+		if (strcmp(argv[i], "gray") == 0)
+			e.mask |= RT_ENV_MASK_GRAY_SCALE;
+		if (strcmp(argv[i], "blur") == 0)
+			e.mask |= RT_ENV_MASK_GAUSSIAN_BLUR;
 	}
 	e.w.mp = mlxkit.p_mlx;
 	e.w.wp = mlxkit.p_win;
 	e.w.ip = mlxkit.p_img;
-	switch (scene_num)
-	{
-		case 1:
-			set_scene1(&e);
-			break ;
-		default:
-			break ;
-	}
+	if (strcmp(title, "1") == 0)
+		set_scene_1(&e);
+	else if (strcmp(title, "sphere") == 0)
+		set_scene_sphere(&e);
+	else if (strcmp(title, "box") == 0)
+		set_scene_box(&e);
 	render(&e);
-	for (int i=3; i < argc; i++)
-		set_filter(argv[i], (unsigned int *)e.img_buf, e.width / 2, e.height / 2);
-	mlx_put_image_to_window(e.w.mp, e.w.wp, e.w.ip, 0, 0);
 	mlx_loop(e.w.mp);
 }
