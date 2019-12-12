@@ -1,5 +1,11 @@
 #include "rt.h"
 
+static void		erase_buffers(t_env *e)
+{
+	ft_bzero(e->img_buf, sizeof(unsigned int) * (e->num_pixels / 4));
+	ft_bzero(e->data, sizeof(unsigned int) * e->num_pixels);
+}
+
 static int		set_filter(t_env *e)
 {
 	unsigned int	*buf;
@@ -24,6 +30,7 @@ static int		set_filter(t_env *e)
 
 int				render(t_env *e)
 {
+	erase_buffers(e);
 	if ((e->mask & RT_ENV_MASK_CEL_SHADING) && cel_shading(e) == RT_FAIL)
 		return (RT_FAIL);
 	else

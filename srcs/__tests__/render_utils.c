@@ -182,6 +182,8 @@ void			render_scene(char *title, int argc, char **argv)
 		set_scene_sphere(&e);
 	else if (strcmp(title, "box") == 0)
 		set_scene_box(&e);
+	else if (strcmp(title, "rect") == 0)
+		set_scene_rectangle(&e);
 	render(&e);
 	mlx_loop(e.w.mp);
 }

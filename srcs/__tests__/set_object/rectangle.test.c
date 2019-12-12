@@ -43,6 +43,7 @@ TEST(set_rectangle, valid)
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&normal_rectangle, ol.get_normal, "get_normal");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&rectangle_uv_mapping, ol.uv_mapping, "uv_mapping");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&rectangle_translate, ol.translate, "translate");
+	TEST_ASSERT_EQUAL_INT_MESSAGE(&rectangle_rotate, ol.rotate, "rotate");
 }
 
 TEST(set_rectangle, a_norm_is_0)

@@ -10,9 +10,5 @@ void		box_rotate(
 
 	box = (t_box *)object;
 	rotate_object_axis(q, axis_mat);
-	/*
-	box->vmax = v3_sub(box->vmax, box->vmin);
-	box->vmax = rotate(&q[0], &box->vmax, &q[1]);
-	box->vmax = v3_add(box->vmax, box->vmin);
-	*/
+	ft_memcpy(&box->axis_mat, axis_mat, sizeof(t_mat3));
 }

@@ -30,6 +30,7 @@ int				set_rectangle(t_ol *ol, t_arg_rectangle *arg)
 	ol->get_normal = &normal_rectangle;
 	ol->uv_mapping = &rectangle_uv_mapping;
 	ol->translate = &rectangle_translate;
+	ol->rotate = &rectangle_rotate;
 	rect = (t_rectangle *)ol->object;
 	set_axis(arg, &ol->axis_mat);
 	rect->p = arg->p;

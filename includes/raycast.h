@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/12/12 17:34:45 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/12 19:59:28 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,11 @@ void			sphere_rotate(
 	void *object
 );
 void			box_rotate(
+	t_vec4 *q,
+	t_mat3 *axis_mat,
+	void *object
+);
+void			rectangle_rotate(
 	t_vec4 *q,
 	t_mat3 *axis_mat,
 	void *object
