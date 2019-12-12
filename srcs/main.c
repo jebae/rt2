@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:01:20 by mhernand          #+#    #+#             */
-/*   Updated: 2019/07/25 14:43:03 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/12/12 16:55:18 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int				errors(t_env *e, int i)
 
 int				main(int argc, char **argv)
 {
-	t_parser	p;
+	t_parse	p;
 	t_env		e;
 	int			ret;
 
