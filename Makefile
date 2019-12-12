@@ -1,20 +1,22 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/06/05 07:58:15 by mhernand          #+#    #+#              #
-#    Updated: 2019/12/10 18:44:01 by jebae            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME = rt
 
-NAME = rtv1
+CFLAGS = -Wall -Werror -Wextra -Ofast
 
-CFLAGS = -Wall -Werror -Wextra -Ofast #-fsanitize=address
+LIBFT_PATH = ./libft
+LIBVECTOR_PATH = ./libvector
+LIBIMG_PATH = ./libimg
+PARSER_PATH = ./parser
 
-INC = -I includes/ -I libft/ -I libvector/ -I parser/includes/ -I libimg/includes/
+INC = -I includes\
+	-I $(LIBFT_PATH)/includes\
+	-I $(LIBVECTOR_PATH)\
+	-I $(PARSER_PATH)/includes\
+	-I $(LIBIMG_PATH)/includes\
+
+LIB = -L ./$(LIBFT_PATH) -lft\
+	-L ./$(PARSER_PATH) -lparse\
+	-L ./$(LIBVECTOR_PATH) -lvector\
+	-L ./$(LIBIMG_PATH) -limg\
 
 CC = gcc
 
@@ -22,74 +24,167 @@ SRC_DIR = srcs
 
 OBJ_DIR = objects
 
-SRCS = main.c\
-	handle/touch.c\
-	raycasting_files/color_op.c\
-	raycasting_files/get_normal.c\
-	raycasting_files/intersec_functions.c\
-	raycasting_files/intersec_functions_2.c\
-	raycasting_files/raycast.c\
-	raycasting_files/shading.c\
-	raycasting_files/vector_op.c\
-	raycasting_files/vector_op_2.c\
-	raycasting_files/start_rtv1.c\
-	raycasting_files/matrix_check.c\
-	raycasting_files/multithread.c
+SRC_CEL_SHADING = cel_shading.c\
+	face.c\
 
-SUB_FOLD = parser_files handle raycasting_files
+SRC_INTERSECT_NORMAL = box.c\
+	pyramid.c\
+	rectangle.c\
+	ring.c\
+	triangle.c\
 
-BUILD_DIR = $(addprefix $(OBJ_DIR)/, $(SUB_FOLD))
+SRC_LIGHT = distant_light.c\
+	spherical_light.c\
 
-SRC = $(addprefix $(SRC_DIR)/,$(SRCS))
+SRC_SET_LIGHT = distant_light.c\
+	spherical_light.c\
 
-OBJ = $(addprefix $(OBJ_DIR)/, $(OBJS))
+SRC_RENDER = anti_aliasing.c\
+	multithread.c\
+	render.c\
 
-OBJS = $(SRCS:.c=.o)
+SRC_ROTATE = box.c\
+	q_rotate.c\
+	quaternion_operator.c\
+	rotate_object_axis.c\
+	sphere.c\
 
-L_FOLD = libft/
+SRC_SET_OBJECT = box.c\
+	common.c\
+	cone.c\
+	cylinder.c\
+	plane.c\
+	pyramid.c\
+	rectangle.c\
+	ring.c\
+	sphere.c\
+	triangle.c\
 
-L_TARG = libft
+SRC_SHADING = diffuse_specular.c\
+	reflection.c\
+	refraction.c\
+	shading.c\
+	shadow.c\
 
-V_FOLD = libvector/
+SRC_TEXEL = bump_mapping.c\
+	texel.c\
+	texture_mapping.c\
 
-V_TARG = libvector
+SRC_TRACE = ray.c\
+	trace.c\
+	trace_record.c\
 
-M_FOLD = minilibx_macos/
+SRC_TRANSLATE = box.c\
+	cone.c\
+	cylinder.c\
+	plane.c\
+	pyramid.c\
+	rectangle.c\
+	ring.c\
+	sphere.c\
+	triangle.c\
 
-LIBMLX = -L ./minilibx_macos/ -lmlx -framework OpenGL -framework Appkit
+SRC_UV_MAPPING = cone.c\
+	cylinder.c\
+	rectangle.c\
+	sphere.c\
+
+SRCS = color_op.c\
+	get_normal.c\
+	intersec_functions.c\
+	intersec_functions_2.c\
+
+# objs
+OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
+OBJS += $(addprefix $(OBJ_DIR)/intersect_normal_, $(SRC_INTERSECT_NORMAL:.c=.o))
+OBJS += $(addprefix $(OBJ_DIR)/, $(SRC_LIGHT:.c=.o))
+OBJS += $(addprefix $(OBJ_DIR)/set_, $(SRC_SET_LIGHT:.c=.o))
+OBJS += $(addprefix $(OBJ_DIR)/, $(SRC_RENDER:.c=.o))
+OBJS += $(addprefix $(OBJ_DIR)/rot_, $(SRC_ROTATE:.c=.o))
+OBJS += $(addprefix $(OBJ_DIR)/set_, $(SRC_SET_OBJECT:.c=.o))
+OBJS += $(addprefix $(OBJ_DIR)/, $(SRC_SHADING:.c=.o))
+OBJS += $(addprefix $(OBJ_DIR)/, $(SRC_TEXEL:.c=.o))
+OBJS += $(addprefix $(OBJ_DIR)/, $(SRC_TRACE:.c=.o))
+OBJS += $(addprefix $(OBJ_DIR)/transl_, $(SRC_TRANSLATE:.c=.o))
+OBJS += $(addprefix $(OBJ_DIR)/uv_, $(SRC_UV_MAPPING:.c=.o))
+OBJS += $(addprefix $(OBJ_DIR)/, $(SRC_CEL_SHADING:.c=.o))
+
+# compile objs
+HEADERS = ./includes/raycast.h\
+	./includes/rt.h\
+	./includes/rt_struct.h\
+	./$(LIBFT_PATH)/includes/libft.h\
+	./$(LIBVECTOR_PATH)/libvector.h\
+	./$(PARSER_PATH)/includes/parse.h\
+	./$(LIBIMG_PATH)/includes/libimg.h\
+
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.c $(HEADERS)
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+$(OBJ_DIR)/intersect_normal_%.o : $(SRC_DIR)/intersect_normal/%.c $(HEADERS)
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+$(OBJ_DIR)/%.o : $(SRC_DIR)/light/%.c $(HEADERS)
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+$(OBJ_DIR)/set_%.o : $(SRC_DIR)/set_light/%.c $(HEADERS)
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+$(OBJ_DIR)/%.o : $(SRC_DIR)/render/%.c $(HEADERS)
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+$(OBJ_DIR)/set_%.o : $(SRC_DIR)/render/%.c $(HEADERS)
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+$(OBJ_DIR)/rot_%.o : $(SRC_DIR)/rotate/%.c $(HEADERS)
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+$(OBJ_DIR)/set_%.o : $(SRC_DIR)/set_object/%.c $(HEADERS)
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+$(OBJ_DIR)/%.o : $(SRC_DIR)/shading/%.c $(HEADERS)
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+$(OBJ_DIR)/%.o : $(SRC_DIR)/texel/%.c $(HEADERS)
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+$(OBJ_DIR)/%.o : $(SRC_DIR)/trace/%.c $(HEADERS)
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+$(OBJ_DIR)/transl_%.o : $(SRC_DIR)/translate/%.c $(HEADERS)
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+$(OBJ_DIR)/uv_%.o : $(SRC_DIR)/uv_mapping/%.c $(HEADERS)
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+$(OBJ_DIR)/%.o : $(SRC_DIR)/cel_shading/%.c $(HEADERS)
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 superfast:
 	@make -j8 all
 
-all: objects
-	@make $(NAME)
+all: $(NAME)
 
-objects : 
-	@mkdir -p $(BUILD_DIR)
-
-$(NAME):$(OBJ) | $(L_TARG)
-	@$(CC) $(CFLAGS) $(INC) libft/libft.a vectors/libvector.a $(LIBMLX) $(OBJ) -o $(NAME)
-	@touch .gitignore
+$(NAME) : $(OBJ_DIR) $(OBJS) | $(L_TARG)
+	@$(CC) $(CFLAGS) $(INC) $(LIB) $(OBJS) -o $(NAME)
 	@printf "\033[32m[ ✔ ] $(NAME)\n\033[0m"
-	@echo $(OBJ) > .gitignore
-	@echo $(NAME) >> .gitignore
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c 
-	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
-	@printf "\033[32m[ ✔ ] %s\n\033[0m" "$<"
+$(OBJ_DIR) : 
+	@mkdir -p $@
 
 $(L_TARG):
-	@make -C $(L_FOLD) all
-	@make -C $(V_FOLD) all
-	@make -C $(M_FOLD)
+	@make -C libft all
+	@make -C libvector all
+	@make -C libimage all
+	@make -C parser all
 
 TEST_INC = $(INC) -I srcs/__tests__ -I $(UNITY_PATH)/include
 
-TEST_LIB = -L ./libft -lft -L ./libvector -lvector $(LIBMLX) -L $(UNITY_PATH)/lib -lunity -L ./libimg -limg
+TEST_LIB = $(LIB) $(LIBMLX) -L $(UNITY_PATH)/lib -lunity
 
 TEST_SRC = srcs/handle/*.c\
-	srcs/raycasting_files/*.c\
-	srcs/raycasting_files/*/*.c\
+	srcs/*.c\
+	srcs/*/*.c\
 	srcs/__tests__/*/*.c\
 	srcs/__tests__/*.c\
 
@@ -101,7 +196,7 @@ $(CONTENTS) :
 	rm -f $@.zip
 
 test : $(CONTENTS)
-	$(CC) -D UNITY_MEMORY_OVERRIDES_H_ -D UNITY_INCLUDE_CONFIG_H $(CFLAGS) $(TEST_INC) $(TEST_LIB) $(TEST_SRC) -o test
+	$(CC) -fsanitize=address -D UNITY_MEMORY_OVERRIDES_H_ -D UNITY_INCLUDE_CONFIG_H $(CFLAGS) $(TEST_INC) $(TEST_LIB) $(TEST_SRC) -o test
 
 clean:
 	@make -C $(L_FOLD) clean
