@@ -101,8 +101,8 @@ function get_pyr_att(tmp)
     var pyr_height = check_val(document.getElementById('pyr_height').value);
 
     tmp = "\t\t\t<point> " + pyr_point[2] + ", " + pyr_point[1] + ", " + pyr_point[0] + " </point>\n";
-    tmp += "\t\t\t<vector_u> " + pyr_vecV[2] + ", " + pyr_vecV[1]  + ", " + pyr_vecV[0]  + " </vector_a>\n";
-    tmp += "\t\t\t<vector_v> " + pyr_vecU[2] + ", " + pyr_vecU[1] + ", " + pyr_vecU[0] + " </vector_b>\n";
+    tmp += "\t\t\t<vector_u> " + pyr_vecV[2] + ", " + pyr_vecV[1]  + ", " + pyr_vecV[0]  + " </vector_u>\n";
+    tmp += "\t\t\t<vector_v> " + pyr_vecU[2] + ", " + pyr_vecU[1] + ", " + pyr_vecU[0] + " </vector_v>\n";
     tmp += "\t\t\t<height> " + pyr_height + " </height>\n";
     return(tmp);
 }
@@ -115,7 +115,7 @@ function get_tri_att(tmp)
 
     tmp = "\t\t\t<center> " + tri_point[2] + ", " + tri_point[1] + ", " + tri_point[0] + " </center>\n";
     tmp += "\t\t\t<vector_ab> " + tri_vecAB[2] + ", " + tri_vecAB[1] + ", " + tri_vecAB[0] + " </vector_ab>\n";
-    tmp += "\t\t\t<center_ac> " + tri_vecAC[2] + ", " + tri_vecAC[1] + ", " + tri_vecAC[0] + " </vector_ac>\n";
+    tmp += "\t\t\t<vector_ac> " + tri_vecAC[2] + ", " + tri_vecAC[1] + ", " + tri_vecAC[0] + " </vector_ac>\n";
     return(tmp);
 }
 
@@ -214,7 +214,7 @@ function create_xml(shape)
     {
         shape_num = 8;
         xml_shape += get_pla_att(tmp);
-    }
+    }   
 
     // attributes in every shape
     xml_shape += get_parallel_attributes(shape_num);
@@ -233,21 +233,20 @@ function create_xml(shape)
     }
 
     xml_shape += close_shape(shape);
-    console.log("i am the output ---->\n\n", xml_shape, "\n\n");
+    // console.log("i am the output ---->\n\n", xml_shape, "\n\n");
 
     var testing = "file_" + shape_num; 
     var file = document.getElementById(testing).files[0];
-    console.log(file.name, "\n\n");
+    // console.log(file.name, "\n\n");
 
     $.ajax({
         method: "POST",
         url: "http://localhost:8080/xmlwrite",
-        data: { data: xml_shape, filename: file.name}
+        data: { data: xml_shape, filename: file.name }
         })
         .done(function( msg ) {
           console.log( "Data Saved: " + msg );
     });
-
     // this reload file !
     // document.location.reload(true);
 }

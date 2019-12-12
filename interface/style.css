@@ -137,6 +137,16 @@ body {
   color: #2b580c;
 }
 
+.i_file {
+  border: 1px none;
+  float: right;
+  background-color: #fdef96;
+  color: #2b580c;
+  cursor: pointer;
+  /* border: 1px solid blue; */
+  outline: none;
+}
+
 ::placeholder {
   color: #709078;
 }
