@@ -31,8 +31,11 @@ static int		set_filter(t_env *e)
 int				render(t_env *e)
 {
 	erase_buffers(e);
-	if ((e->mask & RT_ENV_MASK_CEL_SHADING) && cel_shading(e) == RT_FAIL)
-		return (RT_FAIL);
+	if ((e->mask & RT_ENV_MASK_CEL_SHADING))
+	{
+		if (cel_shading(e) == RT_FAIL)
+			return (RT_FAIL);
+	}
 	else
 		multi_thread(e); // need to protect
 	if (anti_aliasing(

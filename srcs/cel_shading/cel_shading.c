@@ -53,7 +53,7 @@ int				cel_shading(t_env *e)
 
 	im_set_buffer_info(e->width, e->height, &buf_info);
 	if ((buf_info.buf[1] = ft_memalloc(
-		sizeof(t_im_edge_gradient) * e->width * e->height)) == NULL)
+		sizeof(t_im_edge_gradient) * e->num_pixels)) == NULL)
 		return (RT_FAIL); // need to print message
 	if (get_edge(e, &buf_info) == RT_FAIL)
 		return (handle_err(&buf_info));
