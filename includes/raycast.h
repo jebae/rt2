@@ -188,6 +188,14 @@ void			pyramid_translate(t_vec3 *v_translate, void *object);
 void			ring_translate(t_vec3 *v_translate, void *object);
 
 /*
+** Rotate functions
+*/
+t_vec4			q_mul_q(t_vec4 *q1, t_vec4 *q2);
+t_vec4			inverse_q(t_vec4 *q);
+t_vec4			rotate_q(t_vec4 *n, float theta);
+t_vec4			rotate(t_vec4 *q, t_vec4 *v, t_vec4 *q_i);
+
+/*
 ** Cel shading functions
 */
 double			round_n_dot_l(double n_dot_l);

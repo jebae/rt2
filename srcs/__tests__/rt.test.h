@@ -17,11 +17,14 @@
 # define MLX_BPP                32
 # define MLX_ENDIAN             0
 # define KEY_ESC				53
+# define KEY_COMMA				43
+# define KEY_POINT				43
 # define MAX(a, b) (((a) > (b)) ? (a) : (b))
 # define GRAY					(t_vec3){0xa0, 0xa0, 0xa0}
 # define BLUE					(t_vec3){0x11, 0x5d, 0xa8}
 # define RED					(t_vec3){0xf2, 0x00, 0x3c}
 # define BROWN					(t_vec3){0x65, 0x32, 0x21}
+# define DEGREE_1				M_PI / 180.0
 
 t_vec3			COLOR_SAMPLES[4];
 
@@ -31,23 +34,18 @@ typedef struct	s_mlxkit
 	void			*p_mlx;
 	void			*p_img;
 	unsigned int	*img_buf;
+	t_env			*e;
 }				t_mlxkit;
 
 /*
 ** test utils
 */
-void			init_mlxkit(t_mlxkit *mlxkit);
+void			init_mlxkit(t_mlxkit *mlxkit, t_env *e);
 void			clear_mlxkit(t_mlxkit *mlxkit);
 
 /*
 ** render utils
 */
-void			setup_scene(
-	t_mlxkit *mlxkit,
-	t_camera *cam,
-	int width,
-	int height
-);
 void			render_intersect_test(
 	unsigned int *img_buf,
 	t_env *e,
@@ -79,7 +77,7 @@ void			render_scene(int scene_num, int argc, char **argv);
 /*
 ** scene
 */
-void			init_scene(t_env *e);
+void			setup_scene(t_env *e);
 void			clear_scene(t_env *e);
 void			set_scene1(t_env *e);
 

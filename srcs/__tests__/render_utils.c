@@ -2,24 +2,6 @@
 
 extern t_vec3	COLOR_SAMPLES[4];
 
-void			setup_scene(
-	t_mlxkit *mlxkit,
-	t_camera *cam,
-	int width,
-	int height
-)
-{
-	init_mlxkit(mlxkit);
-	cam->campos = (t_vec3){0.0, 0.0, -1.0};
-	cam->camdir = (t_vec3){0.0, 0.0, 1.0};
-	cam->left = (t_vec3){1.0, 0.0, 0.0};
-	cam->up = (t_vec3){0.0, 1.0, 0.0};
-	cam->forw = (t_vec3){0.0, 0.0, 1.0};
-	cam->focal_length = 1.0;
-	cam->f_wdth = width / 384;
-	cam->f_hght = height / 384;
-}
-
 static t_vec3*	select_color(const char *str)
 {
 	if (strcmp(str, "gray") == 0)
@@ -54,13 +36,13 @@ void			render_intersect_test(
 {
 	t_ray		ray;
 
-	for (int i=0; i < HEIGHT; i++)
+	for (int i=0; i < e->height; i++)
 	{
-		for (int j=0; j < HEIGHT; j++)
+		for (int j=0; j < e->width; j++)
 		{
 			ray = cast_ray(j, i, e);
 			if (ol->intersect(ray, ol->object) != FAR)
-				img_buf[j + i * WIDTH] = 0xffffff;
+				img_buf[j + i * e->width] = 0xffffff;
 		}
 	}
 }
@@ -76,19 +58,19 @@ void			render_normal_test(
 	t_vec3		n;
 	double		n_dot_l;
 
-	for (int i=0; i < HEIGHT; i++)
+	for (int i=0; i < e->height; i++)
 	{
-		for (int j=0; j < WIDTH; j++)
+		for (int j=0; j < e->width; j++)
 		{
 			ray = cast_ray(j, i, e);
 			if ((ray.t = ol->intersect(ray, ol->object)) == FAR)
 			{
-				img_buf[j + i * WIDTH] = 0x00000000;
+				img_buf[j + i * e->width] = 0x00000000;
 				continue ;
 			}
 			n = ol->get_normal(ray, ol->object);
 			n_dot_l = v3_dotpdt(v3_scalar(ray.dir, -1.0), n);
-			img_buf[j + i * WIDTH] = simple_shade(
+			img_buf[j + i * e->width] = simple_shade(
 				select_color(color), n_dot_l);
 		}
 	}
@@ -112,14 +94,14 @@ void			render_texture_mapping_test(
 
 	texture = &ol->texture;
 	set_texels(filename, repeat, texture);
-	for (int i=0; i < HEIGHT; i++)
+	for (int i=0; i < e->height; i++)
 	{
-		for (int j=0; j < WIDTH; j++)
+		for (int j=0; j < e->width; j++)
 		{
 			ray = cast_ray(j, i, e);
 			if ((ray.t = ol->intersect(ray, ol->object)) == FAR)
 			{
-				img_buf[j + i * WIDTH] = 0x00000000;
+				img_buf[j + i * e->width] = 0x00000000;
 				continue ;
 			}
 			n = ol->get_normal(ray, ol->object);
@@ -128,7 +110,7 @@ void			render_texture_mapping_test(
 
 			uv = ol->uv_mapping(point, &ol->axis_mat, texture, ol->object);
 			texel_color = get_texel_color(&uv, texture);
-			img_buf[j + i * WIDTH] = simple_shade(&texel_color, n_dot_l);
+			img_buf[j + i * e->width] = simple_shade(&texel_color, n_dot_l);
 		}
 	}
 }
@@ -151,14 +133,14 @@ void			render_bump_mapping_test(
 
 	bump_map = &ol->bump_map;
 	set_texels(filename, repeat, bump_map);
-	for (int i=0; i < HEIGHT; i++)
+	for (int i=0; i < e->height; i++)
 	{
-		for (int j=0; j < WIDTH; j++)
+		for (int j=0; j < e->width; j++)
 		{
 			ray = cast_ray(j, i, e);
 			if ((ray.t = ol->intersect(ray, ol->object)) == FAR)
 			{
-				img_buf[j + i * WIDTH] = 0x00000000;
+				img_buf[j + i * e->width] = 0x00000000;
 				continue ;
 			}
 			point = find_point_from_ray(ray);
@@ -166,7 +148,7 @@ void			render_bump_mapping_test(
 			uv = ol->uv_mapping(point, &ol->axis_mat, bump_map, ol->object);
 			n = get_bumped_normal(&uv, bump_map, &n, &ol->axis_mat);
 			n_dot_l = v3_dotpdt(v3_scalar(ray.dir, -1.0), n);
-			img_buf[j + i * WIDTH] = simple_shade(
+			img_buf[j + i * e->width] = simple_shade(
 				select_color(color), n_dot_l);
 		}
 	}
@@ -177,8 +159,7 @@ void			render_scene(int scene_num, int argc, char **argv)
 	t_mlxkit	mlxkit;
 	t_env		e;
 
-	init_scene(&e);
-	setup_scene(&mlxkit, &e.cam, e.width, e.height);
+	init_mlxkit(&mlxkit, &e);
 	for (int i=3; i < argc; i++)
 	{
 		if (strcmp(argv[i], "cel") == 0)
@@ -187,8 +168,6 @@ void			render_scene(int scene_num, int argc, char **argv)
 	e.w.mp = mlxkit.p_mlx;
 	e.w.wp = mlxkit.p_win;
 	e.w.ip = mlxkit.p_img;
-	//e.img_buf = mlx_get_data_addr(e.w.ip, &e.w.bpp, &e.w.sl, &e.w.end);
-	e.img_buf = (char *)mlxkit.img_buf;
 	switch (scene_num)
 	{
 		case 1:
@@ -197,14 +176,9 @@ void			render_scene(int scene_num, int argc, char **argv)
 		default:
 			break ;
 	}
-	if (e.mask & RT_ENV_MASK_CEL_SHADING)
-		cel_shading(&e);
-	else
-		multi_thread(&e);
-	anti_aliasing((unsigned int *)e.img_buf, (unsigned int *)e.data, e.width / 2, e.height / 2);
+	render(&e);
 	for (int i=3; i < argc; i++)
 		set_filter(argv[i], (unsigned int *)e.img_buf, e.width / 2, e.height / 2);
 	mlx_put_image_to_window(e.w.mp, e.w.wp, e.w.ip, 0, 0);
-	clear_scene(&e);
 	mlx_loop(e.w.mp);
 }
