@@ -233,9 +233,30 @@ function create_xml(shape)
     }
 
     xml_shape += close_shape(shape);
-    console.log("i am the output ---->\n\n", xml_shape);
-    // writing to file here
+    console.log("i am the output ---->\n\n", xml_shape, "\n\n");
+    
+    function read_write_file (shape_num){
+        var testing = "file_" + shape_num; 
+        var file = document.getElementById(testing).files[0];
+        console.log(file.name, "\n\n");
 
+        var reader = new FileReader();
+        reader.onload = function(progressEvent) {
+            // Entire file
+            // console.log(this.result);
+        
+            // By lines
+            var lines = this.result.split('\n');
+            for(var line = 0; line < lines.length; line++){
+                console.log(lines[line]);
+            }
+            
+        };
+        reader.readAsText(file);
+    };
+    read_write_file(shape_num)
+
+    // attempting to write to file here
     // this reload file !
     // document.location.reload(true);
 }

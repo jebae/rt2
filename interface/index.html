@@ -5,7 +5,7 @@
     <link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="form_creator.js"></script>
+    <script  src="form_creator.js"></script>
   </head>
   <body>
     <div class="header">
@@ -43,7 +43,7 @@
             <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
             <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
           <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
-          <span id="txt_simple">FILE NAME :</span><input class="i_smpl" id="file" type="text" name="file" placeholder="Enter file name"/><br><br>
+          <span id="txt_simple">FILE NAME :</span><input class="i_smpl" id="file" type="file" name="file" placeholder="Enter file name"/><br><br>
         </form><br/>
       </div>
       <div class="output_object" id="cone_object"> <!-- 2 -->
@@ -66,7 +66,7 @@
             <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
             <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
           <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
-          <span id="txt_simple">FILE NAME :</span><input class="i_smpl" id="file" type="text" name="file" placeholder="Enter file name"/><br><br>        
+          <span id="txt_simple">FILE NAME :</span><input class="i_smpl" id="file" type="file" name="file" placeholder="Enter file name"/><br><br>        
         </form><br/>
       </div>
       <div class="output_object" id="cylinder_object"> <!-- 3 -->
@@ -88,7 +88,7 @@
             <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
             <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
           <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
-          <span id="txt_simple">FILE NAME :</span><input class="i_smpl" id="file" type="text" name="file" placeholder="Enter file name"/><br><br>        
+          <span id="txt_simple">FILE NAME :</span><input class="i_smpl" id="file" type="file" name="file" placeholder="Enter file name"/><br><br>        
         </form><br/>
       </div>
       <div class="output_object" id="rectangle_object"> <!-- 4 --->
@@ -112,7 +112,7 @@
               <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
               <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
             <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
-            <span id="txt_simple">FILE NAME :</span><input class="i_smpl" id="file" type="text" name="file" placeholder="Enter file name"/><br><br>        
+            <span id="txt_simple">FILE NAME :</span><input class="i_smpl" id="file" type="file" name="file" placeholder="Enter file name"/><br><br>        
           </form><br/>
       </div>
       <div class="output_object" id="ring_object"> <!-- 5 -->
@@ -134,7 +134,7 @@
             <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
             <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
           <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
-          <span id="txt_simple">FILE NAME :</span><input class="i_smpl" id="file" type="text" name="file" placeholder="Enter file name"/><br><br>          
+          <span id="txt_simple">FILE NAME :</span><input class="i_smpl" id="file" type="file" name="file" placeholder="Enter file name"/><br><br>          
         </form><br/><br/>
         <input class="buttons" id="button_ring" type="button" value="ADD RING !" onclick="create_xml('ring')"/>
       </div>
@@ -160,7 +160,7 @@
               <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
               <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
             <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
-            <span id="txt_simple">FILE NAME :</span><input class="i_smpl" id="file" type="text" name="file" placeholder="Enter file name"/><br><br>            
+            <span id="txt_simple">FILE NAME :</span><input class="i_smpl" id="file" type="file" name="file" placeholder="Enter file name"/><br><br>            
           </form><br/><br/>
           <input class="buttons" id="button_box" type="button" value="ADD BOX !" onclick="create_xml('box')"/>
       </div>
@@ -186,7 +186,7 @@
               <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
               <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
             <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
-            <span id="txt_simple">FILE NAME :</span><input class="i_smpl" id="file" type="text" name="file" placeholder="Enter file name"/><br><br>
+            <span id="txt_simple">FILE NAME :</span><input class="i_smpl" id="file" type="file" name="file" placeholder="Enter file name"/><br><br>
           </form><br/><br/>
           <input class="buttons" id="button_pyramid" type="button" value="ADD PYRAMID !" onclick="create_xml('pyramid')"/>
       </div>
@@ -211,7 +211,7 @@
               <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
               <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
             <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
-            <span id="txt_simple">FILE NAME :</span><input class="i_smpl" id="file" type="text" name="file" placeholder="Enter file name"/><br><br>            
+            <span id="txt_simple">FILE NAME :</span><input class="i_smpl" id="file" type="file" name="file" placeholder="Enter file name"/><br><br>            
           </form><br/><br/>
           <input class="buttons" id="button_triangle" type="button" value="ADD TRIANGLE !" onclick="create_xml('triangle')"/>
       </div>
@@ -229,7 +229,7 @@
             <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
             <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
           <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
-          <span id="txt_simple">FILE NAME :</span><input class="i_smpl" id="file" type="text" name="file" placeholder="Enter file name"/><br><br>
+          <span id="txt_simple">FILE NAME :</span><input class="i_smpl" id="file_8" type="file" name="file" placeholder="Enter file name"/><br><br>
         </form><br/><br/>
         <input class="buttons" id="button_plane" type="button" value="ADD PLANE !" onclick="create_xml('plane')"/>
       </div>
@@ -380,7 +380,6 @@
       <div>
       </div>
     </div>
-
     <div class="footer">
       <h5> A project created by : Jeongmo Bae <i>(jebae)</i>, Samuel Boniface <i>(sabonifa)</i>, Madeleine Hernandez <i>(mhernand)</i>, and Alexandru Moraru <i>(almoraru)</i>.</h5>
     </div>
