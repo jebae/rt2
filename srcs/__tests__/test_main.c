@@ -1,40 +1,29 @@
 #include "rt.test.h"
 
-static t_mlxkit		mlxkit;
-static t_ol			ol;
-
 extern t_vec3	COLOR_SAMPLES[4];
 
 void	render_test(int argc, char **argv)
 {
-	t_env	e;
-	int		res;
+	t_mlxkit	mlxkit;
+	t_env		e;
 
-	(void)argc;
-	init_ol(&ol);
-	res = setup_object(argv[1], argv[3], &ol);
-	if (res == RT_FAIL)
-		return ;
-	e.width = WIDTH;
-	e.height = HEIGHT;
-	setup_scene(&mlxkit, &e.cam, e.width, e.height);
+	init_mlxkit(&mlxkit, &e);
+	e.width /= 2;
+	e.height /= 2;
+	setup_object(argv[1], argv[3], e.ll_obj);
+	e.num_objs = 1;
 	if (*(argv[2]) == 'i')
-		render_intersect_test(mlxkit.img_buf, &e, &ol);
+		render_intersect_test(mlxkit.img_buf, &e, e.ll_obj);
 	else if (*(argv[2]) == 'n')
-		render_normal_test(mlxkit.img_buf, &e, &ol, argv[4]);
+		render_normal_test(mlxkit.img_buf, &e, e.ll_obj, argv[4]);
 	else if (*(argv[2]) == 't')
 		render_texture_mapping_test(
-			mlxkit.img_buf, &e, &ol, argv[4], argv[5]);
+			mlxkit.img_buf, &e, e.ll_obj, argv[4], argv[5]);
 	else if (*(argv[2]) == 'b')
 		render_bump_mapping_test(
-			mlxkit.img_buf, &e, &ol, argv[4], argv[5], argv[6]);
-	set_filter(argv[argc - 1], mlxkit.img_buf, e.width, e.height);
+			mlxkit.img_buf, &e, e.ll_obj, argv[4], argv[5], argv[6]);
+	set_filter(argv[argc - 1], mlxkit.img_buf, e.width / 2, e.height / 2);
 	mlx_put_image_to_window(mlxkit.p_mlx, mlxkit.p_win, mlxkit.p_img, 0, 0);
-	if (ol.texture.buffer)
-		free(ol.texture.buffer);
-	if (ol.bump_map.buffer)
-		free(ol.bump_map.buffer);
-	ft_memdel((void **)&ol.object);
 	mlx_loop(mlxkit.p_mlx);
 }
 
@@ -59,7 +48,7 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	if (ft_strcmp(argv[1], "scene") == 0)
-		render_scene(atoi(argv[2]), argc, argv);
+		render_scene(argv[2], argc, argv);
 	else if (argc >= 4)
 		render_test(argc, argv);
 	return (0);

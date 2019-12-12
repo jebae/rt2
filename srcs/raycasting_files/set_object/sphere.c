@@ -28,6 +28,7 @@ int				set_sphere(t_ol *ol, t_arg_sphere *arg)
 	ol->get_normal = &normal_sphere;
     ol->uv_mapping = &sphere_uv_mapping;
     ol->translate = &sphere_translate;
+    ol->rotate = &sphere_rotate;
 	sphere = (t_sphere *)ol->object;
 	sphere->cen = arg->cen;
 	sphere->radius = arg->radius;

@@ -101,7 +101,7 @@ $(CONTENTS) :
 	rm -f $@.zip
 
 test : $(CONTENTS)
-	$(CC) -fsanitize=address -D UNITY_MEMORY_OVERRIDES_H_ -D UNITY_INCLUDE_CONFIG_H $(CFLAGS) $(TEST_INC) $(TEST_LIB) $(TEST_SRC) -o test
+	$(CC) -D UNITY_MEMORY_OVERRIDES_H_ -D UNITY_INCLUDE_CONFIG_H $(CFLAGS) $(TEST_INC) $(TEST_LIB) $(TEST_SRC) -o test
 
 clean:
 	@make -C $(L_FOLD) clean

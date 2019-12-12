@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/12/10 18:01:57 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/12 15:12:45 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,11 @@ double		get_transmittance(
 	double light_dist,
 	t_env *e
 );
+
+/*
+** Render functions
+*/
+int			render(t_env *e);
 
 /*
 ** Set light functions
@@ -186,6 +191,25 @@ void			box_translate(t_vec3 *v_translate, void *object);
 void			triangle_translate(t_vec3 *v_translate, void *object);
 void			pyramid_translate(t_vec3 *v_translate, void *object);
 void			ring_translate(t_vec3 *v_translate, void *object);
+
+/*
+** Rotate functions
+*/
+t_vec4			q_mul_q(t_vec4 *q1, t_vec4 *q2);
+t_vec4			inverse_q(t_vec4 *q);
+t_vec4			rotate_q(t_vec3 *n, float theta);
+t_vec3			rotate(t_vec4 *q, t_vec3 *v, t_vec4 *q_i);
+void			rotate_object_axis(t_vec4 *q, t_mat3 *axis_mat);
+void			sphere_rotate(
+	t_vec4 *q,
+	t_mat3 *axis_mat,
+	void *object
+);
+void			box_rotate(
+	t_vec4 *q,
+	t_mat3 *axis_mat,
+	void *object
+);
 
 /*
 ** Cel shading functions

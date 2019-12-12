@@ -1,6 +1,6 @@
 #include "rt.test.h"
 
-void		init_scene(t_env *e)
+static void		init_scene(t_env *e)
 {
 	e->width = WIDTH * 2;
 	e->height = HEIGHT * 2;
@@ -14,6 +14,20 @@ void		init_scene(t_env *e)
 	for (int i=0; i < 5; i++)
 		ft_bzero(e->ll_lit + i, sizeof(t_ll));
 }
+
+void			setup_scene(t_env *e)
+{
+	init_scene(e);
+	e->cam.campos = (t_vec3){0.0, 0.0, -1.0};
+	e->cam.camdir = (t_vec3){0.0, 0.0, 1.0};
+	e->cam.left = (t_vec3){1.0, 0.0, 0.0};
+	e->cam.up = (t_vec3){0.0, 1.0, 0.0};
+	e->cam.forw = (t_vec3){0.0, 0.0, 1.0};
+	e->cam.focal_length = 1.0;
+	e->cam.f_wdth = e->width / 384;
+	e->cam.f_hght = e->height / 384;
+}
+
 
 void		clear_scene(t_env *e)
 {

@@ -40,6 +40,7 @@ TEST(set_sphere, valid)
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&normal_sphere, ol.get_normal, "get_normal");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&sphere_uv_mapping, ol.uv_mapping, "uv_mapping");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&sphere_translate, ol.translate, "translate");
+	TEST_ASSERT_EQUAL_INT_MESSAGE(&sphere_rotate, ol.rotate, "rotate");
 }
 
 TEST(set_sphere, radius_is_0)

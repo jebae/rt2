@@ -136,7 +136,7 @@ static void		set_lights(t_ll *ll, int *num_lights)
 	(*num_lights)++;
 }
 
-void			set_scene1(t_env *e)
+void			set_scene_1(t_env *e)
 {
 	e->amb = (t_vec3){0.1, 0.1, 0.1};
 

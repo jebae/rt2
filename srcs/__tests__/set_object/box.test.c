@@ -48,6 +48,7 @@ TEST(set_box, valid)
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&v_intersect_box, ol.intersect, "intersect");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&normal_box, ol.get_normal, "get_normal");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&box_translate, ol.translate, "translate");
+	TEST_ASSERT_EQUAL_INT_MESSAGE(&box_rotate, ol.rotate, "rotate");
 }
 
 TEST(set_box, a_norm_is_0)
