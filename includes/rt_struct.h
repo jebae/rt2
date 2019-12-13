@@ -13,10 +13,7 @@
 # include "libft.h"
 # include "libvector.h"
 # include "libimg.h"
-/*
-# include <complex.h>
-# include <assert.h>
-*/
+# include "SDL2/SDL.h"
 #include <stdio.h> // test only
 
 # define WIDTH						1600
@@ -166,12 +163,6 @@ typedef struct		s_ol
 	);
 	void			(*translate)(t_vec3 *v_translate, void *object);
 	void			(*rotate)(t_vec4 *q, t_mat3 *axis_mat, void *object);
-	//struct s_ol		*next;
-	// int				status;	
-	// t_vec3			rot_x;
-	// t_vec3			rot_y;
-	// t_vec3			rot_z;
-	// t_vec3			translation;
 }					t_ol;
 
 typedef struct		s_trace_record
@@ -365,6 +356,14 @@ typedef struct		s_creecam
 	t_vec4			v3;
 }					t_creecam;
 
+typedef struct		s_sdl
+{
+	SDL_Window		*window;
+	SDL_Renderer	*renderer;
+	SDL_Texture		*tex;
+	SDL_Event		event;
+}					t_sdl;
+
 typedef struct		s_env
 {
 	int				width;
@@ -379,7 +378,7 @@ typedef struct		s_env
 	int				mask;
 	char			*data;
 	char			*img_buf;
-	t_mlx			w;
+	t_sdl			sdl;
 	t_vec3			amb;
 	t_vec3			dx;
 	t_vec3			dy;

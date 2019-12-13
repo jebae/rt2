@@ -44,6 +44,7 @@ int				render(t_env *e)
 		return (RT_FAIL);
 	if (set_filter(e) == RT_FAIL)
 		return (RT_FAIL);
-	mlx_put_image_to_window(e->w.mp, e->w.wp, e->w.ip, 0, 0);
+	//mlx_put_image_to_window(e->w.mp, e->w.wp, e->w.ip, 0, 0);
+	//write_buffer to sdl
 	return (RT_SUCCESS);
 }

@@ -6,17 +6,20 @@ LIBFT_PATH = ./libft
 LIBVECTOR_PATH = ./libvector
 LIBIMG_PATH = ./libimg
 PARSER_PATH = ./parser
+SDL_PATH = ./SDL2
 
 INC = -I includes\
 	-I $(LIBFT_PATH)/includes\
 	-I $(LIBVECTOR_PATH)\
 	-I $(PARSER_PATH)/includes\
 	-I $(LIBIMG_PATH)/includes\
+	-I $(SDL_PATH)/include\
 
 LIB = -L $(LIBFT_PATH) -lft\
 	-L $(PARSER_PATH) -lparse\
 	-L $(LIBVECTOR_PATH) -lvector\
 	-L $(LIBIMG_PATH) -limg\
+	-L $(SDL_PATH)/lib -lSDL2\
 
 CC = gcc
 
@@ -101,7 +104,7 @@ SRCS = color_op.c\
 	intersec_functions.c\
 	intersec_functions_2.c\
 	mat3_op.c\
-#main.c\
+	main.c\
 
 # objs
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
@@ -170,23 +173,23 @@ $(OBJ_DIR)/%.o : $(SRC_DIR)/cel_shading/%.c $(HEADERS)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 # command
-SDL = ./SDL2.framework
-
-superfast:
-	make -j8 all
-
 all: $(NAME)
 
-$(NAME) : deps $(OBJ_DIR) $(OBJS)
+SDL = $(ROOT_DIR)/SDL2
+
+$(SDL) :
+	if [ ! -d ./SDL2-2.0.10 ]; \
+	then tar -xvzf libsdl;\
+	fi;
+	if [ ! -d ./SDL2 ]; \
+	then cd SDL2-2.0.10 ; ./configure --prefix $(ROOT_DIR)/SDL2 ;\
+	make -j8 ; make install; fi;
+
+$(NAME) : deps $(SDL) $(OBJ_DIR) $(OBJS)
 	@$(CC) $(CFLAGS) $(INC) $(LIB) $(OBJS) -o $(NAME)
 	@printf "\033[32m[ ✔ ] $(NAME)\n\033[0m"
 
-$(SDL) :
-	@if [ ! -d ./SDL2.framework ]; \
-	then curl https://www.libsdl.org/release/SDL2-2.0.10.dmg \
-	-o SDL2-2.0.10.dmg ; hdiutil attach SDL2-2.0.10.dmg ; \
-	cp -r /Volumes/SDL2/SDL2.framework . ; \
-	hdiutil detach /Volumes/SDL2 ; fi; \
+ROOT_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
 $(OBJ_DIR) : 
 	@mkdir -p $@
@@ -196,7 +199,6 @@ deps :
 	@make -C $(LIBVECTOR_PATH) all
 	@make -C $(LIBIMG_PATH) all
 	@make -C $(PARSER_PATH) all
-	rm -rf $(SDL)
 
 TEST_INC = $(INC) -I srcs/__tests__ -I $(UNITY_PATH)/include
 

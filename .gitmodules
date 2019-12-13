@@ -1,6 +1,0 @@
-[submodule "parser"]
-	path = parser
-	url = https://gitlab.com/m.alexandru/rt_parser.git
-[submodule "libimg"]
-	path = libimg
-	url = https://gitlab.com/jebae/libimg.git
