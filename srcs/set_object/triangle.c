@@ -33,6 +33,7 @@ int				set_triangle(t_ol *ol, t_arg_triangle *arg)
 	ol->intersect = &v_intersect_triangle;
 	ol->get_normal = &normal_triangle;
 	ol->translate = &triangle_translate;
+	ol->rotate = &triangle_rotate;
 	triangle = (t_triangle *)ol->object;
 	triangle->a = arg->a;
 	triangle->ab = arg->ab;

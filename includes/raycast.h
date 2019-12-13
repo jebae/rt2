@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/12/12 19:59:28 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/13 01:12:57 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,6 +211,36 @@ void			box_rotate(
 	void *object
 );
 void			rectangle_rotate(
+	t_vec4 *q,
+	t_mat3 *axis_mat,
+	void *object
+);
+void			cone_rotate(
+	t_vec4 *q,
+	t_mat3 *axis_mat,
+	void *object
+);
+void			cyl_rotate(
+	t_vec4 *q,
+	t_mat3 *axis_mat,
+	void *object
+);
+void			plane_rotate(
+	t_vec4 *q,
+	t_mat3 *axis_mat,
+	void *object
+);
+void			pyramid_rotate(
+	t_vec4 *q,
+	t_mat3 *axis_mat,
+	void *object
+);
+void			ring_rotate(
+	t_vec4 *q,
+	t_mat3 *axis_mat,
+	void *object
+);
+void			triangle_rotate(
 	t_vec4 *q,
 	t_mat3 *axis_mat,
 	void *object

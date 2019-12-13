@@ -49,6 +49,12 @@ SRC_ROTATE = box.c\
 	rotate_object_axis.c\
 	sphere.c\
 	rectangle.c\
+	cone.c\
+	cylinder.c\
+	plane.c\
+	pyramid.c\
+	ring.c\
+	triangle.c\
 
 SRC_SET_OBJECT = box.c\
 	common.c\

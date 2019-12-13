@@ -83,6 +83,12 @@ void			set_scene_1(t_env *e);
 void			set_scene_sphere(t_env *e);
 void			set_scene_box(t_env *e);
 void			set_scene_rectangle(t_env *e);
+void			set_scene_cone(t_env *e);
+void			set_scene_cylinder(t_env *e);
+void			set_scene_plane(t_env *e);
+void			set_scene_pyramid(t_env *e);
+void			set_scene_ring(t_env *e);
+void			set_scene_triangle(t_env *e);
 
 /*
 ** texture utils

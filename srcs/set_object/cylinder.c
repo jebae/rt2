@@ -18,6 +18,7 @@ int				set_cyl(t_ol *ol, t_arg_cyl *arg)
 	ol->get_normal = &normal_cylinder;
 	ol->uv_mapping = &cyl_uv_mapping;
 	ol->translate = &cyl_translate;
+	ol->rotate = &cyl_rotate;
 	cyl = (t_cyl *)ol->object;
 	cyl->cen = arg->cen;
 	cyl->axis = v3_normalise(arg->axis);

@@ -36,5 +36,5 @@ t_vec3			normal_ring(t_ray ray, void *object)
 	if (v3_dotpdt(ray.dir, ring->normal) <= 0)
 		return (ring->normal);
 	else 
-		return (v3_scalar(ring->normal, -1));
+		return (v3_scalar(ring->normal, -1.0));
 }

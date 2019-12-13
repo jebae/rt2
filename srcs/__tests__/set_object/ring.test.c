@@ -37,6 +37,7 @@ TEST(set_ring, valid)
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&v_intersect_ring, ol.intersect, "intersect");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&normal_ring, ol.get_normal, "get_normal");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&ring_translate, ol.translate, "translate");
+	TEST_ASSERT_EQUAL_INT_MESSAGE(&ring_translate, ol.rotate, "rotate");
 }
 
 TEST(set_ring, normal_norm_is_0)

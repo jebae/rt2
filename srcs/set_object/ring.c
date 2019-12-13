@@ -17,6 +17,7 @@ int				set_ring(t_ol *ol, t_arg_ring *arg)
 	ol->intersect = &v_intersect_ring;
 	ol->get_normal = &normal_ring;
 	ol->translate = &ring_translate;
+	ol->rotate = &ring_rotate;
 	ring = (t_ring *)ol->object;
 	ring->center = arg->center;
 	ring->normal = v3_normalise(arg->normal);

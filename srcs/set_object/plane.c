@@ -16,6 +16,7 @@ int				set_plane(t_ol *ol, t_arg_plane *arg)
 	ol->intersect = &v_intersect_pl;
 	ol->get_normal = &normal_plane;
 	ol->translate = &plane_translate;
+	ol->rotate = &plane_rotate;
 	plane = (t_plane *)ol->object;
 	plane->normal = v3_normalise(arg->normal);
 	plane->d = arg->d;

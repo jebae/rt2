@@ -48,6 +48,7 @@ TEST(set_cone, valid)
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&normal_cone, ol.get_normal, "get_normal");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&cone_uv_mapping, ol.uv_mapping, "uv_mapping");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&cone_translate, ol.translate, "translate");
+	TEST_ASSERT_EQUAL_INT_MESSAGE(&cone_rotate, ol.rotate, "rotate");
 }
 
 TEST(set_cone, axis_is_parallel_to_world_x_axis)

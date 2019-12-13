@@ -184,6 +184,18 @@ void			render_scene(char *title, int argc, char **argv)
 		set_scene_box(&e);
 	else if (strcmp(title, "rect") == 0)
 		set_scene_rectangle(&e);
+	else if (strcmp(title, "cone") == 0)
+		set_scene_cone(&e);
+	else if (strcmp(title, "cyl") == 0)
+		set_scene_cylinder(&e);
+	else if (strcmp(title, "plane") == 0)
+		set_scene_plane(&e);
+	else if (strcmp(title, "pyramid") == 0)
+		set_scene_pyramid(&e);
+	else if (strcmp(title, "ring") == 0)
+		set_scene_ring(&e);
+	else if (strcmp(title, "tri") == 0)
+		set_scene_triangle(&e);
 	render(&e);
 	mlx_loop(e.w.mp);
 }
