@@ -1,10 +1,8 @@
 const express = require("express");
 const bodyParser = require('body-parser');
-
 const fs = require('fs');
 const xmlParser = require("xml2json")
 const formatXml = require("xml-formatter")
-
 
 const app = express();
 // const reload = require('express-reload')
@@ -20,8 +18,6 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
 
-// create new express app and save it as "app"
-
 // server configuration
 const PORT = 8080;
 
@@ -34,7 +30,6 @@ app.post('/xmlwrite', (req, res) => {
 
   fs.readFile( req.body.filename, function modify_xml(err, data) 
   {
-    // check if kets exists ! scene and objects !!!!
     if (err) {
       throw err;
     }
@@ -42,25 +37,31 @@ app.post('/xmlwrite', (req, res) => {
     const xmlFile = xmlParser.toJson(data, {reversible: true, object: true})
     const xmlFileObj = xmlFile["scene"]["objects"]
 
-    // console.log(xmlObj)
-    // console.log(xmlFileObj)
-    var count = Object.keys(xmlFileObj).length
-    xmlFile["scene"]["objects"] = xmlObj // fix me tomorrow ! [count] add 10 but no count means rewriting over file !
+    if (xmlFile.hasOwnProperty("scene") && xmlFile.scene.hasOwnProperty("objects"))
+    {
+      const objectName = Object.keys(xmlObj)[0];
+      var count = Object.keys(xmlFileObj).length
 
-    // converting to string
-    console.log(xmlFile["scene"]["objects"][count])
-    const stringifiedXmlObj = JSON.stringify(xmlFile)
-    console.log(stringifiedXmlObj)
-    const finalXml = xmlParser.toXml(stringifiedXmlObj)
-
-    // writing to file 
-    fs.writeFile(req.body.filename, formatXml(finalXml, {collapseContent: true}), function(err, result){
-      if (err) {
-        console.log("err")
+      if (Array.isArray(xmlFile.scene.objects[objectName])) {
+        xmlFile.scene.objects[objectName].push(xmlObj[objectName]);
+      } else if (xmlFile.scene.objects[objectName]) {
+        xmlFile.scene.objects[objectName] = [xmlFile.scene.objects[objectName], xmlObj[objectName]]
       } else {
-        console.log("Xml file successfully updated.")
+        Object.assign(xmlFile["scene"]["objects"], xmlObj)
       }
-    })
+
+      const stringifiedXmlObj = JSON.stringify(xmlFile)
+      const finalXml = xmlParser.toXml(stringifiedXmlObj)
+
+      // writing to file 
+      fs.writeFile(req.body.filename, formatXml(finalXml, {collapseContent: true}), function(err, result){
+        if (err) {
+          console.log("err")
+        } else {
+          console.log("Xml file successfully updated.")
+        }
+      })
+    }
   })
 });
 
