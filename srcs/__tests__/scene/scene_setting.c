@@ -17,15 +17,22 @@ static void		init_scene(t_env *e)
 
 void			setup_scene(t_env *e)
 {
+	double		g_x;
+	double		g_y;
+
 	init_scene(e);
-	e->cam.campos = (t_vec3){0.0, 0.0, -1.0};
+	e->cam.campos = (t_vec3){0.0, 0.0, -5.0};
 	e->cam.camdir = (t_vec3){0.0, 0.0, 1.0};
 	e->cam.left = (t_vec3){1.0, 0.0, 0.0};
 	e->cam.up = (t_vec3){0.0, 1.0, 0.0};
-	e->cam.forw = (t_vec3){0.0, 0.0, 1.0};
-	e->cam.focal_length = 1.0;
-	e->cam.f_wdth = e->width / 384;
-	e->cam.f_hght = e->height / 384;
+	g_x = tan(M_PI / 2.0 / 2.0);
+	g_y = g_x * e->height / e->width;
+	e->dx = v3_scalar(e->cam.left, g_x);
+	e->dy = v3_scalar(e->cam.up, g_y);
+	e->offset = v3_sub(e->cam.camdir, e->dx);
+	e->offset = v3_sub(e->offset, e->dy);
+	e->dx = v3_scalar(e->dx, 2.0 / (e->width - 1.0));
+	e->dy = v3_scalar(e->dy, 2.0 / (e->height - 1.0));
 }
 
 

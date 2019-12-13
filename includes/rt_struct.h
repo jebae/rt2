@@ -381,6 +381,9 @@ typedef struct		s_env
 	char			*img_buf;
 	t_mlx			w;
 	t_vec3			amb;
+	t_vec3			dx;
+	t_vec3			dy;
+	t_vec3			offset;
 	t_camera		cam;
 	t_ll			ll_lit[5];
 	t_ol			ll_obj[20];
