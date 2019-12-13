@@ -15,11 +15,16 @@
 
 # include "rt_struct.h"
 
-t_mlx		init(t_mlx *p);
-int			raycast(t_env *e);
-t_ray		cast_ray(int x, int y, t_env *e);
-int			color(t_vec3 p, t_ol *ol, t_ll *ll);
-void    multi_thread(t_env *e);
+/*
+** Setting functions
+*/
+int			init_env(t_env *e);
+void		clear_env(t_env *e);
+void		key_input(SDL_Keycode sym, t_env *e);
+void		run_event_loop(t_env *e);
+int			handle_fail(const char *msg);
+int			set_camera(t_camera *cam, t_arg_camera *arg);
+void		set_ray_grid_props(t_env *e);
 
 /*
 ** Matrix operations
@@ -33,6 +38,7 @@ int			raytrace(t_env *e);
 void		set_origin_trace_record(t_env *e, t_trace_record *rec);
 void		set_trace_record(t_trace_record *rec);
 int			intersect(t_env *e, t_trace_record *rec);
+t_ray		cast_ray(int x, int y, t_env *e);
 
 /*
 ** Shading functions
@@ -66,6 +72,8 @@ double		get_transmittance(
 ** Render functions
 */
 int			render(t_env *e);
+int			render_by_sdl(t_env *e);
+void    	multi_thread(t_env *e);
 
 /*
 ** Set light functions
@@ -199,6 +207,7 @@ t_vec4			q_mul_q(t_vec4 *q1, t_vec4 *q2);
 t_vec4			inverse_q(t_vec4 *q);
 t_vec4			rotate_q(t_vec3 *n, float theta);
 t_vec3			rotate(t_vec4 *q, t_vec3 *v, t_vec4 *q_i);
+void			rotate_object(t_env *e, double theta);
 void			rotate_object_axis(t_vec4 *q, t_mat3 *axis_mat);
 void			sphere_rotate(
 	t_vec4 *q,

@@ -49,7 +49,7 @@ SRC_RENDER = anti_aliasing.c\
 SRC_ROTATE = box.c\
 	q_rotate.c\
 	quaternion_operator.c\
-	rotate_object_axis.c\
+	rotate_object.c\
 	sphere.c\
 	rectangle.c\
 	cone.c\
@@ -99,11 +99,17 @@ SRC_UV_MAPPING = cone.c\
 	rectangle.c\
 	sphere.c\
 
+SRC_SETTING = env.c\
+	event_loop.c\
+	key_input.c\
+	camera.c\
+
 SRCS = color_op.c\
 	get_normal.c\
 	intersec_functions.c\
 	intersec_functions_2.c\
 	mat3_op.c\
+	handle_fail.c\
 	main.c\
 
 # objs
@@ -120,6 +126,7 @@ OBJS += $(addprefix $(OBJ_DIR)/, $(SRC_TRACE:.c=.o))
 OBJS += $(addprefix $(OBJ_DIR)/transl_, $(SRC_TRANSLATE:.c=.o))
 OBJS += $(addprefix $(OBJ_DIR)/uv_, $(SRC_UV_MAPPING:.c=.o))
 OBJS += $(addprefix $(OBJ_DIR)/, $(SRC_CEL_SHADING:.c=.o))
+OBJS += $(addprefix $(OBJ_DIR)/, $(SRC_SETTING:.c=.o))
 
 # compile objs
 HEADERS = ./includes/raycast.h\
@@ -170,6 +177,9 @@ $(OBJ_DIR)/uv_%.o : $(SRC_DIR)/uv_mapping/%.c $(HEADERS)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/cel_shading/%.c $(HEADERS)
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+$(OBJ_DIR)/%.o : $(SRC_DIR)/setting/%.c $(HEADERS)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 # command

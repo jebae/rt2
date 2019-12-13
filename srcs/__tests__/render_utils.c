@@ -156,10 +156,17 @@ void			render_bump_mapping_test(
 
 void			render_scene(char *title, int argc, char **argv)
 {
-	t_mlxkit	mlxkit;
-	t_env		e;
+	t_env			e;
+	t_arg_camera	arg_cam;
 
-	init_mlxkit(&mlxkit, &e);
+	if (init_env(&e) == RT_FAIL)
+		printf("Fail init_env\n");
+	arg_cam.pos = (t_vec3){0.0, 0.0, -5.0};
+	arg_cam.dir = (t_vec3){0.0, 0.0, 1.0};
+	arg_cam.right = (t_vec3){1.0, 0.0, 0.0};
+	arg_cam.down = (t_vec3){0.0, 1.0, 0.0};
+	set_camera(&e.cam, &arg_cam);
+	set_ray_grid_props(&e);
 	for (int i=3; i < argc; i++)
 	{
 		if (strcmp(argv[i], "cel") == 0)
@@ -173,9 +180,6 @@ void			render_scene(char *title, int argc, char **argv)
 		if (strcmp(argv[i], "blur") == 0)
 			e.mask |= RT_ENV_MASK_GAUSSIAN_BLUR;
 	}
-	e.w.mp = mlxkit.p_mlx;
-	e.w.wp = mlxkit.p_win;
-	e.w.ip = mlxkit.p_img;
 	if (strcmp(title, "1") == 0)
 		set_scene_1(&e);
 	else if (strcmp(title, "sphere") == 0)
@@ -196,6 +200,7 @@ void			render_scene(char *title, int argc, char **argv)
 		set_scene_ring(&e);
 	else if (strcmp(title, "tri") == 0)
 		set_scene_triangle(&e);
-	render(&e);
-	mlx_loop(e.w.mp);
+	if (render(&e) == RT_FAIL)
+		printf("Fail render\n");
+	run_event_loop(&e);
 }

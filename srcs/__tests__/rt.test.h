@@ -1,7 +1,6 @@
 #ifndef RT_TEST_H
 # define RT_TEST_H
 
-# include "../minilibx_macos/mlx.h"
 # include "raycast.h"
 # include "unity.h"
 # include "unity_fixture.h"
@@ -24,24 +23,8 @@
 # define BLUE					(t_vec3){0x11, 0x5d, 0xa8}
 # define RED					(t_vec3){0xf2, 0x00, 0x3c}
 # define BROWN					(t_vec3){0x65, 0x32, 0x21}
-# define DEGREE_1				M_PI / 180.0
 
 t_vec3			COLOR_SAMPLES[4];
-
-typedef struct	s_mlxkit
-{
-	void			*p_win;
-	void			*p_mlx;
-	void			*p_img;
-	unsigned int	*img_buf;
-	t_env			*e;
-}				t_mlxkit;
-
-/*
-** test utils
-*/
-void			init_mlxkit(t_mlxkit *mlxkit, t_env *e);
-void			clear_mlxkit(t_mlxkit *mlxkit);
 
 /*
 ** render utils
@@ -77,8 +60,6 @@ void			render_scene(char *title, int argc, char **argv);
 /*
 ** scene
 */
-void			setup_scene(t_env *e);
-void			clear_scene(t_env *e);
 void			set_scene_1(t_env *e);
 void			set_scene_sphere(t_env *e);
 void			set_scene_box(t_env *e);

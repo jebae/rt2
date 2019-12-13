@@ -57,6 +57,6 @@ int						anti_aliasing(
 	buf_info.buf[0] = (unsigned char *)after;
 	buf_info.buf[1] = (unsigned char *)before;
 	if (im_for_each_pixel(&buf_info, &average) == IM_FAIL)
-		return (RT_FAIL); // need message
+		return (handle_fail("anti_aliasing : average"));
 	return (RT_SUCCESS);
 }

@@ -4,7 +4,7 @@ static int		validate(t_arg_cyl *arg)
 {
 	if (arg->radius <= 0 || v3_norm2(arg->axis) < RT_APPROX_0 ||
 		arg->height <= 0)
-		return (RT_FAIL);
+		return (handle_fail("wrong cylinder attributes"));
 	return (RT_SUCCESS);
 }
 

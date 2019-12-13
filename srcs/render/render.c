@@ -8,23 +8,34 @@ static void		erase_buffers(t_env *e)
 
 static int		set_filter(t_env *e)
 {
-	unsigned int	*buf;
-	int				(*filter)(unsigned int *, int, int);
+	int		(*filter)(unsigned int *, int, int);
 
 	filter = NULL;
 	if (e->mask & RT_ENV_MASK_SEPHIA)
-		filter = im_sephia;
+		filter = &im_sephia;
 	else if (e->mask & RT_ENV_MASK_NEGATIVE)
-		filter = im_negative;
+		filter = &im_negative;
 	else if (e->mask & RT_ENV_MASK_GRAY_SCALE)
-		filter = im_gray_scale;
+		filter = &im_gray_scale;
 	else if (e->mask & RT_ENV_MASK_GAUSSIAN_BLUR)
-		filter = im_gaussian_blur;
-	buf = (unsigned int *)e->img_buf;
+		filter = &im_gaussian_blur;
 	if (filter == NULL)
 		return (RT_SUCCESS);
-	if (filter(buf, e->width / 2, e->height / 2) == IM_FAIL)
-		return (RT_FAIL);
+	if (filter(e->img_buf, e->width / 2, e->height / 2) == IM_FAIL)
+		return (handle_fail("filter"));
+	return (RT_SUCCESS);
+}
+
+int				render_by_sdl(t_env *e)
+{
+	if (SDL_UpdateTexture(e->sdl.tex, NULL,
+		e->img_buf, sizeof(unsigned int) * WIDTH) != 0)
+		return (handle_fail("SDL_UpdateTexture"));
+	if (SDL_RenderClear(e->sdl.renderer) != 0)
+		return (handle_fail("SDL_RenderClear"));
+	if (SDL_RenderCopy(e->sdl.renderer, e->sdl.tex, NULL, NULL) != 0)
+		return (handle_fail("SDL_RenderCopy"));
+    SDL_RenderPresent(e->sdl.renderer);
 	return (RT_SUCCESS);
 }
 
@@ -38,13 +49,10 @@ int				render(t_env *e)
 	}
 	else
 		multi_thread(e); // need to protect
-	if (anti_aliasing(
-		(unsigned int *)e->img_buf, (unsigned int *)e->data,
+	if (anti_aliasing(e->img_buf, e->data,
 		e->width / 2, e->height / 2) == RT_FAIL)
 		return (RT_FAIL);
 	if (set_filter(e) == RT_FAIL)
 		return (RT_FAIL);
-	//mlx_put_image_to_window(e->w.mp, e->w.wp, e->w.ip, 0, 0);
-	//write_buffer to sdl
-	return (RT_SUCCESS);
+	return (render_by_sdl(e));
 }

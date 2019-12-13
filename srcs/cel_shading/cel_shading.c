@@ -35,7 +35,7 @@ static int		get_edge(
 	if (im_canny_edge_detect(
 		(unsigned int *)e->data, (t_im_edge_gradient *)buf_info->buf[1],
 		buf_info->width, buf_info->height) == IM_FAIL)
-		return (RT_FAIL);
+		return (handle_fail("cel_shading : im_canny_edge_detect"));
 	return (RT_SUCCESS);
 }
 
@@ -54,14 +54,17 @@ int				cel_shading(t_env *e)
 	im_set_buffer_info(e->width, e->height, &buf_info);
 	if ((buf_info.buf[1] = ft_memalloc(
 		sizeof(t_im_edge_gradient) * e->num_pixels)) == NULL)
-		return (RT_FAIL); // need to print message
+		return (handle_fail("cel_shading : malloc buf_info.buf[1]"));
 	if (get_edge(e, &buf_info) == RT_FAIL)
 		return (handle_err(&buf_info));
 	if (get_face(e) == RT_FAIL)
 		return (handle_err(&buf_info));
 	buf_info.buf[0] = (unsigned char *)e->data;
 	if (im_for_each_pixel(&buf_info, draw_edge_on_face) == IM_FAIL)
+	{
+		handle_fail("cel_shading : draw_edge_on_face");
 		return (handle_err(&buf_info));
+	}
 	ft_memdel((void **)&buf_info.buf[1]);
 	return (RT_SUCCESS);
 }

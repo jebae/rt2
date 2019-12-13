@@ -1,7 +1,6 @@
 #ifndef RT_STRUCT_H
 # define RT_STRUCT_H
 
-# include <mlx.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <math.h>
@@ -16,10 +15,10 @@
 # include "SDL2/SDL.h"
 #include <stdio.h> // test only
 
-# define WIDTH						1600
-# define HEIGHT 					1200
+# define WIDTH						800
+# define HEIGHT 					600
 # define FAR						2000000.0
-# define ESC						53
+# define DEGREE_1					M_PI / 180.0
 # define RT_SUCCESS					0
 # define RT_FAIL					1
 # define RT_APPROX_0				1e-6
@@ -82,17 +81,27 @@ typedef struct		s_shader
 
 typedef struct		s_camera
 {
-	t_vec3			campos;
-	t_vec3			camdir;
+	t_vec3			pos;
+	t_vec3			dir;
 	t_vec3			*tra;
 	t_vec3			*rot;
-	t_vec3			left;
-	t_vec3			up;
+	t_vec3			right;
+	t_vec3			down;
+	/*
 	t_vec3			forw;
 	double			focal_length;
 	double			f_wdth;
 	double			f_hght;
+	*/
 }					t_camera;
+
+typedef struct		s_arg_camera
+{
+	t_vec3			pos;
+	t_vec3			dir;
+	t_vec3			right;
+	t_vec3			down;
+}					t_arg_camera;
 
 typedef struct		s_ll
 {
@@ -339,16 +348,6 @@ typedef struct		s_arg_buffer_th_job
 	void			*buf[2];
 }					t_arg_buffer_th_job;
 
-typedef struct		s_mlx
-{
-	void			*mp;
-	void			*wp;
-	void			*ip;
-	int				bpp;
-	int				end;
-	int				sl;
-}					t_mlx;
-
 typedef struct		s_creecam
 {
 	t_vec4			v1;
@@ -376,8 +375,8 @@ typedef struct		s_env
 	int				num_lights;
 	int				num_objs;
 	int				mask;
-	char			*data;
-	char			*img_buf;
+	unsigned int	*data;
+	unsigned int	*img_buf;
 	t_sdl			sdl;
 	t_vec3			amb;
 	t_vec3			dx;
