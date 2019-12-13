@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:01:20 by mhernand          #+#    #+#             */
-/*   Updated: 2019/12/13 17:09:44 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/13 18:12:55 by almoraru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int				main(int argc, char **argv)
 	unsigned int	*ptr;
 
 	(void)argc;
-	(void)argv;
+	ft_bzero(&p, sizeof(p));
+	ft_bzero(&e, sizeof(e));
 	p.ob = e.ll_obj;
 	p.li = e.ll_lit;
 	SDL_Init(SDL_INIT_VIDEO);
@@ -47,13 +48,13 @@ int				main(int argc, char **argv)
 			}
 			if (e.sdl.event.key.keysym.sym == SDLK_a)
 				ft_putendl("A");
+			if (e.sdl.event.key.keysym.sym == SDLK_ESCAPE)
+				return(0);
 		}
-		//parse(&p, argv[1]);
 		// function to copy data from "p" to "e"
 		// setup_camera -> save data to use in renderer
 		// if (difference of xml file)
 		//		multithread(e);
 	}
-	SDL_Delay(5000);
 	return (0);
 }

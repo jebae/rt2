@@ -175,17 +175,9 @@ $(OBJ_DIR)/%.o : $(SRC_DIR)/cel_shading/%.c $(HEADERS)
 # command
 all: $(NAME)
 
-SDL = $(ROOT_DIR)/SDL2
+SDL = $(ROOT_DIR)/SDL2 | $(ROOT_DIR)/SDL2-2.0.10
 
-$(SDL) :
-	if [ ! -d ./SDL2-2.0.10 ]; \
-	then tar -xvzf libsdl;\
-	fi;
-	if [ ! -d ./SDL2 ]; \
-	then cd SDL2-2.0.10 ; ./configure --prefix $(ROOT_DIR)/SDL2 ;\
-	make -j8 ; make install; fi;
-
-$(NAME) : deps $(SDL) $(OBJ_DIR) $(OBJS)
+$(NAME) : deps $(OBJ_DIR) $(OBJS)
 	@$(CC) $(CFLAGS) $(INC) $(LIB) $(OBJS) -o $(NAME)
 	@printf "\033[32m[ ✔ ] $(NAME)\n\033[0m"
 
@@ -194,11 +186,19 @@ ROOT_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 $(OBJ_DIR) : 
 	@mkdir -p $@
 
-deps :
+deps : $(SDL)
 	@make -C $(LIBFT_PATH) all
 	@make -C $(LIBVECTOR_PATH) all
 	@make -C $(LIBIMG_PATH) all
 	@make -C $(PARSER_PATH) all
+
+$(SDL) :
+	if [ ! -d ./SDL2-2.0.10 ]; \
+	then tar -xvzf libsdl;\
+	fi;
+	if [ ! -d ./SDL2 ]; \
+	then cd SDL2-2.0.10 ; ./configure --prefix $(ROOT_DIR)/SDL2 ;\
+	make -j8 ; make install; fi;
 
 TEST_INC = $(INC) -I srcs/__tests__ -I $(UNITY_PATH)/include
 
