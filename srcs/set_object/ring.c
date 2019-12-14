@@ -2,9 +2,14 @@
 
 static int		validate(t_arg_ring *arg)
 {
-	if (arg->r1 < 0.0 || arg->r2 < RT_APPROX_0 || arg->r1 >= arg->r2 ||
-		v3_norm2(arg->normal) < RT_APPROX_0)
-		return (RT_FAIL);
+	if (arg->r1 < 0.0)
+		return (handle_fail("set_ring : r1 below 0"));
+	if (arg->r2 < RT_APPROX_0)
+		return (handle_fail("set_ring : r2 below or almost 0"));
+	if (arg->r1 >= arg->r2)
+		return (handle_fail("set_ring : r1 bigger than r2 or same"));
+	if (v3_norm2(arg->normal) < RT_APPROX_0)
+		return (handle_fail("set_ring : normal's length almost 0"));
 	return (RT_SUCCESS);
 }
 

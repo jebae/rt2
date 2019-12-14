@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 17:58:50 by jebae             #+#    #+#             */
-/*   Updated: 2019/04/10 13:54:43 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/14 16:58:16 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 		return (NULL);
 	}
 	d = loc - part;
-	free(part);
+	ft_memdel((void **)&part);
 	return ((char *)haystack + d);
 }

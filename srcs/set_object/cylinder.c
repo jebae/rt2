@@ -2,9 +2,12 @@
 
 static int		validate(t_arg_cyl *arg)
 {
-	if (arg->radius <= 0 || v3_norm2(arg->axis) < RT_APPROX_0 ||
-		arg->height <= 0)
-		return (handle_fail("wrong cylinder attributes"));
+	if (arg->radius <= 0)
+		return (handle_fail("set_cyl : radius 0 or below 0"));
+	if (v3_norm2(arg->axis) < RT_APPROX_0)
+		return (handle_fail("set_cyl : axis's length almost 0"));
+	if (arg->height <= 0)
+		return (handle_fail("set_cyl : height 0 or below 0"));
 	return (RT_SUCCESS);
 }
 

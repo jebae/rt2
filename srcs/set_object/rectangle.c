@@ -2,9 +2,12 @@
 
 static int		validate(t_arg_rectangle *arg)
 {
-	if (v3_norm2(arg->a) < RT_APPROX_0 || v3_norm2(arg->b) < RT_APPROX_0 ||
-		ft_abs_double(v3_dotpdt(arg->a, arg->b)) > RT_APPROX_0)
-		return (RT_FAIL);
+	if (v3_norm2(arg->a) < RT_APPROX_0)
+		return (handle_fail("set_rectangle : a's length almost 0"));
+	if (v3_norm2(arg->b) < RT_APPROX_0)
+		return (handle_fail("set_rectangle : b's length almost 0"));
+	if (ft_abs_double(v3_dotpdt(arg->a, arg->b)) > RT_APPROX_0)
+		return (handle_fail("set_rectangle : a, b not orthogonal"));
 	return (RT_SUCCESS);
 }
 

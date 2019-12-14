@@ -15,8 +15,8 @@
 # include "SDL2/SDL.h"
 #include <stdio.h> // test only
 
-# define WIDTH						800
-# define HEIGHT 					600
+# define WIDTH						1600
+# define HEIGHT 					1200
 # define FAR						2000000.0
 # define DEGREE_1					M_PI / 180.0
 # define RT_SUCCESS					0
@@ -27,6 +27,7 @@
 # define RT_FALSE					0
 # define RT_BIAS					1e-3f
 # define RT_MAX_TRACE_DEPTH			5
+# define RT_NUM_THREADS				50
 
 /*
 ** ray type
@@ -39,14 +40,14 @@
 /*
 ** t_env bit mask
 */
-# define RT_ENV_MASK_CEL_SHADING	1 << 0
-# define RT_ENV_MASK_NO_SHADOW		1 << 1
-# define RT_ENV_MASK_NO_SPECULAR	1 << 2
-# define RT_ENV_MASK_ROUND_N_DOT_L	1 << 3
-# define RT_ENV_MASK_SEPHIA			1 << 4
-# define RT_ENV_MASK_NEGATIVE		1 << 5
-# define RT_ENV_MASK_GRAY_SCALE		1 << 6
-# define RT_ENV_MASK_GAUSSIAN_BLUR	1 << 7
+# define RT_ENV_MASK_CEL_SHADING	(1 << 0)
+# define RT_ENV_MASK_NO_SHADOW		(1 << 1)
+# define RT_ENV_MASK_NO_SPECULAR	(1 << 2)
+# define RT_ENV_MASK_ROUND_N_DOT_L	(1 << 3)
+# define RT_ENV_MASK_SEPHIA			(1 << 4)
+# define RT_ENV_MASK_NEGATIVE		(1 << 5)
+# define RT_ENV_MASK_GRAY_SCALE		(1 << 6)
+# define RT_ENV_MASK_GAUSSIAN_BLUR	(1 << 7)
 
 /*
 ** Renderer struct
@@ -87,12 +88,6 @@ typedef struct		s_camera
 	t_vec3			*rot;
 	t_vec3			right;
 	t_vec3			down;
-	/*
-	t_vec3			forw;
-	double			focal_length;
-	double			f_wdth;
-	double			f_hght;
-	*/
 }					t_camera;
 
 typedef struct		s_arg_camera
@@ -100,7 +95,6 @@ typedef struct		s_arg_camera
 	t_vec3			pos;
 	t_vec3			dir;
 	t_vec3			right;
-	t_vec3			down;
 }					t_arg_camera;
 
 typedef struct		s_ll
@@ -374,6 +368,7 @@ typedef struct		s_env
 	int				y_max;
 	int				num_lights;
 	int				num_objs;
+	int				current_obj_index;
 	int				mask;
 	unsigned int	*data;
 	unsigned int	*img_buf;

@@ -2,10 +2,14 @@
 
 static int		validate(t_arg_pyramid *arg)
 {
-	if (v3_norm2(arg->u) < RT_APPROX_0 || v3_norm2(arg->v) < RT_APPROX_0 ||
-		ft_abs_double(v3_dotpdt(arg->u, arg->v)) > RT_APPROX_0 ||
-		arg->height < RT_APPROX_0)
-		return (RT_FAIL);
+	if (v3_norm2(arg->u) < RT_APPROX_0)
+		return (handle_fail("set_pyramid : u's length almost 0"));
+	if (v3_norm2(arg->v) < RT_APPROX_0)
+		return (handle_fail("set_pyramid : v's length almost 0"));
+	if (ft_abs_double(v3_dotpdt(arg->u, arg->v)) > RT_APPROX_0)
+		return (handle_fail("set_pyramid : u, v not orthogonal"));
+	if (arg->height < RT_APPROX_0)
+		return (handle_fail("set_pyramid : height below or almost 0"));
 	return (RT_SUCCESS);
 }
 

@@ -21,8 +21,6 @@ void		rotate_object(t_env *e, double theta)
 
 	q[0] = rotate_q(&e->cam.dir, theta);
 	q[1] = inverse_q(&q[0]);
-	obj = e->ll_obj;
+	obj = e->ll_obj + e->current_obj_index;
 	obj->rotate(q, &obj->axis_mat, obj->object);
-	render(e);
 }
-

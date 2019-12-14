@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/12/13 01:12:57 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/14 14:40:55 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ double		get_transmittance(
 */
 int			render(t_env *e);
 int			render_by_sdl(t_env *e);
-void    	multi_thread(t_env *e);
+int    		multi_thread(t_env *e);
 
 /*
 ** Set light functions
@@ -190,6 +190,7 @@ t_vec3			get_bumped_normal(
 /*
 ** Translate functions
 */
+void			translate_object(t_env *e, t_vec3 v_translate);
 void			sphere_translate(t_vec3 *v_translate, void *object);
 void			cone_translate(t_vec3 *v_translate, void *object);
 void			cyl_translate(t_vec3 *v_translate, void *object);

@@ -31,19 +31,22 @@ static int		get_edge(
 )
 {
 	e->mask |= RT_ENV_MASK_NO_SHADOW | RT_ENV_MASK_NO_SPECULAR;
-	multi_thread(e); // need to protect
+	if (multi_thread(e) == RT_FAIL)
+		return (RT_FAIL);
 	if (im_canny_edge_detect(
 		(unsigned int *)e->data, (t_im_edge_gradient *)buf_info->buf[1],
 		buf_info->width, buf_info->height) == IM_FAIL)
 		return (handle_fail("cel_shading : im_canny_edge_detect"));
+	e->mask &= ~(RT_ENV_MASK_NO_SHADOW | RT_ENV_MASK_NO_SPECULAR);
 	return (RT_SUCCESS);
 }
 
 static int		get_face(t_env *e)
 {
-	e->mask &= ~(RT_ENV_MASK_NO_SHADOW | RT_ENV_MASK_NO_SPECULAR);
 	e->mask |= RT_ENV_MASK_ROUND_N_DOT_L;
-	multi_thread(e); // need to protect
+	if (multi_thread(e) == RT_FAIL)
+		return (RT_FAIL);
+	e->mask &= ~RT_ENV_MASK_ROUND_N_DOT_L;
 	return (RT_SUCCESS);
 }
 

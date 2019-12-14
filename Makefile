@@ -84,7 +84,8 @@ SRC_TRACE = ray.c\
 	trace.c\
 	trace_record.c\
 
-SRC_TRANSLATE = box.c\
+SRC_TRANSLATE = translate_object.c\
+	box.c\
 	cone.c\
 	cylinder.c\
 	plane.c\
@@ -110,7 +111,7 @@ SRCS = color_op.c\
 	intersec_functions_2.c\
 	mat3_op.c\
 	handle_fail.c\
-	main.c\
+#main.c\
 
 # objs
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
@@ -212,7 +213,7 @@ $(SDL) :
 
 TEST_INC = $(INC) -I srcs/__tests__ -I $(UNITY_PATH)/include
 
-TEST_LIB = $(LIB) -L ./minilibx_macos -lmlx -L $(UNITY_PATH)/lib -lunity -framework OpenGL -framework Appkit
+TEST_LIB = $(LIB) -L $(UNITY_PATH)/lib -lunity
 
 TEST_SRC = srcs/__tests__/*/*.c\
 	srcs/__tests__/*.c\

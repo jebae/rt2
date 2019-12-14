@@ -14,7 +14,7 @@ TEST_SETUP(set_trace_record)
 {
 	t_arg_sphere	arg;
 
-	init_ol(&ol);
+	ft_bzero(&ol, sizeof(t_ol));
     arg.cen = (t_vec3){0.0, 0.0, 2.0};
     arg.radius = 1.0;
 	ol.object = ft_memalloc(sizeof(t_sphere));

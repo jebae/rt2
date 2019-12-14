@@ -41,14 +41,15 @@ int				render_by_sdl(t_env *e)
 
 int				render(t_env *e)
 {
+	int		(*render_func)(t_env *);
+
 	erase_buffers(e);
 	if ((e->mask & RT_ENV_MASK_CEL_SHADING))
-	{
-		if (cel_shading(e) == RT_FAIL)
-			return (RT_FAIL);
-	}
+		render_func = &cel_shading;
 	else
-		multi_thread(e); // need to protect
+		render_func = &multi_thread;
+	if (render_func(e) == RT_FAIL)
+		return (RT_FAIL);
 	if (anti_aliasing(e->img_buf, e->data,
 		e->width / 2, e->height / 2) == RT_FAIL)
 		return (RT_FAIL);

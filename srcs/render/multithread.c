@@ -1,25 +1,38 @@
 #include "rt.h"
 
-#define MAX_THREAD 50
-
-void    multi_thread(t_env *e)
+static int		handle_thread_err(pthread_t *thread, const char *msg)
 {
-    int         i;
-    t_env       env[99];
-    pthread_t   thread[99];
-// printf("enter multi_thread\n");
+	unsigned int	i;
+
+	i = 0;
+	while (i < RT_NUM_THREADS)
+	{
+		pthread_cancel(thread[i]);
+		i++;
+	}
+	return (handle_fail(msg));
+}
+
+int		multi_thread(t_env *e)
+{
+    int			i;
+    t_env		env[RT_NUM_THREADS];
+    pthread_t	thread[RT_NUM_THREADS];
+
     i = 0;
-    while(i < MAX_THREAD)
+    while(i < RT_NUM_THREADS)
     {
         ft_memcpy((void*)&env[i], (void*) e, sizeof(t_env));
-        env[i].y_min = i * e->height / MAX_THREAD;
-        env[i].y_max = (i + 1) * e->height / MAX_THREAD;
-		//env[i].thread = i;
-        // printf("ymin:%i\n",env[i].y_min);
-        // printf("ymax:%i\n",env[i].y_max);
-        pthread_create(&thread[i], NULL, (void*)raytrace, &env[i]);
+        env[i].y_min = i * e->height / RT_NUM_THREADS;
+        env[i].y_max = (i + 1) * e->height / RT_NUM_THREADS;
+        if (pthread_create(&thread[i], NULL, (void*)raytrace, &env[i]) != 0)
+			return (handle_thread_err(thread, "multi_thread : pthread_create"));
         i++;
     }
     while (i--)
-        pthread_join(thread[i], NULL);
+	{
+        if (pthread_join(thread[i], NULL) != 0)
+			return (handle_thread_err(thread, "multi_thread : pthread_join"));
+	}
+	return (RT_SUCCESS);
 }

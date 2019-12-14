@@ -164,7 +164,6 @@ void			render_scene(char *title, int argc, char **argv)
 	arg_cam.pos = (t_vec3){0.0, 0.0, -5.0};
 	arg_cam.dir = (t_vec3){0.0, 0.0, 1.0};
 	arg_cam.right = (t_vec3){1.0, 0.0, 0.0};
-	arg_cam.down = (t_vec3){0.0, 1.0, 0.0};
 	set_camera(&e.cam, &arg_cam);
 	set_ray_grid_props(&e);
 	for (int i=3; i < argc; i++)

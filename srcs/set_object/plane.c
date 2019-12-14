@@ -3,7 +3,7 @@
 static int		validate(t_arg_plane *arg)
 {
 	if (v3_norm2(arg->normal) < RT_APPROX_0)
-		return (RT_FAIL);
+		return (handle_fail("set_plane : normal's length almost 0"));
 	return (RT_SUCCESS);
 }
 

@@ -2,11 +2,17 @@
 
 static int		validate(t_arg_cone *arg)
 {
-	if (arg->angle <= 0.0 || arg->angle >= 90 ||
-		v3_norm2(arg->axis) < RT_APPROX_0 ||
-		arg->upper_height < 0.0 || arg->lower_height < 0.0 ||
-		(arg->upper_height < RT_APPROX_0 && arg->lower_height < RT_APPROX_0))
-		return (RT_FAIL);
+	if (arg->angle <= 0.0 || arg->angle >= 90)
+		return (handle_fail("set_cone : angle out of 0 ~ 90"));
+	if (v3_norm2(arg->axis) < RT_APPROX_0)
+		return (handle_fail("set_cone : axis's length almost 0"));
+	if (arg->upper_height < 0.0)
+		return (handle_fail("set_cone : upper_height below 0"));
+	if (arg->lower_height < 0.0)
+		return (handle_fail("set_cone : lower_height below 0"));
+	if (arg->upper_height < RT_APPROX_0 && arg->lower_height < RT_APPROX_0)
+		return (handle_fail(
+			"set_cone : upper and lower height both almost 0"));
 	return (RT_SUCCESS);
 }
 

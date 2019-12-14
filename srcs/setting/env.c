@@ -3,17 +3,17 @@
 static int		set_sdl(t_sdl *sdl)
 {
 	if (SDL_Init(SDL_INIT_VIDEO) != 0)
-		return (handle_fail("SDL_Init"));
+		return (handle_fail("init_env : SDL_Init"));
 	if ((sdl->window = SDL_CreateWindow(
 		"RT", 0, 0, WIDTH, HEIGHT, SDL_WINDOW_SHOWN)) == NULL)
-		return (handle_fail("SDL_CreateWindow"));
+		return (handle_fail("init_env : SDL_CreateWindow"));
 	if ((sdl->renderer = SDL_CreateRenderer(
 		sdl->window, -1, 0)) == NULL)
-		return (handle_fail("SDL_CreateRenderer"));
+		return (handle_fail("init_env : SDL_CreateRenderer"));
 	if ((sdl->tex = SDL_CreateTexture(
 		sdl->renderer, SDL_PIXELFORMAT_BGRA32,
 		SDL_TEXTUREACCESS_TARGET, WIDTH, HEIGHT)) == NULL)
-		return (handle_fail("SDL_CreateTexture"));
+		return (handle_fail("init_env : SDL_CreateTexture"));
 	return (RT_SUCCESS);
 }
 
@@ -27,7 +27,6 @@ static void		clear_sdl(t_sdl *sdl)
 		SDL_DestroyWindow(sdl->window);
 }
 
-
 int				init_env(t_env *e)
 {
 	ft_bzero(e, sizeof(t_env));
@@ -38,9 +37,9 @@ int				init_env(t_env *e)
 	e->num_pixels = e->width * e->height;
 	if ((e->img_buf = ft_memalloc(
 		sizeof(unsigned int) * WIDTH * HEIGHT)) == NULL)
-		return (handle_fail("malloc env.img_buf"));
+		return (handle_fail("init_env : malloc env.img_buf"));
 	if ((e->data = ft_memalloc(sizeof(unsigned int) * e->num_pixels)) == NULL)
-		return (handle_fail("malloc env.data"));
+		return (handle_fail("init_env : malloc env.data"));
 	return (RT_SUCCESS);
 }
 

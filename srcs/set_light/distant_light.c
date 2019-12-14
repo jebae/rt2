@@ -3,7 +3,7 @@
 static int		validate(t_arg_distant_light *arg)
 {
 	if (v3_norm(arg->dir) < RT_APPROX_0)
-		return (RT_FAIL);
+		return (handle_fail("set_distant_light : dir's length almost 0"));
 	return (RT_SUCCESS);
 }
 

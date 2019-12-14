@@ -3,7 +3,7 @@
 static int		validate(t_arg_sphere *arg)
 {
 	if (arg->radius <= 0.0)
-		return (RT_FAIL);
+		return (handle_fail("set_sphere : radius 0 or below 0"));
 	return (RT_SUCCESS);
 }
 
