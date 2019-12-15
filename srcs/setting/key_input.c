@@ -62,6 +62,8 @@ void			key_input(SDL_Keycode sym, t_env *e)
 		SDL_Quit();
 		exit(0);
 	}
+	else if (sym == SDLK_i)
+		buffer2img(e->img_buf, e->width / 2, e->height / 2);
 	key_translate(sym, e);
 	key_rotate(sym, e);
 	key_change_object(sym, e);

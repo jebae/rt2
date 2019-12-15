@@ -111,6 +111,7 @@ SRCS = color_op.c\
 	intersec_functions_2.c\
 	mat3_op.c\
 	handle_fail.c\
+	buffer2img.c\
 #main.c\
 
 # objs
@@ -184,20 +185,21 @@ $(OBJ_DIR)/%.o : $(SRC_DIR)/setting/%.c $(HEADERS)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 # command
+ROOT_DIR = $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+CONTENTS = contents
+OUTPUT_DIR = outputs
+SDL = $(ROOT_DIR)/SDL2 $(ROOT_DIR)/SDL2-2.0.10
+
 all: $(NAME)
 
-SDL = $(ROOT_DIR)/SDL2 | $(ROOT_DIR)/SDL2-2.0.10
-
-$(NAME) : deps $(OBJ_DIR) $(OBJS)
+$(NAME) : deps $(OBJ_DIR) $(OBJS) $(OUTPUT_DIR)
 	@$(CC) $(CFLAGS) $(INC) $(LIB) $(OBJS) -o $(NAME)
 	@printf "\033[32m[ ✔ ] $(NAME)\n\033[0m"
-
-ROOT_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
 $(OBJ_DIR) : 
 	@mkdir -p $@
 
-deps : $(SDL)
+deps : $(SDL) $(CONTENTS)
 	@make -C $(LIBFT_PATH) all
 	@make -C $(LIBVECTOR_PATH) all
 	@make -C $(LIBIMG_PATH) all
@@ -211,6 +213,12 @@ $(SDL) :
 	then cd SDL2-2.0.10 ; ./configure --prefix $(ROOT_DIR)/SDL2 ;\
 	make -j8 ; make install; fi;
 
+$(CONTENTS) :
+	tar -xvzf contents.tar
+
+$(OUTPUT_DIR) :
+	mkdir -p $@
+
 TEST_INC = $(INC) -I srcs/__tests__ -I $(UNITY_PATH)/include
 
 TEST_LIB = $(LIB) -L $(UNITY_PATH)/lib -lunity
@@ -218,15 +226,8 @@ TEST_LIB = $(LIB) -L $(UNITY_PATH)/lib -lunity
 TEST_SRC = srcs/__tests__/*/*.c\
 	srcs/__tests__/*.c\
 
-CONTENTS = contents
-
-$(CONTENTS) :
-	curl -L https://www.dropbox.com/sh/a85xtpsaokehu2y/AAAMvXC4yQKq0aAubntNgynFa?dl=1 -o $@.zip
-	unzip $@.zip -x / -d $@
-	rm -f $@.zip
-
-test : $(CONTENTS) $(OBJS)
-	$(CC) -fsanitize=address -D UNITY_MEMORY_OVERRIDES_H_ -D UNITY_INCLUDE_CONFIG_H $(CFLAGS) $(TEST_INC) $(TEST_LIB) $(TEST_SRC) $(OBJS) -o test
+test : deps $(OBJ_DIR) $(OBJS) $(OUTPUT_DIR)
+	$(CC) -D UNITY_MEMORY_OVERRIDES_H_ -D UNITY_INCLUDE_CONFIG_H $(CFLAGS) $(TEST_INC) $(TEST_LIB) $(TEST_SRC) $(OBJS) -o test
 
 clean:
 	@make -C $(LIBFT_PATH) clean

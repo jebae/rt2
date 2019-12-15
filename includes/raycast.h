@@ -283,6 +283,11 @@ t_ol		*apply_extra(t_ol *ll_obj);
 float		m3_det(t_vec3 x, t_vec3 y, t_vec3 z);
 
 /*
+** Print scene as img file
+*/
+int			buffer2img(unsigned int *buf, int width, int height);
+
+/*
 ** Parser functions
 */
 /*

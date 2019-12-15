@@ -13,3 +13,5 @@ test
 *.png
 SDL*
 rt
+contents
+outputs
