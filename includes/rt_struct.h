@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:25:21 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/16 15:25:22 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/16 22:09:43 by almoraru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -415,7 +415,7 @@ typedef struct		s_str
 typedef struct		s_parse
 {
 	t_mem			mem;
-	t_camera		cam;
+	t_arg_camera		cam;
 	t_ol			*ob;
 	t_ll			*li;
 	t_str			str;
@@ -423,6 +423,7 @@ typedef struct		s_parse
 	unsigned int	flag;
 	unsigned int	number;
 	int				ret;
+	int				size;
 	int				line;
 	int				index;
 	int				l_ind;

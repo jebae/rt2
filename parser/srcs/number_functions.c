@@ -6,11 +6,30 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 01:32:01 by almoraru          #+#    #+#             */
-/*   Updated: 2019/11/28 04:47:53 by almoraru         ###   ########.fr       */
+/*   Updated: 2019/12/16 18:14:08 by almoraru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+int		handle_int_number(t_str *s, int nb)
+{
+	ft_cpynumbers(s->line, s->number);
+	while (*s->number != '\0')
+	{
+		ft_cpyonenbr(s->sub_number, s->number);
+		if (check_sub_number(s->sub_number))
+			return (0);
+		else
+			nb = ft_atoi(s->sub_number);
+		while (*s->number != ',' && *s->number != '\0')
+			s->number++;
+		s->number++;
+	}
+	printf("single int nb = %d\n", nb);
+	return (nb);
+}
+
 
 void	handle_float_number(t_str *s, double *nb)
 {
@@ -44,7 +63,7 @@ void	handle_3vec_number(t_str *s, t_vec3 *vec)
 			handle_int_vec(vec, s->sub_number, i);
 		while (*s->number != ',' && *s->number != '\0')
 			s->number++;
-		if (*s->number == ',' && i < 3)
+		if (*s->number == ',' && i < 3 && *s->number)
 			i++;
 		s->number++;
 	}

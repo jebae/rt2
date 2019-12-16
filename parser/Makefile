@@ -26,15 +26,19 @@ COLOR4 = \x1b[0;36m
 
 COLOREND = \033[0;0m
 
-SRCS = $(SD)/parse.c $(SD)/ft_mem.c $(SD)/init.c $(SD)/check.c 	  \
+SRCS = $(SD)/parse.c $(SD)/ft_mem.c $(SD)/init.c $(SD)/check.c			  	  \
 $(SD)/check_time.c $(SD)/update_parser.c $(SD)/string_functions.c 				\
 $(SD)/string_checks.c $(SD)/number_functions.c $(SD)/handle_vec_utils.c		   \
-$(SD)/parse_camera.c $(SD)/parse_objects.c $(SD)/parse_lights.c
+$(SD)/parse_camera.c $(SD)/parse_objects.c $(SD)/parse_lights.c				   \
+$(SD)/handle_optional.c $(SD)/parse_sphere.c $(SD)/parse_cone.c				   \
+$(SD)/parse_cylinder.c $(SD)/parse_plane.c $(SD)/parse_rectangle.c				\
+$(SD)/parse_box.c $(SD)/parse_triangle.c $(SD)/parse_pyramid.c 				   \
+$(SD)/parse_ring.c
 
 
 NAME = libparse.a
 
-FLAGS = -Wall -Wextra -Werror -g3 # remove flag
+FLAGS = -Wall -Wextra -Werror
 
 OBJECTS = $(SRCS:%.c=%.o)
 

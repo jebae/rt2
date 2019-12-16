@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 15:17:06 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/05 20:23:29 by almoraru         ###   ########.fr       */
+/*   Updated: 2019/12/16 22:06:57 by almoraru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,60 +145,60 @@ int		ft_open_close(char *line, int *op_cl, char *word)
 		{
 			while (++i < 19)
 				if ((*op_cl & 1UL << i) == 1)
-				printf("these bytes are not closed properly --> [%d]\n", i); // this test needs to fail					 
+				printf("these bytes are not closed properly --> [%d]\n", i); // this test needs to fail
 			*op_cl |= 1UL;
 		}
 		if (ft_strcmp(word, "camera") == 0) // 2 / 3
 		{
 			if (!(ft_check_spec_bytes_opening(op_cl)))
-				printf("FAILING SPECS OPEN 1 !!!\n");
+				ft_putstr("FAILING SPECS OPEN 1 !!!\n");
 			*op_cl |= 1UL << 2;
 		}
 		if (ft_strcmp(word, "filter") == 0) // 4 / 5
 		{
 			if (!(ft_check_spec_bytes_opening(op_cl)))
-				printf("FAILING SPECS OPEN 2 !!!\n");				
+				ft_putstr("FAILING SPECS OPEN 2 !!!\n");				
 			*op_cl |= 1UL << 4;
 		}
 		if (ft_strcmp(word, "light") == 0) // 6 / 7
 		{
 			if (!(ft_check_spec_bytes_opening(op_cl)))
-				printf("FAILING SPECS OPEN 3 !!!\n");					
+				ft_putstr("FAILING SPECS OPEN 3 !!!\n");					
 			*op_cl |= 1UL << 6;
 		}
 		if (ft_strcmp(word, "objects") == 0) // 8 / 9
 		{
 			if (!(ft_check_spec_bytes_opening(op_cl)))
-				printf("FAILING SPECS OPEN 4 !!!\n");					
+				ft_putstr("FAILING SPECS OPEN 4 !!!\n");					
 			*op_cl |= 1UL << 8;
 		}
 		if (ft_strcmp(word, "sphere") == 0) // 10
 			if (!(ft_turn_byte_on(op_cl, 10)))
-			printf("OPENING FAIL 10 !\n");
+			ft_putstr("OPENING FAIL 10 !\n");
 		if (ft_strcmp(word, "cone") == 0) // 11
 			if (!(ft_turn_byte_on(op_cl, 11)))
-			printf("OPENING FAIL 11 !\n");
+			ft_putstr("OPENING FAIL 11 !\n");
 		if (ft_strcmp(word, "cylinder") == 0) // 12
 			if (!(ft_turn_byte_on(op_cl, 12)))
-			printf("OPENING FAIL 12 !\n");
+			ft_putstr("OPENING FAIL 12 !\n");
 		if (ft_strcmp(word, "plane") == 0) // 13
 			if (!(ft_turn_byte_on(op_cl, 13)))
-			printf("OPENING FAIL 13 !\n");
+			ft_putstr("OPENING FAIL 13 !\n");
 		if (ft_strcmp(word, "rectangle") == 0) // 14
 			if (!(ft_turn_byte_on(op_cl, 14)))
-			printf("OPENING FAIL 14 !\n");
+			ft_putstr("OPENING FAIL 14 !\n");
 		if (ft_strcmp(word, "box") == 0) // 15
 			if (!(ft_turn_byte_on(op_cl, 15)))
-			printf("OPENING FAIL 15 !\n");
+			ft_putstr("OPENING FAIL 15 !\n");
 		if (ft_strcmp(word, "triangle") == 0) // 16
 			if (!(ft_turn_byte_on(op_cl, 16)))
-			printf("OPENING FAIL 16 !\n");
+			ft_putstr("OPENING FAIL 16 !\n");
 		if (ft_strcmp(word, "pyramid") == 0) // 17
 			if (!(ft_turn_byte_on(op_cl, 17)))
-			printf("OPENING FAIL 17 !\n");
+			ft_putstr("OPENING FAIL 17 !\n");
 		if (ft_strcmp(word, "ring") == 0) // 18
 			if (!(ft_turn_byte_on(op_cl, 18)))
-			printf("OPENING FAIL 18 !\n");
+			ft_putstr("OPENING FAIL 18 !\n");
 	}
 	else if (ft_strchr(line, '/'))
 	{
@@ -209,7 +209,7 @@ int		ft_open_close(char *line, int *op_cl, char *word)
 				|| (!(*op_cl & 1UL << 4)) || (!(*op_cl & 1UL << 5))
 				|| ((*op_cl & 1UL << 6)) || ((*op_cl & 1UL << 7))
 				|| (!(*op_cl & 1UL << 8)) || (!(*op_cl & 1UL << 9)))				
-				printf("something is on should not be!\n"); // this test needs to fail
+				ft_putstr("something is on should not be!\n"); // this test needs to fail
 			i = 9;
 			while (++i < 19)
 				if ((*op_cl & 1UL << i))
@@ -219,55 +219,55 @@ int		ft_open_close(char *line, int *op_cl, char *word)
 		if (ft_strcmp(word, "camera") == 0) // 2 / 3
 		{
 			if (!(ft_check_spec_bytes_closing(op_cl, 2)))
-				printf("FAILING CLOSING SPEC 1 !\n");
+				ft_putstr("FAILING CLOSING SPEC 1 !\n");
 			*op_cl |= 1UL << 3;
 		}
 		if (ft_strcmp(word, "filter") == 0) // 4 / 5
 		{
 			if (!(ft_check_spec_bytes_closing(op_cl, 4)))
-				printf("FAILING CLOSING SPEC 1 !\n");
+				ft_putstr("FAILING CLOSING SPEC 1 !\n");
 			*op_cl |= 1UL << 5;
 		}
 		if (ft_strcmp(word, "light") == 0) // 6 / 7
 		{
 			if (!(ft_check_spec_bytes_closing(op_cl, 6)))
-				printf("FAILING CLOSING SPEC 1 !\n");					
+				ft_putstr("FAILING CLOSING SPEC 1 !\n");					
 			*op_cl |= 1UL << 7;
 		}
 		if (ft_strcmp(word, "objects") == 0) // 8 / 9
 		{
 			if (!(ft_check_spec_bytes_closing(op_cl, 8)))
-				printf("FAILING CLOSING SPEC 1 !\n");
+				ft_putstr("FAILING CLOSING SPEC 1 !\n");
 			*op_cl |= 1UL << 9;
 		}
 		i = 10;
 		if (ft_strcmp(word, "sphere") == 0) // 10
 			if (!(ft_turn_byte_off(op_cl, 10)))
-			printf("CLOSING FAIL 10 !\n");
+			ft_putstr("CLOSING FAIL 10 !\n");
 		if (ft_strcmp(word, "cone") == 0) // 11
 			if (!(ft_turn_byte_off(op_cl, 11)))
-			printf("CLOSING FAIL 11 !\n");
+			ft_putstr("CLOSING FAIL 11 !\n");
 		if (ft_strcmp(word, "cylinder") == 0) // 12
 			if (!(ft_turn_byte_off(op_cl, 12)))
-			printf("CLOSING FAIL 12 !\n");
+			ft_putstr("CLOSING FAIL 12 !\n");
 		if (ft_strcmp(word, "plane") == 0) // 13
 			if (!(ft_turn_byte_off(op_cl, 13)))
-			printf("CLOSING FAIL 13 !\n");
+			ft_putstr("CLOSING FAIL 13 !\n");
 		if (ft_strcmp(word, "rectangle") == 0) // 14
 			if (!(ft_turn_byte_off(op_cl, 14)))
-			printf("CLOSING FAIL 14 !\n");
+			ft_putstr("CLOSING FAIL 14 !\n");
 		if (ft_strcmp(word, "box") == 0) // 15
 			if (!(ft_turn_byte_off(op_cl, 15)))
-			printf("CLOSING FAIL 15 !\n");
+			ft_putstr("CLOSING FAIL 15 !\n");
 		if (ft_strcmp(word, "triangle") == 0) // 16
 			if (!(ft_turn_byte_off(op_cl, 16)))
-			printf("CLOSING FAIL 16 !\n");
+			ft_putstr("CLOSING FAIL 16 !\n");
 		if (ft_strcmp(word, "pyramid") == 0) // 17
 			if (!(ft_turn_byte_off(op_cl, 17)))
-			printf("CLOSING FAIL 17 !\n");
+			ft_putstr("CLOSING FAIL 17 !\n");
 		if (ft_strcmp(word, "ring") == 0) // 18
 			if (!(ft_turn_byte_off(op_cl, 18)))
-			printf("CLOSING FAIL 18 !\n");
+			ft_putstr("CLOSING FAIL 18 !\n");
 	}
 	return (1);
 }
@@ -282,21 +282,20 @@ void	parse_line(t_parse *p)
 	parse_objects(p);
 }
 
-int		update_parser(t_parse *p)
+int			parse_buffer(t_parse *p)
 {
-	t_str	*s;
-	int		size;
+	t_str *s;
 
 	s = &p->str;
-	size = read(p->fd, s->buf, BUFF_SIZE);
-	s->buf[size] = '\0';
-	if (size > BUFF_SIZE)
-		exit(1);
-	// ft_putendl(s->buf); // printing
 	while (*s->buf != '\0')
 	{
-		if (*s->buf != '\n')
+		if (*s->buf != '\n' && *s->buf != '\0')
 			ft_cpynline(s->line, s->buf);
+		if (ft_strlen(s->line) > 1024)
+		{
+			ft_putendl("line too big!");
+			return (0);
+		}
 		while (*s->buf != '\n' && *s->buf != '\0')
 			s->buf++;
 		// ft_putstr("\nLine = ");   ft_putendl(s->line); // printing LINE
@@ -339,5 +338,35 @@ int		update_parser(t_parse *p)
 	}
 	if (!(s->op_cl & 1UL << 1))
 		printf("scene not closed !\n");
+	printf("UUUUUUUUUUUUSED SIZE = %ld\ntotalsize = %ld\n", p->mem.usize, p->mem.tsize);
+	printf("OBJECT NUMBER = %d\n", p->index);
+	return (1);
+}
+
+int		update_parser(t_parse *p, char *path)
+{
+	t_str	*s;
+	int i;
+
+	s = &p->str;
+	i = 0;
+	if (p->flag & 1UL << 2)
+	{
+		i = 0;
+		//if (p->mem.m != NULL)
+		//free(p->mem.m);
+		init_everything(p, path);
+		printf("UUUUUUUUUUUUSED SIZE = %ld\ntotalsize = %ld\n", p->mem.usize, p->mem.tsize);
+		puts("Reopened file!");
+	}
+	puts("ding dong");
+	while ((p->size = read(p->fd, &s->buf[i], BUFF_SIZE)) > 0 && (i < 1024 * 12))
+		i += p->size;
+	s->buf[i] = '\0';
+	printf("\nso i = %d\nerrr size = %d\nchar = %c\n", i, p->size, s->buf[0]);
+	if (s->buf[0] != '<')
+		return (0);
+	parse_buffer(p);
+	//ft_putendl(s->buf); // printing
 	return (0);
 }

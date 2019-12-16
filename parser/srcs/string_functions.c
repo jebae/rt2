@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 01:19:22 by almoraru          #+#    #+#             */
-/*   Updated: 2019/11/28 04:51:55 by almoraru         ###   ########.fr       */
+/*   Updated: 2019/12/16 18:13:40 by almoraru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ void	ft_cpynline(char *dest, char *src)
 	while (*src != '\n' && *src != '\0')
 	{
 		if (!(ft_iswhitespace(*src)))
-			*dest++ = *src++;
-		else
-			src++;
+			*dest++ = *src;
+		src++;
 	}
 	*dest = '\0';
 }
@@ -83,9 +82,8 @@ void		ft_second_word(char *line, char *word2)
 
 void	ft_cpyonenbr(char *dest, char *src)
 {
-	if (dest != NULL)
-		ft_bzero(dest, ft_strlen(dest));
-	while (ft_isalpha(*src))
+	ft_bzero(dest,ft_strlen(dest));
+	while (*src != '\0' && ft_isalpha(*src))
 		src++;
 	while (*src != '\0' && *src != ',')
 		*dest++ = *src++;

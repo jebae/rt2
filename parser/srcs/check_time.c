@@ -6,19 +6,19 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 16:19:48 by almoraru          #+#    #+#             */
-/*   Updated: 2019/11/26 02:51:20 by almoraru         ###   ########.fr       */
+/*   Updated: 2019/12/16 19:33:03 by almoraru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	check_time(t_parse *p, struct stat *att, unsigned int *flag)
+void	check_time(t_parse *p, struct stat *att, unsigned int *flag, char *path)
 {
 	t_str	*s;
 
 	s = &p->str;
 	ft_putendl(s->time);
-	// sleep(1);
+	SDL_Delay(500);
 	if (ft_strcmp(s->time, ctime(&att->st_mtime)) != 0)
 	{
 		ft_putendl("FILE IS MODIFIED");
@@ -28,6 +28,12 @@ void	check_time(t_parse *p, struct stat *att, unsigned int *flag)
 	{
 		ft_bzero(s->time, 1024);
 		ft_strcpy(s->time, ctime(&att->st_mtime));
+		update_parser(p, path);
+		*flag &= ~(1UL << 1);
 	}
-	update_parser(p);
+	if (!(*flag & 1UL << 2))
+	{
+		update_parser(p, path);
+		*flag |= 1UL << 2;
+	}
 }

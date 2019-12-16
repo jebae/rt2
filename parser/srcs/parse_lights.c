@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 19:41:54 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/06 19:05:53 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/15 22:16:54 by almoraru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	parse_distant_light(t_parse *p)
 		s->buf++;
 	}
 	//if (set_distant_light(li, &sp) == RT_FAIL)
-		// handle fail
+	// handle fail
 	p->flag &= ~(1UL << 14);
 	puts("Distant light done");
 }
@@ -69,7 +69,7 @@ void	parse_spherical_light(t_parse *p)
 		s->buf++;
 	}
 	//if (set_spherical_light(li, &sp) == RT_FAIL)
-		// handle fail
+	// handle fail
 	p->flag &= ~(1UL << 13);
 	puts("spherical light done");
 }

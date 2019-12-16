@@ -1,10 +1,9 @@
 <scene>
 	<camera>
-		<location> 1.33, 2, 3 </location>
-		<focus> 1.0, 3, 444 </focus>
+		<pos> 1.33, 2, 3 </pos>
+		<dir> 1.0, 3, 444 </dir>
+		<right> 1.5, 3, 3.5 </right>
 	</camera>
-	<filter>
-	</filter>
 	<light>
 		<spherical>
 			<pos> 1.5, 1.6, 3.3 </pos>
@@ -30,6 +29,12 @@
 			<angle> 59.5 </angle>
 			<upper_height> 10 </upper_height>
 			<lower_height> 5.5 </lower_height>
+			<optional>
+				<ior>5.5</ior>
+				<color> 100, 255, 155</color>
+				<transparency>3.3</trasparency>
+				<reflectivity>3.3</reflectivty>
+			</optional>
 		</cone>
 		<cylinder>
 			<radius> 5.5 </radius>
@@ -72,6 +77,13 @@
 		<sphere>
 			<radius> 6.9 </radius>
 			<center> 20, 5.7, 10.5 </center>
+			<optional>
+				<ior>5.5</ior>
+				<color> 100, 255, 155</color>
+				<transparency>3.3</trasparency>
+				<reflectivity>3.3</reflectivty>
+			</optional>
+			<tex_mode> 1 </tex_mode>
 		</sphere>
 	</objects>
 </scene>

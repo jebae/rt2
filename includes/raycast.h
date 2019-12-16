@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/12/16 15:28:16 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/16 22:07:56 by almoraru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,28 +44,28 @@ t_ray		cast_ray(int x, int y, t_env *e);
 ** Shading functions
 */
 t_col		diffuse_specular(
-	t_vec3 light_dir,
-	t_ll *ll,
-	t_trace_record *rec,
-	t_env *e
+t_vec3 light_dir,
+t_ll *ll,
+t_trace_record *rec,
+t_env *e
 );
 t_col		calc_shade(t_env *e, t_trace_record *rec, double coeff);
 double		send_shadow_ray(t_trace_record *rec, t_vec3 light_dir, t_env *e);
 t_col		reflection_shade(
-	t_env *e,
-	t_trace_record *prev,
-	double coeff
+t_env *e,
+t_trace_record *prev,
+double coeff
 );
 t_col		refraction_shade(
-	t_env *e,
-	t_trace_record *prev,
-	double coeff
+t_env *e,
+t_trace_record *prev,
+double coeff
 );
 double		get_transmittance(
-	t_trace_record *rec,
-	t_vec3 light_dir,
-	double light_dist,
-	t_env *e
+t_trace_record *rec,
+t_vec3 light_dir,
+double light_dist,
+t_env *e
 );
 
 /*
@@ -145,28 +145,28 @@ t_vec3		get_normal(t_ray ray, t_ol *ol);
 ** UV mapping functions
 */
 t_vec2		sphere_uv_mapping(
-	t_vec3 point,
-	t_mat3 *axis_mat,
-	t_texels *texels,
-	void *object
+t_vec3 point,
+t_mat3 *axis_mat,
+t_texels *texels,
+void *object
 );
 t_vec2		cyl_uv_mapping(
-	t_vec3 point,
-	t_mat3 *axis_mat,
-	t_texels *texels,
-	void *object
+t_vec3 point,
+t_mat3 *axis_mat,
+t_texels *texels,
+void *object
 );
 t_vec2		cone_uv_mapping(
-	t_vec3 point,
-	t_mat3 *axis_mat,
-	t_texels *texels,
-	void *object
+t_vec3 point,
+t_mat3 *axis_mat,
+t_texels *texels,
+void *object
 );
 t_vec2		rectangle_uv_mapping(
-	t_vec3 point,
-	t_mat3 *axis_mat,
-	t_texels *texels,
-	void *object
+t_vec3 point,
+t_mat3 *axis_mat,
+t_texels *texels,
+void *object
 );
 
 /*
@@ -176,10 +176,10 @@ int			has_texel(t_ol *ol);
 int			uv_to_texel_index(t_vec2 *uv, t_texels *texels);
 t_vec3		get_texel_color(t_vec2 *uv, t_texels *texels);
 t_vec3		get_bumped_normal(
-	t_vec2 *uv,
-	t_texels *texels,
-	t_vec3 *normal,
-	t_mat3 *axis_mat
+t_vec2 *uv,
+t_texels *texels,
+t_vec3 *normal,
+t_mat3 *axis_mat
 );
 
 /*
@@ -206,49 +206,49 @@ t_vec3		rotate(t_vec4 *q, t_vec3 *v, t_vec4 *q_i);
 void		rotate_object(t_env *e, double theta);
 void		rotate_object_axis(t_vec4 *q, t_mat3 *axis_mat);
 void		sphere_rotate(
-	t_vec4 *q,
-	t_mat3 *axis_mat,
-	void *object
+t_vec4 *q,
+t_mat3 *axis_mat,
+void *object
 );
 void		box_rotate(
-	t_vec4 *q,
-	t_mat3 *axis_mat,
-	void *object
+t_vec4 *q,
+t_mat3 *axis_mat,
+void *object
 );
 void		rectangle_rotate(
-	t_vec4 *q,
-	t_mat3 *axis_mat,
-	void *object
+t_vec4 *q,
+t_mat3 *axis_mat,
+void *object
 );
 void		cone_rotate(
-	t_vec4 *q,
-	t_mat3 *axis_mat,
-	void *object
+t_vec4 *q,
+t_mat3 *axis_mat,
+void *object
 );
 void		cyl_rotate(
-	t_vec4 *q,
-	t_mat3 *axis_mat,
-	void *object
+t_vec4 *q,
+t_mat3 *axis_mat,
+void *object
 );
 void		plane_rotate(
-	t_vec4 *q,
-	t_mat3 *axis_mat,
-	void *object
+t_vec4 *q,
+t_mat3 *axis_mat,
+void *object
 );
 void		pyramid_rotate(
-	t_vec4 *q,
-	t_mat3 *axis_mat,
-	void *object
+t_vec4 *q,
+t_mat3 *axis_mat,
+void *object
 );
 void		ring_rotate(
-	t_vec4 *q,
-	t_mat3 *axis_mat,
-	void *object
+t_vec4 *q,
+t_mat3 *axis_mat,
+void *object
 );
 void		triangle_rotate(
-	t_vec4 *q,
-	t_mat3 *axis_mat,
-	void *object
+t_vec4 *q,
+t_mat3 *axis_mat,
+void *object
 );
 
 /*
@@ -261,10 +261,10 @@ int			cel_shading(t_env *e);
 ** Anti-aliasing functions
 */
 int			anti_aliasing(
-	unsigned int *after,
-	unsigned int *before,
-	int width,
-	int height
+unsigned int *after,
+unsigned int *before,
+int width,
+int height
 );
 
 /*
@@ -281,57 +281,5 @@ float		m3_det(t_vec3 x, t_vec3 y, t_vec3 z);
 ** Print scene as img file
 */
 int			buffer2img(unsigned int *buf, int width, int height);
-
-/*
-** Parser functions
-*/
-/*
-**	INIT FUNCTIONS
-*/
-int			init_everything(t_parse *p);
-
-/*
-**	PARSE FUNCTIONS
-*/
-int			parse(t_parse *p, char *path);
-int			update_parser(t_parse *p);
-void		parse_camera(t_camera *cam, t_str *s, unsigned int *flag);
-void		parse_objects(t_parse *p);
-void		parse_lights(t_parse *p);
-
-/*
-**	CHECK FUNCTONS
-*/
-void		check_time(t_parse *p, struct stat *att, unsigned int *flag);
-
-/*
-**	MEMORY FUNCTIONS
-*/
-void		*ft_mem(t_mem *mem, size_t size);
-void		is_alloc(void *mem);
-
-/*
-**	STRING FUNCTIONS
-*/
-void		ft_cpynline(char *dest, char *src);
-void		ft_cpynumbers(char *line, char *numbers);
-void		ft_cpyonenbr(char *dest, char *src);
-void		ft_cpyword(char *line, char *word);
-void		ft_second_word(char *line, char *word2);
-int			ft_check_line_for_numbers(char *line);
-int			ft_is_good_number(char c);
-int			check_sub_number(char *sub);
-
-/*
-**	NUMBER FUNCTOINS
-*/
-void		handle_3vec_number(t_str *s, t_vec3 *vec);
-void		handle_float_number(t_str *s, double *nb);
-
-/*
-**	UTIL FUNCTIONS
-*/
-void		handle_float_vec(t_vec3 *vec, char *sub_number, int i);
-void		handle_int_vec(t_vec3 *vec, char *sub_number, int i);
 
 #endif
