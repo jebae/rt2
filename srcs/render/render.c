@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/16 15:29:53 by jebae             #+#    #+#             */
+/*   Updated: 2019/12/16 15:40:15 by jebae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rt.h"
 
 static void		erase_buffers(t_env *e)
@@ -35,7 +47,7 @@ int				render_by_sdl(t_env *e)
 		return (handle_fail("SDL_RenderClear"));
 	if (SDL_RenderCopy(e->sdl.renderer, e->sdl.tex, NULL, NULL) != 0)
 		return (handle_fail("SDL_RenderCopy"));
-    SDL_RenderPresent(e->sdl.renderer);
+	SDL_RenderPresent(e->sdl.renderer);
 	return (RT_SUCCESS);
 }
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   shading.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/16 15:31:45 by jebae             #+#    #+#             */
+/*   Updated: 2019/12/16 15:38:12 by jebae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rt.h"
 
 static t_col	shade_per_lights(t_env *e, t_trace_record *rec)
@@ -31,7 +43,8 @@ t_col			calc_shade(t_env *e, t_trace_record *rec, double coeff)
 	if (rec->depth >= RT_MAX_TRACE_DEPTH - 1)
 		return ((t_col){0, 0, 0});
 	sh = color_scalar(shade_per_lights(e, rec),
-		coeff * (1.0 - rec->obj->reflectivity) * (1.0 - rec->obj->transparency));
+		coeff * (1.0 - rec->obj->reflectivity) *
+		(1.0 - rec->obj->transparency));
 	sh = color_add(sh, reflection_shade(e, rec, coeff));
 	sh = color_add(sh, refraction_shade(e, rec, coeff));
 	return (sh);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rectangle.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/16 15:29:35 by jebae             #+#    #+#             */
+/*   Updated: 2019/12/16 15:47:07 by jebae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rt.h"
 
 static double	get_plane_intersection_t(t_ray *ray, t_rectangle *rect)
@@ -38,6 +50,6 @@ t_vec3			normal_rectangle(t_ray ray, void *object)
 	rect = (t_rectangle *)object;
 	if (v3_dotpdt(ray.dir, rect->normal) <= 0)
 		return (rect->normal);
-	else 
+	else
 		return (v3_scalar(rect->normal, -1));
 }

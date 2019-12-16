@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 14:08:14 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/12/05 14:51:45 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/16 15:45:27 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ double	v_intersect_sp2(t_ray ray, void *object)
 	double	c;
 
 	sphere = (t_sphere *)object;
-	v = v3_frompoints(sphere->cen, ray.ori); //to change
+	v = v3_frompoints(sphere->cen, ray.ori);
 	a = v3_dotpdt(ray.dir, ray.dir);
 	b = 2 * v3_dotpdt(ray.dir, v);
 	c = v3_dotpdt(v, v) - sphere->radius * sphere->radius;
@@ -51,7 +51,7 @@ double	v_intersect_pl(t_ray ray, void *object)
 	plane = object;
 	norm = v3_normalise(plane->normal);
 	c = find_point_on_plane(plane);
-	v = v3_frompoints(c, ray.ori); //to change
+	v = v3_frompoints(c, ray.ori);
 	if (v3_dotpdt(ray.dir, norm) == 0)
 		return (FAR);
 	t = -v3_dotpdt(v, norm) / v3_dotpdt(ray.dir, norm);
@@ -72,7 +72,6 @@ double	v_intersect_co(t_ray ray, void *object)
 	cone = object;
 	v = v3_frompoints(cone->cen, ray.ori);
 	k = tan(((cone->angle * M_PI) / 180) / 2);
-	// cone->axis = v3_normalise(cone->axis); will be done by parser
 	a = v3_dotpdt(ray.dir, ray.dir) - (1 + k * k)\
 		* v3_dotpdt(ray.dir, cone->axis) * v3_dotpdt(ray.dir, cone->axis);
 	b = 2 * (v3_dotpdt(ray.dir, v) - (1 + k * k)\
@@ -125,7 +124,6 @@ double	v_intersect_cy(t_ray ray, void *object)
 	double	c;
 	t_cyl	*cyl;
 
-
 	cyl = object;
 	v = v3_frompoints(cyl->cen, ray.ori); //to change
 	cyl->axis = v3_normalise(cyl->axis);
@@ -153,7 +151,5 @@ double	v_intersect_cy(t_ray ray, void *object)
 		return (FAR);
 	t1 = t1 > 0 ? t1 : t2;
 	t1 = t2 < t1 && t2 > 0 ? t2 : t1;
-	
 	return (t1);
 }
-

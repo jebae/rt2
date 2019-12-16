@@ -1,11 +1,16 @@
-#include "libimg.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hysteresis_thresholding.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/16 15:07:01 by jebae             #+#    #+#             */
+/*   Updated: 2019/12/16 15:12:20 by jebae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-static void		visit(
-	size_t i,
-	float magnitude,
-	t_im_buffer_info *buf_info,
-	float *t
-);
+#include "libimg.h"
 
 static void		horizontal_visit(
 	size_t i,
@@ -31,7 +36,7 @@ static void		horizontal_visit(
 		visit(i + 1, magnitude, buf_info, t);
 }
 
-static void		visit(
+void			visit(
 	size_t i,
 	float magnitude,
 	t_im_buffer_info *buf_info,

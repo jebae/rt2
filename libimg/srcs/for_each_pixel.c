@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   for_each_pixel.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/16 15:05:58 by jebae             #+#    #+#             */
+/*   Updated: 2019/12/16 15:06:35 by jebae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libimg.h"
 
 static int		handle_thread_err(t_im_th_info *th_info)
@@ -64,7 +76,7 @@ static int		distribute_work(
 
 int				im_for_each_pixel(
 	t_im_buffer_info *buf_info,
-	func_th func
+	t_func_th func
 )
 {
 	int				num_thread;

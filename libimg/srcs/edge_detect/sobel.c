@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sobel.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/16 15:07:08 by jebae             #+#    #+#             */
+/*   Updated: 2019/12/16 15:09:14 by jebae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libimg.h"
 
 static float		get_gradient_x(
@@ -51,7 +63,8 @@ static void			filter(void *arg_void)
 		grad_buf[i + arg->width + 1].theta = atan(g[1] / g[0]);
 		if (ft_is_nan(grad_buf[i + arg->width + 1].theta))
 			grad_buf[i + arg->width + 1].theta = 0.0f;
-		grad_buf[i + arg->width + 1].magnitude = sqrtf(g[0] * g[0] + g[1] * g[1]);
+		grad_buf[i + arg->width + 1].magnitude =
+			sqrtf(g[0] * g[0] + g[1] * g[1]);
 		if (i % arg->width >= arg->width - 3)
 			i += 3;
 		else

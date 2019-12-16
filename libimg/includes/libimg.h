@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libimg.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/16 15:03:01 by jebae             #+#    #+#             */
+/*   Updated: 2019/12/16 15:12:50 by jebae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LIBIMG_H
 # define LIBIMG_H
 
 # include "libft.h"
-# include <stdio.h> // remove later
 # include <pthread.h>
 # include <math.h>
 
@@ -48,14 +59,14 @@ typedef struct	s_im_edge_gradient
 	float		magnitude;
 }				t_im_edge_gradient;
 
-typedef void	(*func_th)(void *arg_void);
+typedef void	(*t_func_th)(void *arg_void);
 
 int				im_handle_err(const char *msg);
 
 /*
 ** img buffer
 */
-int				im_for_each_pixel(t_im_buffer_info *buf_info, func_th func);
+int				im_for_each_pixel(t_im_buffer_info *buf_info, t_func_th func);
 void			im_set_buffer_info(
 	int width,
 	int height,
@@ -131,6 +142,12 @@ int				im_hysteresis_thresholding(
 	int width,
 	int height,
 	float *gmax
+);
+void			visit(
+	size_t i,
+	float magnitude,
+	t_im_buffer_info *buf_info,
+	float *t
 );
 int				im_gradient2ratio(
 	t_im_edge_gradient *grad_buf,

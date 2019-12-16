@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/12/14 14:40:55 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/16 15:28:16 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,11 @@ double		get_transmittance(
 */
 int			render(t_env *e);
 int			render_by_sdl(t_env *e);
-int    		multi_thread(t_env *e);
+int			multi_thread(t_env *e);
 
 /*
 ** Set light functions
 */
-void		init_ll(t_ll *ll); // not using in production
 int			set_distant_light(t_ll *ll, t_arg_distant_light *arg);
 int			set_spherical_light(t_ll *ll, t_arg_spherical_light *arg);
 
@@ -93,7 +92,6 @@ double		spherical_light_distance(t_vec3 *point, void *light);
 /*
 ** Set object functions
 */
-void		init_ol(t_ol *ol); // not using in production
 void		pick_axis_from_plane(t_vec3 *normal, t_mat3 *axis_mat);
 int			set_sphere(t_ol *ol, t_arg_sphere *arg);
 int			set_cone(t_ol *ol, t_arg_cone *arg);
@@ -126,9 +124,6 @@ t_vec3		find_point_from_ray(t_ray ray);
 ** Coloring functions
 */
 void		color_pixel(int x, int y, t_col sh, t_env *e);
-//t_shader	init_shader(void);
-//t_shader	shader_add(t_shader sh1, t_shader sh2);
-//int			specular(t_ray ray, t_vec3 p, t_ol *ol, t_ll *ll); deprecated
 t_col		color_add(t_col c1, t_col c2);
 t_col		color_scalar(t_col c, double scalar);
 
@@ -138,7 +133,7 @@ t_col		color_scalar(t_col c, double scalar);
 t_vec3		normal_sphere(t_ray ray, void *object);
 t_vec3		normal_cylinder(t_ray ray, void *object);
 t_vec3		normal_cone(t_ray ray, void *object);
-t_vec3	    normal_plane(t_ray ray, void *object);
+t_vec3		normal_plane(t_ray ray, void *object);
 t_vec3		normal_rectangle(t_ray ray, void *object);
 t_vec3		normal_box(t_ray ray, void *object);
 t_vec3		normal_triangle(t_ray ray, void *object);
@@ -177,10 +172,10 @@ t_vec2		rectangle_uv_mapping(
 /*
 ** Texel functions
 */
-int				has_texel(t_ol *ol);
-int				uv_to_texel_index(t_vec2 *uv, t_texels *texels);
-t_vec3			get_texel_color(t_vec2 *uv, t_texels *texels);
-t_vec3			get_bumped_normal(
+int			has_texel(t_ol *ol);
+int			uv_to_texel_index(t_vec2 *uv, t_texels *texels);
+t_vec3		get_texel_color(t_vec2 *uv, t_texels *texels);
+t_vec3		get_bumped_normal(
 	t_vec2 *uv,
 	t_texels *texels,
 	t_vec3 *normal,
@@ -190,67 +185,67 @@ t_vec3			get_bumped_normal(
 /*
 ** Translate functions
 */
-void			translate_object(t_env *e, t_vec3 v_translate);
-void			sphere_translate(t_vec3 *v_translate, void *object);
-void			cone_translate(t_vec3 *v_translate, void *object);
-void			cyl_translate(t_vec3 *v_translate, void *object);
-void			plane_translate(t_vec3 *v_translate, void *object);
-void			rectangle_translate(t_vec3 *v_translate, void *object);
-void			box_translate(t_vec3 *v_translate, void *object);
-void			triangle_translate(t_vec3 *v_translate, void *object);
-void			pyramid_translate(t_vec3 *v_translate, void *object);
-void			ring_translate(t_vec3 *v_translate, void *object);
+void		translate_object(t_env *e, t_vec3 v_translate);
+void		sphere_translate(t_vec3 *v_translate, void *object);
+void		cone_translate(t_vec3 *v_translate, void *object);
+void		cyl_translate(t_vec3 *v_translate, void *object);
+void		plane_translate(t_vec3 *v_translate, void *object);
+void		rectangle_translate(t_vec3 *v_translate, void *object);
+void		box_translate(t_vec3 *v_translate, void *object);
+void		triangle_translate(t_vec3 *v_translate, void *object);
+void		pyramid_translate(t_vec3 *v_translate, void *object);
+void		ring_translate(t_vec3 *v_translate, void *object);
 
 /*
 ** Rotate functions
 */
-t_vec4			q_mul_q(t_vec4 *q1, t_vec4 *q2);
-t_vec4			inverse_q(t_vec4 *q);
-t_vec4			rotate_q(t_vec3 *n, float theta);
-t_vec3			rotate(t_vec4 *q, t_vec3 *v, t_vec4 *q_i);
-void			rotate_object(t_env *e, double theta);
-void			rotate_object_axis(t_vec4 *q, t_mat3 *axis_mat);
-void			sphere_rotate(
+t_vec4		q_mul_q(t_vec4 *q1, t_vec4 *q2);
+t_vec4		inverse_q(t_vec4 *q);
+t_vec4		rotate_q(t_vec3 *n, float theta);
+t_vec3		rotate(t_vec4 *q, t_vec3 *v, t_vec4 *q_i);
+void		rotate_object(t_env *e, double theta);
+void		rotate_object_axis(t_vec4 *q, t_mat3 *axis_mat);
+void		sphere_rotate(
 	t_vec4 *q,
 	t_mat3 *axis_mat,
 	void *object
 );
-void			box_rotate(
+void		box_rotate(
 	t_vec4 *q,
 	t_mat3 *axis_mat,
 	void *object
 );
-void			rectangle_rotate(
+void		rectangle_rotate(
 	t_vec4 *q,
 	t_mat3 *axis_mat,
 	void *object
 );
-void			cone_rotate(
+void		cone_rotate(
 	t_vec4 *q,
 	t_mat3 *axis_mat,
 	void *object
 );
-void			cyl_rotate(
+void		cyl_rotate(
 	t_vec4 *q,
 	t_mat3 *axis_mat,
 	void *object
 );
-void			plane_rotate(
+void		plane_rotate(
 	t_vec4 *q,
 	t_mat3 *axis_mat,
 	void *object
 );
-void			pyramid_rotate(
+void		pyramid_rotate(
 	t_vec4 *q,
 	t_mat3 *axis_mat,
 	void *object
 );
-void			ring_rotate(
+void		ring_rotate(
 	t_vec4 *q,
 	t_mat3 *axis_mat,
 	void *object
 );
-void			triangle_rotate(
+void		triangle_rotate(
 	t_vec4 *q,
 	t_mat3 *axis_mat,
 	void *object
@@ -259,13 +254,13 @@ void			triangle_rotate(
 /*
 ** Cel shading functions
 */
-double			round_n_dot_l(double n_dot_l);
-int				cel_shading(t_env *e);
+double		round_n_dot_l(double n_dot_l);
+int			cel_shading(t_env *e);
 
 /*
 ** Anti-aliasing functions
 */
-int				anti_aliasing(
+int			anti_aliasing(
 	unsigned int *after,
 	unsigned int *before,
 	int width,
@@ -293,49 +288,50 @@ int			buffer2img(unsigned int *buf, int width, int height);
 /*
 **	INIT FUNCTIONS
 */
-int				init_everything(t_parse *p);
+int			init_everything(t_parse *p);
 
 /*
 **	PARSE FUNCTIONS
 */
-int				parse(t_parse *p, char *path);
-int				update_parser(t_parse *p);
-void			parse_camera(t_camera *cam, t_str *s, unsigned int *flag);
-void			parse_objects(t_parse *p);
-void			parse_lights(t_parse *p);
+int			parse(t_parse *p, char *path);
+int			update_parser(t_parse *p);
+void		parse_camera(t_camera *cam, t_str *s, unsigned int *flag);
+void		parse_objects(t_parse *p);
+void		parse_lights(t_parse *p);
 
 /*
 **	CHECK FUNCTONS
 */
-void			check_time(t_parse *p, struct stat *att, unsigned int *flag);
+void		check_time(t_parse *p, struct stat *att, unsigned int *flag);
 
 /*
 **	MEMORY FUNCTIONS
 */
-void			*ft_mem(t_mem *mem, size_t size);
-void			is_alloc(void *mem);
+void		*ft_mem(t_mem *mem, size_t size);
+void		is_alloc(void *mem);
 
 /*
 **	STRING FUNCTIONS
 */
-void			ft_cpynline(char *dest, char *src);
-void			ft_cpynumbers(char *line, char *numbers);
-void			ft_cpyonenbr(char *dest, char *src);
-void			ft_cpyword(char *line, char *word);
-void			ft_second_word(char *line, char *word2);
-int				ft_check_line_for_numbers(char *line);
-int				ft_is_good_number(char c);
-int				check_sub_number(char *sub);
+void		ft_cpynline(char *dest, char *src);
+void		ft_cpynumbers(char *line, char *numbers);
+void		ft_cpyonenbr(char *dest, char *src);
+void		ft_cpyword(char *line, char *word);
+void		ft_second_word(char *line, char *word2);
+int			ft_check_line_for_numbers(char *line);
+int			ft_is_good_number(char c);
+int			check_sub_number(char *sub);
 
 /*
 **	NUMBER FUNCTOINS
 */
-void			handle_3vec_number(t_str *s, t_vec3 *vec);
-void			handle_float_number(t_str *s, double *nb);
+void		handle_3vec_number(t_str *s, t_vec3 *vec);
+void		handle_float_number(t_str *s, double *nb);
 
 /*
 **	UTIL FUNCTIONS
 */
-void			handle_float_vec(t_vec3 *vec, char *sub_number, int i);
-void			handle_int_vec(t_vec3 *vec, char *sub_number, int i);
+void		handle_float_vec(t_vec3 *vec, char *sub_number, int i);
+void		handle_int_vec(t_vec3 *vec, char *sub_number, int i);
+
 #endif

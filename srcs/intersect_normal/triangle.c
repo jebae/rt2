@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   triangle.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/16 15:29:39 by jebae             #+#    #+#             */
+/*   Updated: 2019/12/16 15:45:05 by jebae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rt.h"
 
 double			v_intersect_triangle(t_ray ray, void *object)
@@ -33,6 +45,6 @@ t_vec3			normal_triangle(t_ray ray, void *object)
 	triangle = object;
 	if (v3_dotpdt(ray.dir, triangle->normal) <= 0)
 		return (triangle->normal);
-	else 
+	else
 		return (v3_scalar(triangle->normal, -1));
 }

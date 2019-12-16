@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   non_maximum_suppression.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/16 15:07:06 by jebae             #+#    #+#             */
+/*   Updated: 2019/12/16 15:08:00 by jebae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libimg.h"
 
 static void		get_neighbors(
@@ -76,7 +88,7 @@ int				im_non_maximum_suppression(
 	ft_memcpy(buf_info.buf[1], grad_buf, buf_size);
 	buf_info.buf[0] = (unsigned char *)grad_buf;
 	im_set_buffer_info(width, height - 2, &buf_info);
-	if (im_for_each_pixel(&buf_info, (void *)suppress) ==IM_FAIL)
+	if (im_for_each_pixel(&buf_info, (void *)suppress) == IM_FAIL)
 	{
 		ft_memdel((void **)&buf_info.buf[1]);
 		return (IM_FAIL);

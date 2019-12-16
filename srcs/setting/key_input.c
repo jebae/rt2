@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key_input.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/16 15:31:35 by jebae             #+#    #+#             */
+/*   Updated: 2019/12/16 15:31:36 by jebae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rt.h"
 
 static void		key_change_object(SDL_Keycode sym, t_env *e)
@@ -18,14 +30,16 @@ static void		key_change_object(SDL_Keycode sym, t_env *e)
 
 static void		key_rotate(SDL_Keycode sym, t_env *e)
 {
+	static double	degree_1 = M_PI / 180.0;
+
 	if (sym == SDLK_COMMA)
 	{
-		rotate_object(e, DEGREE_1 * 10.0);
+		rotate_object(e, degree_1 * 10.0);
 		render(e);
 	}
 	else if (sym == SDLK_PERIOD)
 	{
-		rotate_object(e, -DEGREE_1 * 10.0);
+		rotate_object(e, -degree_1 * 10.0);
 		render(e);
 	}
 }

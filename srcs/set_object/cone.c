@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cone.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/16 15:31:06 by jebae             #+#    #+#             */
+/*   Updated: 2019/12/16 15:39:38 by jebae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rt.h"
 
 static int		validate(t_arg_cone *arg)
@@ -11,8 +23,7 @@ static int		validate(t_arg_cone *arg)
 	if (arg->lower_height < 0.0)
 		return (handle_fail("set_cone : lower_height below 0"));
 	if (arg->upper_height < RT_APPROX_0 && arg->lower_height < RT_APPROX_0)
-		return (handle_fail(
-			"set_cone : upper and lower height both almost 0"));
+		return (handle_fail("set_cone : upper and lower height both almost 0"));
 	return (RT_SUCCESS);
 }
 

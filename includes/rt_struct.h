@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rt_struct.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/16 15:25:21 by jebae             #+#    #+#             */
+/*   Updated: 2019/12/16 15:25:22 by jebae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef RT_STRUCT_H
 # define RT_STRUCT_H
 
@@ -13,12 +25,10 @@
 # include "libvector.h"
 # include "libimg.h"
 # include "SDL2/SDL.h"
-#include <stdio.h> // test only
 
 # define WIDTH						1600
 # define HEIGHT 					1200
 # define FAR						2000000.0
-# define DEGREE_1					M_PI / 180.0
 # define RT_SUCCESS					0
 # define RT_FAIL					1
 # define RT_APPROX_0				1e-6
@@ -40,14 +50,14 @@
 /*
 ** t_env bit mask
 */
-# define RT_ENV_MASK_CEL_SHADING	(1 << 0)
-# define RT_ENV_MASK_NO_SHADOW		(1 << 1)
-# define RT_ENV_MASK_NO_SPECULAR	(1 << 2)
-# define RT_ENV_MASK_ROUND_N_DOT_L	(1 << 3)
-# define RT_ENV_MASK_SEPHIA			(1 << 4)
-# define RT_ENV_MASK_NEGATIVE		(1 << 5)
-# define RT_ENV_MASK_GRAY_SCALE		(1 << 6)
-# define RT_ENV_MASK_GAUSSIAN_BLUR	(1 << 7)
+# define RT_ENV_MASK_CEL_SHADING	0x00000001
+# define RT_ENV_MASK_NO_SHADOW		0x00000002
+# define RT_ENV_MASK_NO_SPECULAR	0x00000004
+# define RT_ENV_MASK_ROUND_N_DOT_L	0x00000008
+# define RT_ENV_MASK_SEPHIA			0x00000010
+# define RT_ENV_MASK_NEGATIVE		0x00000020
+# define RT_ENV_MASK_GRAY_SCALE		0x00000040
+# define RT_ENV_MASK_GAUSSIAN_BLUR	0x00000080
 
 /*
 ** Renderer struct
@@ -99,7 +109,6 @@ typedef struct		s_arg_camera
 
 typedef struct		s_ll
 {
-	//size_t			content_size;
 	void			*light;
 	t_vec3			its;
 	t_vec3			(*get_dir)(t_vec3 *point, void *light);
@@ -162,8 +171,7 @@ typedef struct		s_ol
 		t_vec3 point,
 		t_mat3 *axis_mat,
 		t_texels *texels,
-		void *object
-	);
+		void *object);
 	void			(*translate)(t_vec3 *v_translate, void *object);
 	void			(*rotate)(t_vec4 *q, t_mat3 *axis_mat, void *object);
 }					t_ol;
@@ -179,7 +187,7 @@ typedef struct		s_trace_record
 	struct s_trace_record	*prev;
 }					t_trace_record;
 
-typedef struct 		s_sphere
+typedef struct		s_sphere
 {
 	t_vec3			cen;
 	double			radius;
@@ -385,14 +393,14 @@ typedef struct		s_env
 /*
 ** Parser struct
 */
-typedef struct	s_mem
+typedef struct		s_mem
 {
 	void	*m;
 	size_t	usize;
 	size_t	tsize;
-}				t_mem;
+}					t_mem;
 
-typedef struct	s_str
+typedef struct		s_str
 {
 	char		*buf;
 	char		*line;
@@ -402,23 +410,23 @@ typedef struct	s_str
 	char		*word2;
 	char		*time;
 	int			op_cl;
-}				t_str;
+}					t_str;
 
-typedef struct	s_parse
+typedef struct		s_parse
 {
-	t_mem		mem;
-	t_camera	cam;
-	t_ol		*ob;
-	t_ll		*li;
-	t_str		str;
-	struct stat	att;
+	t_mem			mem;
+	t_camera		cam;
+	t_ol			*ob;
+	t_ll			*li;
+	t_str			str;
+	struct stat		att;
 	unsigned int	flag;
 	unsigned int	number;
-	int			ret;
-	int			line;
-	int			index;
-	int			l_ind;
-	int			fd;
-}				t_parse;
+	int				ret;
+	int				line;
+	int				index;
+	int				l_ind;
+	int				fd;
+}					t_parse;
 
 #endif

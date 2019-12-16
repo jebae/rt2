@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   texel.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/16 15:31:53 by jebae             #+#    #+#             */
+/*   Updated: 2019/12/16 15:37:32 by jebae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rt.h"
 
 int		uv_to_texel_index(t_vec2 *uv, t_texels *texels)
@@ -7,7 +19,6 @@ int		uv_to_texel_index(t_vec2 *uv, t_texels *texels)
 
 	if (ft_is_nan(uv->x))
 		uv->x = 1.0;
-	else
 	if (ft_is_nan(uv->y))
 		uv->y = 1.0;
 	uv->x = modf(uv->x, &int_part);

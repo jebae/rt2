@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sphere.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/16 15:31:23 by jebae             #+#    #+#             */
+/*   Updated: 2019/12/16 15:38:54 by jebae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rt.h"
 
 static int		validate(t_arg_sphere *arg)
@@ -26,9 +38,9 @@ int				set_sphere(t_ol *ol, t_arg_sphere *arg)
 		return (RT_FAIL);
 	ol->intersect = &v_intersect_sp2;
 	ol->get_normal = &normal_sphere;
-    ol->uv_mapping = &sphere_uv_mapping;
-    ol->translate = &sphere_translate;
-    ol->rotate = &sphere_rotate;
+	ol->uv_mapping = &sphere_uv_mapping;
+	ol->translate = &sphere_translate;
+	ol->rotate = &sphere_rotate;
 	sphere = (t_sphere *)ol->object;
 	sphere->cen = arg->cen;
 	sphere->radius = arg->radius;
