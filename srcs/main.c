@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:35:08 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/16 15:36:53 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/16 22:30:04 by almoraru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,12 @@ int				main(int argc, char **argv)
 	parse(&p, argv[1]);
 	set_ray_grid_props(&e); // set ray grid props with camera parsed
 	run_event_loop(&e);
+	/*
+ ** Remember to free p.mem.m and p.str.time
+ */
+	if (p.mem.m != NULL)
+		free(p.mem.m);
+	if (p.str.time != NULL)
+		free(p.str.time);
 	return (0);
 }
