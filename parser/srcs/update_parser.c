@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 15:17:06 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/16 22:06:57 by almoraru         ###   ########.fr       */
+/*   Updated: 2019/12/16 22:34:39 by almoraru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -337,9 +337,7 @@ int			parse_buffer(t_parse *p)
 		s->buf++;
 	}
 	if (!(s->op_cl & 1UL << 1))
-		printf("scene not closed !\n");
-	printf("UUUUUUUUUUUUSED SIZE = %ld\ntotalsize = %ld\n", p->mem.usize, p->mem.tsize);
-	printf("OBJECT NUMBER = %d\n", p->index);
+		ft_putstr("scene not closed !\n");
 	return (1);
 }
 
@@ -353,17 +351,12 @@ int		update_parser(t_parse *p, char *path)
 	if (p->flag & 1UL << 2)
 	{
 		i = 0;
-		//if (p->mem.m != NULL)
-		//free(p->mem.m);
 		init_everything(p, path);
-		printf("UUUUUUUUUUUUSED SIZE = %ld\ntotalsize = %ld\n", p->mem.usize, p->mem.tsize);
-		puts("Reopened file!");
+		ft_putendl("Reopened file!");
 	}
-	puts("ding dong");
 	while ((p->size = read(p->fd, &s->buf[i], BUFF_SIZE)) > 0 && (i < 1024 * 12))
 		i += p->size;
 	s->buf[i] = '\0';
-	printf("\nso i = %d\nerrr size = %d\nchar = %c\n", i, p->size, s->buf[0]);
 	if (s->buf[0] != '<')
 		return (0);
 	parse_buffer(p);
