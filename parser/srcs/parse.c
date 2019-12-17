@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 11:55:02 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/17 19:08:36 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/17 22:43:36 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int		parse(t_parse *p, char *path)
 	struct stat	*att;
 	t_str			*s;
 
-	p->ret = RT_PARSE_RET_SUCCESS;
 	att = &p->att;
 	s = &p->str;
 	stat(path, att);
