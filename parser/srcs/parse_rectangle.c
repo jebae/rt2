@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 22:22:50 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/16 22:23:03 by almoraru         ###   ########.fr       */
+/*   Updated: 2019/12/17 22:34:51 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ void	parse_rectangle(t_parse *p)
 		s->buf++;
 	}
 	puts("Rectangle done");
-	// error message would be printed inside set_object
-	//if (set_rectangle(&ob[i], &r) == RT_FAIL)
-	// handle when fail
+	if (set_rectangle(&ob[i], &r) == RT_FAIL)
+		p->ret |= RT_PARSE_RET_FAIL;
 	p->flag &= ~(1UL << 8);
 }

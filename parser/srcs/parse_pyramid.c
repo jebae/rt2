@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 22:25:21 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/16 22:25:34 by almoraru         ###   ########.fr       */
+/*   Updated: 2019/12/17 22:33:59 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ void	parse_pyramid(t_parse *p)
 		s->buf++;
 	}
 	puts("Pyramid done");
-	// error message would be printed inside set_object
-	//if (set_pyramid(&ob[i], &py) == RT_FAIL)
-	// handle when fail
+	if (set_pyramid(&ob[i], &py) == RT_FAIL)
+		p->ret |= RT_PARSE_RET_FAIL;
 	p->flag &= ~(1UL << 11);
 }

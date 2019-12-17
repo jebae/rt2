@@ -6,29 +6,41 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:31:33 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/16 15:31:33 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/17 21:58:15 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void		run_event_loop(t_env *e)
+static void		handle_hotreload(t_env *e, t_parse *p, char *filename)
+{
+	p->ret = 0;
+	parse(p, filename);
+	if (p->ret & RT_PARSE_RET_FAIL)
+		return ;
+	if (p->ret & RT_PARSE_RET_RELOAD)
+		render(e);
+}
+
+void			run_event_loop(t_env *e, t_parse *p, char *filename)
 {
 	SDL_Event	*event;
 
 	event = &e->sdl.event;
 	while (1)
 	{
+		handle_hotreload(e, p, filename);
 		while (SDL_PollEvent(event))
 		{
 			if (event->type == SDL_QUIT)
 			{
 				clear_env(e);
+				clear_parse(p);
 				SDL_Quit();
 				return ;
 			}
 			if (event->type == SDL_KEYDOWN)
-				key_input(event->key.keysym.sym, e);
+				key_input(event->key.keysym.sym, e, p);
 		}
 	}
 }

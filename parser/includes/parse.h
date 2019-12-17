@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 11:48:20 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/16 22:27:03 by almoraru         ###   ########.fr       */
+/*   Updated: 2019/12/17 19:35:11 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void			init_strings(t_parse *p);
 */
 int				parse(t_parse *p, char *path);
 int				update_parser(t_parse *p, char *path);
-void			parse_camera(t_arg_camera *cam, t_str *s, unsigned int *flag);
+void			parse_camera(t_parse *p, t_str *s, unsigned int *flag);
 void			parse_objects(t_parse *p);
 void			parse_sphere(t_parse *p);
 void			parse_cone(t_parse *p);
@@ -52,6 +52,7 @@ void			check_time(t_parse *p, struct stat *att, unsigned int *flag, char *path);
 */
 void			*ft_mem(t_mem *mem, size_t size);
 void			is_alloc(void *mem);
+void			clear_parse(t_parse *p);
 
 /*
 **	STRING FUNCTIONS

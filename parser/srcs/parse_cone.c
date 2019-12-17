@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 22:19:47 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/16 22:20:21 by almoraru         ###   ########.fr       */
+/*   Updated: 2019/12/17 22:32:45 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,7 @@ void	parse_cone(t_parse *p)
 		s->buf++;
 	}
 	puts("cone done");
-	// error message would be printed inside set_object
-	//if (set_cone(&ob[i], &c) == RT_FAIL)
-	// handle when fail
+	if (set_cone(&ob[i], &c) == RT_FAIL)
+		p->ret |= RT_PARSE_RET_FAIL;
 	p->flag &= ~(1UL << 5);
 }

@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 22:13:58 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/16 22:19:57 by almoraru         ###   ########.fr       */
+/*   Updated: 2019/12/17 22:24:35 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ void	parse_sphere(t_parse *p)
 		s->buf++;
 	}
 	p->flag &= ~(1UL << 4);
-	// error message would be printed inside set_object
-	//if (set_sphere(&ob[i], &sp) == RT_FAIL)
-	// handle when fail
+	if (set_sphere(&ob[i], &sp) == RT_FAIL)
+		p->ret |= RT_PARSE_RET_FAIL;
 	ft_putendl("sphere done");
 }

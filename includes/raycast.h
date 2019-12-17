@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/12/16 22:07:56 by almoraru         ###   ########.fr       */
+/*   Updated: 2019/12/17 22:29:58 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 */
 int			init_env(t_env *e);
 void		clear_env(t_env *e);
-void		key_input(SDL_Keycode sym, t_env *e);
-void		run_event_loop(t_env *e);
+void		key_input(SDL_Keycode sym, t_env *e, t_parse *p);
+void		run_event_loop(t_env *e, t_parse *p, char *filename);
 int			handle_fail(const char *msg);
-int			set_camera(t_camera *cam, t_arg_camera *arg);
+int			set_camera(t_arg_camera *arg, t_camera *cam);
 void		set_ray_grid_props(t_env *e);
 
 /*
@@ -180,6 +180,11 @@ t_vec2 *uv,
 t_texels *texels,
 t_vec3 *normal,
 t_mat3 *axis_mat
+);
+int			set_texels(
+	const char *filename,
+	int repeat,
+	t_texels *texels
 );
 
 /*

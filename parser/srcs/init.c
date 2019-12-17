@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 14:01:20 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/16 22:04:09 by almoraru         ###   ########.fr       */
+/*   Updated: 2019/12/17 18:26:06 by almoraru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,19 @@ int			init_everything(t_parse *p, char *path)
 	p->index = 0;
 	p->l_ind = 0;
 	p->size = 0;
-	close(p->fd);
 	init_mem(p);
 	init_strings(p);
+	if (p->flag & 1UL)
+		close(p->fd);
 	if ((p->fd = open(path, O_RDONLY)) < 0)
 	{
 		ft_putendl("Failed to open file :(");
 		return (0);
 	}
 	if (!(p->flag & 1UL))
+	{
+		p->flag = 0;
 		p->flag |= 1UL;
+	}
 	return (1);
 }
