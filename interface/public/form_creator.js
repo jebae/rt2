@@ -31,13 +31,11 @@ function get_con_att(tmp)
     var con_uheight = check_val(document.getElementById('con_uheight').value);
     var con_lheight = check_val(document.getElementById('con_lheight').value);
 
-    tmp = "\t\t\t<optional>\n";
-    tmp += "\t\t\t\t<center> " + con_cen[2] + ", " + con_cen[1] + ", " + con_cen[0] + " </center>\n";
-    tmp += "\t\t\t\t<axis> " + con_axis[2] + ", " + con_axis[1] + ", " + con_axis[0] + " </axis>\n";
-    tmp += "\t\t\t\t<angle> " + con_ang + " </angle>\n";
-    tmp += "\t\t\t\t<lower_height> " + con_lheight + " </lower_height>\n";
-    tmp += "\t\t\t\t<upper_height> " + con_uheight + " </upper_height>\n";
-    tmp = "\t\t\t</optional>\n";
+    tmp += "\t\t\t<center> " + con_cen[2] + ", " + con_cen[1] + ", " + con_cen[0] + " </center>\n";
+    tmp += "\t\t\t<axis> " + con_axis[2] + ", " + con_axis[1] + ", " + con_axis[0] + " </axis>\n";
+    tmp += "\t\t\t<angle> " + con_ang + " </angle>\n";
+    tmp += "\t\t\t<lower_height> " + con_lheight + " </lower_height>\n";
+    tmp += "\t\t\t<upper_height> " + con_uheight + " </upper_height>\n";
     return (tmp);
 }
 
@@ -140,9 +138,12 @@ function get_parallel_attributes(shape_num)
     var color_b = document.getElementsByName('color_b');
     var transparency = document.getElementsByName('transparency');
 
-    tmp = "\t\t\t<ior> " + check_val(ior[shape_num].value) + " </ior>\n";
-    tmp += "\t\t\t<color> " + check_val(color_r[shape_num].value) + ", " + check_val(color_g[shape_num].value) + ", " + check_val(color_b[shape_num].value) + " </color>\n";
-    tmp += "\t\t\t<transparency> " + check_val(transparency[shape_num].value) + " </transparency>\n";
+    tmp = "\t\t\t<optional>\n";
+    tmp += "\t\t\t\t<ior> " + check_val(ior[shape_num].value) + " </ior>\n";
+    tmp += "\t\t\t\t<color> " + check_val(color_r[shape_num].value) + ", " + check_val(color_g[shape_num].value) + ", " + check_val(color_b[shape_num].value) + " </color>\n";
+    tmp += "\t\t\t\t<transparency> " + check_val(transparency[shape_num].value) + " </transparency>\n";
+    tmp += "\t\t\t</optional>\n";
+
     return (tmp);
 }
 
@@ -235,12 +236,10 @@ function create_xml(shape)
     }
 
     xml_shape += close_shape(shape);
-    // console.log("i am the output ---->\n\n", xml_shape, "\n\n");
+    console.log("i am the output ---->\n\n", xml_shape, "\n\n");
 
     var testing = "file_" + shape_num; 
     var file = document.getElementById(testing).files[0];
-    // console.log(file.name, "\n\n");
-
 
     if (file)
     {
@@ -255,8 +254,10 @@ function create_xml(shape)
     }
     else
         console.log("No file given !");
-    // this reload file !
-    // document.location.reload(true);
+    
+
+    // this reloads file !
+    document.location.reload(true);
 }
 
 function add_shape_div() 
