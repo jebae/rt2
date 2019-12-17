@@ -31,11 +31,13 @@ function get_con_att(tmp)
     var con_uheight = check_val(document.getElementById('con_uheight').value);
     var con_lheight = check_val(document.getElementById('con_lheight').value);
 
-    tmp = "\t\t\t<center> " + con_cen[2] + ", " + con_cen[1] + ", " + con_cen[0] + " </center>\n";
-    tmp += "\t\t\t<axis> " + con_axis[2] + ", " + con_axis[1] + ", " + con_axis[0] + " </axis>\n";
-    tmp += "\t\t\t<angle> " + con_ang + " </angle>\n";
-    tmp += "\t\t\t<lower_height> " + con_lheight + " </lower_height>\n";
-    tmp += "\t\t\t<upper_height> " + con_uheight + " </upper_height>\n";
+    tmp = "\t\t\t<optional>\n";
+    tmp += "\t\t\t\t<center> " + con_cen[2] + ", " + con_cen[1] + ", " + con_cen[0] + " </center>\n";
+    tmp += "\t\t\t\t<axis> " + con_axis[2] + ", " + con_axis[1] + ", " + con_axis[0] + " </axis>\n";
+    tmp += "\t\t\t\t<angle> " + con_ang + " </angle>\n";
+    tmp += "\t\t\t\t<lower_height> " + con_lheight + " </lower_height>\n";
+    tmp += "\t\t\t\t<upper_height> " + con_uheight + " </upper_height>\n";
+    tmp = "\t\t\t</optional>\n";
     return (tmp);
 }
 
@@ -239,14 +241,20 @@ function create_xml(shape)
     var file = document.getElementById(testing).files[0];
     // console.log(file.name, "\n\n");
 
-    $.ajax({
-        method: "POST",
-        url: "http://localhost:8080/xmlwrite",
-        data: { data: xml_shape, filename: file.name }
-        })
-        .done(function( msg ) {
-          console.log( "Data Saved: " + msg );
-    });
+
+    if (file)
+    {
+        $.ajax({
+            method: "POST",
+            url: "http://localhost:8080/xmlwrite",
+            data: { data: xml_shape, filename: file.name }
+            })
+            .done(function( msg ) {
+            console.log( "Data Saved: " + msg );
+        });
+    }
+    else
+        console.log("No file given !");
     // this reload file !
     // document.location.reload(true);
 }

@@ -5,13 +5,6 @@ const xmlParser = require("xml2json")
 const formatXml = require("xml-formatter")
 
 const app = express();
-// const reload = require('express-reload')
-// var path = __dirname + '/'
-// console.log(__dirname);
-// or like this for a non index.js name
-// var path = __dirname + '/project/server.js'
-
-// app.use(reload(path)) // for hot reload !
 
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -21,24 +14,29 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 // server configuration
 const PORT = 8080;
 
+// for css and js
+app.use(express.static('public'));
+
+// get method
+app.get('/',function(req,res) {
+  res.sendFile(__dirname + '/index.html');
+});
+
 // create a route for the app
 app.post('/xmlwrite', (req, res) => {
-  // console.log(req.body.data) 
-  // console.log(req.body.filename)
-  // find location (after <object> !) in xml
-  // 	add data  
 
   fs.readFile( req.body.filename, function modify_xml(err, data) 
   {
     if (err) {
-      throw err;
+      res.json({warning:"No file given."});
+      return;  
     }
     const xmlObj = xmlParser.toJson(req.body.data, {reversible: true, object: true})
     const xmlFile = xmlParser.toJson(data, {reversible: true, object: true})
-    const xmlFileObj = xmlFile["scene"]["objects"]
 
     if (xmlFile.hasOwnProperty("scene") && xmlFile.scene.hasOwnProperty("objects"))
     {
+      const xmlFileObj = xmlFile["scene"]["objects"]
       const objectName = Object.keys(xmlObj)[0];
       var count = Object.keys(xmlFileObj).length
 
@@ -56,9 +54,11 @@ app.post('/xmlwrite', (req, res) => {
       // writing to file 
       fs.writeFile(req.body.filename, formatXml(finalXml, {collapseContent: true}), function(err, result){
         if (err) {
-          console.log("err")
+          console.log("Nothing written to the file.")
+          res.json({bad:"Failed!"});
         } else {
           console.log("Xml file successfully updated.")
+          res.json({good:"Success!"});
         }
       })
     }
