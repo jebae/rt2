@@ -6,20 +6,30 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:31:33 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/16 15:31:33 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/17 21:58:15 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void		run_event_loop(t_env *e, t_parse *p, char *filename)
+static void		handle_hotreload(t_env *e, t_parse *p, char *filename)
+{
+	p->ret = 0;
+	parse(p, filename);
+	if (p->ret & RT_PARSE_RET_FAIL)
+		return ;
+	if (p->ret & RT_PARSE_RET_RELOAD)
+		render(e);
+}
+
+void			run_event_loop(t_env *e, t_parse *p, char *filename)
 {
 	SDL_Event	*event;
 
 	event = &e->sdl.event;
 	while (1)
 	{
-		parse(p, filename); // no need to protect?
+		handle_hotreload(e, p, filename);
 		while (SDL_PollEvent(event))
 		{
 			if (event->type == SDL_QUIT)

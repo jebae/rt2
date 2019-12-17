@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 22:26:05 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/16 22:26:11 by almoraru         ###   ########.fr       */
+/*   Updated: 2019/12/17 22:35:12 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ void	parse_ring(t_parse *p)
 		s->buf++;
 	}
 	puts("Ring done");
-	// error message would be printed inside set_object
-	//if (set_ring(&ob[i], &r) == RT_FAIL)
-	// handle when fail
+	if (set_ring(&ob[i], &r) == RT_FAIL)
+		p->ret |= RT_PARSE_RET_FAIL;
 	p->flag &= ~(1UL << 12);
 }

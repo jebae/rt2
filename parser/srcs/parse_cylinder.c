@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 22:20:54 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/16 22:21:21 by almoraru         ###   ########.fr       */
+/*   Updated: 2019/12/17 22:33:11 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,7 @@ void	parse_cylinder(t_parse *p)
 		s->buf++;
 	}
 	puts("Cylinder done");
-	// error message would be printed inside set_object
-	//if (set_cyl(&ob[i], &c) == RT_FAIL)
-	// handle when fail
+	if (set_cyl(&ob[i], &c) == RT_FAIL)
+		p->ret |= RT_PARSE_RET_FAIL;
 	p->flag &= ~(1UL << 6);
 }

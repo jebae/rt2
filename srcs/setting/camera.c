@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:31:28 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/16 15:31:28 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/17 19:37:43 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int		validate(t_arg_camera *arg)
 	return (RT_SUCCESS);
 }
 
-int				set_camera(t_camera *cam, t_arg_camera *arg)
+int				set_camera(t_arg_camera *arg, t_camera *cam)
 {
 	if (validate(arg) == RT_FAIL)
 		return (RT_FAIL);

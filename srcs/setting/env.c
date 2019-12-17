@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:31:30 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/16 15:31:31 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/17 21:49:41 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,17 +81,11 @@ void			clear_env(t_env *e)
 	i = 0;
 	while (i < e->num_objs)
 	{
-		ft_memdel((void **)&ol[i].object);
 		ft_memdel((void **)&ol[i].texture.buffer);
 		ft_memdel((void **)&ol[i].bump_map.buffer);
 		i++;
 	}
 	i = 0;
-	while (i < e->num_lights)
-	{
-		ft_memdel((void **)&ll[i].light);
-		i++;
-	}
 	ft_memdel((void **)&e->img_buf);
 	ft_memdel((void **)&e->data);
 	clear_sdl(&e->sdl);

@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 19:41:54 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/15 22:16:54 by almoraru         ###   ########.fr       */
+/*   Updated: 2019/12/17 21:56:15 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	parse_distant_light(t_parse *p)
 			handle_3vec_number(s, &sp.rot);
 		s->buf++;
 	}
-	//if (set_distant_light(li, &sp) == RT_FAIL)
-	// handle fail
+	if (set_distant_light(&li[i], &sp) == RT_FAIL)
+		p->ret |= RT_PARSE_RET_FAIL;
 	p->flag &= ~(1UL << 14);
 	puts("Distant light done");
 }
@@ -68,8 +68,8 @@ void	parse_spherical_light(t_parse *p)
 			handle_3vec_number(s, &sp.tra);
 		s->buf++;
 	}
-	//if (set_spherical_light(li, &sp) == RT_FAIL)
-	// handle fail
+	if (set_spherical_light(li, &sp) == RT_FAIL)
+		p->ret |= RT_PARSE_RET_FAIL;
 	p->flag &= ~(1UL << 13);
 	puts("spherical light done");
 }
@@ -85,17 +85,17 @@ void	parse_lights(t_parse *p)
 		return ;
 	}
 	if ((ft_strcmp(s->word, "spherical") == 0))
-	{
 		p->flag |= 1UL << 13;
-		p->l_ind++;
-	}
 	if (p->flag & 1UL << 13)
-		parse_spherical_light(p);
-	if ((ft_strcmp(s->word, "distant") == 0))
 	{
-		p->flag |= 1UL << 14;
+		parse_spherical_light(p);
 		p->l_ind++;
 	}
+	if ((ft_strcmp(s->word, "distant") == 0))
+		p->flag |= 1UL << 14;
 	if (p->flag & 1UL << 14)
+	{
 		parse_distant_light(p);
+		p->l_ind++;
+	}
 }

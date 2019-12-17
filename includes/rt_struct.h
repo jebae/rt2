@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:25:21 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/16 22:09:43 by almoraru         ###   ########.fr       */
+/*   Updated: 2019/12/17 21:54:18 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,12 @@
 # define RT_ENV_MASK_NEGATIVE		0x00000020
 # define RT_ENV_MASK_GRAY_SCALE		0x00000040
 # define RT_ENV_MASK_GAUSSIAN_BLUR	0x00000080
+
+/*
+** parser return
+*/
+# define RT_PARSE_RET_FAIL			0x00000001
+# define RT_PARSE_RET_RELOAD		0x00000002
 
 /*
 ** Renderer struct
@@ -415,7 +421,7 @@ typedef struct		s_str
 typedef struct		s_parse
 {
 	t_mem			mem;
-	t_arg_camera		cam;
+	t_camera		*cam;
 	t_ol			*ob;
 	t_ll			*li;
 	t_str			str;

@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 22:22:04 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/16 22:22:18 by almoraru         ###   ########.fr       */
+/*   Updated: 2019/12/17 22:33:44 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ void	parse_plane(t_parse *p)
 		s->buf++;
 	}
 	puts("Plane Done");
-	// error message would be printed inside set_object
-	//if (set_plane(&ob[i], &pl) == RT_FAIL)
-	// handle when fail
+	if (set_plane(&ob[i], &pl) == RT_FAIL)
+		p->ret |= RT_PARSE_RET_FAIL;
 	p->flag &= ~(1UL << 7);
 }
