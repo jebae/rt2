@@ -68,11 +68,12 @@ static void		key_translate(SDL_Keycode sym, t_env *e)
 	}
 }
 
-void			key_input(SDL_Keycode sym, t_env *e)
+void			key_input(SDL_Keycode sym, t_env *e, t_parse *p)
 {
 	if (sym == SDLK_ESCAPE)
 	{
 		clear_env(e);
+		clear_parse(p);
 		SDL_Quit();
 		exit(0);
 	}

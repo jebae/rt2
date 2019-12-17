@@ -20,8 +20,8 @@
 */
 int			init_env(t_env *e);
 void		clear_env(t_env *e);
-void		key_input(SDL_Keycode sym, t_env *e);
-void		run_event_loop(t_env *e);
+void		key_input(SDL_Keycode sym, t_env *e, t_parse *p);
+void		run_event_loop(t_env *e, t_parse *p, char *filename);
 int			handle_fail(const char *msg);
 int			set_camera(t_camera *cam, t_arg_camera *arg);
 void		set_ray_grid_props(t_env *e);

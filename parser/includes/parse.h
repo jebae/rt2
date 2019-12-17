@@ -52,6 +52,7 @@ void			check_time(t_parse *p, struct stat *att, unsigned int *flag, char *path);
 */
 void			*ft_mem(t_mem *mem, size_t size);
 void			is_alloc(void *mem);
+void			clear_parse(t_parse *p);
 
 /*
 **	STRING FUNCTIONS
