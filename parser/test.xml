@@ -1,89 +1,24 @@
 <scene>
 	<camera>
-		<pos> 1.33, 2, 3 </pos>
-		<dir> 1.0, 3, 444 </dir>
-		<right> 1.5, 3, 3.5 </right>
+		<pos> 0, 0, 0 </pos>
+		<dir> 0, 0, 1 </dir>
+		<right> 1, 0, 0 </right>
 	</camera>
 	<light>
-		<spherical>
-			<pos> 1.5, 1.6, 3.3 </pos>
-			<tra> 0.5, 1.6, 3.6 </tra>
-		</spherical>
 		<distant>
-			<dir> 1.5, 1.8, 3.3 </dir>
-			<rot> 0.5, 60.6, 30.6 </rot>
+			<dir> -0.5, 1.0, 0.5 </dir>
 		</distant>
 	</light>
 	<objects>
 		<sphere>
-			<radius> 5.5 </radius>
-			<center> 0, 0.7, 1 </center>
-		</sphere>
-		<sphere>
-			<radius> 5.9 </radius>
-			<center> 1, 5.7, 1.5 </center>
-		</sphere>
-		<cone>
-			<center> 190, 0.7, 1 </center>
-			<axis> 2.1, 343.5, 69 </axis>
-			<angle> 59.5 </angle>
-			<upper_height> 10 </upper_height>
-			<lower_height> 5.5 </lower_height>
+			<radius> 1.0 </radius>
+			<center> 0, 0.0, 2 </center>
 			<optional>
-				<ior>5.5</ior>
+				<ior>1.5</ior>
 				<color> 100, 255, 155</color>
-				<transparency>3.3</trasparency>
-				<reflectivity>3.3</reflectivty>
+				<transparency>0</trasparency>
+				<reflectivity>0</reflectivty>
 			</optional>
-		</cone>
-		<cylinder>
-			<radius> 5.5 </radius>
-			<height> 6.6 </height>
-			<center> 0, 0.7, 1 </center>
-			<axis> 1, 1.5, 69 </axis>
-		</cylinder>
-		<plane>
-			<normal> 50, 1.5, 30 </normal>
-			<d> 1.5 </d>
-		</plane>
-		<rectangle>
-			<p> 1, 10, 35 </p>
-			<a> 5, 35, 10 </a>
-			<b> 50, 65, 1.5 </b>
-		</rectangle>
-		<box>
-			<vmin> 3.6, 2.7, 5.9 </vmin>
-			<a> 3, 2, 5 </a>
-			<b> 3.1, 2.5, 5.2 </b>
-			<norm_c> 3 </norm_c>
-		</box>
-		<triangle>
-			<a> 5, 15, 20 </a>
-			<ab> 5.1, 3.5, 1.1 </ab>
-			<ac> 50, 3.15, 1.620 </ac>
-		</triangle>
-		<pyramid>
-			<a> 1785, 1095, 920 </u>
-			<u> 145, 105, 220 </u>
-			<v> 51.3, 15.2312, 2231.210 </v>
-			<height> 50.5 </height>
-		</pyramid>
-		<ring>
-			<center> 145, 105, 220 </center>
-			<normal> 1.45, 1.5, 2.20 </normal>
-			<r_one> 5.7875 </r_one>
-			<r_two> 59.55 </r_two>
-		</ring>
-		<sphere>
-			<radius> 6.9 </radius>
-			<center> 20, 5.7, 10.5 </center>
-			<optional>
-				<ior>5.5</ior>
-				<color> 100, 255, 155</color>
-				<transparency>3.3</trasparency>
-				<reflectivity>3.3</reflectivty>
-			</optional>
-			<tex_mode> 1 </tex_mode>
 		</sphere>
 	</objects>
 </scene>
