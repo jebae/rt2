@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/12/16 22:07:56 by almoraru         ###   ########.fr       */
+/*   Updated: 2019/12/17 16:38:10 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,11 @@ t_vec2 *uv,
 t_texels *texels,
 t_vec3 *normal,
 t_mat3 *axis_mat
+);
+void		set_texels(
+	const char *filename,
+	int repeat,
+	t_texels *texels
 );
 
 /*

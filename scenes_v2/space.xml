@@ -1,0 +1,24 @@
+<scene>
+	<camera>
+		<pos> 0, 0, 0 </pos>
+		<dir> 0, 0, 1 </dir>
+		<right> 1, 0, 0 </right>
+	</camera>
+	<light>
+		<distant>
+			<dir> -0.5, 1.0, 0.5 </dir>
+		</distant>
+	</light>
+	<objects>
+		<sphere>
+			<radius> 1.0 </radius>
+			<center> 0, 0.0, 2 </center>
+			<optional>
+				<ior>1.5</ior>
+				<color> 100, 255, 155</color>
+				<transparency>0</trasparency>
+				<reflectivity>0</reflectivty>
+			</optional>
+		</sphere>
+	</objects>
+</scene>
