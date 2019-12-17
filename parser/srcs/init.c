@@ -51,6 +51,8 @@ int			init_everything(t_parse *p, char *path)
 	p->size = 0;
 	init_mem(p);
 	init_strings(p);
+	if (p->flag & 1UL)
+		close(p->fd);
 	if ((p->fd = open(path, O_RDONLY)) < 0)
 	{
 		ft_putendl("Failed to open file :(");
@@ -58,7 +60,6 @@ int			init_everything(t_parse *p, char *path)
 	}
 	if (!(p->flag & 1UL))
 	{
-		close(p->fd);
 		p->flag = 0;
 		p->flag |= 1UL;
 	}
