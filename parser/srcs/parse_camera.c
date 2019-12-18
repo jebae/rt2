@@ -37,6 +37,6 @@ void	parse_camera(t_parse *p, t_str *s, unsigned int *flag)
 		}
 		*flag &= ~(1UL << 3);
 		if (set_camera(&c, p->cam) == RT_FAIL)
-			p->ret |= RT_PARSE_RET_FAIL;
+			p->mask |= RT_ENV_MASK_PARSE_FAIL;
 	}
 }

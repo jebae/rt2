@@ -23,7 +23,7 @@ void	check_time(t_parse *p, struct stat *att, unsigned int *flag, char *path)
 	{
 		ft_putendl("FILE IS MODIFIED");
 		*flag |= 1UL << 1;
-		p->ret |= RT_PARSE_RET_RELOAD;
+		p->mask |= RT_ENV_MASK_PARSE_RELOAD;
 	}
 	if (*flag & 1UL << 1)
 	{

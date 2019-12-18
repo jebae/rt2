@@ -38,7 +38,7 @@ void	parse_distant_light(t_parse *p)
 		s->buf++;
 	}
 	if (set_distant_light(&li[i], &sp) == RT_FAIL)
-		p->ret |= RT_PARSE_RET_FAIL;
+		p->mask |= RT_ENV_MASK_PARSE_FAIL;
 	p->flag &= ~(1UL << 14);
 	puts("Distant light done");
 }
@@ -69,7 +69,7 @@ void	parse_spherical_light(t_parse *p)
 		s->buf++;
 	}
 	if (set_spherical_light(li, &sp) == RT_FAIL)
-		p->ret |= RT_PARSE_RET_FAIL;
+		p->mask |= RT_ENV_MASK_PARSE_FAIL;
 	p->flag &= ~(1UL << 13);
 	puts("spherical light done");
 }

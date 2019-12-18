@@ -45,6 +45,6 @@ void	parse_ring(t_parse *p)
 	}
 	puts("Ring done");
 	if (set_ring(&ob[i], &r) == RT_FAIL)
-		p->ret |= RT_PARSE_RET_FAIL;
+		p->mask |= RT_ENV_MASK_PARSE_FAIL;
 	p->flag &= ~(1UL << 12);
 }

@@ -43,6 +43,6 @@ void	parse_triangle(t_parse *p)
 	}
 	puts("Triangle done");
 	if (set_triangle(&ob[i], &t) == RT_FAIL)
-		p->ret |= RT_PARSE_RET_FAIL;
+		p->mask |= RT_ENV_MASK_PARSE_FAIL;
 	p->flag &= ~(1UL << 10);
 }

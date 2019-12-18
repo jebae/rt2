@@ -45,6 +45,6 @@ void	parse_pyramid(t_parse *p)
 	}
 	puts("Pyramid done");
 	if (set_pyramid(&ob[i], &py) == RT_FAIL)
-		p->ret |= RT_PARSE_RET_FAIL;
+		p->mask |= RT_ENV_MASK_PARSE_FAIL;
 	p->flag &= ~(1UL << 11);
 }

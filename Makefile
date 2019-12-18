@@ -79,6 +79,7 @@ SRC_SHADING = diffuse_specular.c\
 SRC_TEXEL = bump_mapping.c\
 	texel.c\
 	texture_mapping.c\
+	set_texels.c\
 
 SRC_TRACE = ray.c\
 	trace.c\
@@ -104,6 +105,7 @@ SRC_SETTING = env.c\
 	event_loop.c\
 	key_input.c\
 	camera.c\
+	ambient.c\
 
 SRCS = color_op.c\
 	get_normal.c\
@@ -112,7 +114,7 @@ SRCS = color_op.c\
 	mat3_op.c\
 	handle_fail.c\
 	buffer2img.c\
-	main.c\
+#main.c\
 
 # objs
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

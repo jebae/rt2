@@ -14,12 +14,17 @@
 
 static void		handle_hotreload(t_env *e, t_parse *p, char *filename)
 {
-	p->ret = 0;
+	p->mask = 0;
 	parse(p, filename);
-	if (p->ret & RT_PARSE_RET_FAIL)
+	if (p->mask & RT_ENV_MASK_PARSE_FAIL)
 		return ;
-	if (p->ret & RT_PARSE_RET_RELOAD)
+	if (p->mask & RT_ENV_MASK_PARSE_RELOAD)
+	{
+		e->num_objs = p->index;
+		e->num_lights = p->l_ind;
+		e->mask = p->mask;
 		render(e);
+	}
 }
 
 void			run_event_loop(t_env *e, t_parse *p, char *filename)
@@ -29,7 +34,8 @@ void			run_event_loop(t_env *e, t_parse *p, char *filename)
 	event = &e->sdl.event;
 	while (1)
 	{
-		handle_hotreload(e, p, filename);
+		if (p && filename)
+			handle_hotreload(e, p, filename);
 		while (SDL_PollEvent(event))
 		{
 			if (event->type == SDL_QUIT)

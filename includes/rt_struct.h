@@ -58,12 +58,8 @@
 # define RT_ENV_MASK_NEGATIVE		0x00000020
 # define RT_ENV_MASK_GRAY_SCALE		0x00000040
 # define RT_ENV_MASK_GAUSSIAN_BLUR	0x00000080
-
-/*
-** parser return
-*/
-# define RT_PARSE_RET_FAIL			0x00000001
-# define RT_PARSE_RET_RELOAD		0x00000002
+# define RT_ENV_MASK_PARSE_FAIL		0x00000100
+# define RT_ENV_MASK_PARSE_RELOAD	0x00000200
 
 /*
 ** Renderer struct
@@ -88,13 +84,6 @@ typedef struct		s_col
 	int				g;
 	int				b;
 }					t_col;
-
-typedef struct		s_shader
-{
-	t_col			amb;
-	t_col			diff;
-	t_col			spec;
-}					t_shader;
 
 typedef struct		s_camera
 {
@@ -422,13 +411,14 @@ typedef struct		s_parse
 {
 	t_mem			mem;
 	t_camera		*cam;
+	t_vec3			*amb;
 	t_ol			*ob;
 	t_ll			*li;
 	t_str			str;
 	struct stat		att;
 	unsigned int	flag;
 	unsigned int	number;
-	int				ret;
+	int				mask;
 	int				size;
 	int				line;
 	int				index;

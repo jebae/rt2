@@ -64,6 +64,6 @@ void	parse_cone(t_parse *p)
 	}
 	puts("cone done");
 	if (set_cone(&ob[i], &c) == RT_FAIL)
-		p->ret |= RT_PARSE_RET_FAIL;
+		p->mask |= RT_ENV_MASK_PARSE_FAIL;
 	p->flag &= ~(1UL << 5);
 }

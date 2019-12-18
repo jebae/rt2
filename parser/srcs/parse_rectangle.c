@@ -58,6 +58,6 @@ void	parse_rectangle(t_parse *p)
 	}
 	puts("Rectangle done");
 	if (set_rectangle(&ob[i], &r) == RT_FAIL)
-		p->ret |= RT_PARSE_RET_FAIL;
+		p->mask |= RT_ENV_MASK_PARSE_FAIL;
 	p->flag &= ~(1UL << 8);
 }

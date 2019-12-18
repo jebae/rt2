@@ -60,6 +60,6 @@ void	parse_cylinder(t_parse *p)
 	}
 	puts("Cylinder done");
 	if (set_cyl(&ob[i], &c) == RT_FAIL)
-		p->ret |= RT_PARSE_RET_FAIL;
+		p->mask |= RT_ENV_MASK_PARSE_FAIL;
 	p->flag &= ~(1UL << 6);
 }

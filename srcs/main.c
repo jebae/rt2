@@ -23,14 +23,15 @@ static int		init(t_env *e, t_parse *p, char *filename)
 	if (init_env(e) == RT_FAIL)
 		return (RT_FAIL);
 	p->ob = e->ll_obj;
-	printf("address origin : %p\n", e->ll_obj);
 	p->li = e->ll_lit;
 	p->cam = &e->cam;
+	p->amb = &e->amb;
 	parse(p, filename);
-	if (p->ret == RT_PARSE_RET_FAIL)
+	if (p->mask & RT_ENV_MASK_PARSE_FAIL)
 		return (RT_FAIL);
 	e->num_objs = p->index;
 	e->num_lights = p->l_ind;
+	e->mask = p->mask;
 	set_ray_grid_props(e);
 	return (RT_SUCCESS);
 }

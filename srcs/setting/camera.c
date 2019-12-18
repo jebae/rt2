@@ -18,6 +18,8 @@ static int		validate(t_arg_camera *arg)
 		return (handle_fail("set_camera : dir's length almost 0"));
 	if (v3_norm2(arg->right) < RT_APPROX_0)
 		return (handle_fail("set_camera : right's length almost 0"));
+	if (ft_abs_double(v3_dotpdt(arg->dir, arg->right)) > RT_APPROX_0)
+		return (handle_fail("set_camera : dir, right not orthogonal"));
 	return (RT_SUCCESS);
 }
 

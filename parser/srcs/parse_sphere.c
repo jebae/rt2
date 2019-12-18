@@ -53,6 +53,6 @@ void	parse_sphere(t_parse *p)
 	}
 	p->flag &= ~(1UL << 4);
 	if (set_sphere(&ob[i], &sp) == RT_FAIL)
-		p->ret |= RT_PARSE_RET_FAIL;
+		p->mask |= RT_ENV_MASK_PARSE_FAIL;
 	ft_putendl("sphere done");
 }

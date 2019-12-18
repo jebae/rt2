@@ -55,21 +55,6 @@ int				init_env(t_env *e)
 	return (RT_SUCCESS);
 }
 
-void			set_ray_grid_props(t_env *e)
-{
-	double		g_x;
-	double		g_y;
-
-	g_x = tan(M_PI / 2.0 / 2.0);
-	g_y = g_x * e->height / e->width;
-	e->dx = v3_scalar(e->cam.right, g_x);
-	e->dy = v3_scalar(e->cam.down, g_y);
-	e->offset = v3_sub(e->cam.dir, e->dx);
-	e->offset = v3_sub(e->offset, e->dy);
-	e->dx = v3_scalar(e->dx, 2.0 / (e->width - 1));
-	e->dy = v3_scalar(e->dy, 2.0 / (e->height - 1));
-}
-
 void			clear_env(t_env *e)
 {
 	int			i;
@@ -89,4 +74,19 @@ void			clear_env(t_env *e)
 	ft_memdel((void **)&e->img_buf);
 	ft_memdel((void **)&e->data);
 	clear_sdl(&e->sdl);
+}
+
+void			set_ray_grid_props(t_env *e)
+{
+	double		g_x;
+	double		g_y;
+
+	g_x = tan(M_PI / 2.0 / 2.0);
+	g_y = g_x * e->height / e->width;
+	e->dx = v3_scalar(e->cam.right, g_x);
+	e->dy = v3_scalar(e->cam.down, g_y);
+	e->offset = v3_sub(e->cam.dir, e->dx);
+	e->offset = v3_sub(e->offset, e->dy);
+	e->dx = v3_scalar(e->dx, 2.0 / (e->width - 1));
+	e->dy = v3_scalar(e->dy, 2.0 / (e->height - 1));
 }

@@ -41,6 +41,6 @@ void	parse_plane(t_parse *p)
 	}
 	puts("Plane Done");
 	if (set_plane(&ob[i], &pl) == RT_FAIL)
-		p->ret |= RT_PARSE_RET_FAIL;
+		p->mask |= RT_ENV_MASK_PARSE_FAIL;
 	p->flag &= ~(1UL << 7);
 }
