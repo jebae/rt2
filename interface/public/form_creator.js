@@ -236,7 +236,7 @@ function create_xml(shape)
     }
 
     xml_shape += close_shape(shape);
-    console.log("i am the output ---->\n\n", xml_shape, "\n\n");
+    // console.log("i am the output ---->\n\n", xml_shape, "\n\n");
 
     var testing = "file_" + shape_num; 
     var file = document.getElementById(testing).files[0];
@@ -333,10 +333,9 @@ function select_shape_form(selected)
     }
 }
 
-function select_object() 
+function hide_select(divsToHide)
 {
     // hides the select drop down bar 
-    var divsToHide = document.getElementsByClassName("objects");
     for (var i = 0; i < divsToHide.length; i++) {
         for (var j = 0; j < divsToHide[i].childNodes.length; j++) {
             if (
@@ -348,6 +347,35 @@ function select_object()
             }
         }
     }
+}
+
+function select_object() 
+{
+    var header = document.getElementById("main_form_header");
+    header.style.display = 'none';
+    var camera = document.getElementById("camera");
+    camera.style.display = 'none';
+    var divsToHide = document.getElementsByClassName("objects");
+
+    hide_select(divsToHide)
     var selected = add_shape_div();
     select_shape_form(selected);
+}
+
+function update_camera() 
+{
+    var divsToHide = document.getElementsByClassName("objects");
+    hide_select(divsToHide);
+
+    var header = document.getElementById("main_form_header");
+    header.style.display = 'none';
+    var camera = document.getElementById("camera");
+    camera.style.display = 'none';
+    var modify_cam = document.getElementById("modify_cam");
+    modify_cam.style.display = 'block';
+}
+
+function modify_cam()
+{
+    
 }

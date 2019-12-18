@@ -12,6 +12,9 @@
       <h3>RT</h3>
     </div>
     <div class="the_form_container" id="the_form_container">
+      <div class="main_form_header" id="main_form_header">
+        <h2>Hello, how would you like to modify the scene file ?</h2>
+      </div>
       <form class="update_me">
         <div class="objects" id="objects">
           <select id="object_options" class="objects_opt" name="dropdown_objects">
@@ -26,7 +29,10 @@
             <option value="triangle">TRIANGLE</option>
             <option value="plane">PLANE</option>
           </select>
-          <input class="buttons" id="button_obj" type="button" value="ADD !" onclick="select_object()"/>
+          <input class="buttons" id="button_obj" type="button" value="ADD AN OBJECT !" onclick="select_object()"/>
+        </div>
+        <div class="camera" id="camera">
+          <br/><input class="buttons" id="button_cam" type="button" value="MODIFY THE CAMERA !" onclick="update_camera()"/>
         </div>
       </form>
       <div class="output_object" id="sphere_object"> <!-- 1 -->
@@ -377,17 +383,24 @@
             </table>
           </form>
       </div>
-      <div>
+      <div class="modify_cam" id="modify_cam">
+        <h3>ENTER CAMERA PARAMETERS</h3><br/><br/>
+        <form class="cam_form">
+            <span id="txt_simple">POSITION :</span>
+            <input class="i_cmplx" id="cam_nor_z" type="text" name="cam_normal_z" placeholder="Enter Z" maxlength="6"/>
+            <input class="i_cmplx" id="cam_nor_y" type="text" name="cam_normal_y" placeholder="Enter Y" maxlength="6"/>
+            <input class="i_cmplx" id="cam_nor_x" type="text" name="cam_normal_x" placeholder="Enter X" maxlength="6"/><br/><br/>
+            <span id="txt_simple">DIRECTION :</span>
+              <input class="i_cmplx" id="cam_dir_z" type="text" name="cam_direction_z" placeholder="Enter Z" maxlength="6"/>
+              <input class="i_cmplx" id="cam_dir_y" type="text" name="cam_direction_y" placeholder="Enter Y" maxlength="6"/>
+              <input class="i_cmplx" id="cam_dir_x" type="text" name="cam_direction_x" placeholder="Enter X" maxlength="6"/><br/><br/>
+            <span id="txt_simple">FILE NAME :</span><input class="i_file" id="file_9" type="file" name="file" placeholder="Enter file name"/><br><br>
+          </form><br/>
+          <input class="buttons" id="button_camera" type="button" value="UPDATE CAMERA !" onclick="mod_cam()"/>
       </div>
     </div>
     <div class="footer">
       <h5> A project created by : Jeongmo Bae <i>(jebae)</i>, Samuel Boniface <i>(sabonifa)</i>, Madeleine Hernandez <i>(mhernand)</i>, and Alexandru Moraru <i>(almoraru)</i>.</h5>
     </div>
   </body>
-  <script>
-    var w = window.innerWidth;
-    var h = window.innerHeight;
-    console.log(w);
-    console.log(h);
-  </script>
 </html>

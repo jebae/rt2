@@ -35,6 +35,15 @@ body {
   font-size: 3vw;
 }
 
+.main_form_header
+{
+  color: #fdef96;
+  text-align: center;
+  padding-top: 1vw;
+  font-size: 1.5vw;
+  display: block;
+}
+
 .the_form_container
 {
   background-color: #afa939;
@@ -108,8 +117,8 @@ body {
   margin-top: 3vw;
 }
 
-.output_object form {
-  margin-right: 15%;
+.output_object form, .modify_cam form {
+  margin-right: 15%;  
 }
 
 #txt_simple {
@@ -151,7 +160,7 @@ body {
   color: #709078;
 }
 
-#button_cone, #button_cylinder, #button_sphere, #button_rectangle
+#button_camera, #button_cone, #button_cylinder, #button_sphere, #button_rectangle
 {
   margin-top: 2vw !important;
   display: block;
@@ -161,7 +170,7 @@ body {
   margin-bottom: 2vw;
 }
 
-#button_box, #button_triangle, #button_pyramid, #button_ring, #button_plane
+#button_camera, #button_box, #button_triangle, #button_pyramid, #button_ring, #button_plane
 {
   margin-bottom: 2vw;
 }
@@ -283,3 +292,18 @@ table {
 {
   min-height:;
 } */
+
+
+/* camera */
+.modify_cam
+{
+  display: none;
+  color: #fdef96;
+  text-align: center;
+  padding-top: 1vw;
+}
+
+.modify_cam h3 
+{
+  font-size: 1.5vw;
+}
