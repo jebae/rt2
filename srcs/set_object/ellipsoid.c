@@ -19,6 +19,7 @@ int				set_ellipsoid(t_ol *ol, t_arg_ellipsoid *arg)
 		return (RT_FAIL);
 	ol->intersect = &v_intersect_ellipsoid;
 	ol->get_normal = &normal_ellipsoid;
+	ol->uv_mapping = NULL;
 	ol->translate = &ellipsoid_translate;
 	ol->rotate = &ellipsoid_rotate;
 	ellipsoid = (t_ellipsoid *)ol->object;

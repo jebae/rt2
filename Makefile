@@ -1,6 +1,6 @@
 NAME = rt
 
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra
 
 LIBFT_PATH = ./libft
 LIBVECTOR_PATH = ./libvector
@@ -120,7 +120,7 @@ SRCS = color_op.c\
 	mat3_op.c\
 	handle_fail.c\
 	buffer2img.c\
-#main.c\
+	main.c\
 
 # objs
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

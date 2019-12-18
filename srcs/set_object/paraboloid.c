@@ -21,6 +21,7 @@ int				set_paraboloid(t_ol *ol, t_arg_paraboloid *arg)
 		return (RT_FAIL);
 	ol->intersect = &v_intersect_paraboloid;
 	ol->get_normal = &normal_paraboloid;
+	ol->uv_mapping = NULL;
 	ol->translate = &paraboloid_translate;
 	ol->rotate = &paraboloid_rotate;
 	paraboloid = (t_paraboloid *)ol->object;

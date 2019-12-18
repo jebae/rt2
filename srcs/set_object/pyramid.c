@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:31:12 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/16 15:31:13 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/18 17:05:29 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int				set_pyramid(t_ol *ol, t_arg_pyramid *arg)
 		return (RT_FAIL);
 	ol->intersect = &v_intersect_pyramid;
 	ol->get_normal = &normal_pyramid;
+	ol->uv_mapping = NULL;
 	ol->translate = &pyramid_translate;
 	ol->rotate = &pyramid_rotate;
 	pyramid = (t_pyramid *)ol->object;

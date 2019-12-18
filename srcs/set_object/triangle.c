@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:31:25 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/16 15:31:26 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/18 17:05:42 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int				set_triangle(t_ol *ol, t_arg_triangle *arg)
 		return (RT_FAIL);
 	ol->intersect = &v_intersect_triangle;
 	ol->get_normal = &normal_triangle;
+	ol->uv_mapping = NULL;
 	ol->translate = &triangle_translate;
 	ol->rotate = &triangle_rotate;
 	triangle = (t_triangle *)ol->object;
