@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 11:55:02 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/17 22:43:36 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/18 16:55:11 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int		parse(t_parse *p, char *path)
 
 	att = &p->att;
 	s = &p->str;
-	stat(path, att);
+	if (stat(path, att) != 0)
+		return (1);
 	if (!(p->flag & 1UL))
 	{
 		init_everything(p, path);

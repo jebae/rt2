@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:31:21 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/16 15:31:21 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/18 17:05:36 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int				set_ring(t_ol *ol, t_arg_ring *arg)
 		return (RT_FAIL);
 	ol->intersect = &v_intersect_ring;
 	ol->get_normal = &normal_ring;
+	ol->uv_mapping = NULL;
 	ol->translate = &ring_translate;
 	ol->rotate = &ring_rotate;
 	ring = (t_ring *)ol->object;
