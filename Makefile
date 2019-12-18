@@ -1,6 +1,6 @@
 NAME = rt
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address
 
 LIBFT_PATH = ./libft
 LIBVECTOR_PATH = ./libvector
@@ -58,6 +58,8 @@ SRC_ROTATE = box.c\
 	pyramid.c\
 	ring.c\
 	triangle.c\
+	paraboloid.c\
+	ellipsoid.c\
 
 SRC_SET_OBJECT = box.c\
 	common.c\
@@ -69,6 +71,8 @@ SRC_SET_OBJECT = box.c\
 	ring.c\
 	sphere.c\
 	triangle.c\
+	paraboloid.c\
+	ellipsoid.c\
 
 SRC_SHADING = diffuse_specular.c\
 	reflection.c\
@@ -95,6 +99,8 @@ SRC_TRANSLATE = translate_object.c\
 	ring.c\
 	sphere.c\
 	triangle.c\
+	paraboloid.c\
+	ellipsoid.c\
 
 SRC_UV_MAPPING = cone.c\
 	cylinder.c\

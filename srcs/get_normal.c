@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/26 12:27:52 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/12/16 15:48:19 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/18 16:06:27 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,16 +92,16 @@ t_vec3	normal_paraboloid(t_ray ray, void *object) // PARABOLOID
 	para = object;
 	p = find_point_from_ray(ray);
 	v = v3_frompoints(para->cen, ray.ori); //to change
-	para->dir = v3_normalise(para->dir);
+	para->axis = v3_normalise(para->axis);
 	k = para->k;
-	m = v3_dotpdt(v3_frompoints(para->cen, p), para->dir);
-			// m = ray.t * v3_dotpdt(ray.dir, ol->dir) + v3_dotpdt(v, ol->dir);
+	m = v3_dotpdt(v3_frompoints(para->cen, p), para->axis);
+			// m = ray.t * v3_dotpdt(ray.axis, ol->axis) + v3_dotpdt(v, ol->axis);
 	// v = v3_scalar(v, m + k);
 	// n = v3_frompoints(ol->cen, p);
 	// n = v3_frompoints(p, v);
-	n.x = p.x - para->cen.x - para->dir.x * (m + k);
-	n.y = p.y - para->cen.y - para->dir.y * (m + k);
-	n.z = p.z - para->cen.z - para->dir.z * (m + k);
+	n.x = p.x - para->cen.x - para->axis.x * (m + k);
+	n.y = p.y - para->cen.y - para->axis.y * (m + k);
+	n.z = p.z - para->cen.z - para->axis.z * (m + k);
 	n = v3_normalise(n);
 	// printf("n : < %f, %f, %f>", n.x, n.y, n.z);
 	return (n);
@@ -115,10 +115,11 @@ t_vec3	normal_ellipsoid(t_ray ray, void *object) // ELLIPSOID
 t_ellipsoid *ell;
 
 ell = object;
-double k = ell->k;
+//double k = ell->k;
+double d = ell->d;
 // double r = ol->radius;
-t_vec3 C = para->cen;
-t_vec3 V = v3_normalise(para->dir);
+t_vec3 C = ell->cen;
+t_vec3 V = v3_normalise(ell->axis);
 // t_vec3 X = v3_frompoints(C, ray.ori);
 
 // double A1 = 2 * k * v3_dotpdt(ray.dir, V);
@@ -126,7 +127,7 @@ t_vec3 V = v3_normalise(para->dir);
 // double	a = 4 * r * r * v3_dotpdt(ray.dir, ray.dir) - A1 * A1;
 // double	b = 2 * (4 * r * r * v3_dotpdt(ray.dir, X) - A1 * A2);
 
-t_vec3 Cmid = v3_add(C, v3_scalar(V, k /2));
+t_vec3 Cmid = v3_add(C, v3_scalar(V, d /2));
 t_vec3 P = find_point_from_ray(ray);
 // t_vec3 R = v3_sub(P, Cmid);
 // t_vec3 n = v3_normalise( v3_sub( R, v3_scalar( V, (1-(81/36)) * v3_dotpdt(R,V))));

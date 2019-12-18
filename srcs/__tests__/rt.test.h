@@ -70,6 +70,8 @@ void			set_scene_plane(t_env *e);
 void			set_scene_pyramid(t_env *e);
 void			set_scene_ring(t_env *e);
 void			set_scene_triangle(t_env *e);
+void			set_scene_paraboloid(t_env *e);
+void			set_scene_ellipsoid(t_env *e);
 
 /*
 ** filter utils

@@ -11,4 +11,6 @@ void		test_set_object(void)
 	RUN_TEST_GROUP(set_pyramid);
 	RUN_TEST_GROUP(set_ring);
 	RUN_TEST_GROUP(set_triangle);
+	RUN_TEST_GROUP(set_paraboloid);
+	RUN_TEST_GROUP(set_ellipsoid);
 }

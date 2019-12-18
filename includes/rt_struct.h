@@ -342,6 +342,23 @@ typedef struct		s_arg_ring
 	double			r2;
 }					t_arg_ring;
 
+typedef struct		s_arg_ellipsoid
+{
+	t_vec3			cen;
+	t_vec3			axis;
+	double			d;
+	double			sum;
+}					t_arg_ellipsoid;
+
+typedef struct		s_arg_paraboloid
+{
+	t_vec3			cen;
+	t_vec3			axis;
+	double			k;
+	double			min;
+	double			max;
+}					t_arg_paraboloid;
+
 /*
 ** buffer
 */

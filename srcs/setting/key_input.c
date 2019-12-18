@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:31:35 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/17 22:04:57 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/18 16:45:24 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void			key_input(SDL_Keycode sym, t_env *e, t_parse *p)
 	if (sym == SDLK_ESCAPE)
 	{
 		clear_env(e);
-		clear_parse(p);
+		if (p)
+			clear_parse(p);
 		SDL_Quit();
 		exit(0);
 	}

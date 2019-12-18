@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 14:08:14 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/12/17 21:42:33 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/18 16:07:33 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,13 +166,13 @@ double	v_intersect_paraboloid(t_ray ray, void *object)  // PARABOLOID
 	para = object;
 	v = v3_frompoints(para->cen, ray.ori);
 	k = para->k;
-	para->dir = v3_normalise(para->dir);
+	para->axis = v3_normalise(para->axis);
 	a = v3_dotpdt(ray.dir, ray.dir) - \
-		v3_dotpdt(ray.dir, para->dir) * v3_dotpdt(ray.dir, para->dir);
+		v3_dotpdt(ray.dir, para->axis) * v3_dotpdt(ray.dir, para->axis);
 	b = 2 * (v3_dotpdt(ray.dir, v) - \
-		v3_dotpdt(ray.dir, para->dir) * (v3_dotpdt(v, para->dir) + 2*k));
+		v3_dotpdt(ray.dir, para->axis) * (v3_dotpdt(v, para->axis) + 2*k));
 	c = v3_dotpdt(v, v) - 1\
-		* v3_dotpdt(v, para->dir) * (v3_dotpdt(v, para->dir) + 4 * k);
+		* v3_dotpdt(v, para->axis) * (v3_dotpdt(v, para->axis) + 4 * k);
 	return (find_closest_intersection(a, b, c));
 }
 
@@ -194,10 +194,10 @@ double	v_intersect_ellipsoid(t_ray ray, void *object)  //ELLIPSOID
 	ell = object;
 	v = v3_frompoints(ell->cen, ray.ori);
 	k = ell->d;
-	ell->dir = v3_normalise(ell->dir);
+	ell->axis = v3_normalise(ell->axis);
 
-double A1 = 2 * k * v3_dotpdt(ray.dir, ell->dir);
-double A2 = ell->sum * ell->sum + 2 * k * v3_dotpdt(v, ell->dir) - k;
+double A1 = 2 * k * v3_dotpdt(ray.dir, ell->axis);
+double A2 = ell->sum * ell->sum + 2 * k * v3_dotpdt(v, ell->axis) - k;
 
 	a = 4 * ell->sum * ell->sum * v3_dotpdt(ray.dir, ray.dir) - A1 * A1;
 	b = 2 * (4 * ell->sum * ell->sum * v3_dotpdt(ray.dir, v) - A1 * A2);

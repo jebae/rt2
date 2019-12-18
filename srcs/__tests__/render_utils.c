@@ -199,6 +199,10 @@ void			render_scene(char *title, int argc, char **argv)
 		set_scene_ring(&e);
 	else if (strcmp(title, "tri") == 0)
 		set_scene_triangle(&e);
+	else if (strcmp(title, "para") == 0)
+		set_scene_paraboloid(&e);
+	else if (strcmp(title, "ellip") == 0)
+		set_scene_ellipsoid(&e);
 	if (render(&e) == RT_FAIL)
 		printf("Fail render\n");
 	run_event_loop(&e, NULL, NULL);

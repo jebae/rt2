@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/12/17 22:29:58 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/18 16:33:57 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,28 +45,28 @@ t_ray		cast_ray(int x, int y, t_env *e);
 ** Shading functions
 */
 t_col		diffuse_specular(
-t_vec3 light_dir,
-t_ll *ll,
-t_trace_record *rec,
-t_env *e
+	t_vec3 light_dir,
+	t_ll *ll,
+	t_trace_record *rec,
+	t_env *e
 );
 t_col		calc_shade(t_env *e, t_trace_record *rec, double coeff);
 double		send_shadow_ray(t_trace_record *rec, t_vec3 light_dir, t_env *e);
 t_col		reflection_shade(
-t_env *e,
-t_trace_record *prev,
-double coeff
+	t_env *e,
+	t_trace_record *prev,
+	double coeff
 );
 t_col		refraction_shade(
-t_env *e,
-t_trace_record *prev,
-double coeff
+	t_env *e,
+	t_trace_record *prev,
+	double coeff
 );
 double		get_transmittance(
-t_trace_record *rec,
-t_vec3 light_dir,
-double light_dist,
-t_env *e
+	t_trace_record *rec,
+	t_vec3 light_dir,
+	double light_dist,
+	t_env *e
 );
 
 /*
@@ -103,6 +103,8 @@ int			set_box(t_ol *ol, t_arg_box *arg);
 int			set_triangle(t_ol *ol, t_arg_triangle *arg);
 int			set_pyramid(t_ol *ol, t_arg_pyramid *arg);
 int			set_ring(t_ol *ol, t_arg_ring *arg);
+int			set_paraboloid(t_ol *ol, t_arg_paraboloid *arg);
+int			set_ellipsoid(t_ol *ol, t_arg_ellipsoid *arg);
 
 /*
 ** Intersection functions
@@ -117,6 +119,8 @@ double		v_intersect_box(t_ray ray, void *object);
 double		v_intersect_triangle(t_ray ray, void *object);
 double		v_intersect_pyramid(t_ray ray, void *object);
 double		v_intersect_ring(t_ray ray, void *object);
+double		v_intersect_paraboloid(t_ray ray, void *object);
+double		v_intersect_ellipsoid(t_ray ray, void *object);
 double		intersection(t_ray ray, t_ol *ol);
 double		find_closest_intersection(double a, double b, double c);
 t_vec3		find_point_from_ray(t_ray ray);
@@ -140,34 +144,36 @@ t_vec3		normal_box(t_ray ray, void *object);
 t_vec3		normal_triangle(t_ray ray, void *object);
 t_vec3		normal_pyramid(t_ray ray, void *object);
 t_vec3		normal_ring(t_ray ray, void *object);
+t_vec3		normal_paraboloid(t_ray ray, void *object);
+t_vec3		normal_ellipsoid(t_ray ray, void *object);
 t_vec3		get_normal(t_ray ray, t_ol *ol);
 
 /*
 ** UV mapping functions
 */
 t_vec2		sphere_uv_mapping(
-t_vec3 point,
-t_mat3 *axis_mat,
-t_texels *texels,
-void *object
+	t_vec3 point,
+	t_mat3 *axis_mat,
+	t_texels *texels,
+	void *object
 );
 t_vec2		cyl_uv_mapping(
-t_vec3 point,
-t_mat3 *axis_mat,
-t_texels *texels,
-void *object
+	t_vec3 point,
+	t_mat3 *axis_mat,
+	t_texels *texels,
+	void *object
 );
 t_vec2		cone_uv_mapping(
-t_vec3 point,
-t_mat3 *axis_mat,
-t_texels *texels,
-void *object
+	t_vec3 point,
+	t_mat3 *axis_mat,
+	t_texels *texels,
+	void *object
 );
 t_vec2		rectangle_uv_mapping(
-t_vec3 point,
-t_mat3 *axis_mat,
-t_texels *texels,
-void *object
+	t_vec3 point,
+	t_mat3 *axis_mat,
+	t_texels *texels,
+	void *object
 );
 
 /*
@@ -177,10 +183,10 @@ int			has_texel(t_ol *ol);
 int			uv_to_texel_index(t_vec2 *uv, t_texels *texels);
 t_vec3		get_texel_color(t_vec2 *uv, t_texels *texels);
 t_vec3		get_bumped_normal(
-t_vec2 *uv,
-t_texels *texels,
-t_vec3 *normal,
-t_mat3 *axis_mat
+	t_vec2 *uv,
+	t_texels *texels,
+	t_vec3 *normal,
+	t_mat3 *axis_mat
 );
 int			set_texels(
 	const char *filename,
@@ -201,6 +207,8 @@ void		box_translate(t_vec3 *v_translate, void *object);
 void		triangle_translate(t_vec3 *v_translate, void *object);
 void		pyramid_translate(t_vec3 *v_translate, void *object);
 void		ring_translate(t_vec3 *v_translate, void *object);
+void		ellipsoid_translate(t_vec3 *v_translate, void *object);
+void		paraboloid_translate(t_vec3 *v_translate, void *object);
 
 /*
 ** Rotate functions
@@ -212,49 +220,59 @@ t_vec3		rotate(t_vec4 *q, t_vec3 *v, t_vec4 *q_i);
 void		rotate_object(t_env *e, double theta);
 void		rotate_object_axis(t_vec4 *q, t_mat3 *axis_mat);
 void		sphere_rotate(
-t_vec4 *q,
-t_mat3 *axis_mat,
-void *object
+	t_vec4 *q,
+	t_mat3 *axis_mat,
+	void *object
 );
 void		box_rotate(
-t_vec4 *q,
-t_mat3 *axis_mat,
-void *object
+	t_vec4 *q,
+	t_mat3 *axis_mat,
+	void *object
 );
 void		rectangle_rotate(
-t_vec4 *q,
-t_mat3 *axis_mat,
-void *object
+	t_vec4 *q,
+	t_mat3 *axis_mat,
+	void *object
 );
 void		cone_rotate(
-t_vec4 *q,
-t_mat3 *axis_mat,
-void *object
+	t_vec4 *q,
+	t_mat3 *axis_mat,
+	void *object
 );
 void		cyl_rotate(
-t_vec4 *q,
-t_mat3 *axis_mat,
-void *object
+	t_vec4 *q,
+	t_mat3 *axis_mat,
+	void *object
 );
 void		plane_rotate(
-t_vec4 *q,
-t_mat3 *axis_mat,
-void *object
+	t_vec4 *q,
+	t_mat3 *axis_mat,
+	void *object
 );
 void		pyramid_rotate(
-t_vec4 *q,
-t_mat3 *axis_mat,
-void *object
+	t_vec4 *q,
+	t_mat3 *axis_mat,
+	void *object
 );
 void		ring_rotate(
-t_vec4 *q,
-t_mat3 *axis_mat,
-void *object
+	t_vec4 *q,
+	t_mat3 *axis_mat,
+	void *object
 );
 void		triangle_rotate(
-t_vec4 *q,
-t_mat3 *axis_mat,
-void *object
+	t_vec4 *q,
+	t_mat3 *axis_mat,
+	void *object
+);
+void		ellipsoid_rotate(
+	t_vec4 *q,
+	t_mat3 *axis_mat,
+	void *object
+);
+void		paraboloid_rotate(
+	t_vec4 *q,
+	t_mat3 *axis_mat,
+	void *object
 );
 
 /*
@@ -267,10 +285,10 @@ int			cel_shading(t_env *e);
 ** Anti-aliasing functions
 */
 int			anti_aliasing(
-unsigned int *after,
-unsigned int *before,
-int width,
-int height
+	unsigned int *after,
+	unsigned int *before,
+	int width,
+	int height
 );
 
 /*
