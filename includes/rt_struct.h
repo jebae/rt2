@@ -197,6 +197,23 @@ typedef struct		s_cone
 	double			lower_height;
 }					t_cone;
 
+typedef struct		s_ellipsoid
+{
+	t_vec3			cen;
+	t_vec3			axis;
+	double			d;
+	double			sum;
+}					t_ellipsoid;
+
+typedef struct		s_paraboloid
+{
+	t_vec3			cen;
+	t_vec3			axis;
+	double			k;
+	double			min;
+	double			max;
+}					t_paraboloid;
+
 typedef struct		s_cyl
 {
 	t_vec3			cen;

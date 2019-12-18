@@ -76,3 +76,63 @@ t_vec3	normal_plane(t_ray ray, void *object)
 		normal = v3_scalar(plane->normal, -1);
 	return (v3_normalise(normal));
 }
+
+t_vec3	normal_paraboloid(t_ray ray, void *object) // PARABOLOID
+{
+	t_vec3	p;
+	t_vec3	v;
+	t_vec3	n;
+	double	k;
+	double	m;
+	t_paraboloid *para;
+
+//m=(P-C)|V
+// N = nrm( P-C-V*(m+k) )
+
+	para = object;
+	p = find_point_from_ray(ray);
+	v = v3_frompoints(para->cen, ray.ori); //to change
+	para->dir = v3_normalise(para->dir);
+	k = para->k;
+	m = v3_dotpdt(v3_frompoints(para->cen, p), para->dir);
+			// m = ray.t * v3_dotpdt(ray.dir, ol->dir) + v3_dotpdt(v, ol->dir);
+	// v = v3_scalar(v, m + k);
+	// n = v3_frompoints(ol->cen, p);
+	// n = v3_frompoints(p, v);
+	n.x = p.x - para->cen.x - para->dir.x * (m + k);
+	n.y = p.y - para->cen.y - para->dir.y * (m + k);
+	n.z = p.z - para->cen.z - para->dir.z * (m + k);
+	n = v3_normalise(n);
+	// printf("n : < %f, %f, %f>", n.x, n.y, n.z);
+	return (n);
+}
+
+t_vec3	normal_ellipsoid(t_ray ray, void *object) // ELLIPSOID
+{
+// 	Cmid = C + V*k/2
+//    R = P - Cmid
+//    N = nrm( R - V*(1-b^2/a^2)*(R|V) )
+t_ellipsoid *ell;
+
+ell = object;
+double k = ell->k;
+// double r = ol->radius;
+t_vec3 C = para->cen;
+t_vec3 V = v3_normalise(para->dir);
+// t_vec3 X = v3_frompoints(C, ray.ori);
+
+// double A1 = 2 * k * v3_dotpdt(ray.dir, V);
+// double A2 = r * r + 2 * k * v3_dotpdt(X, V) - k;
+// double	a = 4 * r * r * v3_dotpdt(ray.dir, ray.dir) - A1 * A1;
+// double	b = 2 * (4 * r * r * v3_dotpdt(ray.dir, X) - A1 * A2);
+
+t_vec3 Cmid = v3_add(C, v3_scalar(V, k /2));
+t_vec3 P = find_point_from_ray(ray);
+// t_vec3 R = v3_sub(P, Cmid);
+// t_vec3 n = v3_normalise( v3_sub( R, v3_scalar( V, (1-(81/36)) * v3_dotpdt(R,V))));
+t_vec3 n = v3_normalise(v3_frompoints(Cmid, P));
+// printf("R : <%f %f %f>      V : <%f %f %f>\n", R.x, R.y, R.z, V.x, V.y, V.z);
+// printf("A1: %f, A2: %f,  a: %f, b:%f\n", A1, A2, a, b);
+// n = v3_normalise(v3_frompoints(Cmid, P));
+	return (n);
+}
