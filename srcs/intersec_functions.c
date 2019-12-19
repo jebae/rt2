@@ -116,21 +116,100 @@ double	find_closest_intersection2(double a, double b, double c)
 }
 
 
-double	v_intersect_cy(t_ray ray, void *object)
+// double	v_intersect_cy(t_ray ray, void *object)
+// {
+// 	t_vec3	v;
+// 	double	a;
+// 	double	b;
+// 	double	c;
+// 	t_cyl	*cyl;
+
+// 	cyl = object;
+// 	v = v3_frompoints(cyl->cen, ray.ori); //to change
+// 	cyl->axis = v3_normalise(cyl->axis);
+// 	a = v3_dotpdt(ray.dir, ray.dir)\
+// 		- v3_dotpdt(ray.dir, cyl->axis) * v3_dotpdt(ray.dir, cyl->axis);
+// 	b = 2 * (v3_dotpdt(ray.dir, v)\
+// 		- v3_dotpdt(ray.dir, cyl->axis) * v3_dotpdt(v, cyl->axis));
+// 	c = v3_dotpdt(v, v) - v3_dotpdt(v, cyl->axis) * v3_dotpdt(v, cyl->axis)\
+// 		- cyl->radius * cyl->radius;
+	
+// 	double t1;
+// 	double t2;
+// 	t1 = (find_closest_intersection1(a, b, c));
+// 	t2 = (find_closest_intersection2(a, b, c));
+
+
+// 	//m = D|V*t + X|V
+// 	double m1 = v3_dotpdt(ray.dir, cyl->axis) * t1 + v3_dotpdt(v, cyl->axis);
+// 	double m2 = v3_dotpdt(ray.dir, cyl->axis) * t2 + v3_dotpdt(v, cyl->axis);
+// 	if (m1 > cyl->height || m1 < 0)
+// 		t1 = FAR;
+// 	if (m2 > cyl->height || m2 < 0)
+// 		t2 = FAR;
+// 	if (t1 <= 0 && t2 <= 0)
+// 		return (FAR);
+// 	t1 = t1 > 0 ? t1 : t2;
+// 	t1 = t2 < t1 && t2 > 0 ? t2 : t1;
+// 	return (t1);
+// }
+
+
+double	find_closest_intersection1(double a, double b, double c)
+{
+	double	delta;
+	double	t1;
+	double	t2;
+
+	delta = b * b - 4 * a * c;
+	if (delta < 0)
+		return (FAR);
+	else
+	{
+		t1 = (-b + sqrt(delta)) / (2 * a);
+		t2 = (-b - sqrt(delta)) / (2 * a);
+		return (t1);
+	}
+}
+
+double	find_closest_intersection2(double a, double b, double c)
+{
+	double	delta;
+	double	t1;
+	double	t2;
+
+	delta = b * b - 4 * a * c;
+	if (delta < 0)
+		return (FAR);
+	else
+	{
+		t1 = (-b + sqrt(delta)) / (2 * a);
+		t2 = (-b - sqrt(delta)) / (2 * a);
+		return (t2);
+	}
+}
+
+
+double	v_intersect_cy(t_ray ray, t_ol *object)
 {
 	t_vec3	v;
 	double	a;
 	double	b;
 	double	c;
+
+	
+
+
 	t_cyl	*cyl;
 
 	cyl = object;
+	int MAX  = cyl->height;
 	v = v3_frompoints(cyl->cen, ray.ori); //to change
-	cyl->axis = v3_normalise(cyl->axis);
-	a = v3_dotpdt(ray.dir, ray.dir)\
-		- v3_dotpdt(ray.dir, cyl->axis) * v3_dotpdt(ray.dir, cyl->axis);
-	b = 2 * (v3_dotpdt(ray.dir, v)\
-		- v3_dotpdt(ray.dir, cyl->axis) * v3_dotpdt(v, cyl->axis));
+	cyl->dir = v3_normalise(cyl->axis);
+	a = v3_dotpdt(ray.axis, ray.axis)\
+		- v3_dotpdt(ray.axis, cyl->axis) * v3_dotpdt(ray.axis, cyl->axis);
+	b = 2 * (v3_dotpdt(ray.axis, v)\
+		- v3_dotpdt(ray.axis, cyl->axis) * v3_dotpdt(v, cyl->axis));
 	c = v3_dotpdt(v, v) - v3_dotpdt(v, cyl->axis) * v3_dotpdt(v, cyl->axis)\
 		- cyl->radius * cyl->radius;
 	
@@ -141,16 +220,17 @@ double	v_intersect_cy(t_ray ray, void *object)
 
 
 	//m = D|V*t + X|V
-	double m1 = v3_dotpdt(ray.dir, cyl->axis) * t1 + v3_dotpdt(v, cyl->axis);
-	double m2 = v3_dotpdt(ray.dir, cyl->axis) * t2 + v3_dotpdt(v, cyl->axis);
-	if (m1 > cyl->height || m1 < 0)
+	double m1 = v3_dotpdt(ray.axis, cyl->axis) * t1 + v3_dotpdt(v, cyl->axis);
+	double m2 = v3_dotpdt(ray.axis, cyl->axis) * t2 + v3_dotpdt(v, cyl->axis);
+	if (m1 > MAX || m1 < -MAX)
 		t1 = FAR;
-	if (m2 > cyl->height || m2 < 0)
+	if (m2 > MAX || m2 < -MAX)
 		t2 = FAR;
 	if (t1 <= 0 && t2 <= 0)
 		return (FAR);
 	t1 = t1 > 0 ? t1 : t2;
 	t1 = t2 < t1 && t2 > 0 ? t2 : t1;
+	
 	return (t1);
 }
 
