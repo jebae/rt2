@@ -13,7 +13,7 @@
 	<objects>
 		<sphere>
 			<radius> 1.0 </radius>
-			<center> 0.0, 0.0, 4.0 </center>
+			<center> 0, 0.0, 4.0 </center>
 			<optional>
 				<ior>1.5</ior>
 				<color> 100, 255, 155</color>

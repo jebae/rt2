@@ -53,12 +53,19 @@ static void		set_objects(t_ol *ol, int *num_objs)
 
 static void		set_lights(t_ll *ll, int *num_lights)
 {
-	t_arg_distant_light	arg_dl;
+	t_arg_distant_light		arg_dl;
+	t_arg_spherical_light	arg_sl;
 
-	ll->light = ft_memalloc(sizeof(t_distant_light));
-	ll->its = (t_vec3){30, 30, 30};
+	ll[0].light = ft_memalloc(sizeof(t_distant_light));
+	ll[0].its = (t_vec3){30, 30, 30};
 	arg_dl.dir = (t_vec3){0.5, -1.0, -1.0};
-	set_distant_light(ll, &arg_dl);
+	set_distant_light(&ll[0], &arg_dl);
+	(*num_lights)++;
+
+	ll[1].light = ft_memalloc(sizeof(t_spherical_light));
+	ll[1].its = (t_vec3){30, 30, 30};
+	arg_sl.pos = (t_vec3){0.5, -1.0, -1.0};
+	set_spherical_light(&ll[1], &arg_sl);
 	(*num_lights)++;
 }
 

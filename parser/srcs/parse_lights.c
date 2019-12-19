@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 19:41:54 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/19 12:16:42 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/19 12:27:52 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	parse_spherical_light(t_parse *p)
 			handle_3vec_number(s, &li[i].its);
 		s->buf++;
 	}
-	if (set_spherical_light(li, &sp) == RT_FAIL)
+	if (set_spherical_light(&li[i], &sp) == RT_FAIL)
 		p->mask |= RT_ENV_MASK_PARSE_FAIL;
 	p->flag &= ~(1UL << 13);
 	puts("spherical light done");

@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:31:33 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/17 21:58:15 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/19 13:38:58 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void		handle_hotreload(t_env *e, t_parse *p, char *filename)
 {
+	(void)e;
 	p->mask = 0;
 	parse(p, filename);
 	if (p->mask & RT_ENV_MASK_PARSE_FAIL)

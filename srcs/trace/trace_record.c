@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:32:05 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/18 17:04:39 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/19 12:49:12 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void			set_trace_record(t_trace_record *rec)
 	obj = rec->obj;
 	rec->point = find_point_from_ray(rec->ray);
 	rec->normal = obj->get_normal(rec->ray, obj->object);
+	rec->color = obj->dif;
 	if (obj->uv_mapping == NULL)
 		return ;
 	if (obj->texture.buffer != NULL)
