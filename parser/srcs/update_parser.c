@@ -281,7 +281,7 @@ void	parse_line(t_parse *p)
 	parse_lights(p);
 	parse_objects(p);
 	parse_filters(p);
-	handle_filters(p);
+	handle_cel_shading(p);
 }
 
 int			parse_buffer(t_parse *p)

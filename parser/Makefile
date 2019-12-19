@@ -33,7 +33,7 @@ $(SD)/parse_camera.c $(SD)/parse_objects.c $(SD)/parse_lights.c				   \
 $(SD)/handle_optional.c $(SD)/parse_sphere.c $(SD)/parse_cone.c				   \
 $(SD)/parse_cylinder.c $(SD)/parse_plane.c $(SD)/parse_rectangle.c				\
 $(SD)/parse_box.c $(SD)/parse_triangle.c $(SD)/parse_pyramid.c 				   \
-$(SD)/parse_ring.c $(SD)/clear_parser.c $(SD)/parse_ellipsoid.c $(SD)/paraboloid.c\
+$(SD)/parse_ring.c $(SD)/clear_parser.c $(SD)/parse_ellipsoid.c $(SD)/parse_paraboloid.c\
 $(SD)/handle_filters.c
 
 

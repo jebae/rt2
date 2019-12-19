@@ -16,6 +16,8 @@
 			<optional>
 				<ior>1.5</ior>
 				<color> 100, 255, 155</color>
+				<specpower>15</specpower>
+				<specvalue>650</specvalue>
 				<transparency>0</trasparency>
 				<reflectivity>0</reflectivty>
 			</optional>

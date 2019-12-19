@@ -31,9 +31,9 @@ void	handle_optional_vaules(t_parse *p)
 		while (*s->buf != '\n' && *s->buf)
 			s->buf++;
 		if ((ft_strcmp(s->word, "specpower")) == 0)
-			handle_int_number(s, &ob[i].specpower);
+			ob[i].specpower = handle_int_number(s, 0);
 		if ((ft_strcmp(s->word, "specvalue")) == 0)
-			handle_int_number(s, &ob[i].specvalue);
+			ob[i].specvalue = handle_int_number(s, 0);
 		if ((ft_strcmp(s->word, "ior")) == 0)
 			handle_float_number(s, &ob[i].ior);
 		if ((ft_strcmp(s->word, "reflectivity")) == 0)
