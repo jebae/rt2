@@ -31,7 +31,7 @@ function get_con_att(tmp)
     var con_uheight = check_val(document.getElementById('con_uheight').value);
     var con_lheight = check_val(document.getElementById('con_lheight').value);
 
-    tmp += "\t\t\t<center> " + con_cen[2] + ", " + con_cen[1] + ", " + con_cen[0] + " </center>\n";
+    tmp = "\t\t\t<center> " + con_cen[2] + ", " + con_cen[1] + ", " + con_cen[0] + " </center>\n";
     tmp += "\t\t\t<axis> " + con_axis[2] + ", " + con_axis[1] + ", " + con_axis[0] + " </axis>\n";
     tmp += "\t\t\t<angle> " + con_ang + " </angle>\n";
     tmp += "\t\t\t<lower_height> " + con_lheight + " </lower_height>\n";
@@ -124,8 +124,38 @@ function get_pla_att(tmp)
     var pla_normal = check_multi_val(document.getElementsByName('pla_normal'));
     var pla_lenC = check_val(document.getElementById('pla_len_c'));
 
-    tmp = "\t\t\t<center> " + pla_normal[2] + ", " + pla_normal[1] + ", " + pla_normal[0] + " </center>\n";
+    tmp = "\t\t\t<normal> " + pla_normal[2] + ", " + pla_normal[1] + ", " + pla_normal[0] + " </normal>\n";
     tmp += "\t\t\t<length_c> " + pla_lenC.value + " </length_c>\n";
+    return (tmp);
+}
+
+function get_par_att(tmp)
+{
+    var par_cen = check_multi_val(document.getElementsByName('center_pa'));
+    var par_axis = check_multi_val(document.getElementsByName('axis_pa'));
+    var par_uheight = check_val(document.getElementById('pa_uheight').value);
+    var par_lheight = check_val(document.getElementById('pa_lheight').value);
+    var par_narrow = check_val(document.getElementById('narrow').value);
+
+    tmp = "\t\t\t<center> " + par_cen[2] + ", " + par_cen[1] + ", " + par_cen[0] + " </center>\n";
+    tmp += "\t\t\t<axis> " + par_axis[2] + ", " + par_axis[1] + ", " + par_axis[0] + " </axis>\n";
+    tmp += "\t\t\t<lower_height> " + par_lheight + " </lower_height>\n";
+    tmp += "\t\t\t<upper_height> " + par_uheight + " </upper_height>\n";
+    tmp += "\t\t\t<narrowness> " + par_uheight + " </narrowness>\n";
+    return (tmp);
+}
+
+function get_ell_att(tmp)
+{
+    var ell_cen = check_multi_val(document.getElementsByName('center_ep'));
+    var ell_axis = check_multi_val(document.getElementsByName('axis_ep'));
+    var ell_lenc = check_val(document.getElementById('ep_len_c').value);
+    var ell_sum = check_val(document.getElementById('sum').value);
+
+    tmp = "\t\t\t<center> " + ell_cen[2] + ", " + ell_cen[1] + ", " + ell_cen[0] + " </center>\n";
+    tmp += "\t\t\t<axis> " + ell_axis[2] + ", " + ell_axis[1] + ", " + ell_axis[0] + " </axis>\n";
+    tmp += "\t\t\t<length_c> " + ell_lenc + " </length_c>\n";
+    tmp += "\t\t\t<sum> " + ell_sum + " </sum>\n";
     return (tmp);
 }
 
@@ -137,13 +167,18 @@ function get_parallel_attributes(shape_num)
     var color_g = document.getElementsByName('color_g');
     var color_b = document.getElementsByName('color_b');
     var transparency = document.getElementsByName('transparency');
+    var specpower = document.getElementsByName('specpower');
+    var specvalue = document.getElementsByName('specvalue');
+    var reflectivity = document.getElementsByName('reflectivity');
 
     tmp = "\t\t\t<optional>\n";
     tmp += "\t\t\t\t<ior> " + check_val(ior[shape_num].value) + " </ior>\n";
     tmp += "\t\t\t\t<color> " + check_val(color_r[shape_num].value) + ", " + check_val(color_g[shape_num].value) + ", " + check_val(color_b[shape_num].value) + " </color>\n";
     tmp += "\t\t\t\t<transparency> " + check_val(transparency[shape_num].value) + " </transparency>\n";
+    tmp += "\t\t\t\t<specvalue> " + check_val(specvalue[shape_num].value) + " </specvalue>\n";
+    tmp += "\t\t\t\t<specpower> " + check_val(specpower[shape_num].value) + " </specpower>\n";
+    tmp += "\t\t\t\t<reflectivity> " + check_val(reflectivity[shape_num].value) + " </reflectivity>\n";
     tmp += "\t\t\t</optional>\n";
-
     return (tmp);
 }
 
@@ -218,6 +253,17 @@ function create_xml(shape)
         shape_num = 8;
         xml_shape += get_pla_att(tmp);
     }   
+    if (shape.localeCompare("paraboloid") == 0)
+    {
+        shape_num = 9;
+        xml_shape += get_par_att(tmp);
+    }
+    if (shape.localeCompare("ellipsoid") == 0)
+    {
+        shape_num = 10;
+        xml_shape += get_ell_att(tmp);
+    }   
+
 
     // attributes in every shape
     xml_shape += get_parallel_attributes(shape_num);
@@ -236,10 +282,12 @@ function create_xml(shape)
     }
 
     xml_shape += close_shape(shape);
-    // console.log("i am the output ---->\n\n", xml_shape, "\n\n");
-
-    var testing = "file_" + shape_num; 
+    var testing = "file_" + shape_num;  
     var file = document.getElementById(testing).files[0];
+
+
+    console.log(xml_shape);
+
 
     if (file)
     {
@@ -254,10 +302,10 @@ function create_xml(shape)
     }
     else
         console.log("No file given !");
-    
+
 
     // this reloads file !
-    document.location.reload(true);
+    // document.location.reload(true);
 }
 
 function add_shape_div() 
@@ -277,6 +325,7 @@ function add_shape_div()
 function show_shape_form(selected)
 {
     // displays form for selected shape
+    console.log(selected);
     var new_selected = selected + "_object";
     const string = String(new_selected);
     var show = document.getElementById(string);
@@ -330,6 +379,10 @@ function select_shape_form(selected)
             show_shape_form(object_string);
         else if (selected.localeCompare("ring") == 0)
             show_shape_form(object_string);
+        else if (selected.localeCompare("paraboloid") == 0)
+            show_shape_form(object_string);
+        else if (selected.localeCompare("ellipsoid") == 0)
+            show_shape_form(object_string);
     }
 }
 
@@ -375,7 +428,32 @@ function update_camera()
     modify_cam.style.display = 'block';
 }
 
-function modify_cam()
+function mod_cam()
 {
-    
+    var cam;
+    var cam_nor = check_multi_val(document.getElementsByName('cam_normal'));
+    var cam_dir = check_multi_val(document.getElementsByName('cam_direction'));
+    var cam_ri = check_multi_val(document.getElementsByName('cam_right'));
+    var file = document.getElementById("file_11").files[0];
+
+    cam = "\t\t<camera>\n";
+    cam += "\t\t\t<pos> " + cam_nor[2] + ", " + cam_nor[1] + ", " + cam_nor[0] + " </pos>\n";
+    cam += "\t\t\t<dir> " + cam_dir[2] + ", " + cam_dir[1] + ", " + cam_dir[0] + " </dir>\n";
+    cam += "\t\t\t<right> " + cam_ri[2] + ", " + cam_ri[1] + ", " + cam_ri[0] + " </right>\n";
+    cam += "\t\t</camera>\n";
+
+    if (file)
+    {
+        $.ajax({
+            method: "POST",
+            url: "http://localhost:8080/xmlcamera",
+            data: { data: cam, filename: file.name }
+            })
+            .done(function( msg ) {
+            console.log( "Data Saved: " + msg );
+        });
+    }
+    else
+        console.log("No file given !");
+    return (cam);
 }

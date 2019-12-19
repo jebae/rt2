@@ -1,0 +1,45 @@
+<scene>
+    <camera>
+        <pos>0, 0, -2</pos>
+        <right>1, 0, 0</right>
+        <dir>0, 0, 1</dir>
+    </camera>
+    <light>
+        <distant>
+            <dir>1.0, -3.0, -0.5</dir>
+            <its>30, 30, 30</its>
+        </distant>
+        <spherical>
+            <pos>1.0, -3.0, -0.5</pos>
+            <its>30, 30, 30</its>
+        </spherical>
+    </light>
+    <objects>
+        <sphere>
+            <center>0, 0, 10</center>
+            <radius>1</radius>
+            <optional>
+                <ior>1.5</ior>
+                <color>100, 255, 100</color>
+                <transparency>0</transparency>
+                <specvalue>650</specvalue>
+                <specpower>15</specpower>
+                <reflectivity>0</reflectivity>
+            </optional>
+        </sphere>
+        <ellipsoid>
+            <center>1, 1, 5</center>
+            <axis>1, 1, 1</axis>
+            <length_c>1</length_c>
+            <sum>3</sum>
+            <optional>
+                <ior>1.5</ior>
+                <color>200, 100, 200</color>
+                <transparency>0</transparency>
+                <specvalue>650</specvalue>
+                <specpower>15</specpower>
+                <reflectivity>0</reflectivity>
+            </optional>
+        </ellipsoid>
+    </objects>
+</scene>

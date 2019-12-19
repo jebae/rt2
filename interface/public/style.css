@@ -16,6 +16,10 @@ html, body
   height: 100%;
 }
 
+a {
+  text-decoration: none;
+}
+
 body {
   background-color: #f8d0b0;
   margin: 0;
@@ -170,7 +174,7 @@ body {
   margin-bottom: 2vw;
 }
 
-#button_camera, #button_box, #button_triangle, #button_pyramid, #button_ring, #button_plane
+#button_camera, #button_box, #button_triangle, #button_pyramid, #button_ring, #button_plane, #button_ell, #button_para
 {
   margin-bottom: 2vw;
 }
@@ -181,39 +185,7 @@ body {
 }
 
 /* ON / OFF OBJECTS */
-#cone_object
-{
-  display: none;
-}
-#sphere_object
-{
-  display: none;
-}
-#rectangle_object
-{
-  display: none;
-}
-#cylinder_object
-{
-  display: none;
-}
-#ring_object
-{
-  display: none;
-}
-#pyramid_object
-{
-  display: none;
-}
-#triangle_object
-{
-  display: none;
-}
-#box_object
-{
-  display: none;
-}
-#plane_object
+#cone_object, #sphere_object, #rectangle_object, #cylinder_object, #ring_object, #pyramid_object, #triangle_object, #box_object, #plane_object, #paraboloid_object, #ellipsoid_object
 {
   display: none;
 }
