@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_sphere.c                                     :+:      :+:    :+:   */
+/*   parse_paraboloid.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/16 22:13:58 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/18 19:22:58 by almoraru         ###   ########.fr       */
+/*   Created: 2019/12/18 20:13:00 by almoraru          #+#    #+#             */
+/*   Updated: 2019/12/18 20:53:51 by almoraru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	parse_sphere(t_parse *p)
+void	parse_paraboloid(t_parse *p)
 {
 	t_ol		*ob;
-	t_arg_sphere	sp;
+	t_arg_paraboloid	pa;
 	t_str		*s;
 	int		i;
-	int		tex_mode;
 
 	ob = p->ob;
 	s = &p->str;
 	i = p->index;
-	ob[i].object = ft_mem(&p->mem, sizeof(t_sphere));
-	ft_putendl("Sphere is here");
-	while (*s->buf != '\0' && ft_strcmp(s->line, "</sphere>") != 0)
+	ob[i].object = ft_mem(&p->mem, sizeof(t_paraboloid));
+	ft_putendl("Paraboloid is here");
+	while (*s->buf != '\0' && ft_strcmp(s->line, "</paraboloid>") != 0)
 	{
 		if (*s->buf != '\n')
 			ft_cpynline(s->line, s->buf);
@@ -33,26 +32,21 @@ void	parse_sphere(t_parse *p)
 		while (*s->buf != '\n' && *s->buf)
 			s->buf++;
 		if ((ft_strcmp(s->word, "center")) == 0)
-			handle_3vec_number(s, &sp.cen);
-		if ((ft_strcmp(s->word, "radius")) == 0)
-			handle_float_number(s, &sp.radius);
+			handle_3vec_number(s, &pa.cen);
+		if ((ft_strcmp(s->word, "axis")) == 0)
+			handle_3vec_number(s, &pa.axis);
+		if ((ft_strcmp(s->word, "k")) == 0)
+			handle_float_number(s, &pa.k);
+		if ((ft_strcmp(s->word, "min")) == 0)
+			handle_float_number(s, &pa.min);
+		if ((ft_strcmp(s->word, "max")) == 0)
+			handle_float_number(s, &pa.max);
 		if ((ft_strcmp(s->word, "optional")) == 0)
 			handle_optional_vaules(p);
-		if ((ft_strcmp(s->word, "tex_mode")) == 0)
-			tex_mode = handle_int_number(s, tex_mode);
-		if (tex_mode == 1)
-		{
-			ft_putendl("texture mode detected");
-			tex_mode = 0;
-		}
-		//set texture
-		if (tex_mode == 2)
-			ft_putendl("bump mapping detected");
-		//set bump mapping
 		s->buf++;
 	}
-	p->flag &= ~(1UL << 4);
-	if (set_sphere(&ob[i], &sp) == RT_FAIL)
+	p->flag &= ~(1UL << 16);
+	if (set_paraboloid(&ob[i], &pa) == RT_FAIL)
 		p->mask |= RT_ENV_MASK_PARSE_FAIL;
-	ft_putendl("sphere done");
+	ft_putendl("Paraboloid done");
 }

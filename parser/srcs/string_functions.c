@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 01:19:22 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/16 18:13:40 by almoraru         ###   ########.fr       */
+/*   Updated: 2019/12/19 04:31:11 by almoraru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,12 @@ void	ft_cpyword(char *line, char *word)
 	ft_bzero(word, ft_strlen(word));
 	while (*line != '\0')
 	{
+		if (*line == '>')
+			flag |= 1UL << 1;
 		if (*line == '/')
 			flag |= 1UL;
-		if ((ft_isalpha(*line) && !(flag & 1UL))
+		if ((ft_isalpha(*line) && !(flag & 1UL)
+			 && !(flag & 1UL << 1))
 			|| ((*line == '_') && !(flag & 1UL)))
 			*word++ = *line;
 		line++;
@@ -87,5 +90,25 @@ void	ft_cpyonenbr(char *dest, char *src)
 		src++;
 	while (*src != '\0' && *src != ',')
 		*dest++ = *src++;
+	*dest = '\0';
+}
+
+void	ft_cpymiddleword(char *dest, char *src)
+{
+	int a;
+
+	a = 0;
+	ft_bzero(dest, ft_strlen(dest));
+	while (*src != '\0')
+	{
+		if (*src == '>')
+			a |= 1UL;
+		if (*src == '/')
+			a |= 1UL << 1;
+		if (ft_isalpha(*src) && (a & 1UL)
+			&& !(a & 1UL << 1))
+			*dest++ = *src;
+		src++;
+	}
 	*dest = '\0';
 }

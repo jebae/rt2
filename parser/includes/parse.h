@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 11:48:20 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/17 19:35:11 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/19 04:34:23 by almoraru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,12 @@ void			parse_box(t_parse *p);
 void			parse_triangle(t_parse *p);
 void			parse_pyramid(t_parse *p);
 void			parse_ring(t_parse *p);
+void			parse_ellipsoid(t_parse *p);
+void			parse_paraboloid(t_parse *p);
 void			parse_lights(t_parse *p);
 void			handle_optional_vaules(t_parse *p);
-
+void			handle_cel_shading(t_parse *p);
+void			parse_filters(t_parse *p);
 /*
 **	CHECK FUNCTONS
 */
@@ -62,6 +65,7 @@ void			ft_cpynumbers(char *line, char *numbers);
 void			ft_cpyonenbr(char *dest, char *src);
 void			ft_cpyword(char *line, char *word);
 void			ft_second_word(char *line, char *word2);
+void			ft_cpymiddleword(char *dest, char *src);
 int				ft_check_line_for_numbers(char *line);
 int				ft_is_good_number(char c);
 int				check_sub_number(char *sub);

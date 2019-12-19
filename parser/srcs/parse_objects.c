@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 02:59:06 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/17 21:39:52 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/18 19:25:36 by almoraru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,20 @@ void	parse_objects(t_parse *p)
 	if (p->flag & 1UL << 12)
 	{
 		parse_ring(p);
+		p->index++;
+	}
+	if ((ft_strcmp(s->word, "ellipsoid") == 0))
+		p->flag |= 1UL << 15;
+	if (p->flag & 1UL << 15)
+	{
+		parse_ellipsoid(p);
+		p->index++;
+	}
+	if ((ft_strcmp(s->word, "paraboloid") == 0))
+		p->flag |= 1UL << 16;
+	if (p->flag & 1UL << 16)
+	{
+		parse_paraboloid(p);
 		p->index++;
 	}
 }

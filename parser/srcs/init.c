@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 14:01:20 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/17 18:26:06 by almoraru         ###   ########.fr       */
+/*   Updated: 2019/12/19 04:35:38 by almoraru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	init_strings(t_parse *p)
 	s->sub_number = (char *)ft_mem(mem, sizeof(char) * 1024 * 2);
 	s->word = (char *)ft_mem(mem, sizeof(char) * 1024 * 2);
 	s->word2 = (char *)ft_mem(mem, sizeof(char) * 1024 * 2);
+	s->word3 = (char *)ft_mem(mem, sizeof(char) * 1024 * 2);
 	s->buf = (char *)ft_mem(mem, sizeof(char) * 1024 * 12);
 	ft_putendl("Strings are initialized");
 }
@@ -36,7 +37,7 @@ void	init_mem(t_parse *p)
 	int		size;
 
 	mem = &p->mem;
-	size = 1024 * 1024 * 16;
+	size = 1024 * 1024 * 8;
 	if (!(p->flag & 1UL))
 		is_alloc((mem->m = ft_memalloc(size)));
 	mem->tsize = size;
@@ -49,6 +50,8 @@ int			init_everything(t_parse *p, char *path)
 	p->index = 0;
 	p->l_ind = 0;
 	p->size = 0;
+	p->flag &= ~(1UL << 17);
+	p->flag &= ~(1UL << 18);
 	init_mem(p);
 	init_strings(p);
 	if (p->flag & 1UL)

@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:25:21 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/17 21:54:18 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/19 04:35:18 by almoraru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -437,6 +437,7 @@ typedef struct		s_str
 	char		*sub_number;
 	char		*word;
 	char		*word2;
+	char		*word3;
 	char		*time;
 	int			op_cl;
 }					t_str;
