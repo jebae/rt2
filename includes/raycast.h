@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/12/18 16:33:57 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/19 12:05:00 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 */
 int			init_env(t_env *e);
 void		clear_env(t_env *e);
+void		clear_texels_buffers(t_ol *ol);
 void		key_input(SDL_Keycode sym, t_env *e, t_parse *p);
 void		run_event_loop(t_env *e, t_parse *p, char *filename);
 int			handle_fail(const char *msg);

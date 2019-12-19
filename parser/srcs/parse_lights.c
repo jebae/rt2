@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 19:41:54 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/17 21:56:15 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/19 12:16:42 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	parse_distant_light(t_parse *p)
 			handle_3vec_number(s, &sp.dir);
 		if ((ft_strcmp(s->word, "rot")) == 0)
 			handle_3vec_number(s, &sp.rot);
+		if ((ft_strcmp(s->word, "its")) == 0)
+			handle_3vec_number(s, &li[i].its);
 		s->buf++;
 	}
 	if (set_distant_light(&li[i], &sp) == RT_FAIL)
@@ -66,6 +68,8 @@ void	parse_spherical_light(t_parse *p)
 			handle_3vec_number(s, &sp.pos);
 		if ((ft_strcmp(s->word, "tra")) == 0)
 			handle_3vec_number(s, &sp.tra);
+		if ((ft_strcmp(s->word, "its")) == 0)
+			handle_3vec_number(s, &li[i].its);
 		s->buf++;
 	}
 	if (set_spherical_light(li, &sp) == RT_FAIL)

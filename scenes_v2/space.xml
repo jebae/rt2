@@ -7,15 +7,28 @@
 	<light>
 		<distant>
 			<dir> 0.5, -1.0, -0.5 </dir>
+			<its> 30, 30, 30 </its>
 		</distant>
 	</light>
 	<objects>
 		<sphere>
 			<radius> 0.5 </radius>
-			<center> 0, 0.0, 2 </center>
+			<center> 0, 0.0, 5 </center>
 			<optional>
 				<ior>1.5</ior>
 				<color> 100, 255, 155</color>
+				<specpower>15</specpower>
+				<specvalue>650</specvalue>
+				<transparency>0</trasparency>
+				<reflectivity>0</reflectivty>
+			</optional>
+		</sphere>
+		<sphere>
+			<radius> 0.5 </radius>
+			<center> -0.5, 0.0, 3 </center>
+			<optional>
+				<ior>1.5</ior>
+				<color> 234, 100, 155</color>
 				<specpower>15</specpower>
 				<specvalue>650</specvalue>
 				<transparency>0</trasparency>

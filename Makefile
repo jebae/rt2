@@ -112,6 +112,7 @@ SRC_SETTING = env.c\
 	key_input.c\
 	camera.c\
 	ambient.c\
+	ray_grid_props.c\
 
 SRCS = color_op.c\
 	get_normal.c\

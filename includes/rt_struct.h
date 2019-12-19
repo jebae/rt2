@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:25:21 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/19 04:35:18 by almoraru         ###   ########.fr       */
+/*   Updated: 2019/12/19 12:04:11 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@
 # define RT_BIAS					1e-3f
 # define RT_MAX_TRACE_DEPTH			5
 # define RT_NUM_THREADS				50
+# define RT_MAX_NUM_OBJECTS			20
+# define RT_MAX_NUM_LIGHTS			5
 
 /*
 ** ray type
@@ -415,8 +417,8 @@ typedef struct		s_env
 	t_vec3			dy;
 	t_vec3			offset;
 	t_camera		cam;
-	t_ll			ll_lit[5];
-	t_ol			ll_obj[20];
+	t_ll			ll_lit[RT_MAX_NUM_LIGHTS];
+	t_ol			ll_obj[RT_MAX_NUM_OBJECTS];
 }					t_env;
 
 /*
