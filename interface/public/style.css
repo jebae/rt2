@@ -16,6 +16,10 @@ html, body
   height: 100%;
 }
 
+a {
+  text-decoration: none;
+}
+
 body {
   background-color: #f8d0b0;
   margin: 0;
@@ -33,6 +37,15 @@ body {
   text-align: center;
   padding-top: 1vw;
   font-size: 3vw;
+}
+
+.main_form_header
+{
+  color: #fdef96;
+  text-align: center;
+  padding-top: 1vw;
+  font-size: 1.5vw;
+  display: block;
 }
 
 .the_form_container
@@ -108,8 +121,8 @@ body {
   margin-top: 3vw;
 }
 
-.output_object form {
-  margin-right: 15%;
+.output_object form, .modify_cam form {
+  margin-right: 15%;  
 }
 
 #txt_simple {
@@ -151,7 +164,7 @@ body {
   color: #709078;
 }
 
-#button_cone, #button_cylinder, #button_sphere, #button_rectangle
+#button_camera, #button_cone, #button_cylinder, #button_sphere, #button_rectangle
 {
   margin-top: 2vw !important;
   display: block;
@@ -161,7 +174,7 @@ body {
   margin-bottom: 2vw;
 }
 
-#button_box, #button_triangle, #button_pyramid, #button_ring, #button_plane
+#button_camera, #button_box, #button_triangle, #button_pyramid, #button_ring, #button_plane, #button_ell, #button_para
 {
   margin-bottom: 2vw;
 }
@@ -172,39 +185,7 @@ body {
 }
 
 /* ON / OFF OBJECTS */
-#cone_object
-{
-  display: none;
-}
-#sphere_object
-{
-  display: none;
-}
-#rectangle_object
-{
-  display: none;
-}
-#cylinder_object
-{
-  display: none;
-}
-#ring_object
-{
-  display: none;
-}
-#pyramid_object
-{
-  display: none;
-}
-#triangle_object
-{
-  display: none;
-}
-#box_object
-{
-  display: none;
-}
-#plane_object
+#cone_object, #sphere_object, #rectangle_object, #cylinder_object, #ring_object, #pyramid_object, #triangle_object, #box_object, #plane_object, #paraboloid_object, #ellipsoid_object
 {
   display: none;
 }
@@ -283,3 +264,18 @@ table {
 {
   min-height:;
 } */
+
+
+/* camera */
+.modify_cam
+{
+  display: none;
+  color: #fdef96;
+  text-align: center;
+  padding-top: 1vw;
+}
+
+.modify_cam h3 
+{
+  font-size: 1.5vw;
+}

@@ -9,9 +9,14 @@
   </head>
   <body>
     <div class="header">
-      <h3>RT</h3>
+      <a href="/">
+        <h3>RT</h3>
+      </a>
     </div>
     <div class="the_form_container" id="the_form_container">
+      <div class="main_form_header" id="main_form_header">
+        <h2>Hello, how would you like to modify the scene file ?</h2>
+      </div>
       <form class="update_me">
         <div class="objects" id="objects">
           <select id="object_options" class="objects_opt" name="dropdown_objects">
@@ -25,8 +30,13 @@
             <option value="pyramid">PYRAMID</option>
             <option value="triangle">TRIANGLE</option>
             <option value="plane">PLANE</option>
+            <option value="paraboloid">PARABOLOID</option>
+            <option value="ellipsoid">ELLIPSOID</option>
           </select>
-          <input class="buttons" id="button_obj" type="button" value="ADD !" onclick="select_object()"/>
+          <input class="buttons" id="button_obj" type="button" value="ADD AN OBJECT !" onclick="select_object()"/>
+        </div>
+        <div class="camera" id="camera">
+          <br/><input class="buttons" id="button_cam" type="button" value="MODIFY THE CAMERA !" onclick="update_camera()"/>
         </div>
       </form>
       <div class="output_object" id="sphere_object"> <!-- 1 -->
@@ -42,7 +52,10 @@
             <input class="i_cmplx" id="color_b" type="text" name="color_b" placeholder="Enter B" maxlength="6"/>
             <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
             <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
-          <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
+            <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
+            <span id="txt_simple">SPECULAR POWER :</span><input class="i_smpl" id="specpower" type="text" name="specpower" placeholder="Enter specular power" maxlength="6"/><br/><br/>
+            <span id="txt_simple">SPECULAR VALUE :</span><input class="i_smpl" id="specvalue" type="text" name="specvalue" placeholder="Enter specular value" maxlength="6"/><br/><br/>
+            <span id="txt_simple">REFLECTIVITY :</span><input class="i_smpl" id="reflectivity" type="text" name="reflectivity" placeholder="Enter reflectivity value" maxlength="6"/><br/><br/>
           <span id="txt_simple">FILE NAME :</span><input class="i_file" id="file_0" type="file" name="file" placeholder="Enter file name"/><br><br>
         </form><br/>
       </div>
@@ -65,7 +78,10 @@
             <input class="i_cmplx" id="color_b" type="text" name="color_b" placeholder="Enter B" maxlength="6"/>
             <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
             <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
-          <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
+            <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
+            <span id="txt_simple">SPECULAR POWER :</span><input class="i_smpl" id="specpower" type="text" name="specpower" placeholder="Enter specular power" maxlength="6"/><br/><br/>
+            <span id="txt_simple">SPECULAR VALUE :</span><input class="i_smpl" id="specvalue" type="text" name="specvalue" placeholder="Enter specular value" maxlength="6"/><br/><br/>
+            <span id="txt_simple">REFLECTIVITY :</span><input class="i_smpl" id="reflectivity" type="text" name="reflectivity" placeholder="Enter reflectivity value" maxlength="6"/><br/><br/>
           <span id="txt_simple">FILE NAME :</span><input class="i_file" id="file_1" type="file" name="file" placeholder="Enter file name"/><br><br>        
         </form><br/>
       </div>
@@ -88,6 +104,9 @@
             <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
             <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
           <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
+          <span id="txt_simple">SPECULAR POWER :</span><input class="i_smpl" id="specpower" type="text" name="specpower" placeholder="Enter specular power" maxlength="6"/><br/><br/>
+          <span id="txt_simple">SPECULAR VALUE :</span><input class="i_smpl" id="specvalue" type="text" name="specvalue" placeholder="Enter specular value" maxlength="6"/><br/><br/>
+          <span id="txt_simple">REFLECTIVITY :</span><input class="i_smpl" id="reflectivity" type="text" name="reflectivity" placeholder="Enter reflectivity value" maxlength="6"/><br/><br/>
           <span id="txt_simple">FILE NAME :</span><input class="i_file" id="file_2" type="file" name="file" placeholder="Enter file name"/><br><br>        
         </form><br/>
       </div>
@@ -112,6 +131,9 @@
               <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
               <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
             <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
+            <span id="txt_simple">SPECULAR POWER :</span><input class="i_smpl" id="specpower" type="text" name="specpower" placeholder="Enter specular power" maxlength="6"/><br/><br/>
+            <span id="txt_simple">SPECULAR VALUE :</span><input class="i_smpl" id="specvalue" type="text" name="specvalue" placeholder="Enter specular value" maxlength="6"/><br/><br/>
+            <span id="txt_simple">REFLECTIVITY :</span><input class="i_smpl" id="reflectivity" type="text" name="reflectivity" placeholder="Enter reflectivity value" maxlength="6"/><br/><br/>
             <span id="txt_simple">FILE NAME :</span><input class="i_file" id="file_3" type="file" name="file" placeholder="Enter file name"/><br><br>        
           </form><br/>
       </div>
@@ -133,7 +155,10 @@
             <input class="i_cmplx" id="color_b" type="text" name="color_b" placeholder="Enter B" maxlength="6"/>
             <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
             <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
-          <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
+            <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
+            <span id="txt_simple">SPECULAR POWER :</span><input class="i_smpl" id="specpower" type="text" name="specpower" placeholder="Enter specular power" maxlength="6"/><br/><br/>
+            <span id="txt_simple">SPECULAR VALUE :</span><input class="i_smpl" id="specvalue" type="text" name="specvalue" placeholder="Enter specular value" maxlength="6"/><br/><br/>
+            <span id="txt_simple">REFLECTIVITY :</span><input class="i_smpl" id="reflectivity" type="text" name="reflectivity" placeholder="Enter reflectivity value" maxlength="6"/><br/><br/>
           <span id="txt_simple">FILE NAME :</span><input class="i_file" id="file_4" type="file" name="file" placeholder="Enter file name"/><br><br>          
         </form><br/><br/>
         <input class="buttons" id="button_ring" type="button" value="ADD RING !" onclick="create_xml('ring')"/>
@@ -153,13 +178,16 @@
               <input class="i_cmplx" id="box_vecB_z" type="text" name="box_vector_b" placeholder="Enter Z" maxlength="6"/>
               <input class="i_cmplx" id="box_vecB_y" type="text" name="box_vector_b" placeholder="Enter Y" maxlength="6"/>
               <input class="i_cmplx" id="box_vecB_x" type="text" name="box_vector_b" placeholder="Enter X" maxlength="6"/><br/><br/>
-            <span id="txt_simple">LENGTH OF C :</span><input class="i_smpl" id="box_lenC" type="text" name="len_c" placeholder="Enter translation" maxlength="6"/><br><br>
+            <span id="txt_simple">LENGTH OF C :</span><input class="i_smpl" id="box_lenC" type="text" name="len_c" placeholder="Enter length of c" maxlength="6"/><br><br>
             <span id="txt_simple">INDEX OF REFRACTION :</span><input class="i_smpl" id="ior" type="text" name="ior" placeholder="Enter ior" maxlength="6"/><br><br>
             <span id="txt_simple">COLOR :</span>
               <input class="i_cmplx" id="color_b" type="text" name="color_b" placeholder="Enter B" maxlength="6"/>
               <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
               <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
             <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
+            <span id="txt_simple">SPECULAR POWER :</span><input class="i_smpl" id="specpower" type="text" name="specpower" placeholder="Enter specular power" maxlength="6"/><br/><br/>
+            <span id="txt_simple">SPECULAR VALUE :</span><input class="i_smpl" id="specvalue" type="text" name="specvalue" placeholder="Enter specular value" maxlength="6"/><br/><br/>
+            <span id="txt_simple">REFLECTIVITY :</span><input class="i_smpl" id="reflectivity" type="text" name="reflectivity" placeholder="Enter reflectivity value" maxlength="6"/><br/><br/>
             <span id="txt_simple">FILE NAME :</span><input class="i_file" id="file_5" type="file" name="file" placeholder="Enter file name"/><br><br>            
           </form><br/><br/>
           <input class="buttons" id="button_box" type="button" value="ADD BOX !" onclick="create_xml('box')"/>
@@ -186,6 +214,9 @@
               <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
               <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
             <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
+            <span id="txt_simple">SPECULAR POWER :</span><input class="i_smpl" id="specpower" type="text" name="specpower" placeholder="Enter specular power" maxlength="6"/><br/><br/>
+            <span id="txt_simple">SPECULAR VALUE :</span><input class="i_smpl" id="specvalue" type="text" name="specvalue" placeholder="Enter specular value" maxlength="6"/><br/><br/>
+            <span id="txt_simple">REFLECTIVITY :</span><input class="i_smpl" id="reflectivity" type="text" name="reflectivity" placeholder="Enter reflectivity value" maxlength="6"/><br/><br/>
             <span id="txt_simple">FILE NAME :</span><input class="i_file" id="file_6" type="file" name="file" placeholder="Enter file name"/><br><br>
           </form><br/><br/>
           <input class="buttons" id="button_pyramid" type="button" value="ADD PYRAMID !" onclick="create_xml('pyramid')"/>
@@ -211,6 +242,9 @@
               <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
               <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
             <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
+            <span id="txt_simple">SPECULAR POWER :</span><input class="i_smpl" id="specpower" type="text" name="specpower" placeholder="Enter specular power" maxlength="6"/><br/><br/>
+            <span id="txt_simple">SPECULAR VALUE :</span><input class="i_smpl" id="specvalue" type="text" name="specvalue" placeholder="Enter specular value" maxlength="6"/><br/><br/>
+            <span id="txt_simple">REFLECTIVITY :</span><input class="i_smpl" id="reflectivity" type="text" name="reflectivity" placeholder="Enter reflectivity value" maxlength="6"/><br/><br/>
             <span id="txt_simple">FILE NAME :</span><input class="i_file" id="file_7" type="file" name="file" placeholder="Enter file name"/><br><br>            
           </form><br/><br/>
           <input class="buttons" id="button_triangle" type="button" value="ADD TRIANGLE !" onclick="create_xml('triangle')"/>
@@ -222,16 +256,72 @@
           <input class="i_cmplx" id="pla_nor_z" type="text" name="pla_normal" placeholder="Enter Z" maxlength="6"/>
           <input class="i_cmplx" id="pla_nor_y" type="text" name="pla_normal" placeholder="Enter Y" maxlength="6"/>
           <input class="i_cmplx" id="pla_nor_x" type="text" name="pla_normal" placeholder="Enter X" maxlength="6"/><br/><br/>
-          <span id="txt_simple">LENGTH OF C :</span><input class="i_smpl" id="pla_len_c" type="text" name="pla_len_c" placeholder="Enter translation" maxlength="6"/><br><br>
+          <span id="txt_simple">LENGTH OF C :</span><input class="i_smpl" id="pla_len_c" type="text" name="pla_len_c" placeholder="Enter length of c" maxlength="6"/><br><br>
           <span id="txt_simple">INDEX OF REFRACTION :</span><input class="i_smpl" id="ior" type="text" name="ior" placeholder="Enter ior" maxlength="6"/><br><br>
           <span id="txt_simple">COLOR :</span>
-            <input class="i_cmplx" id="color_b" type="text" name="color_b" placeholder="Enter B" maxlength="6"/>
-            <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
-            <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
+          <input class="i_cmplx" id="color_b" type="text" name="color_b" placeholder="Enter B" maxlength="6"/>
+          <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
+          <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
           <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
+          <span id="txt_simple">SPECULAR POWER :</span><input class="i_smpl" id="specpower" type="text" name="specpower" placeholder="Enter specular power" maxlength="6"/><br/><br/>
+          <span id="txt_simple">SPECULAR VALUE :</span><input class="i_smpl" id="specvalue" type="text" name="specvalue" placeholder="Enter specular value" maxlength="6"/><br/><br/>
+          <span id="txt_simple">REFLECTIVITY :</span><input class="i_smpl" id="reflectivity" type="text" name="reflectivity" placeholder="Enter reflectivity value" maxlength="6"/><br/><br/>
           <span id="txt_simple">FILE NAME :</span><input class="i_file" id="file_8" type="file" name="file" placeholder="Enter file name"/><br><br>
         </form><br/><br/>
         <input class="buttons" id="button_plane" type="button" value="ADD PLANE !" onclick="create_xml('plane')"/>
+      </div>
+      <div class="output_object" id="paraboloid_object"> <!-- 10 -->
+        <h3>PARABOLOID PARAMETERS</h3><br>
+        <form class="paraboloid_form">
+          <span id="txt_simple">CENTER :</span>
+            <input class="i_cmplx" id="para_cen_z" type="text" name="center_pa" placeholder="Enter Z" maxlength="6"/>
+            <input class="i_cmplx" id="para_cen_y" type="text" name="center_pa" placeholder="Enter Y" maxlength="6"/>
+            <input class="i_cmplx" id="para_cen_x" type="text" name="center_pa" placeholder="Enter X" maxlength="6"/><br/><br/>
+          <span id="txt_simple">AXIS :</span>
+            <input class="i_cmplx" id="para_axis_z" type="text" name="axis_pa" placeholder="Enter Z" maxlength="6"/>
+            <input class="i_cmplx" id="para_axis_y" type="text" name="axis_pa" placeholder="Enter Y" maxlength="6"/>
+            <input class="i_cmplx" id="para_axis_x" type="text" name="axis_pa" placeholder="Enter X" maxlength="6"/><br/><br/>
+          <span id="txt_simple">UPPER HEIGHT :</span><input class="i_smpl" id="pa_uheight" type="text" name="upper_height" placeholder="Enter upper height" maxlength="6"/><br><br>
+          <span id="txt_simple">LOWER HEIGHT :</span><input class="i_smpl" id="pa_lheight" type="text" name="lower_height" placeholder="Enter lower height" maxlength="6"/><br><br>
+          <span id="txt_simple">NARROWNESS :</span><input class="i_smpl" id="narrow" type="text" name="narrow" placeholder="Enter narrowness value" maxlength="6"/><br/><br/>
+          <span id="txt_simple">INDEX OF REFRACTION :</span><input class="i_smpl" id="ior" type="text" name="ior" placeholder="Enter ior" maxlength="6"/><br><br>
+          <span id="txt_simple">COLOR :</span>
+          <input class="i_cmplx" id="color_b" type="text" name="color_b" placeholder="Enter B" maxlength="6"/>
+          <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
+          <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
+          <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
+          <span id="txt_simple">SPECULAR POWER :</span><input class="i_smpl" id="specpower" type="text" name="specpower" placeholder="Enter specular power" maxlength="6"/><br/><br/>
+          <span id="txt_simple">SPECULAR VALUE :</span><input class="i_smpl" id="specvalue" type="text" name="specvalue" placeholder="Enter specular value" maxlength="6"/><br/><br/>
+          <span id="txt_simple">REFLECTIVITY :</span><input class="i_smpl" id="reflectivity" type="text" name="reflectivity" placeholder="Enter reflectivity value" maxlength="6"/><br/><br/>
+          <span id="txt_simple">FILE NAME :</span><input class="i_file" id="file_9" type="file" name="file" placeholder="Enter file name"/><br><br>
+        </form><br/><br/>
+        <input class="buttons" id="button_para" type="button" value="ADD PARABOLOID !" onclick="create_xml('paraboloid')"/>
+      </div>
+      <div class="output_object" id="ellipsoid_object"> <!-- 11 -->
+        <h3>ELLIPSELOID PARAMETERS</h3><br>
+        <form class="ellipsoid_form">
+          <span id="txt_simple">CENTER :</span>
+            <input class="i_cmplx" id="ep_cen_z" type="text" name="center_ep" placeholder="Enter Z" maxlength="6"/>
+            <input class="i_cmplx" id="ep_cen_y" type="text" name="center_ep" placeholder="Enter Y" maxlength="6"/>
+            <input class="i_cmplx" id="ep_cen_x" type="text" name="center_ep" placeholder="Enter X" maxlength="6"/><br/><br/>
+          <span id="txt_simple">AXIS :</span>
+            <input class="i_cmplx" id="ep_axis_z" type="text" name="axis_ep" placeholder="Enter Z" maxlength="6"/>
+            <input class="i_cmplx" id="ep_axis_y" type="text" name="axis_ep" placeholder="Enter Y" maxlength="6"/>
+            <input class="i_cmplx" id="ep_axis_x" type="text" name="axis_ep" placeholder="Enter X" maxlength="6"/><br/><br/>
+          <span id="txt_simple">LENGTH OF C :</span><input class="i_smpl" id="ep_len_c" type="text" name="ep_len_c" placeholder="Enter length of c" maxlength="6"/><br><br>
+          <span id="txt_simple">SUM :</span><input class="i_smpl" id="sum" type="text" name="sum" placeholder="Enter sum of min and max radius" maxlength="6"/><br/><br/>
+          <span id="txt_simple">INDEX OF REFRACTION :</span><input class="i_smpl" id="ior" type="text" name="ior" placeholder="Enter ior" maxlength="6"/><br><br>
+          <span id="txt_simple">COLOR :</span>
+          <input class="i_cmplx" id="color_b" type="text" name="color_b" placeholder="Enter B" maxlength="6"/>
+          <input class="i_cmplx" id="color_g" type="text" name="color_g" placeholder="Enter G" maxlength="6"/>
+          <input class="i_cmplx" id="color_r" type="text" name="color_r" placeholder="Enter R" maxlength="6"/><br/><br/>
+          <span id="txt_simple">TRANSPARENCY :</span><input class="i_smpl" id="transparency" type="text" name="transparency" placeholder="Enter transparency" maxlength="6"/><br/><br/>
+          <span id="txt_simple">SPECULAR POWER :</span><input class="i_smpl" id="specpower" type="text" name="specpower" placeholder="Enter specular power" maxlength="6"/><br/><br/>
+          <span id="txt_simple">SPECULAR VALUE :</span><input class="i_smpl" id="specvalue" type="text" name="specvalue" placeholder="Enter specular value" maxlength="6"/><br/><br/>
+          <span id="txt_simple">REFLECTIVITY :</span><input class="i_smpl" id="reflectivity" type="text" name="reflectivity" placeholder="Enter reflectivity value" maxlength="6"/><br/><br/>
+          <span id="txt_simple">FILE NAME :</span><input class="i_file" id="file_10" type="file" name="file" placeholder="Enter file name"/><br><br>
+        </form><br/><br/>
+        <input class="buttons" id="button_ell" type="button" value="ADD ELLIPSOID !" onclick="create_xml('ellipsoid')"/>
       </div>
       <div class="main_textures" id="main_textures">
           <h3>CHOOSE A TEXTURE FOR MAPPING</h3><br>
@@ -377,17 +467,28 @@
             </table>
           </form>
       </div>
-      <div>
+      <div class="modify_cam" id="modify_cam">
+        <h3>ENTER CAMERA PARAMETERS</h3><br/><br/>
+        <form class="cam_form">
+            <span id="txt_simple">POSITION :</span>
+            <input class="i_cmplx" id="cam_nor_z" type="text" name="cam_normal" placeholder="Enter Z" maxlength="6"/>
+            <input class="i_cmplx" id="cam_nor_y" type="text" name="cam_normal" placeholder="Enter Y" maxlength="6"/>
+            <input class="i_cmplx" id="cam_nor_x" type="text" name="cam_normal" placeholder="Enter X" maxlength="6"/><br/><br/>
+            <span id="txt_simple">DIRECTION :</span>
+              <input class="i_cmplx" id="cam_dir_z" type="text" name="cam_direction" placeholder="Enter Z" maxlength="6"/>
+              <input class="i_cmplx" id="cam_dir_y" type="text" name="cam_direction" placeholder="Enter Y" maxlength="6"/>
+              <input class="i_cmplx" id="cam_dir_x" type="text" name="cam_direction" placeholder="Enter X" maxlength="6"/><br/><br/>
+              <span id="txt_simple">RIGHT :</span>
+              <input class="i_cmplx" id="cam_ri_z" type="text" name="cam_right" placeholder="Enter Z" maxlength="6"/>
+              <input class="i_cmplx" id="cam_ri_y" type="text" name="cam_right" placeholder="Enter Y" maxlength="6"/>
+              <input class="i_cmplx" id="cam_ri_x" type="text" name="cam_right" placeholder="Enter X" maxlength="6"/><br/><br/>
+            <span id="txt_simple">FILE NAME :</span><input class="i_file" id="file_11" type="file" name="file" placeholder="Enter file name"/><br><br>
+          </form><br/>
+          <input class="buttons" id="button_camera" type="button" value="UPDATE CAMERA !" onclick="mod_cam()"/>
       </div>
     </div>
     <div class="footer">
       <h5> A project created by : Jeongmo Bae <i>(jebae)</i>, Samuel Boniface <i>(sabonifa)</i>, Madeleine Hernandez <i>(mhernand)</i>, and Alexandru Moraru <i>(almoraru)</i>.</h5>
     </div>
   </body>
-  <script>
-    var w = window.innerWidth;
-    var h = window.innerHeight;
-    console.log(w);
-    console.log(h);
-  </script>
 </html>

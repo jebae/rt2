@@ -23,7 +23,7 @@ app.get('/',function(req,res) {
 });
 
 // create a route for the app for the camera rewrite
-app.post('/camera', (req, res) => {
+app.post('/xmlcamera', (req, res) => {
 
   fs.readFile( req.body.filename, function modify_xml(err, data) 
   {
@@ -33,25 +33,13 @@ app.post('/camera', (req, res) => {
     }
     const xmlCam = xmlParser.toJson(req.body.data, {reversible: true, object: true})
     const xmlFile = xmlParser.toJson(data, {reversible: true, object: true})
-
+    console.log(xmlCam)
     if (xmlFile.hasOwnProperty("scene"))
     {
-      // THIS : needs to be modified so the camera can be modified and needs to be done in a different way !
+      Object.assign(xmlFile["scene"], xmlCam)
 
-      // const xmlFileCam = xmlFile["scene"]["camera"]
-      // const objectName = Object.keys(xmlObj)[0];
-      // var count = Object.keys(xmlFileObj).length
-
-      // if (Array.isArray(xmlFile.scene.objects[objectName])) {
-      //   xmlFile.scene.objects[objectName].push(xmlObj[objectName]);
-      // } else if (xmlFile.scene.objects[objectName]) {
-      //   xmlFile.scene.objects[objectName] = [xmlFile.scene.objects[objectName], xmlObj[objectName]]
-      // } else {
-      //   Object.assign(xmlFile["scene"]["objects"], xmlObj)
-      // }
-
-      // const stringifiedXmlObj = JSON.stringify(xmlFile)
-      // const finalXml = xmlParser.toXml(stringifiedXmlObj)
+      const stringifiedXmlObj = JSON.stringify(xmlFile)
+      const finalXml = xmlParser.toXml(stringifiedXmlObj)
 
       // writing to file 
       fs.writeFile(req.body.filename, formatXml(finalXml, {collapseContent: true}), function(err, result){
@@ -70,7 +58,9 @@ app.post('/camera', (req, res) => {
 // create a route for the app for adding a shape
 app.post('/xmlwrite', (req, res) => {
 
-  fs.readFile( req.body.filename, function modify_xml(err, data) 
+  const filepath = "../scenes/" + req.body.filename
+  console.log(filepath);
+  fs.readFile( filepath, function modify_xml(err, data) 
   {
     if (err) {
       res.json({warning:"No file given."});
@@ -79,6 +69,7 @@ app.post('/xmlwrite', (req, res) => {
     const xmlObj = xmlParser.toJson(req.body.data, {reversible: true, object: true})
     const xmlFile = xmlParser.toJson(data, {reversible: true, object: true})
 
+    console.log(xmlObj);
     if (xmlFile.hasOwnProperty("scene") && xmlFile.scene.hasOwnProperty("objects"))
     {
       const xmlFileObj = xmlFile["scene"]["objects"]
@@ -97,7 +88,7 @@ app.post('/xmlwrite', (req, res) => {
       const finalXml = xmlParser.toXml(stringifiedXmlObj)
 
       // writing to file 
-      fs.writeFile(req.body.filename, formatXml(finalXml, {collapseContent: true}), function(err, result){
+      fs.writeFile(filepath, formatXml(finalXml, {collapseContent: true}), function(err, result){
         if (err) {
           console.log("Nothing written to the file.")
           res.json({bad:"Failed!"});
