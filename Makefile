@@ -1,6 +1,6 @@
 NAME = rt
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address
 
 LIBFT_PATH = ./libft
 LIBVECTOR_PATH = ./libvector
