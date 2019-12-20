@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:32:05 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/19 12:49:12 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 00:50:12 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void			set_origin_trace_record(t_env *e, t_trace_record *rec)
 {
 	rec->ray = cast_ray(e->x, e->y, e);
 	rec->ray.ior = 1.0;
+	rec->ray.type = RT_RAY_TYPE_ORIGIN;
 	rec->depth = 0;
 	rec->prev = NULL;
 }

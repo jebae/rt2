@@ -59,9 +59,9 @@ function get_rec_att(tmp)
     var vecA = check_multi_val(document.getElementsByName('rec_vector_a'));
     var vecB = check_multi_val(document.getElementsByName('rec_vector_b'));
     
-    tmp = "\t\t\t<point> " + point[2] + ", " + point[1] + ", " + point[0] + " </point>\n";
-    tmp += "\t\t\t<vector_a> " + vecA[2] + ", " + vecA[1] + ", " + vecA[0] + " </vector_a>\n";
-    tmp += "\t\t\t<vector_b> " + vecB[2] + ", " + vecB[1] + ", " + vecB[0] + " </vector_b>\n";
+    tmp = "\t\t\t<p> " + point[2] + ", " + point[1] + ", " + point[0] + " </p>\n";
+    tmp += "\t\t\t<a> " + vecA[2] + ", " + vecA[1] + ", " + vecA[0] + " </a>\n";
+    tmp += "\t\t\t<b> " + vecB[2] + ", " + vecB[1] + ", " + vecB[0] + " </b>\n";
     return(tmp);
 }
 
@@ -74,8 +74,8 @@ function get_rin_att(tmp)
 
     tmp = "\t\t\t<center> " + ring_cen[2] + ", " + ring_cen[1] + ", " + ring_cen[0] + " </center>\n";
     tmp += "\t\t\t<normal> " + ring_nor[2] + ", " + ring_nor[1] + ", " + ring_nor[0] + " </normal>\n";
-    tmp += "\t\t\t<outer_radius> " + ring_out_rad + " </outer_radius>\n";
-    tmp += "\t\t\t<inner_radius> " + ring_inn_rad + " </inner_radius>\n";
+    tmp += "\t\t\t<r_one> " + ring_inn_rad + " </r_one>\n";
+    tmp += "\t\t\t<r_two> " + ring_out_rad + " </r_two>\n";
     return(tmp);
 }
 
@@ -86,10 +86,10 @@ function get_box_att(tmp)
     var box_vec_b = check_multi_val(document.getElementsByName('box_vector_b'));
     var box_lenC = check_val(document.getElementById('box_lenC').value);
 
-    tmp = "\t\t\t<point> " + box_point[2] + ", " + box_point[1] + ", " + box_point[0] + " </point>\n";
-    tmp += "\t\t\t<vector_a> " + box_vec_a[2] + ", " + box_vec_a[1] + ", " + box_vec_a[0] + " </vector_a>\n";
-    tmp += "\t\t\t<vector_b> " + box_vec_b[2] + ", " + box_vec_b[1] + ", " + box_vec_b[0] + " </vector_b>\n";
-    tmp += "\t\t\t<length_c> " + box_lenC + " </length_c>\n";
+    tmp = "\t\t\t<vmin> " + box_point[2] + ", " + box_point[1] + ", " + box_point[0] + " </vmin>\n";
+    tmp += "\t\t\t<a> " + box_vec_a[2] + ", " + box_vec_a[1] + ", " + box_vec_a[0] + " </a>\n";
+    tmp += "\t\t\t<b> " + box_vec_b[2] + ", " + box_vec_b[1] + ", " + box_vec_b[0] + " </b>\n";
+    tmp += "\t\t\t<norm_c> " + box_lenC + " </norm_c>\n";
     return(tmp);
 }
 
@@ -100,9 +100,9 @@ function get_pyr_att(tmp)
     var pyr_vecU = check_multi_val(document.getElementsByName('vector_v'));
     var pyr_height = check_val(document.getElementById('pyr_height').value);
 
-    tmp = "\t\t\t<point> " + pyr_point[2] + ", " + pyr_point[1] + ", " + pyr_point[0] + " </point>\n";
-    tmp += "\t\t\t<vector_u> " + pyr_vecV[2] + ", " + pyr_vecV[1]  + ", " + pyr_vecV[0]  + " </vector_u>\n";
-    tmp += "\t\t\t<vector_v> " + pyr_vecU[2] + ", " + pyr_vecU[1] + ", " + pyr_vecU[0] + " </vector_v>\n";
+    tmp = "\t\t\t<a> " + pyr_point[2] + ", " + pyr_point[1] + ", " + pyr_point[0] + " </a>\n";
+    tmp += "\t\t\t<u> " + pyr_vecV[2] + ", " + pyr_vecV[1]  + ", " + pyr_vecV[0]  + " </u>\n";
+    tmp += "\t\t\t<v> " + pyr_vecU[2] + ", " + pyr_vecU[1] + ", " + pyr_vecU[0] + " </v>\n";
     tmp += "\t\t\t<height> " + pyr_height + " </height>\n";
     return(tmp);
 }
@@ -113,9 +113,9 @@ function get_tri_att(tmp)
     var tri_vecAB = check_multi_val(document.getElementsByName('vector_ab'));
     var tri_vecAC = check_multi_val(document.getElementsByName('vector_ac'));
 
-    tmp = "\t\t\t<center> " + tri_point[2] + ", " + tri_point[1] + ", " + tri_point[0] + " </center>\n";
-    tmp += "\t\t\t<vector_ab> " + tri_vecAB[2] + ", " + tri_vecAB[1] + ", " + tri_vecAB[0] + " </vector_ab>\n";
-    tmp += "\t\t\t<vector_ac> " + tri_vecAC[2] + ", " + tri_vecAC[1] + ", " + tri_vecAC[0] + " </vector_ac>\n";
+    tmp = "\t\t\t<a> " + tri_point[2] + ", " + tri_point[1] + ", " + tri_point[0] + " </a>\n";
+    tmp += "\t\t\t<ab> " + tri_vecAB[2] + ", " + tri_vecAB[1] + ", " + tri_vecAB[0] + " </ab>\n";
+    tmp += "\t\t\t<ac> " + tri_vecAC[2] + ", " + tri_vecAC[1] + ", " + tri_vecAC[0] + " </ac>\n";
     return(tmp);
 }
 
@@ -125,7 +125,7 @@ function get_pla_att(tmp)
     var pla_lenC = check_val(document.getElementById('pla_len_c'));
 
     tmp = "\t\t\t<normal> " + pla_normal[2] + ", " + pla_normal[1] + ", " + pla_normal[0] + " </normal>\n";
-    tmp += "\t\t\t<length_c> " + pla_lenC.value + " </length_c>\n";
+    tmp += "\t\t\t<d> " + pla_lenC.value + " </d>\n";
     return (tmp);
 }
 
@@ -139,9 +139,9 @@ function get_par_att(tmp)
 
     tmp = "\t\t\t<center> " + par_cen[2] + ", " + par_cen[1] + ", " + par_cen[0] + " </center>\n";
     tmp += "\t\t\t<axis> " + par_axis[2] + ", " + par_axis[1] + ", " + par_axis[0] + " </axis>\n";
-    tmp += "\t\t\t<lower_height> " + par_lheight + " </lower_height>\n";
-    tmp += "\t\t\t<upper_height> " + par_uheight + " </upper_height>\n";
-    tmp += "\t\t\t<narrowness> " + par_uheight + " </narrowness>\n";
+    tmp += "\t\t\t<min> " + par_lheight + " </min>\n";
+    tmp += "\t\t\t<max> " + par_uheight + " </max>\n";
+    tmp += "\t\t\t<k> " + par_uheight + " </k>\n";
     return (tmp);
 }
 
@@ -154,7 +154,7 @@ function get_ell_att(tmp)
 
     tmp = "\t\t\t<center> " + ell_cen[2] + ", " + ell_cen[1] + ", " + ell_cen[0] + " </center>\n";
     tmp += "\t\t\t<axis> " + ell_axis[2] + ", " + ell_axis[1] + ", " + ell_axis[0] + " </axis>\n";
-    tmp += "\t\t\t<length_c> " + ell_lenc + " </length_c>\n";
+    tmp += "\t\t\t<d> " + ell_lenc + " </d>\n";
     tmp += "\t\t\t<sum> " + ell_sum + " </sum>\n";
     return (tmp);
 }
@@ -285,10 +285,7 @@ function create_xml(shape)
     var testing = "file_" + shape_num;  
     var file = document.getElementById(testing).files[0];
 
-
     console.log(xml_shape);
-
-
     if (file)
     {
         $.ajax({
@@ -302,7 +299,6 @@ function create_xml(shape)
     }
     else
         console.log("No file given !");
-
 
     // this reloads file !
     // document.location.reload(true);

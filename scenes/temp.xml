@@ -9,39 +9,31 @@
             <dir>1.0, -3.0, -0.5</dir>
             <its>30, 30, 30</its>
         </distant>
-        <spherical>
-            <pos>1.0, -3.0, -0.5</pos>
-            <its>30, 30, 30</its>
-        </spherical>
     </light>
     <objects>
-        <ring>
-            <center>0, 1, 20</center>
+        <plane>
             <normal>0, 1, 0</normal>
-            <r_one>20</r_one>
-            <r_two>30</r_two>
+			<d>4</d>
             <optional>
-                <ior>5</ior>
-                <color>255, 255, 22</color>
+                <ior>1.5</ior>
+                <color>14, 255, 100</color>
                 <transparency>0</transparency>
                 <specvalue>600</specvalue>
                 <specpower>15</specpower>
                 <reflectivity>0</reflectivity>
             </optional>
-        </ring>
-		<cylinder>
-			<center>1, 1, 5</center>
-			<axis>1, 1, 0</axis>
-			<radius>2</radius>
-			<height>3</height>
+        </plane>
+		<sphere>
+			<center>1, -3, 5</center>
+			<radius>1</radius>
             <optional>
-                <ior>5</ior>
-                <color>255, 255, 22</color>
-                <transparency>0</transparency>
+                <ior>1.5</ior>
+                <color>100, 255, 22</color>
+                <transparency>0.9</transparency>
                 <specvalue>600</specvalue>
                 <specpower>15</specpower>
                 <reflectivity>0</reflectivity>
             </optional>
-		</cylinder>
+		</sphere>
     </objects>
 </scene>

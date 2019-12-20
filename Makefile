@@ -35,6 +35,13 @@ SRC_INTERSECT_NORMAL = box.c\
 	rectangle.c\
 	ring.c\
 	triangle.c\
+	sphere.c\
+	cone.c\
+	cylinder.c\
+	ellipsoid.c\
+	paraboloid.c\
+	plane.c\
+	common.c\
 
 SRC_LIGHT = distant_light.c\
 	spherical_light.c\
@@ -115,13 +122,10 @@ SRC_SETTING = env.c\
 	ray_grid_props.c\
 
 SRCS = color_op.c\
-	get_normal.c\
-	intersec_functions.c\
-	intersec_functions_2.c\
 	mat3_op.c\
 	handle_fail.c\
 	buffer2img.c\
-	main.c\
+#main.c\
 
 # objs
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:31:43 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/16 15:31:43 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 00:51:16 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static t_ray	get_refraction_ray(t_trace_record *rec)
 		ray.type = RT_RAY_TYPE_NONE;
 		return (ray);
 	}
-	ray.ori = v3_add(rec->point, v3_scalar(rec->normal, -RT_BIAS));
+	ray.ori = v3_sub(rec->point, v3_scalar(rec->normal, RT_BIAS));
 	a = v3_add(rec->ray.dir, v3_scalar(rec->normal, cos_th1));
 	a = v3_scalar(a, snell_ratio);
 	ray.dir = v3_sub(a, v3_scalar(rec->normal, sqrt(det)));

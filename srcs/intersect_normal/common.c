@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersec_functions_2.c                             :+:      :+:    :+:   */
+/*   common.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/09 10:44:27 by mhernand          #+#    #+#             */
-/*   Updated: 2019/11/15 17:57:17 by jebae            ###   ########.fr       */
+/*   Created: 2019/12/19 23:00:59 by jebae             #+#    #+#             */
+/*   Updated: 2019/12/19 23:01:03 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-double	find_closest_intersection(double a, double b, double c)
+double		find_closest_intersection(double a, double b, double c)
 {
 	double	delta;
 	double	t1;
