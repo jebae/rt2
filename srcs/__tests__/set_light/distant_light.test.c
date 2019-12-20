@@ -22,13 +22,11 @@ TEST_TEAR_DOWN(set_distant_light)
 TEST(set_distant_light, valid)
 {
 	arg.dir = (t_vec3){1.0, 2.0, -0.9};
-	arg.rot = (t_vec3){0.2, 0.3, 1.9};
 	expected_v = v3_normalise(arg.dir);
 
 	res = set_distant_light(&ll, &arg);
 	TEST_ASSERT_EQUAL_INT_MESSAGE(RT_SUCCESS, res, "res");
 	TEST_ASSERT_EQUAL_MEMORY_MESSAGE(&expected_v, &dl->dir, sizeof(t_vec3), "dir");
-	TEST_ASSERT_EQUAL_MEMORY_MESSAGE(&arg.rot, &dl->rot, sizeof(t_vec3), "rot");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&distant_light_dir, ll.get_dir, "get_dir");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&distant_light_distance, ll.get_distance, "get_distant");
 }
@@ -36,7 +34,6 @@ TEST(set_distant_light, valid)
 TEST(set_distant_light, dir_norm_is_0)
 {
 	arg.dir = (t_vec3){0.0, 0.0, 0.0};
-	arg.rot = (t_vec3){0.2, 0.3, 1.9};
 	expected_v = v3_normalise(arg.dir);
 
 	res = set_distant_light(&ll, &arg);

@@ -21,12 +21,10 @@ TEST_TEAR_DOWN(set_spherical_light)
 TEST(set_spherical_light, valid)
 {
 	arg.pos = (t_vec3){1.0, 2.0, -0.9};
-	arg.tra = (t_vec3){0.2, 0.3, 1.9};
 
 	res = set_spherical_light(&ll, &arg);
 	TEST_ASSERT_EQUAL_INT_MESSAGE(RT_SUCCESS, res, "res");
 	TEST_ASSERT_EQUAL_MEMORY_MESSAGE(&arg.pos, &sl->pos, sizeof(t_vec3), "pos");
-	TEST_ASSERT_EQUAL_MEMORY_MESSAGE(&arg.tra, &sl->tra, sizeof(t_vec3), "tra");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&spherical_light_dir, ll.get_dir, "get_dir");
 	TEST_ASSERT_EQUAL_INT_MESSAGE(&spherical_light_distance, ll.get_distance, "get_spherical");
 }

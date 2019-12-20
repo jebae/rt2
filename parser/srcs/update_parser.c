@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 15:17:06 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/19 04:36:21 by almoraru         ###   ########.fr       */
+/*   Updated: 2019/12/20 10:25:35 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,6 +278,7 @@ void	parse_line(t_parse *p)
 
 	s = &p->str;
 	parse_camera(p, s, &p->flag);
+	parse_ambient(p);
 	parse_lights(p);
 	parse_objects(p);
 	parse_filters(p);

@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   spherical_light.c                                  :+:      :+:    :+:   */
+/*   parse_ambient.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/16 15:30:58 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/20 07:33:42 by jebae            ###   ########.fr       */
+/*   Created: 2019/12/20 10:25:15 by jebae             #+#    #+#             */
+/*   Updated: 2019/12/20 10:26:10 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-int			set_spherical_light(t_ll *ll, t_arg_spherical_light *arg)
+void		parse_ambient(t_parse *p)
 {
-	t_spherical_light		*sl;
+	t_str		*s;
 
-	sl = (t_spherical_light *)ll->light;
-	sl->pos = arg->pos;
-	ll->get_dir = &spherical_light_dir;
-	ll->get_distance = &spherical_light_distance;
-	return (RT_SUCCESS);
+	s = &p->str;
+	if ((ft_strcmp(s->word, "ambient")) == 0)
+	{
+		if (!(p->flag & 1UL << 19))
+		{
+			handle_3vec_number(s, p->amb);
+			p->flag |= 1UL << 19;
+		}
+		p->flag &= ~(1UL << 19);
+		if (set_ambient(p->amb) == RT_FAIL)
+			p->mask |= RT_ENV_MASK_PARSE_FAIL;
+	}
 }
+

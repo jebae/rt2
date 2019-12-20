@@ -6,23 +6,34 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 22:25:21 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/17 22:33:59 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 10:03:11 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	parse_pyramid(t_parse *p)
+static void		parse_arg(t_str *s, t_arg_pyramid *arg)
 {
-	t_ol		*ob;
-	t_arg_pyramid	py;
-	t_str		*s;
-	int		i;
+	if ((ft_strcmp(s->word, "a")) == 0)
+		handle_3vec_number(s, &arg->a);
+	if ((ft_strcmp(s->word, "u")) == 0)
+		handle_3vec_number(s, &arg->u);
+	if ((ft_strcmp(s->word, "v")) == 0)
+		handle_3vec_number(s, &arg->v);
+	if ((ft_strcmp(s->word, "height")) == 0)
+		handle_float_number(s, &arg->height);
+}
 
-	ob = p->ob;
+void			parse_pyramid(t_parse *p)
+{
+	t_arg_pyramid	arg;
+	t_ol			*ob;
+	t_str			*s;
+
+	ob = &p->ob[p->index];
 	s = &p->str;
-	i = p->index;
-	ob[i].object = ft_mem(&p->mem, sizeof(t_pyramid));
+	ob->object = ft_mem(&p->mem, sizeof(t_pyramid));
+	ft_bzero(&arg, sizeof(t_arg_pyramid));
 	puts("Pyramid here");
 	while (*s->buf != '\0' && ft_strcmp(s->line, "</pyramid>") != 0)
 	{
@@ -31,20 +42,13 @@ void	parse_pyramid(t_parse *p)
 		ft_cpyword(s->line, s->word);
 		while (*s->buf != '\n' && *s->buf)
 			s->buf++;
-		if ((ft_strcmp(s->word, "a")) == 0)
-			handle_3vec_number(s, &py.a);
-		if ((ft_strcmp(s->word, "u")) == 0)
-			handle_3vec_number(s, &py.u);
-		if ((ft_strcmp(s->word, "v")) == 0)
-			handle_3vec_number(s, &py.v);
-		if ((ft_strcmp(s->word, "height")) == 0)
-			handle_float_number(s, &py.height);
+		parse_arg(s, &arg);
 		if ((ft_strcmp(s->word, "optional")) == 0)
 			handle_optional_vaules(p);
 		s->buf++;
 	}
 	puts("Pyramid done");
-	if (set_pyramid(&ob[i], &py) == RT_FAIL)
+	if (set_pyramid(ob, &arg) == RT_FAIL)
 		p->mask |= RT_ENV_MASK_PARSE_FAIL;
 	p->flag &= ~(1UL << 11);
 }

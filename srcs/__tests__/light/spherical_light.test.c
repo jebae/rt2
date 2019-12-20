@@ -13,7 +13,6 @@ TEST_SETUP(spherical_light)
 {
 	ll.light = ft_memalloc(sizeof(t_spherical_light));
 	arg.pos = (t_vec3){0.1, -1.0, 3.14};
-	arg.tra = (t_vec3){0.0, 0.0, 0.0};
 	set_spherical_light(&ll, &arg);
 	sl = (t_spherical_light *)ll.light;
 	point = (t_vec3){-2.0, 0.1, 8.1};

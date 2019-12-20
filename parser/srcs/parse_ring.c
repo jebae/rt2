@@ -6,23 +6,34 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 22:26:05 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/17 22:35:12 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 08:57:34 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
+static void		parse_arg(t_str *s, t_arg_ring *arg)
+{
+	if ((ft_strcmp(s->word, "center")) == 0)
+		handle_3vec_number(s, &arg->center);
+	if ((ft_strcmp(s->word, "normal")) == 0)
+		handle_3vec_number(s, &arg->normal);
+	if ((ft_strcmp(s->word, "r_one")) == 0)
+		handle_float_number(s, &arg->r1);
+	if ((ft_strcmp(s->word, "r_two")) == 0)
+		handle_float_number(s, &arg->r2);
+}
+
 void	parse_ring(t_parse *p)
 {
+	t_arg_ring		arg;
 	t_ol			*ob;
-	t_arg_ring	r;
 	t_str			*s;
-	int				i;
 
-	ob = p->ob;
+	ob = &p->ob[p->index];
 	s = &p->str;
-	i = p->index;
-	ob[i].object = ft_mem(&p->mem, sizeof(t_ring));
+	ob->object = ft_mem(&p->mem, sizeof(t_ring));
+	ft_bzero(&arg, sizeof(t_arg_ring));
 	puts("Ring here");
 	while (*s->buf != '\0' && ft_strcmp(s->line, "</ring>") != 0)
 	{
@@ -31,20 +42,13 @@ void	parse_ring(t_parse *p)
 		ft_cpyword(s->line, s->word);
 		while (*s->buf != '\n' && *s->buf)
 			s->buf++;
-		if ((ft_strcmp(s->word, "center")) == 0)
-			handle_3vec_number(s, &r.center);
-		if ((ft_strcmp(s->word, "normal")) == 0)
-			handle_3vec_number(s, &r.normal);
-		if ((ft_strcmp(s->word, "r_one")) == 0)
-			handle_float_number(s, &r.r1);
-		if ((ft_strcmp(s->word, "r_two")) == 0)
-			handle_float_number(s, &r.r2);
+		parse_arg(s, &arg);
 		if ((ft_strcmp(s->word, "optional")) == 0)
 			handle_optional_vaules(p);
 		s->buf++;
 	}
 	puts("Ring done");
-	if (set_ring(&ob[i], &r) == RT_FAIL)
+	if (set_ring(ob, &arg) == RT_FAIL)
 		p->mask |= RT_ENV_MASK_PARSE_FAIL;
 	p->flag &= ~(1UL << 12);
 }

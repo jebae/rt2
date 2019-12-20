@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:25:21 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/19 12:04:11 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 08:58:23 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,13 +118,11 @@ typedef struct		s_ll
 typedef struct		s_spherical_light
 {
 	t_vec3			pos;
-	t_vec3			tra;
 }					t_spherical_light;
 
 typedef struct		s_distant_light
 {
 	t_vec3			dir;
-	t_vec3			rot;
 }					t_distant_light;
 
 /*
@@ -133,13 +131,11 @@ typedef struct		s_distant_light
 typedef struct		s_arg_distant_light
 {
 	t_vec3			dir;
-	t_vec3			rot;
 }					t_arg_distant_light;
 
 typedef struct		s_arg_spherical_light
 {
 	t_vec3			pos;
-	t_vec3			tra;
 }					t_arg_spherical_light;
 
 typedef struct		s_texels

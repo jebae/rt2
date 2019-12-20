@@ -6,21 +6,33 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 16:36:39 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/17 22:29:42 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 11:29:35 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "stb_image.hpp"
 
-int			set_texels(
+static void		concat_dir(char *dest, const char *filename)
+{
+	ft_strncat(dest, "contents/", 54);
+	ft_strncat(dest, filename, 54);
+}
+
+int				set_texels(
 	const char *filename,
 	int repeat,
 	t_texels *texels
 )
 {
+	char	filepath[64];
+
+	ft_bzero(filepath, sizeof(char) * 64);
+	if (ft_strlen(filename) > 54)
+		return (handle_fail("set_texels : filename too long"));
+	concat_dir(filepath, filename);
 	texels->buffer = (unsigned int *)stbi_load(
-		filename, &texels->width, &texels->height,
+		filepath, &texels->width, &texels->height,
 		NULL, STBI_rgb_alpha);
 	if (texels->buffer == NULL)
 		return (handle_fail("set_texels : wrong file"));

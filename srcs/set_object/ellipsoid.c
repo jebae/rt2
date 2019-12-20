@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 23:39:04 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/19 23:39:04 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 07:29:43 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static int		validate(t_arg_ellipsoid *arg)
 		return (handle_fail("set_ellipsoid : d below 0"));
 	if (arg->sum <= 0.0)
 		return (handle_fail("set_ellipsoid : sum 0 or below 0"));
+	if (arg->d > arg->sum)
+		return (handle_fail("set_ellipsoid : d bigger than sum"));
 	return (RT_SUCCESS);
 }
 

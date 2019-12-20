@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:32:02 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/19 12:39:42 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 09:51:24 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int				intersect(t_env *e, t_trace_record *rec)
 		if (t > 0 && t < FAR && t < rec->ray.t)
 		{
 			rec->ray.t = t;
-			rec->obj = &(e->ll_obj[i]);
+			rec->obj = &e->ll_obj[i];
 		}
 		i++;
 	}

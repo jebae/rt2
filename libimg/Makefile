@@ -68,12 +68,4 @@ re : fclean all
 $(OBJDIR) :
 	mkdir -p $(OBJDIR)
 
-# command
-TEST_SRCS = ./__tests__/*.c
-TEST_INCLUDES = $(INCLUDES) -I $(UNITY_PATH)/include
-TEST_LIBS = $(LIBS) -L $(UNITY_PATH)/lib -lunity
-
-test : $(OBJDIR) $(OBJS)
-	$(CC) -D UNITY_MEMORY_OVERRIDES_H_ $(CFLAGS) $(TEST_INCLUDES) $(TEST_LIBS) $(TEST_SRCS) $(OBJS) -o test
-
-.PHONY : test all clean fclean re
+.PHONY : all clean fclean re

@@ -6,23 +6,32 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 22:24:32 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/17 22:35:32 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 10:08:14 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
+static void		parse_arg(t_str *s, t_arg_triangle *arg)
+{
+	if ((ft_strcmp(s->word, "a")) == 0)
+		handle_3vec_number(s, &arg->a);
+	if ((ft_strcmp(s->word, "ab")) == 0)
+		handle_3vec_number(s, &arg->ab);
+	if ((ft_strcmp(s->word, "ac")) == 0)
+		handle_3vec_number(s, &arg->ac);
+}
+
 void	parse_triangle(t_parse *p)
 {
-	t_ol		*ob;
-	t_arg_triangle	t;
-	t_str		*s;
-	int		i;
+	t_arg_triangle	arg;
+	t_ol			*ob;
+	t_str			*s;
 
-	ob = p->ob;
+	ob = &p->ob[p->index];
 	s = &p->str;
-	i = p->index;
-	ob[i].object = ft_mem(&p->mem, sizeof(t_triangle));
+	ob->object = ft_mem(&p->mem, sizeof(t_triangle));
+	ft_bzero(&arg, sizeof(t_arg_triangle));
 	puts("Triangle here");
 	while (*s->buf != '\0' && ft_strcmp(s->line, "</triangle>") != 0)
 	{
@@ -31,18 +40,13 @@ void	parse_triangle(t_parse *p)
 		ft_cpyword(s->line, s->word);
 		while (*s->buf != '\n' && *s->buf)
 			s->buf++;
-		if ((ft_strcmp(s->word, "a")) == 0)
-			handle_3vec_number(s, &t.a);
-		if ((ft_strcmp(s->word, "ab")) == 0)
-			handle_3vec_number(s, &t.ab);
-		if ((ft_strcmp(s->word, "ac")) == 0)
-			handle_3vec_number(s, &t.ac);
+		parse_arg(s, &arg);
 		if ((ft_strcmp(s->word, "optional")) == 0)
 			handle_optional_vaules(p);
 		s->buf++;
 	}
 	puts("Triangle done");
-	if (set_triangle(&ob[i], &t) == RT_FAIL)
+	if (set_triangle(ob, &arg) == RT_FAIL)
 		p->mask |= RT_ENV_MASK_PARSE_FAIL;
 	p->flag &= ~(1UL << 10);
 }

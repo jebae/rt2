@@ -1,6 +1,6 @@
 NAME = rt
 
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra
 
 LIBFT_PATH = ./libft
 LIBVECTOR_PATH = ./libvector
@@ -202,21 +202,21 @@ ROOT_DIR = $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 CONTENTS = contents
 OUTPUT_DIR = outputs
 SDL = $(ROOT_DIR)/SDL2 $(ROOT_DIR)/SDL2-2.0.10
+NODE_MODULES = interface/node_modules
 
 all: $(NAME)
 
 $(NAME) : deps $(OBJ_DIR) $(OBJS) $(OUTPUT_DIR)
-	@$(CC) $(CFLAGS) $(INC) $(LIB) $(OBJS) -o $(NAME)
-	@printf "\033[32m[ ✔ ] $(NAME)\n\033[0m"
+	$(CC) $(CFLAGS) $(INC) $(LIB) $(OBJS) -o $(NAME)
 
 $(OBJ_DIR) : 
-	@mkdir -p $@
+	mkdir -p $@
 
-deps : $(SDL) $(CONTENTS)
-	@make -C $(LIBFT_PATH) all
-	@make -C $(LIBVECTOR_PATH) all
-	@make -C $(LIBIMG_PATH) all
-	@make -C $(PARSER_PATH) all
+deps : $(SDL) $(NODE_MODULES) $(CONTENTS)
+	make -C $(LIBFT_PATH) all
+	make -C $(LIBVECTOR_PATH) all
+	make -C $(LIBIMG_PATH) all
+	make -C $(PARSER_PATH) all
 
 $(SDL) :
 	if [ ! -d ./SDL2-2.0.10 ]; \
@@ -225,6 +225,9 @@ $(SDL) :
 	if [ ! -d ./SDL2 ]; \
 	then cd SDL2-2.0.10 ; ./configure --prefix $(ROOT_DIR)/SDL2 ;\
 	make -j8 ; make install; fi;
+
+$(NODE_MODULES) :
+	cd interface && npm install
 
 $(CONTENTS) :
 	tar -xvzf contents.tar

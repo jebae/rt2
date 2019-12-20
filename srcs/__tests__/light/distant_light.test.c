@@ -12,7 +12,6 @@ TEST_SETUP(distant_light)
 {
 	ll.light = ft_memalloc(sizeof(t_distant_light));
 	arg.dir = (t_vec3){0.1, -1.0, 3.14};
-	arg.rot = (t_vec3){0.0, 0.0, 0.0};
 	set_distant_light(&ll, &arg);
 	dl = (t_distant_light *)ll.light;
 }

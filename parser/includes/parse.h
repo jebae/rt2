@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 11:48:20 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/19 04:34:23 by almoraru         ###   ########.fr       */
+/*   Updated: 2019/12/20 11:09:52 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ void			parse_paraboloid(t_parse *p);
 void			parse_lights(t_parse *p);
 void			handle_optional_vaules(t_parse *p);
 void			handle_cel_shading(t_parse *p);
+void			handle_texels(t_str *s, t_parse *p);
 void			parse_filters(t_parse *p);
+void			parse_ambient(t_parse *p);
+
 /*
 **	CHECK FUNCTONS
 */

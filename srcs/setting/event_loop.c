@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:31:33 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/19 13:38:58 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 06:40:44 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void		handle_hotreload(t_env *e, t_parse *p, char *filename)
 		e->num_objs = p->index;
 		e->num_lights = p->l_ind;
 		e->mask = p->mask;
+		set_ray_grid_props(e);
 		render(e);
 	}
 }

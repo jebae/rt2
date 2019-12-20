@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:30:55 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/17 20:45:07 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 07:33:53 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int				set_distant_light(t_ll *ll, t_arg_distant_light *arg)
 	if (validate(arg) == RT_FAIL)
 		return (RT_FAIL);
 	dl->dir = v3_normalise(arg->dir);
-	dl->rot = arg->rot;
 	ll->get_dir = &distant_light_dir;
 	ll->get_distance = &distant_light_distance;
 	return (RT_SUCCESS);
