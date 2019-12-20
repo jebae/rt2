@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:31:00 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/18 17:02:05 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 17:01:18 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int				set_box(t_ol *ol, t_arg_box *arg)
 {
 	t_box		*box;
 
-	if (validate(arg) == RT_FAIL)
+	if (validate(arg) == RT_FAIL || validate_commons(ol) == RT_FAIL)
 		return (RT_FAIL);
 	ol->intersect = &v_intersect_box;
 	ol->get_normal = &normal_box;

@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:31:25 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/18 17:05:42 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 17:05:09 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int				set_triangle(t_ol *ol, t_arg_triangle *arg)
 {
 	t_triangle	*triangle;
 
-	if (validate(arg) == RT_FAIL)
+	if (validate(arg) == RT_FAIL || validate_commons(ol) == RT_FAIL)
 		return (RT_FAIL);
 	ol->intersect = &v_intersect_triangle;
 	ol->get_normal = &normal_triangle;

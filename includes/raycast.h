@@ -6,7 +6,7 @@
 /*   By: sabonifa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:25:49 by sabonifa          #+#    #+#             */
-/*   Updated: 2019/12/19 12:05:00 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 17:06:35 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ double		spherical_light_distance(t_vec3 *point, void *light);
 ** Set object functions
 */
 void		pick_axis_from_plane(t_vec3 *normal, t_mat3 *axis_mat);
+int			validate_commons(t_ol *ol);
 int			set_sphere(t_ol *ol, t_arg_sphere *arg);
 int			set_cone(t_ol *ol, t_arg_cone *arg);
 int			set_cyl(t_ol *ol, t_arg_cyl *arg);

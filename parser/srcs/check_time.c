@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 16:19:48 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/19 13:08:11 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 17:13:48 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	check_time(t_parse *p, struct stat *att, unsigned int *flag, char *path)
 
 	s = &p->str;
 	ft_putendl(s->time);
-	SDL_Delay(500);
+	if (p->flag & 1UL)
+		SDL_Delay(1500);
 	if (ft_strcmp(s->time, ctime(&att->st_mtime)) != 0)
 	{
 		ft_putendl("FILE IS MODIFIED");

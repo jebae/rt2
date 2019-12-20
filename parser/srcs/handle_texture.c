@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 13:05:37 by mhernand          #+#    #+#             */
-/*   Updated: 2019/12/20 16:24:53 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 17:28:59 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ static void		assign_value(t_str *s, int *repeat)
 {
 	if (ft_strcmp(s->word, "file") == 0)
 		ft_cpymiddleword(s->word3, s->line);
-	printf("word = %s\n", s->word);
-	printf("file : %s\n", s->word3);
 	if (ft_strcmp(s->word, "repeat") == 0)
 		*repeat = handle_int_number(s, 0);
 }
@@ -53,7 +51,6 @@ static void		handle_bump_map(t_parse *p)
 
 	ob = &p->ob[p->index];
 	s = &p->str;
-	printf("line = %s\n", s->line);
 	while (*s->buf != '\0' && ft_strcmp(s->line, "</bump_map>") != 0)
 	{
 		if (*s->buf != '\n' && *s->buf)

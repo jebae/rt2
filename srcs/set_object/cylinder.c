@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:31:08 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/16 15:31:09 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 17:04:30 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int				set_cyl(t_ol *ol, t_arg_cyl *arg)
 {
 	t_cyl	*cyl;
 
-	if (validate(arg) == RT_FAIL)
+	if (validate(arg) == RT_FAIL || validate_commons(ol) == RT_FAIL)
 		return (RT_FAIL);
 	ol->intersect = &v_intersect_cy;
 	ol->get_normal = &normal_cylinder;

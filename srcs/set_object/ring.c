@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:31:21 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/20 08:59:14 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 17:05:00 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int				set_ring(t_ol *ol, t_arg_ring *arg)
 {
 	t_ring	*ring;
 
-	if (validate(arg) == RT_FAIL)
+	if (validate(arg) == RT_FAIL || validate_commons(ol) == RT_FAIL)
 		return (RT_FAIL);
 	ol->intersect = &v_intersect_ring;
 	ol->get_normal = &normal_ring;

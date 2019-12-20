@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:31:06 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/16 15:39:38 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 17:04:24 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int				set_cone(t_ol *ol, t_arg_cone *arg)
 {
 	t_cone		*cone;
 
-	if (validate(arg) == RT_FAIL)
+	if (validate(arg) == RT_FAIL || validate_commons(ol) == RT_FAIL)
 		return (RT_FAIL);
 	ol->intersect = &v_intersect_co;
 	ol->get_normal = &normal_cone;

@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 23:39:04 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/20 07:29:43 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 17:04:34 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int				set_ellipsoid(t_ol *ol, t_arg_ellipsoid *arg)
 {
 	t_ellipsoid	*ellipsoid;
 
-	if (validate(arg) == RT_FAIL)
+	if (validate(arg) == RT_FAIL || validate_commons(ol) == RT_FAIL)
 		return (RT_FAIL);
 	ol->intersect = &v_intersect_ellipsoid;
 	ol->get_normal = &normal_ellipsoid;

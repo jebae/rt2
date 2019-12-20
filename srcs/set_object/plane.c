@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:31:10 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/18 17:05:24 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 17:04:43 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int				set_plane(t_ol *ol, t_arg_plane *arg)
 {
 	t_plane		*plane;
 
-	if (validate(arg) == RT_FAIL)
+	if (validate(arg) == RT_FAIL || validate_commons(ol) == RT_FAIL)
 		return (RT_FAIL);
 	ol->intersect = &v_intersect_pl;
 	ol->get_normal = &normal_plane;
