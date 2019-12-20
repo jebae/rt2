@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/15 20:54:10 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/20 10:32:43 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 15:37:59 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ void			handle_optional_vaules(t_parse *p)
 
 	ob = &p->ob[p->index];
 	s = &p->str;
-	printf("so i = %d\n", p->index);
-	puts("optional HERE");
 	while (*s->buf != '\0' && ft_strcmp(s->line, "</optional>") != 0)
 	{
 		if (*s->buf != '\n' && *s->buf)
@@ -47,5 +45,4 @@ void			handle_optional_vaules(t_parse *p)
 		assign_values(s, ob);
 		s->buf++;
 	}
-	puts("optional done");
 }

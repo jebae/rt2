@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 11:48:20 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/20 15:01:58 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 16:53:35 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 **	INIT FUNCTIONS
 */
 int				init_everything(t_parse *p, char *path);
-void			init_mem(t_parse *p);
-void			init_strings(t_parse *p);
+int				init_mem(t_parse *p);
+int				init_strings(t_parse *p);
 /*
 **	PARSE FUNCTIONS
 */

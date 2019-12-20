@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 10:13:25 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/20 14:10:28 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 16:33:07 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void		ft_cpyword(char *line, char *word)
 			flag |= 1UL << 1;
 		if (*line == '/')
 			flag |= 1UL;
-		if ((ft_isalpha(*line) && !(flag & 1UL) && !(flag & 1UL << 1))
-				|| ((*line == '_') && !(flag & 1UL)))
+		if (*line != '/' && *line != '<'
+			&& !(flag & 1UL) && !(flag & 1UL << 1))
 			*word++ = *line;
 		line++;
 	}
@@ -62,8 +62,8 @@ void		ft_cpymiddleword(char *dest, char *src)
 			a |= 1UL;
 		if (*src == '/')
 			a |= 1UL << 1;
-		if ((ft_isalnum(*src) || *src == '.' || *src == '_') && (a & 1UL)
-			&& !(a & 1UL << 1))
+		if (*src != '<' && *src != '>'
+				&& (a & 1UL) && !(a & 1UL << 1))
 			*dest++ = *src;
 		src++;
 	}

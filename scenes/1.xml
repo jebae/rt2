@@ -4,29 +4,47 @@
         <right>1, 0, 0</right>
         <dir>0, 0, 1</dir>
     </camera>
-	<ambient>0.1, 0.1, 0.1</ambient>
+    <ambient>0.1, 0.1, 0.1</ambient>
     <light>
         <distant>
             <dir>0.5, -1, 10</dir>
-            <its>30, 30, 30</its>
+            <its>10, 10, 10</its>
         </distant>
         <spherical>
             <pos>0.0, -4, 6</pos>
-            <its>1, 1, 1</its>
+            <its>10, 10, 10</its>
         </spherical>
     </light>
-	<objects>
-		<sphere>
-			<center>1.0, 2.0, 8.0</center>
-			<radius>1.0</radius>
+    <objects>
+        <sphere>
+            <center>-2, 0, 3</center>
+            <radius>1</radius>
             <optional>
                 <ior>1.5</ior>
-                <color>255, 40, 100</color>
+                <color>255, 10, 109</color>
+                <transparency>0</transparency>
+                <specvalue>650</specvalue>
+                <specpower>15</specpower>
+                <reflectivity>0</reflectivity>
+            </optional>
+            <bump_map>
+                <file>water_bump2.jpg</file>
+                <repeat>1</repeat>
+            </bump_map>
+        </sphere>
+		<pyramid>
+			<a>5, 2, 5</a>
+			<u>1.0, 0.0, 0.0</u>
+			<v>0.0, 0.0, 1.0</v>
+			<height>2</height>
+            <optional>
+                <ior>1.5</ior>
+                <color>150, 120, 200</color>
                 <transparency>0.0</transparency>
                 <specvalue>600</specvalue>
                 <specpower>15</specpower>
-                <reflectivity>2.0</reflectivity>
-			</optional>
-		</sphere>
+                <reflectivity>0.0</reflectivity>
+            </optional>
+		</pyramid>
     </objects>
 </scene>
