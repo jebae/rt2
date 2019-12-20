@@ -37,9 +37,8 @@ void	init_mem(t_parse *p)
 	int		size;
 
 	mem = &p->mem;
-	size = 1024 * 1024 * 8;
-	if (!(p->flag & 1UL))
-		is_alloc((mem->m = ft_memalloc(size)));
+	size = 1024 * 1024 * 2;
+	is_alloc((mem->m = ft_memalloc(size)));
 	mem->tsize = size;
 	mem->usize = 0;
 	ft_putendl("Memory is initialized");
@@ -47,6 +46,11 @@ void	init_mem(t_parse *p)
 
 int			init_everything(t_parse *p, char *path)
 {
+    if (p->flag & 1UL)
+    {
+        free(p->mem.m);
+		close(p->fd);
+    }
 	p->index = 0;
 	p->l_ind = 0;
 	p->size = 0;
@@ -54,8 +58,6 @@ int			init_everything(t_parse *p, char *path)
 	p->flag &= ~(1UL << 18);
 	init_mem(p);
 	init_strings(p);
-	if (p->flag & 1UL)
-		close(p->fd);
 	if ((p->fd = open(path, O_RDONLY)) < 0)
 	{
 		ft_putendl("Failed to open file :(");
