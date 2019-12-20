@@ -260,11 +260,10 @@ table {
   margin-left: 0vw;
 }
 
-/* @media
+.texture_rep
 {
-  min-height:;
-} */
-
+  margin-right: 15%;
+}
 
 /* camera */
 .modify_cam
