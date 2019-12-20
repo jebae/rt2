@@ -459,6 +459,7 @@ typedef struct		s_parse
 	int				size;
 	int				line;
 	int				index;
+	int				tex_mode;
 	int				l_ind;
 	int				fd;
 }					t_parse;
