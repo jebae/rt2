@@ -6,7 +6,7 @@
 #    By: almoraru <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/03 10:41:01 by almoraru          #+#    #+#              #
-#    Updated: 2019/12/20 11:09:32 by jebae            ###   ########.fr        #
+#    Updated: 2019/12/20 14:57:45 by jebae            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ $(SD)/parse_cylinder.c $(SD)/parse_plane.c $(SD)/parse_rectangle.c				\
 $(SD)/parse_box.c $(SD)/parse_triangle.c $(SD)/parse_pyramid.c 				   \
 $(SD)/parse_ring.c $(SD)/clear_parser.c $(SD)/parse_ellipsoid.c $(SD)/parse_paraboloid.c\
 $(SD)/handle_filters.c $(SD)/string_functions2.c $(SD)/parse_ambient.c			\
-$(SD)/handle_texture.c
+$(SD)/handle_texture.c $(SD)/update_parser_flags.c $(SD)/update_parser_functions.c
 
 
 NAME = libparse.a

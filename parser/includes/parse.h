@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 11:48:20 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/20 13:43:07 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 15:01:58 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@ void			handle_cel_shading(t_parse *p);
 void			handle_texels(t_str *s, t_parse *p);
 void			parse_filters(t_parse *p);
 void			parse_ambient(t_parse *p);
+int				ft_turn_byte_on(int *op_cl, int num);
+int				ft_turn_byte_off(int *op_cl, int num);
+int				ft_brackets(char *line);
+int				ft_one_bracket(char *line, int b_ret);
+int				ft_check_spec_bytes_opening(int *op_cl);
+int				ft_check_spec_bytes_closing(int *op_cl, int num);
 
 /*
 **	CHECK FUNCTONS

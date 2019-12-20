@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 11:55:02 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/20 13:08:52 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/12/20 15:16:10 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ int					parse(t_parse *p, char *path)
 	att = &p->att;
 	s = &p->str;
 	if (stat(path, att) != 0)
+	{
+		p->mask |= RT_ENV_MASK_PARSE_FAIL;
 		return (1);
+	}
 	if (!(p->flag & 1UL))
 	{
 		init_everything(p, path);

@@ -16,22 +16,17 @@
         </spherical>
     </light>
 	<objects>
-		<rectangle>
-			<p>-4, 0.5, 7</p>
-			<a>0.0, 0.0, 20.0</a>
-			<b>20.0, 0.0, 0.0</b>
+		<sphere>
+			<center>1.0, 2.0, 8.0</center>
+			<radius>1.0</radius>
             <optional>
                 <ior>1.5</ior>
                 <color>255, 40, 100</color>
                 <transparency>0.0</transparency>
                 <specvalue>600</specvalue>
                 <specpower>15</specpower>
-                <reflectivity>0.0</reflectivity>
+                <reflectivity>2.0</reflectivity>
 			</optional>
-			<bump_map>
-				<file>water_bump2.jpg</file>
-				<repeat>1</repeat>
-			</bump_map>
-		</rectangle>
+		</sphere>
     </objects>
 </scene>

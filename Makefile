@@ -231,37 +231,27 @@ $(NODE_MODULES) :
 
 $(CONTENTS) :
 	tar -xvzf contents.tar
-	cp -R contents/* ./interfaces/public/textures/
+	mkdir -p ./interface/public/textures
+	cp -R contents/* ./interface/public/textures/
 
 $(OUTPUT_DIR) :
 	mkdir -p $@
 
-TEST_INC = $(INC) -I srcs/__tests__ -I $(UNITY_PATH)/include
-
-TEST_LIB = $(LIB) -L $(UNITY_PATH)/lib -lunity
-
-TEST_SRC = srcs/__tests__/*/*.c\
-	srcs/__tests__/*.c\
-
-test : deps $(OBJ_DIR) $(OBJS) $(OUTPUT_DIR)
-	$(CC) -D UNITY_MEMORY_OVERRIDES_H_ -D UNITY_INCLUDE_CONFIG_H $(CFLAGS) $(TEST_INC) $(TEST_LIB) $(TEST_SRC) $(OBJS) -o test
-
 clean:
-	@make -C $(LIBFT_PATH) clean
-	@make -C $(LIBVECTOR_PATH) clean
-	@make -C $(LIBIMG_PATH) clean
-	@make -C $(PARSER_PATH) clean
-	@rm -rf $(OBJ_DIR) 2> /dev/null || true
-	@printf '\033[31m[ ✔ ] %s\n\033[0m' "RTv1 is clean !"
+	make -C $(LIBFT_PATH) clean
+	make -C $(LIBVECTOR_PATH) clean
+	make -C $(LIBIMG_PATH) clean
+	make -C $(PARSER_PATH) clean
+	rm -rf $(OBJ_DIR)
+	rm -rf $(NODE_MODULES)
 
 fclean: clean
-	@printf '\033[31m[ ✔ ] %s\n\033[0m' "... and fclean too !"
-	@make -C $(LIBFT_PATH) fclean
-	@make -C $(LIBVECTOR_PATH) fclean
-	@make -C $(LIBIMG_PATH) fclean
-	@make -C $(PARSER_PATH) fclean
-	@rm -rf $(NAME)
+	make -C $(LIBFT_PATH) fclean
+	make -C $(LIBVECTOR_PATH) fclean
+	make -C $(LIBIMG_PATH) fclean
+	make -C $(PARSER_PATH) fclean
+	rm -rf $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean all libft test
+.PHONY: all clean fclean re
