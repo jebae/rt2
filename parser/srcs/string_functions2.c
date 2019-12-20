@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 10:13:25 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/20 11:28:58 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 13:20:16 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		ft_cpyword(char *line, char *word)
 {
-	int flag;
+	int		flag;
 
 	flag = 0;
 	ft_bzero(word, ft_strlen(word));
@@ -24,9 +24,8 @@ void		ft_cpyword(char *line, char *word)
 			flag |= 1UL << 1;
 		if (*line == '/')
 			flag |= 1UL;
-		if ((ft_isalpha(*line) && !(flag & 1UL)
-			 && !(flag & 1UL << 1))
-			|| ((*line == '_') && !(flag & 1UL)))
+		if ((ft_isalpha(*line) && !(flag & 1UL) && !(flag & 1UL << 1))
+				|| ((*line == '_') && !(flag & 1UL)))
 			*word++ = *line;
 		line++;
 	}
@@ -35,7 +34,7 @@ void		ft_cpyword(char *line, char *word)
 
 void		ft_second_word(char *line, char *word2)
 {
-	int	fg;
+	int		fg;
 
 	fg = 0;
 	ft_bzero(word2, ft_strlen(word2));
@@ -51,9 +50,9 @@ void		ft_second_word(char *line, char *word2)
 	*word2 = '\0';
 }
 
-void	ft_cpymiddleword(char *dest, char *src)
+void		ft_cpymiddleword(char *dest, char *src)
 {
-	int a;
+	int		a;
 
 	a = 0;
 	ft_bzero(dest, ft_strlen(dest));

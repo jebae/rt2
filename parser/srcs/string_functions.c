@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 01:19:22 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/20 10:13:09 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 13:18:50 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_cpynumbers(char *line, char *numbers)
 
 void	ft_cpyonenbr(char *dest, char *src)
 {
-	ft_bzero(dest,ft_strlen(dest));
+	ft_bzero(dest, ft_strlen(dest));
 	while (*src != '\0' && ft_isalpha(*src))
 		src++;
 	while (*src != '\0' && *src != ',')

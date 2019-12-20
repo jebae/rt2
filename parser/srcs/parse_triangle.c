@@ -6,13 +6,13 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 22:24:32 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/20 10:08:14 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 13:17:19 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static void		parse_arg(t_str *s, t_arg_triangle *arg)
+static void			parse_arg(t_str *s, t_arg_triangle *arg)
 {
 	if ((ft_strcmp(s->word, "a")) == 0)
 		handle_3vec_number(s, &arg->a);
@@ -22,7 +22,7 @@ static void		parse_arg(t_str *s, t_arg_triangle *arg)
 		handle_3vec_number(s, &arg->ac);
 }
 
-void	parse_triangle(t_parse *p)
+void				parse_triangle(t_parse *p)
 {
 	t_arg_triangle	arg;
 	t_ol			*ob;

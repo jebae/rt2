@@ -6,13 +6,13 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 22:26:05 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/20 08:57:34 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 13:16:14 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static void		parse_arg(t_str *s, t_arg_ring *arg)
+static void			parse_arg(t_str *s, t_arg_ring *arg)
 {
 	if ((ft_strcmp(s->word, "center")) == 0)
 		handle_3vec_number(s, &arg->center);
@@ -24,7 +24,7 @@ static void		parse_arg(t_str *s, t_arg_ring *arg)
 		handle_float_number(s, &arg->r2);
 }
 
-void	parse_ring(t_parse *p)
+void				parse_ring(t_parse *p)
 {
 	t_arg_ring		arg;
 	t_ol			*ob;

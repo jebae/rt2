@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 14:01:20 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/20 09:04:45 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 13:06:45 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ void	init_mem(t_parse *p)
 	ft_putendl("Memory is initialized");
 }
 
-int			init_everything(t_parse *p, char *path)
+int		init_everything(t_parse *p, char *path)
 {
-    if (p->flag & 1UL)
-    {
-        free(p->mem.m);
+	if (p->flag & 1UL)
+	{
+		free(p->mem.m);
 		close(p->fd);
-    }
+	}
 	p->index = 0;
 	p->l_ind = 0;
 	p->size = 0;

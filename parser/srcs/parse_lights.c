@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 19:41:54 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/20 08:39:56 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 13:14:10 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void		parse_distant_light(t_parse *p)
 	t_ll					*li;
 	t_str					*s;
 
-	li= &p->li[p->l_ind];
+	li = &p->li[p->l_ind];
 	s = &p->str;
 	li->light = ft_mem(&p->mem, sizeof(t_distant_light));
 	ft_bzero(&arg, sizeof(t_arg_distant_light));
@@ -48,7 +48,7 @@ static void		parse_spherical_light(t_parse *p)
 	t_ll					*li;
 	t_str					*s;
 
-	li= &p->li[p->l_ind];
+	li = &p->li[p->l_ind];
 	s = &p->str;
 	li->light = ft_mem(&p->mem, sizeof(t_spherical_light));
 	ft_bzero(&arg, sizeof(t_arg_spherical_light));

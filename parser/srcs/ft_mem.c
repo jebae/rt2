@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 12:12:39 by almoraru          #+#    #+#             */
-/*   Updated: 2019/11/12 17:54:07 by almoraru         ###   ########.fr       */
+/*   Updated: 2019/12/20 13:02:57 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,3 +22,4 @@ void	*ft_mem(t_mem *mem, size_t size)
 	mem->usize = mem->usize + size + 1;
 	return (p);
 }
+

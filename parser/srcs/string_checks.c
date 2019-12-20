@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 01:24:32 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/18 18:10:20 by almoraru         ###   ########.fr       */
+/*   Updated: 2019/12/20 13:18:04 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ int		ft_check_line_for_numbers(char *line)
 
 int		ft_is_good_number(char c)
 {
-	if (ft_isdigit(c) || c == ','
-		|| c == 'f' || c == '.'  || c == '-')
+	if (ft_isdigit(c) || c == ',' || c == 'f' || c == '.' || c == '-')
 		return (1);
 	return (0);
 }

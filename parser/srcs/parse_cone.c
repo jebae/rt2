@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 22:19:47 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/20 08:40:20 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 13:10:56 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,12 @@ void			parse_cone(t_parse *p)
 		parse_arg(s, &arg);
 		if ((ft_strcmp(s->word, "optional")) == 0)
 			handle_optional_vaules(p);
-		// tex mode will be module
 		if ((ft_strcmp(s->word, "tex_mode")) == 0)
 			tex_mode = handle_int_number(s, tex_mode);
 		if (tex_mode == 1)
-		{
-			printf("asidhbnioasnd TEX MODE = %d\n", tex_mode);
 			tex_mode = 0;
-			ft_putendl("texture mode detected");
-		}
-		//set texture
 		if (tex_mode == 2)
-		{
-			printf("asidhbnioasnd TEX MODE = %d\n", tex_mode);
 			tex_mode = 0;
-			ft_putendl("bump mapping detected");
-		}
-		//set bump mapping
 		s->buf++;
 	}
 	puts("cone done");

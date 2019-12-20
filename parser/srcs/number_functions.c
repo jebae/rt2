@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 01:32:01 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/16 18:14:08 by almoraru         ###   ########.fr       */
+/*   Updated: 2019/12/20 13:07:27 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int		handle_int_number(t_str *s, int nb)
 	printf("single int nb = %d\n", nb);
 	return (nb);
 }
-
 
 void	handle_float_number(t_str *s, double *nb)
 {

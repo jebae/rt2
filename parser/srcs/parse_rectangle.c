@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 22:22:50 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/20 09:51:20 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 13:15:50 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void		parse_arg(t_str *s, t_arg_rectangle *arg)
 void			parse_rectangle(t_parse *p)
 {
 	int					tex_mode;
-	t_arg_rectangle 	arg;
+	t_arg_rectangle		arg;
 	t_ol				*ob;
 	t_str				*s;
 
@@ -51,13 +51,11 @@ void			parse_rectangle(t_parse *p)
 			ft_putendl("texture mode detected");
 			tex_mode = 0;
 		}
-		//set texture
 		if (tex_mode == 2)
 		{
 			ft_putendl("bump mapping detected");
 			tex_mode = 0;
 		}
-		//set bump mapping
 		s->buf++;
 	}
 	puts("Rectangle done");

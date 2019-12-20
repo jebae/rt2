@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 22:20:54 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/20 08:23:26 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 13:12:51 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,11 @@ void			parse_cylinder(t_parse *p)
 			tex_mode = 0;
 			ft_putendl("texture mode detected");
 		}
-		//set texture
 		if (tex_mode == 2)
 		{
 			tex_mode = 0;
 			ft_putendl("bump mapping detected");
 		}
-		//set bump mapping
 		s->buf++;
 	}
 	puts("Cylinder done");

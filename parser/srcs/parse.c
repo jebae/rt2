@@ -6,15 +6,15 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 11:55:02 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/18 16:55:11 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 13:08:52 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-int		parse(t_parse *p, char *path)
+int					parse(t_parse *p, char *path)
 {
-	struct stat	*att;
+	struct stat		*att;
 	t_str			*s;
 
 	att = &p->att;
@@ -27,5 +27,5 @@ int		parse(t_parse *p, char *path)
 		ft_strcpy(s->time, ctime(&att->st_mtime));
 	}
 	check_time(p, att, &p->flag, path);
-	return(1);
+	return (1);
 }
