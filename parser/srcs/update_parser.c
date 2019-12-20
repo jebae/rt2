@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 15:17:06 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/20 13:28:30 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/12/20 13:48:22 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ int		ft_open_close(char *line, int *op_cl, char *word)
 		{
 			while (++i < 19)
 				if ((*op_cl & 1UL << i) == 1)
-					ft_putstr("SOMETHING IS NOT OPENED CORRECTLY!"):
+					ft_putstr("SOMETHING IS NOT OPENED CORRECTLY!");
 			*op_cl |= 1UL;
 		}
 		if (ft_strcmp(word, "camera") == 0)
@@ -204,11 +204,11 @@ int		ft_open_close(char *line, int *op_cl, char *word)
 					|| (!(*op_cl & 1UL << 4)) || (!(*op_cl & 1UL << 5))
 					|| ((*op_cl & 1UL << 6)) || ((*op_cl & 1UL << 7))
 					|| (!(*op_cl & 1UL << 8)) || (!(*op_cl & 1UL << 9)))				
-				ft_putstr("SOMETHING IS NOT CLOSED CORRECTLY!"):
+				ft_putstr("SOMETHING IS NOT CLOSED CORRECTLY!");
 			i = 9;
 			while (++i < 19)
 				if ((*op_cl & 1UL << i))
-					ft_putstr("SOMETHING IS NOT CLOSED CORRECTLY!"):
+					ft_putstr("SOMETHING IS NOT CLOSED CORRECTLY!");
 			*op_cl |= 1UL << 1;
 		}
 		if (ft_strcmp(word, "camera") == 0)

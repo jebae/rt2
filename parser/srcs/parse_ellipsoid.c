@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 19:22:38 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/20 08:40:07 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 13:45:00 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void			parse_ellipsoid(t_parse *p)
 	s = &p->str;
 	ob->object = ft_mem(&p->mem, sizeof(t_ellipsoid));
 	ft_bzero(&arg, sizeof(t_arg_ellipsoid));
-	ft_putendl("Ellipsoid is here");
 	while (*s->buf != '\0' && ft_strcmp(s->line, "</ellipsoid>") != 0)
 	{
 		if (*s->buf != '\n')
@@ -45,10 +44,10 @@ void			parse_ellipsoid(t_parse *p)
 		parse_arg(s, &arg);
 		if ((ft_strcmp(s->word, "optional")) == 0)
 			handle_optional_vaules(p);
-		s->buf++;
+		if (*s->buf != '\0')
+			s->buf++;
 	}
 	p->flag &= ~(1UL << 15);
 	if (set_ellipsoid(ob, &arg) == RT_FAIL)
 		p->mask |= RT_ENV_MASK_PARSE_FAIL;
-	ft_putendl("Ellipsoid done");
 }

@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 22:20:54 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/20 13:12:51 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/12/20 13:44:49 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static void		parse_arg(t_str *s, t_arg_cyl *arg)
 
 void			parse_cylinder(t_parse *p)
 {
-	int				tex_mode;
 	t_arg_cyl		arg;
 	t_ol			*ob;
 	t_str			*s;
@@ -35,7 +34,6 @@ void			parse_cylinder(t_parse *p)
 	s = &p->str;
 	ob->object = ft_mem(&p->mem, sizeof(t_cyl));
 	ft_bzero(&arg, sizeof(t_arg_cyl));
-	puts("Cylinder here");
 	while (*s->buf != '\0' && ft_strcmp(s->line, "</cylinder>") != 0)
 	{
 		if (*s->buf != '\n')
@@ -46,21 +44,10 @@ void			parse_cylinder(t_parse *p)
 		parse_arg(s, &arg);
 		if ((ft_strcmp(s->word, "optional")) == 0)
 			handle_optional_vaules(p);
-		if ((ft_strcmp(s->word, "tex_mode")) == 0)
-			tex_mode = handle_int_number(s, tex_mode);
-		if (tex_mode == 1)
-		{
-			tex_mode = 0;
-			ft_putendl("texture mode detected");
-		}
-		if (tex_mode == 2)
-		{
-			tex_mode = 0;
-			ft_putendl("bump mapping detected");
-		}
-		s->buf++;
+		handle_texels(s, p);
+		if (*s->buf != '\0')
+			s->buf++;
 	}
-	puts("Cylinder done");
 	if (set_cyl(ob, &arg) == RT_FAIL)
 		p->mask |= RT_ENV_MASK_PARSE_FAIL;
 	p->flag &= ~(1UL << 6);

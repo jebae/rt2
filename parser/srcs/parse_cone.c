@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 22:19:47 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/20 13:10:56 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/12/20 13:44:41 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static void		parse_arg(t_str *s, t_arg_cone *arg)
 
 void			parse_cone(t_parse *p)
 {
-	int				tex_mode;
 	t_arg_cone		arg;
 	t_ol			*ob;
 	t_str			*s;
@@ -37,7 +36,6 @@ void			parse_cone(t_parse *p)
 	s = &p->str;
 	ob->object = ft_mem(&p->mem, sizeof(t_cone));
 	ft_bzero(&arg, sizeof(t_arg_cone));
-	puts("Cone here");
 	while (*s->buf != '\0' && ft_strcmp(s->line, "</cone>") != 0)
 	{
 		if (*s->buf != '\n')
@@ -48,15 +46,10 @@ void			parse_cone(t_parse *p)
 		parse_arg(s, &arg);
 		if ((ft_strcmp(s->word, "optional")) == 0)
 			handle_optional_vaules(p);
-		if ((ft_strcmp(s->word, "tex_mode")) == 0)
-			tex_mode = handle_int_number(s, tex_mode);
-		if (tex_mode == 1)
-			tex_mode = 0;
-		if (tex_mode == 2)
-			tex_mode = 0;
-		s->buf++;
+		handle_texels(s, p);
+		if (*s->buf != '\0')
+			s->buf++;
 	}
-	puts("cone done");
 	if (set_cone(ob, &arg) == RT_FAIL)
 		p->mask |= RT_ENV_MASK_PARSE_FAIL;
 	p->flag &= ~(1UL << 5);

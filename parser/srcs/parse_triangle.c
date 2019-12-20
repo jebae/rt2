@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 22:24:32 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/20 13:17:19 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/12/20 13:46:58 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void				parse_triangle(t_parse *p)
 	s = &p->str;
 	ob->object = ft_mem(&p->mem, sizeof(t_triangle));
 	ft_bzero(&arg, sizeof(t_arg_triangle));
-	puts("Triangle here");
 	while (*s->buf != '\0' && ft_strcmp(s->line, "</triangle>") != 0)
 	{
 		if (*s->buf != '\n')
@@ -43,9 +42,9 @@ void				parse_triangle(t_parse *p)
 		parse_arg(s, &arg);
 		if ((ft_strcmp(s->word, "optional")) == 0)
 			handle_optional_vaules(p);
-		s->buf++;
+		if (*s->buf != '\0')
+			s->buf++;
 	}
-	puts("Triangle done");
 	if (set_triangle(ob, &arg) == RT_FAIL)
 		p->mask |= RT_ENV_MASK_PARSE_FAIL;
 	p->flag &= ~(1UL << 10);

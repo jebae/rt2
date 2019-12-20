@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 22:22:04 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/20 13:14:50 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/12/20 13:46:02 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void			parse_plane(t_parse *p)
 	s = &p->str;
 	ob->object = ft_mem(&p->mem, sizeof(t_plane));
 	ft_bzero(&arg, sizeof(t_arg_plane));
-	puts("Plane here");
 	while (*s->buf != '\0' && ft_strcmp(s->line, "</plane>") != 0)
 	{
 		if (*s->buf != '\n')
@@ -41,9 +40,9 @@ void			parse_plane(t_parse *p)
 		parse_arg(s, &arg);
 		if ((ft_strcmp(s->word, "optional")) == 0)
 			handle_optional_vaules(p);
-		s->buf++;
+		if (*s->buf != '\0')
+			s->buf++;
 	}
-	puts("Plane Done");
 	if (set_plane(ob, &arg) == RT_FAIL)
 		p->mask |= RT_ENV_MASK_PARSE_FAIL;
 	p->flag &= ~(1UL << 7);

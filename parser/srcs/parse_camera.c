@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 02:32:31 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/20 08:41:30 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 13:44:17 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void			parse_camera(t_parse *p, t_str *s, unsigned int *flag)
 			while (*s->buf != '\n' && *s->buf)
 				s->buf++;
 			parse_arg(s, &arg);
-			s->buf++;
+			if (*s->buf != '\0')
+				s->buf++;
 		}
 		*flag &= ~(1UL << 3);
 		if (set_camera(&arg, p->cam) == RT_FAIL)

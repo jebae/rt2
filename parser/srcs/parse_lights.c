@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 19:41:54 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/20 13:14:10 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/12/20 13:45:22 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static void		parse_distant_light(t_parse *p)
 	s = &p->str;
 	li->light = ft_mem(&p->mem, sizeof(t_distant_light));
 	ft_bzero(&arg, sizeof(t_arg_distant_light));
-	puts("Distant light is here");
 	while (*s->buf != '\0' && ft_strcmp(s->line, "</distant>") != 0)
 	{
 		if (*s->buf != '\n')
@@ -34,12 +33,12 @@ static void		parse_distant_light(t_parse *p)
 			handle_3vec_number(s, &arg.dir);
 		if ((ft_strcmp(s->word, "its")) == 0)
 			handle_3vec_number(s, &li->its);
-		s->buf++;
+		if (*s->buf != '\0')
+			s->buf++;
 	}
 	if (set_distant_light(li, &arg) == RT_FAIL)
 		p->mask |= RT_ENV_MASK_PARSE_FAIL;
 	p->flag &= ~(1UL << 14);
-	puts("Distant light done");
 }
 
 static void		parse_spherical_light(t_parse *p)
@@ -52,7 +51,6 @@ static void		parse_spherical_light(t_parse *p)
 	s = &p->str;
 	li->light = ft_mem(&p->mem, sizeof(t_spherical_light));
 	ft_bzero(&arg, sizeof(t_arg_spherical_light));
-	puts("Spherical light is here");
 	while (*s->buf != '\0' && ft_strcmp(s->line, "</spherical>") != 0)
 	{
 		if (*s->buf != '\n')
@@ -64,12 +62,12 @@ static void		parse_spherical_light(t_parse *p)
 			handle_3vec_number(s, &arg.pos);
 		if ((ft_strcmp(s->word, "its")) == 0)
 			handle_3vec_number(s, &li->its);
-		s->buf++;
+		if (*s->buf != '\0')
+			s->buf++;
 	}
 	if (set_spherical_light(li, &arg) == RT_FAIL)
 		p->mask |= RT_ENV_MASK_PARSE_FAIL;
 	p->flag &= ~(1UL << 13);
-	puts("spherical light done");
 }
 
 static void		parse_light(

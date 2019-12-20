@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 22:26:05 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/20 13:16:14 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/12/20 13:46:30 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void				parse_ring(t_parse *p)
 	s = &p->str;
 	ob->object = ft_mem(&p->mem, sizeof(t_ring));
 	ft_bzero(&arg, sizeof(t_arg_ring));
-	puts("Ring here");
 	while (*s->buf != '\0' && ft_strcmp(s->line, "</ring>") != 0)
 	{
 		if (*s->buf != '\n')
@@ -45,9 +44,9 @@ void				parse_ring(t_parse *p)
 		parse_arg(s, &arg);
 		if ((ft_strcmp(s->word, "optional")) == 0)
 			handle_optional_vaules(p);
-		s->buf++;
+		if (*s->buf != '\0')
+			s->buf++;
 	}
-	puts("Ring done");
 	if (set_ring(ob, &arg) == RT_FAIL)
 		p->mask |= RT_ENV_MASK_PARSE_FAIL;
 	p->flag &= ~(1UL << 12);

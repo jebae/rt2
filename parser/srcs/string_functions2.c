@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 10:13:25 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/20 13:20:16 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/12/20 14:10:28 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void		ft_cpymiddleword(char *dest, char *src)
 			a |= 1UL;
 		if (*src == '/')
 			a |= 1UL << 1;
-		if ((ft_isalnum(*src) || *src == '.') && (a & 1UL)
+		if ((ft_isalnum(*src) || *src == '.' || *src == '_') && (a & 1UL)
 			&& !(a & 1UL << 1))
 			*dest++ = *src;
 		src++;

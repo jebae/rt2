@@ -142,7 +142,11 @@
                 <specvalue>600</specvalue>
                 <specpower>15</specpower>
                 <reflectivity>0.0</reflectivity>
-            </optional>
+			</optional>
+			<bump_map>
+				<file>water_bump2.jpg</file>
+				<repeat>1</repeat>
+			</bump_map>
 		</rectangle>
     </objects>
 </scene>

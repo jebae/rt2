@@ -1,0 +1,37 @@
+<scene>
+    <camera>
+        <pos>0, 0, -2</pos>
+        <right>1, 0, 0</right>
+        <dir>0, 0, 1</dir>
+    </camera>
+	<ambient>0.1, 0.1, 0.1</ambient>
+    <light>
+        <distant>
+            <dir>0.5, -1, 10</dir>
+            <its>30, 30, 30</its>
+        </distant>
+        <spherical>
+            <pos>0.0, -4, 6</pos>
+            <its>1, 1, 1</its>
+        </spherical>
+    </light>
+	<objects>
+		<rectangle>
+			<p>-4, 0.5, 7</p>
+			<a>0.0, 0.0, 20.0</a>
+			<b>20.0, 0.0, 0.0</b>
+            <optional>
+                <ior>1.5</ior>
+                <color>255, 40, 100</color>
+                <transparency>0.0</transparency>
+                <specvalue>600</specvalue>
+                <specpower>15</specpower>
+                <reflectivity>0.0</reflectivity>
+			</optional>
+			<bump_map>
+				<file>water_bump2.jpg</file>
+				<repeat>1</repeat>
+			</bump_map>
+		</rectangle>
+    </objects>
+</scene>

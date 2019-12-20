@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 11:48:20 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/20 11:09:52 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 13:43:07 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "rt_struct.h"
 
-# define BUFF_SIZE 1024 * 4
+# define BUFF_SIZE 4096
 
 /*
 **	INIT FUNCTIONS
@@ -51,7 +51,12 @@ void			parse_ambient(t_parse *p);
 /*
 **	CHECK FUNCTONS
 */
-void			check_time(t_parse *p, struct stat *att, unsigned int *flag, char *path);
+void			check_time(
+	t_parse *p,
+	struct stat *att,
+	unsigned int *flag,
+	char *path
+);
 
 /*
 **	MEMORY FUNCTIONS
@@ -78,7 +83,7 @@ int				check_sub_number(char *sub);
 */
 void			handle_3vec_number(t_str *s, t_vec3 *vec);
 void			handle_float_number(t_str *s, double *nb);
-int				handle_int_number(t_str *s, int nb);	
+int				handle_int_number(t_str *s, int nb);
 
 /*
 **	UTIL FUNCTIONS

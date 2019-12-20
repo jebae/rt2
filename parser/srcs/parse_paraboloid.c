@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 20:13:00 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/20 08:23:30 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 13:45:51 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void			parse_paraboloid(t_parse *p)
 	s = &p->str;
 	ob->object = ft_mem(&p->mem, sizeof(t_paraboloid));
 	ft_bzero(&arg, sizeof(t_arg_paraboloid));
-	ft_putendl("Paraboloid is here");
 	while (*s->buf != '\0' && ft_strcmp(s->line, "</paraboloid>") != 0)
 	{
 		if (*s->buf != '\n')
@@ -47,10 +46,10 @@ void			parse_paraboloid(t_parse *p)
 		parse_arg(s, &arg);
 		if ((ft_strcmp(s->word, "optional")) == 0)
 			handle_optional_vaules(p);
-		s->buf++;
+		if (*s->buf != '\0')
+			s->buf++;
 	}
 	p->flag &= ~(1UL << 16);
 	if (set_paraboloid(ob, &arg) == RT_FAIL)
 		p->mask |= RT_ENV_MASK_PARSE_FAIL;
-	ft_putendl("Paraboloid done");
 }

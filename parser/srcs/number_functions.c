@@ -6,7 +6,7 @@
 /*   By: almoraru <almoraru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 01:32:01 by almoraru          #+#    #+#             */
-/*   Updated: 2019/12/20 13:07:27 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/12/20 14:27:27 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int		handle_int_number(t_str *s, int nb)
 			s->number++;
 		s->number++;
 	}
-	printf("single int nb = %d\n", nb);
 	return (nb);
 }
 
@@ -44,7 +43,6 @@ void	handle_float_number(t_str *s, double *nb)
 			s->number++;
 		s->number++;
 	}
-	printf("single float nb = %f\n", *nb);
 }
 
 void	handle_3vec_number(t_str *s, t_vec3 *vec)
@@ -66,5 +64,4 @@ void	handle_3vec_number(t_str *s, t_vec3 *vec)
 			i++;
 		s->number++;
 	}
-	printf("vectors are = %f | %f | %f\n", vec->x, vec->y, vec->z);
 }

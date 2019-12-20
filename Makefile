@@ -231,6 +231,7 @@ $(NODE_MODULES) :
 
 $(CONTENTS) :
 	tar -xvzf contents.tar
+	cp -R contents/* ./interfaces/public/textures/
 
 $(OUTPUT_DIR) :
 	mkdir -p $@
