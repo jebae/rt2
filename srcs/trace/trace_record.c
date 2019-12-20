@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:32:05 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/20 00:50:12 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 02:11:59 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void			set_trace_record(t_trace_record *rec)
 	obj = rec->obj;
 	rec->point = find_point_from_ray(rec->ray);
 	rec->normal = obj->get_normal(rec->ray, obj->object);
+	if (v3_dotpdt(rec->normal, rec->ray.dir) > 0.0)
+		rec->normal = v3_scalar(rec->normal, -1.0);
 	rec->color = obj->dif;
 	if (obj->uv_mapping == NULL)
 		return ;
@@ -39,8 +41,6 @@ void			set_trace_record(t_trace_record *rec)
 			rec->point, &obj->axis_mat, &obj->texture, obj->object);
 		rec->color = get_texel_color(&uv, &obj->texture);
 	}
-	else
-		rec->color = obj->dif;
 	if (obj->bump_map.buffer != NULL)
 	{
 		uv = obj->uv_mapping(

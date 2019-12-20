@@ -24,15 +24,15 @@
             </optional>
         </plane>
 		<sphere>
-			<center>1, -3, 5</center>
+			<center>0, -1, 5</center>
 			<radius>1</radius>
             <optional>
                 <ior>1.5</ior>
-                <color>100, 255, 22</color>
-                <transparency>0.9</transparency>
+                <color>255, 30, 22</color>
+                <transparency>0.8</transparency>
                 <specvalue>600</specvalue>
                 <specpower>15</specpower>
-                <reflectivity>0</reflectivity>
+                <reflectivity>0.0</reflectivity>
             </optional>
 		</sphere>
     </objects>

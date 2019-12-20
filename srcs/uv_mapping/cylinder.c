@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:32:43 by jebae             #+#    #+#             */
-/*   Updated: 2019/12/20 01:18:54 by jebae            ###   ########.fr       */
+/*   Updated: 2019/12/20 02:15:12 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ t_vec2			cyl_uv_mapping(
 	point = m_mult(*axis_mat, point);
 	uv.x = acos(point.x / cyl->radius) / (2.0 * M_PI) * texels->repeat;
 	if (ft_is_inf(cyl->height))
-		uv.y = (point.y + cyl->height) / (texels->height * 2.0 * M_PI / texels->width)
+		uv.y = (point.y + cyl->height) /
+			(texels->height * 2.0 * M_PI / texels->width)
 			* texels->repeat;
 	else
 		uv.y = (point.y + cyl->height) / (2 * cyl->height * texels->repeat);
