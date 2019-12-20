@@ -186,7 +186,7 @@ function get_mapping()
 {
     var mapped = $('input[name=radio-207]:checked', '#mapping').val();
     if (mapped != null)
-        return ("\t\t\t<texture_mapping> " + mapped + ".jpg </texture_mapping>\n");
+        return ("\t\t\t\t<file>" + mapped + ".jpg</file>\n");
     else
         return (0);
 }
@@ -195,7 +195,7 @@ function get_bumping()
 {
     var bumped = $('input[name=radio-208]:checked', '#bumping').val();
     if (bumped != null)
-        return ("\t\t\t<texture_bumping> " + bumped + ".jpg </texture_bumping>\n");
+        return ("\t\t\t\t<file>" + bumped + ".jpg</file>\n");
     else
         return (0);
 }
@@ -272,13 +272,30 @@ function create_xml(shape)
     if ((shape.localeCompare("sphere") == 0) || (shape.localeCompare("cone") == 0)
         || (shape.localeCompare("rectangle") == 0) || (shape.localeCompare("cylinder") == 0))
     {
-        var temp_map = get_mapping();
-        if (temp_map != 0)
-            xml_shape += temp_map;
+        var repetition = check_val((document.getElementById("repetition")));
+        if (repetition.value == "")
+            repetition.value = 1;
 
-        var temp_bump = get_bumping();
-        if (temp_bump != 0)
-            xml_shape += temp_bump;
+        var mapped = $('input[name=radio-207]:checked', '#mapping').val();
+        if (mapped !== undefined)
+        {   
+            xml_shape += "\t\t\t<texture>\n";
+            var temp_map = get_mapping();
+            if (temp_map != 0)
+                xml_shape += temp_map;
+            xml_shape += "\t\t\t\t<repeat>" + repetition.value + "</repeat>\n";
+            xml_shape += "\t\t\t</texture>\n";
+        }
+        var bumped = $('input[name=radio-208]:checked', '#bumping').val();
+        if (bumped !== undefined)
+        {   
+            xml_shape += "\t\t\t<bump_map>\n";
+            var temp_bump = get_bumping();
+            if (temp_bump != 0)
+                xml_shape += temp_bump;
+            xml_shape += "\t\t\t\t<repeat>" + repetition.value + "</repeat>\n";
+            xml_shape += "\t\t\t</bump_map>\n";
+        }
     }
 
     xml_shape += close_shape(shape);

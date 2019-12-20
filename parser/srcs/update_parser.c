@@ -12,122 +12,6 @@
 
 #include "rt.h"
 
-int		ft_brackets(char *line)
-{
-	int i;
-	int b1s;
-	int b2s;
-
-	i = 0;
-	b1s = 0;
-	b2s = 0;
-	while (line[i] != '\0')
-	{
-		if (line[i] == '<' && i == 0)
-			b1s++;
-		if (line[i] == '<' && line[i + 1] == '/')
-			b1s++;
-		if (line[i] == '>' && b1s == 1)
-			b2s++;
-		if (line[i] == '>' && line[i + 1] == '\0')
-			b2s++;
-		i++;
-	}
-	if (b1s != 2 || b2s != 2)
-		return (0);
-	return (1);
-}
-
-int		ft_one_bracket(char *line, int b_ret)
-{
-	int	i;
-	int	bs;
-
-	i = 0;
-	bs = 0;
-	while (line[i] != '\0')
-	{
-		if (line[i] == '<' && i == 0)
-		{
-			if (line[i + 1] != '/' && b_ret == 1)
-				bs++;
-			else if (line[i + 1] == '/' && b_ret == 2)
-				bs++;
-		}
-		if (line[i] == '>' && line[i + 1] == '\0' && bs == 1)
-			bs++;
-		i++;
-	}
-	if (bs != 2)
-		return (0);
-	return (1);
-}
-
-int		ft_check_spec_bytes_opening(int *op_cl)
-{
-	int	i;
-
-	i = 1;
-	while (++i < 10)
-	{
-		if (i % 2 == 0)
-		{
-			if ((*op_cl & 1UL << i) && !(*op_cl & 1UL << (i + 1)))
-				return (0);
-			else if (!(*op_cl & 1UL << i) && (*op_cl & 1UL << (i + 1)))
-				return (0);
-		}
-	}
-	return (1);
-}
-
-int		ft_check_spec_bytes_closing(int *op_cl, int num)
-{
-	int	i;
-
-	i = 1;
-	if (!(*op_cl & 1UL << num))
-		return (0);
-	while (++i < 10)
-	{
-		if (i % 2 == 0 && i != num)
-		{
-			if ((*op_cl & 1UL << i) && !(*op_cl & 1UL << (i + 1)))
-				return (0);
-			else if (!(*op_cl & 1UL << i) && (*op_cl & 1UL << (i + 1)))
-				return (0);
-		}
-	}
-	return (1);
-}
-
-int		ft_turn_byte_on(int *op_cl, int num)
-{
-	int	i;
-
-	i = 9;
-	if ((*op_cl & 1UL << 8) == 0 || (*op_cl & 1UL << num))
-		return (0);
-	while (++i < 19)
-		if ((*op_cl & 1UL << i))
-			return (0);							
-	*op_cl |= 1UL << num;
-	return (1);
-}
-
-int		ft_turn_byte_off(int *op_cl, int num)
-{
-	int	i;
-
-	i = 10;
-	if ((*op_cl & 1UL << 8) == 0 || !(*op_cl & 1UL << num))
-		return (0);
-	while (++i < 19)
-		if ((*op_cl & 1UL << i) == 1)
-			return (0);
-	*op_cl &= ~(1UL << num);
-	return (1);
-}
 
 int		ft_open_close(char *line, int *op_cl, char *word)
 {
@@ -169,22 +53,22 @@ int		ft_open_close(char *line, int *op_cl, char *word)
 		}
 		if (ft_strcmp(word, "sphere") == 0)
 			if (!(ft_turn_byte_on(op_cl, 10)))
-				ft_putstr("OPENING FAIL 10 !\n");
+				ft_putstr("OPENING FAIL SPHERE !\n");
 		if (ft_strcmp(word, "cone") == 0)
 			if (!(ft_turn_byte_on(op_cl, 11)))
-				ft_putstr("OPENING FAIL 11 !\n");
+				ft_putstr("OPENING FAIL CONE !\n");
 		if (ft_strcmp(word, "cylinder") == 0)
 			if (!(ft_turn_byte_on(op_cl, 12)))
-				ft_putstr("OPENING FAIL 12 !\n");
+				ft_putstr("OPENING FAIL CYLINDER !\n");
 		if (ft_strcmp(word, "plane") == 0)
 			if (!(ft_turn_byte_on(op_cl, 13)))
-				ft_putstr("OPENING FAIL 13 !\n");
+				ft_putstr("OPENING FAIL PLANE !\n");
 		if (ft_strcmp(word, "rectangle") == 0)
 			if (!(ft_turn_byte_on(op_cl, 14)))
-				ft_putstr("OPENING FAIL 14 !\n");
+				ft_putstr("OPENING FAIL RECTANGLE!\n");
 		if (ft_strcmp(word, "box") == 0)
 			if (!(ft_turn_byte_on(op_cl, 15)))
-				ft_putstr("OPENING FAIL  !\n");
+				ft_putstr("OPENING FAIL BOX !\n");
 		if (ft_strcmp(word, "triangle") == 0)
 			if (!(ft_turn_byte_on(op_cl, 16)))
 				ft_putstr("OPENING FAIL TRIANGLE !\n");
@@ -214,19 +98,19 @@ int		ft_open_close(char *line, int *op_cl, char *word)
 		if (ft_strcmp(word, "camera") == 0)
 		{
 			if (!(ft_check_spec_bytes_closing(op_cl, 2)))
-				ft_putstr("FAILING CLOSING SPEC 1 !\n");
+				ft_putstr("FAILING CLOSING SPEC CAMERA !\n");
 			*op_cl |= 1UL << 3;
 		}
 		if (ft_strcmp(word, "filter") == 0)
 		{
 			if (!(ft_check_spec_bytes_closing(op_cl, 4)))
-				ft_putstr("FAILING CLOSING SPEC 1 !\n");
+				ft_putstr("FAILING CLOSING SPEC FILTER !\n");
 			*op_cl |= 1UL << 5;
 		}
 		if (ft_strcmp(word, "light") == 0)
 		{
 			if (!(ft_check_spec_bytes_closing(op_cl, 6)))
-				ft_putstr("FAILING CLOSING SPEC 1 !\n");					
+				ft_putstr("FAILING CLOSING SPEC  !\n");					
 			*op_cl |= 1UL << 7;
 		}
 		if (ft_strcmp(word, "objects") == 0)
